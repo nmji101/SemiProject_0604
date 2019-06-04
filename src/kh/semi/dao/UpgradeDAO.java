@@ -23,6 +23,54 @@ public class UpgradeDAO {
 		return DriverManager.getConnection(url, user, password);
 	}
 
+	
+	/**
+	 * 튜터요청리스트에 insert
+	 * @return int 1 success 0 error
+	 * @throws Exception
+	 */
+	public int insertNew(String id, String nickname) throws Exception
+	{
+		String sql = "insert into upgrade values(up_seq_seq.nextval, ?, ?, default)";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, id);
+			pstat.setString(2, nickname);
+
+			int result = pstat.executeUpdate();
+			con.commit();
+
+			return result;
+		}
+	}
+	
+	public boolean selectById(String id) throws Exception
+	{
+		String sql = "select * from upgrade where up_id = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
+	}
+
+	
+	
+
 	/**
 	 * 튜터요청리스트에 있는 목록 불러오기
 	 * @return

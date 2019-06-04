@@ -280,7 +280,7 @@ public class LoginServlet extends HttpServlet
 			}
 		}else if(url.equals("naverLogin.login")) { //네이버로그인
 			String clientId = "gB29fVbvRSeR2nP3nDLJ";//애플리케이션 클라이언트 아이디값";
-			String redirectURI = URLEncoder.encode("http://192.168.60.16:8080/naverLoginResult.login", "UTF-8");///callback 주소
+			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");///callback 주소
 			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
 			// 상태 토큰으로 사용할 랜덤 문자열 생성
 			SecureRandom random = new SecureRandom();
@@ -297,7 +297,7 @@ public class LoginServlet extends HttpServlet
 			String clientSecret = "Zdr7BUcINY";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("http://192.168.60.16:8080/MemberProject_MVC2/member/loginNaverResult.mem", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");
 			String apiURL;
 			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 			apiURL += "client_id=" + clientId;
@@ -365,7 +365,6 @@ public class LoginServlet extends HttpServlet
 						res.append(inputLine);
 					}
 					br.close();
-					System.out.println(res);
 					JsonParser parsing = new JsonParser();
 					Object obj = parsing.parse(res.toString());
 					JsonObject jsonObj = (JsonObject)obj;
@@ -406,6 +405,11 @@ public class LoginServlet extends HttpServlet
 					String nickname = null;
 					if(resObj.get("nickname")!=null) {
 						nickname = resObj.get("nickname").getAsString();
+					}else {
+						nickname = name;
+					}
+					if(nickname == null) {
+						nickname = "임시 닉네임";
 					}
 					System.out.println("id : " + naverCode);
 					System.out.println("email : " + email);
@@ -438,24 +442,25 @@ public class LoginServlet extends HttpServlet
 					MemberDAO dao = new MemberDAO();
 					if(!dao.kakaoLoginCheck("N"+naverCode)) {
 						long currentTime = System.currentTimeMillis();
-						//MemberDTO dto = new MemberDTO("N"+naverCode,currentTime,nickname,gender,agerange,birthday,null,null,null);
-						//int result = dao.insertNewMember(dto);
+						MemberDTO dto = new MemberDTO("N"+naverCode,currentTime+"",nickname,gender,agerange,birthday,null,null,"normal",null);
+						int result = dao.getInsert(dto);
 						//request.setAttribute("result", result);
-					}else {
-						request.setAttribute("result", 1);
+						if(result<=0) {
+							System.out.println("DB INSERT ERROR");
+						}
 					}
-					request.getSession().setAttribute("loginId", "Naver_"+name);
-					//request.getSession().setAttribute("loginPw", dao.getMemberInfo("N_"+naverCode).getPw());
-					//request.getSession().setAttribute("userInfo", dao.getMemberInfo("N_"+naverCode));
+					request.getSession().setAttribute("loginId", "N"+naverCode);
+					request.getSession().setAttribute("loginType", "Naver");
+					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
 
 
 					//접근토큰삭제 -> 탈퇴할때? 없애기... 
-					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
-					deleteToken +="&client_id=" + clientId;
-					deleteToken +="&client_secret=" +clientSecret;
-					deleteToken +="&access_token=" + access_token;
-					deleteToken +="&service_provider=NAVER";
-					System.out.println("deleteToken : " + deleteToken);
+//					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
+//					deleteToken +="&client_id=" + clientId;
+//					deleteToken +="&client_secret=" +clientSecret;
+//					deleteToken +="&access_token=" + access_token;
+//					deleteToken +="&service_provider=NAVER";
+//					System.out.println("deleteToken : " + deleteToken);
 
 
 					//String deleteToken = (String)request.getSession().getAttribute("delete");
@@ -484,12 +489,16 @@ public class LoginServlet extends HttpServlet
 					//					//response.sendRedirect("index.io");	
 					//					System.out.println("접근토큰 삭제완료");
 
-					request.getRequestDispatcher("loginView.jsp").forward(request, response);
 				}catch(Exception e) {
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 			}
+		}else if(url.equals("naverLogout.login")) {
+			request.getSession().invalidate();
+			response.sendRedirect("naverLogoutView.jsp");
+		}else if(url.equals("naverLogoutPop.login")) {
+			response.sendRedirect("https://nid.naver.com/nidlogin.logout?returl=http://www.naver.com");
 		}
 	}
 

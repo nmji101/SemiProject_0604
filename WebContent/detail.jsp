@@ -354,6 +354,7 @@
                 	var userId = "${loginId}"
                 	if(userId==""){
                 		alert("로그인 후 구매해주세요.");
+                		return;
                 	}
                 	
                 	var purchaseForm = $("<form></form>");
@@ -466,10 +467,11 @@
                                 <h5>${classInfo.info_title}</h5>
                             </div>
                             <div class="star">
-                                <a class="starImg" href="#">
+                                <a id="starImg" class="starImg" href="#">
                                     <!--                                 별점에 따라..몇개로할건지..... -->
-                                    <img src="Content/Images/star.jfif">
-                                    <img src="Content/Images/star.jfif">
+<%--                                     <c:forEach var="i" begin="0" end="${classInfo.info_avgstar"> --%>
+<!--                                     	<img src="Content/Images/star.jfif"> -->
+<%--                                     </c:forEach> --%>
                                 </a>
                             </div>
                             <div class="info">

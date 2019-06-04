@@ -117,9 +117,15 @@ div {
 	    {
 		    location.href = "person.mypage?page=1";
 	    });
+	    
+	    $("#tutor_page_btn").on("click", function()
+		{
+			location.href = "tutor.mypage?page=1";
+		});
+	    
 	    $("#profile_img_btn").on("click", function()
 	    {
-		    var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
 		    
 		    open("changeImg.mypage", "", popOption);
 	    });
@@ -294,19 +300,15 @@ div {
 
 							</div>
 							
-							<c:if test="${ dto.m_type == 'tutor' }">
-							
-								<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12">
 
-									<button id="tutor_page_btn" class="btn btn link my-3">
+								<button id="tutor_page_btn" class="btn btn link my-3">
 										
-										튜터 페이지
+									튜터 페이지
 										
-									</button>
+								</button>
 
-								</div>
-							
-							</c:if>
+							</div>
 
 						</div>
 
@@ -444,13 +446,6 @@ div {
 
 
 	</div>
-
-</body>
-</html>
-
-
-
-
 
 </body>
 </html>

@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import kh.semi.dao.DoClassDAO;
 import kh.semi.dao.PersonDAO;
 import kh.semi.dao.ReviewDAO;
+import kh.semi.dao.UpgradeDAO;
 import kh.semi.dto.DoClassDTO;
 import kh.semi.dto.PersonDTO;
 
@@ -355,16 +356,14 @@ public class MypageServlets extends HttpServlet
 							e.printStackTrace();
 						}
 					}
-					
-					
-					
 				}
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("close.html");
 			}
-			response.sendRedirect("close.html");
+			
 		}
 		else if(url.equals("review.mypage"))
 		{
@@ -404,7 +403,56 @@ public class MypageServlets extends HttpServlet
 			}
 			response.sendRedirect("close.html");
 		}
-	
+		else if(url.equals("tutor.mypage"))
+		{
+			try
+			{
+				PersonDAO pdao = new PersonDAO();
+				PersonDTO pdto = pdao.selectById(m_id);
+				request.setAttribute("dto", pdto);
+				
+				if(pdto.getM_type().equals("tutor"))
+				{
+					request.setAttribute("check", "tutor");
+				}
+				else
+				{
+					UpgradeDAO udao = new UpgradeDAO();
+					Boolean check = udao.selectById(pdto.getM_id());
+					request.setAttribute("check", check);
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
+		}
+		else if(url.equals("apply.mypage"))
+		{
+			try
+			{
+				String id = request.getParameter("id");
+				String nickname = request.getParameter("nickname");
+				
+				UpgradeDAO dao = new UpgradeDAO();
+				int result = dao.insertNew(id, nickname);
+				
+				if(result > 0)
+				{
+					request.getRequestDispatcher("tutor.mypage").forward(request, response);
+				}
+				else
+				{
+					response.sendRedirect("error.html");
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
