@@ -52,8 +52,7 @@ public class FrontController_classInfo extends HttpServlet {
 				request.setAttribute("closedDateList", closedDateList);
 
 				System.out.println("담기완료");
-				//임시로 아이디전달해주기
-				request.setAttribute("loginId", "tmp" );
+				
 				request.getRequestDispatcher("detail.jsp").forward(request, response);
 			}else if(cmd.equals("/applicable.classInfo")) { 
 				//보내준 날짜에 신청한 인원이 총 몇명인지
@@ -67,6 +66,7 @@ public class FrontController_classInfo extends HttpServlet {
 				String selectedDate = request.getParameter("selectedDate");
 				ClassDoingDTO d_dto = new ClassDoingDTO(1,classId,userId,"","",selectedDate);
 				int result = d_dao.insertClassDoing(d_dto);
+				System.out.println("userId"+userId);
 
 				request.setAttribute("result", result);
 				request.setAttribute("classId", classId);

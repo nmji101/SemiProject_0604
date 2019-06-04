@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +22,7 @@
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
 
 </head>
 <style>
@@ -155,6 +158,7 @@ body {
 	background-color: #337ab7;
 	border-color: #2e6da4;
 }
+
 
 </style>
 <style>
@@ -292,60 +296,57 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 .searchaddr {
 	width: 250px;
 }
-<<<<<<< HEAD
-/*
+<<<<<<<
+HEAD /*
 		*{
 		border: 1px solid black
 		}
 		*/
 </style>
 <!-- 이미지 업로드 스타일 -->
- <style type="text/css">
+<style type="text/css">
+input[type=file] {
+	display: none;
+}
 
-        input[type=file] {
-            display: none;
-        }
+.my_button {
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+	padding: 10px;
+	background-color: #fdbc0a;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
 
-        .my_button {
-            display: inline-block;
-            width: 200px;
-            text-align: center;
-            padding: 10px;
-            background-color: #fdbc0a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .my_button2 {
-            display: inline-block;
-            width: 90px;
-            text-align: center;
-            padding: 10px;
-            background-color: #fdbc0a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+.my_button2 {
+	display: inline-block;
+	width: 90px;
+	text-align: center;
+	padding: 10px;
+	background-color: #fdbc0a;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
 
+.imgs_wrap {
+	border: 1px solid #fdbc0a;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
-
-        .imgs_wrap {
-            border: 1px solid #fdbc0a;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-
-        }
-        .imgs_wrap img {
-            max-width: 100px;
-            margin-left: 10px;
-            margin-right: 10px;
-			text-align: center;
-        }
-
-    </style>
-     <script type="text/javascript">
+.imgs_wrap img {
+	max-width: 100px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
 
         // 이미지 정보들을 담을 배열
         var sel_files = [];
@@ -442,6 +443,7 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
     
 <body>
 	<form action="tutor.con" method="post" >
+
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
@@ -482,10 +484,12 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 				<!-- 컨텐츠 부분-->
 				<div class=" col-lg-12 col-md-12 col-sm-12 p-0 m-0"
 					id="collapseExample">
-					<div 	class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
+					<div
+						class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
 						<!--Class등록 Show부분-->
 						<div class=" drop p-0 ">
 							<!-- 드랍버튼 3개-->
+
 
 							<div class="mr-1 ml-4 p-0 head col-2 btn-group">
 								<button type="button" id="mystatus2"
@@ -498,6 +502,7 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 									<li><a class="dropdown-item" href="#">디자인</a></li>
 									<li><a class="dropdown-item" href="#">IT</a></li>
 									<li><a class="dropdown-item" href="#">언어</a></li>
+
 									<li><a class="dropdown-item" href="#">라이프스타일</a></li>
 									<li><a class="dropdown-item" href="#">재테크</a></li>
 								</ul>
@@ -512,8 +517,9 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">희망지역</button>
 								<div class="dropdown-menu">
-									<input type="button" onclick="sample4_execDaumPostcode()" class="btn addr" value="주소 찾기 클릭"> 
-										<span id="guide"	style="color: #999; display: none"></span>
+									<input type="button" onclick="sample4_execDaumPostcode()"
+										class="btn addr" value="주소 찾기 클릭"> <span id="guide"
+										style="color: #999; display: none"></span>
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									<script>
 										//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -562,21 +568,25 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 													}).open();
 										}
 									</script>
-									<input type="text" id="sample4_postcode"class=" searchaddr zipcode text" placeholder="우편번호"
-										name=zipcode readonly > 
-									<input type="text" id="sample4_roadAddress" class=" searchaddr road text"
-										placeholder="도로명주소" name=add1 readonly> 
-									<input type="text" id="sample4_jibunAddress" class=" searchaddr road text" placeholder="지번주소" 
-									name=add2 readonly   readonly> 
-									<input type="text"id="sample4_detailAddress" class=" searchaddr text"
+									<input type="text" id="sample4_postcode"
+										class=" searchaddr zipcode text" placeholder="우편번호"
+										name=zipcode readonly> <input type="text"
+										id="sample4_roadAddress" class=" searchaddr road text"
+										placeholder="도로명주소" name=add1 readonly> <input
+										type="text" id="sample4_jibunAddress"
+										class=" searchaddr road text" placeholder="지번주소" name=add2
+										readonly readonly> <input type="text"
+										id="sample4_detailAddress" class=" searchaddr text"
 										placeholder="상세주소 입력하기" name=add3>
 								</div>
 							</div>
 							<div class="mr-1 ml-4 p-0 cash col-2 head cash form-group">
-								<input type="text" class="inputcash form-control" placeholder="희망인원" name=max>
+								<input type="text" class="inputcash form-control"
+									placeholder="희망인원" name=max>
 							</div>
 							<div class="mr-1 ml-4 p-0 cash col-2 head cash form-group">
-								<input type="text" class="inputcash form-control"	placeholder="희망금액" name=cash>
+								<input type="text" class="inputcash form-control"
+									placeholder="희망금액" name=cash>
 							</div>
 						</div>
 						<br>
@@ -610,7 +620,6 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 													buttonText : "날짜 선택",
 													yearSuffix : "년",
 													monthNamesShort : [ '1', '2', '3', '4', '5','6', '7', '8', '9','10', '11', '12' ],
-
 													monthNames : [ '1월', '2월',	'3월', '4월', '5월',	'6월', '7월', '8월',	'9월', '10월', '11월',	'12월' ],
 													dayNamesMin : [ '일', '월',	'화', '수', '목', '금','토' ],
 													dayNames : [ '일요일', '월요일',
@@ -629,8 +638,9 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 									});
 								</script>
 							</div>
-						</div><!-- 날짜 고르는 부분 끝-->
-						<br>	
+						</div>
+						<!-- 날짜 고르는 부분 끝-->
+						<br>
 
 						<div class="array col-12 p-0 m-0">
 							<!-- 사진 캐러셀+내용입력-->
@@ -657,9 +667,10 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
    				 			</form>
 						<br>
 						<div class="head btm m-0 p-0 col-12">
-							<button type="button" id="register" class="btn btn-outline-warning">Class 등록하기</button>
+							<button type="button" id="register"
+								class="btn btn-outline-warning">Class 등록하기</button>
 						</div>
-					
+
 						<!--Class등록 Show부분 끝-->
 					</div>
 				</div>
@@ -687,8 +698,6 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 				</div>
 			</div>
 		</div>
-</form>
-
 </body>
 
 <script>

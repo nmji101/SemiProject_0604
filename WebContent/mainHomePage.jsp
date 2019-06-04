@@ -225,6 +225,7 @@ a:hover {
 	width: 50px;
 }
 </style>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 $(function(){
 	$("#logo").on("click", function() {
@@ -273,8 +274,10 @@ $(function(){
 					else if(${loginType == "normal"})
 					{
 						location.href="logout.login";
+					}else{
+						location.href="naverLogout.login";
 					}
-        		})
+        		});
 	}
 })
 	</script>
