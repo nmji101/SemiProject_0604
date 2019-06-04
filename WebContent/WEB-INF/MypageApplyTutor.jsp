@@ -86,6 +86,7 @@ div {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <script>
+alert("id : " + "${loginId}");
 	$(function()
     {
 	    $("#search_btn").on("click", function()
@@ -293,13 +294,22 @@ div {
 					<div id="contents_div" class="col-lg-9">
 
 						<c:if test="${ check == 'true' }">
-						
+							<script>
+								alert("a"+"${check}");
+ 								//location.href = "ForTutor.jsp";
+							
+							</script>
 							<span>현재 신청 대기중</span>
 							
 						</c:if>
 						
 						<c:if test="${ check == 'false' }">
-						
+							<script>
+								alert("b : "+"${check}");
+ 								//location.href = "ForTutor.jsp";
+							
+							</script>
+							
 							<form id="apply_form" action="apply.mypage" method="post">
 						
 								<input name="id" type="hidden" value="${ dto.m_id }">
@@ -314,8 +324,8 @@ div {
 						<c:if test="${ check == 'tutor' }">
 						
 							<script>
-							
-								location.href = "ForTutor.jsp";
+								alert("c : "+"${check}");
+ 								//location.href = "ForTutor.jsp";
 							
 							</script>
 							
