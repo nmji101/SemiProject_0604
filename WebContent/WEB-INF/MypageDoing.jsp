@@ -5,23 +5,74 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <title>Document</title>
 
 <style>
+/*         header	 */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+div {
+	padding: 0px;
+}
+
+#header {
+	width: 100%;
+	margin: auto;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+#searchbox {
+	height: 38px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #ffba00;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#logo {
+	position: relative;
+	bottom: 20px;
+	cursor: pointer;
+}
+#header {
+	height: 100%;
+	width: 100%;
+	padding: 64px 32px;
+	
+}
+.headBtn {
+	color: white;!important
+}
+
+.headBtn:hover {
+	background-color: burlywood;
+	border: 1px solid burlywood;
+	color: white;
+}
+/*         header	 */
+
+
 div {
 	border: 1px solid black;
 	box-sizing: border-box;
 }
 
-#header_row, #profile_row, #contents_row {
+#profile_row, #contents_row {
 	justify-content: center;
 }
 
-#logo_div, #event_div, #profile_img_div {
+#event_div, #profile_img_div {
 	text-align: center;
 }
 
-#logo_img, #event_img {
+#event_img {
 	width: 200px;
 	height: 100px;
 }
@@ -72,6 +123,7 @@ div {
 	color: cornflowerblue;
 	font-weight: bold;
 }
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -88,6 +140,10 @@ div {
 <script>
 	$(function()
     {
+		$("#logo").on("click", function() {
+    		location.href = "mainHomePage.jsp";
+    	});
+		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -176,55 +232,41 @@ div {
 
 	<div class="container col-12 mt-3">
 
-		<div id="header_row" class="row">
-
-			<div class="col-10">
-
-				<div class="row">
-
-					<div id="logo_div" class="col-lg-3 d-none d-xl-block">
-
-						<a href="mainHomePage.jsp"> <img id="logo_img" src="nmnb.jpg" alt="">
-
-						</a>
-
-					</div>
-
-					<div id="search_div" class="col-lg-12 col-xl-6 my-auto">
-
-						<div class="row">
-
-							<div class="col-lg-9">
-
-								<input id="search_text" class="form-control" type="text"
-									placeholder="input text to search">
-
-							</div>
-
-							<div class="col-lg-3">
-
-								<input id="search_btn" class="btn" type="button" value="검색">
-
-							</div>
-
-						</div>
-
-
-					</div>
-
-					<div id="event_div" class="col-lg-3 d-none d-xl-block">
-
-						<a href="#"> <img id="event_img" src="nmnb.jpg" alt="">
-
-						</a>
-
-					</div>
-
-				</div>
-
+ <!--           HEADER-->
+            <div id=header class=row>
+			<div class="col-12 col-lg-3">
+				<img src="logo.png" id=logo>
 			</div>
-
+			<div class="col-12 col-lg-6" id=search>
+					<form class="form-inline my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id=searchbox>
+								<button class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="submit">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			<div class="col-12 col-lg-3">
+				<c:choose>
+					<c:when test="${loginId==null}">
+						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">login</button>
+						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">signup</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=logout_btn>logout</button>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
+            <!--           HEADER-->
 
 		<div id="profile_row" class="row">
 

@@ -65,6 +65,11 @@ div {
 	margin: 0px;
 }
 
+#lookBtn{
+	font-weight: bold;
+	font-size: 23px;
+	width: auto;
+}
 .display-4 {
 	font-family: 'Do Hyeon', sans-serif;
 }
@@ -325,7 +330,7 @@ $(function(){
 			<p class="lead">집, 회사, 집, 회사 반복되는 지루한 일상이 싫다면?</p>
 			<hr class="my-4">
 			<p></p>
-			<a class="btn btn-outline-warning btn-lg" href="#" role="button">클래스
+			<a class="btn btn-outline-light btn-lg" href="#" role="button" id="lookBtn">클래스
 				보러가기</a>
 		</div>
 		<div id=navi>

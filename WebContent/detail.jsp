@@ -16,7 +16,47 @@
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!--                /달력 api cdn-->
+        
+        <link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
         <style>
+/*         header	 */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#searchbox {
+	height: 38px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #ffba00;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#logo {
+	position: relative;
+	bottom: 20px;
+	cursor: pointer;
+}
+#header {
+	height: 100%;
+	width: 100%;
+	padding: 64px 32px;
+	
+}
+.headBtn {
+	color: white;
+}
+
+.headBtn:hover {
+	background-color: burlywood;
+	border: 1px solid burlywood;
+	color: white;
+}
+/*         header	 */
+        
             div{
                 border: 1px solid rgba(0, 0, 0, 0.19);
                 box-sizing: border-box;
@@ -184,6 +224,10 @@
         <!--         /다음지도 api cdn -->	
         <script>
             $(function(){
+            	$("#logo").on("click", function() {
+            		location.href = "mainHomePage.jsp";
+            	});
+            	
                 var he1 = document.getElementById("myCarousel1").scrollHeight;
                 var he2 = document.getElementById("classNavi").scrollHeight;
                 $(window).scroll(function() {
@@ -382,18 +426,39 @@
     </c:forEach>
         <div id="wrapper" class="container">
             <!--           HEADER-->
-            <div id="header" class="row">
-                <div class="col-lg-2 col-md-2 col-sm-2"><a href="#">로고</a></div>
-                <div class="col-lg-4 col-md-4 col-sm-4"><input type="text" placeholder="검색하기"></div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <ul id="topMenu">
-                        <li><a href="#">로그인</a></li>
-                        <li><a href="#">회원가입</a></li>
-                        <li><a href="#">마이페이지</a></li>
-                        <li><a href="#">튜터등록</a></li>
-                    </ul>        
-                </div>
-            </div>
+            <div id=header class=row>
+			<div class="col-12 col-lg-3">
+				<img src="logo.png" id=logo>
+			</div>
+			<div class="col-12 col-lg-6" id=search>
+					<form class="form-inline my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id=searchbox>
+								<button class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="submit">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			<div class="col-12 col-lg-3">
+				<c:choose>
+					<c:when test="${loginId==null}">
+						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">login</button>
+						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">signup</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=logout_btn>logout</button>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
             <!--           HEADER-->
             <div id="contents">
                 <div id="mainContent">
