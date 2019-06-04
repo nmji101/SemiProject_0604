@@ -8,9 +8,15 @@
 <title>Document</title>
 
 <style>
-div {
-	border: 1px solid black;
-	box-sizing: border-box;
+ #header_div{
+ 	border: 1px solid #FFC107;
+ 	box-sizing: border-box;
+ } 
+
+#profile_div_row, #profile_div
+{
+	text-align: center;
+	justify-content: center;
 }
 
 #header_row, #profile_row, #contents_row {
@@ -71,6 +77,11 @@ div {
 #ing_class_btn {
 	color: cornflowerblue;
 	font-weight: bold;
+}
+#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn
+{
+	width: 100%;
+	height: 100%;
 }
 </style>
 
@@ -178,7 +189,7 @@ div {
 
 		<div id="header_row" class="row">
 
-			<div class="col-10">
+			<div id="header_div" class="col-10">
 
 				<div class="row">
 
@@ -230,11 +241,11 @@ div {
 
 			<div class="col-10 my-3">
 
-				<div class="row">
+				<div id="profile_div_row" class="row">
 
 					<div class="col-lg-6">
 
-						<div class="row">
+						<div id="profile_div" class="row">
 
 							<div id="profile_img_div" class="col-lg-4">
 
@@ -252,21 +263,7 @@ div {
 
 								</button>
 
-								<br>
-
-								<button class="btn">뭔가 쓸 거 같은 공간</button>
-
 							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col-lg-6">
-
-						<div class="row">
-
-							<div class="col-md-12 my-auto">무언가에 쓸 수 있을 거 같은 공간</div>
 
 						</div>
 
@@ -280,7 +277,7 @@ div {
 
 		<div id="contents_row" class="row mt-5">
 
-			<div class="col-10">
+			<div id="contents_outter_div" class="col-10">
 
 				<div class="row">
 
@@ -288,9 +285,9 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn link my-3">
+								<button id="ing_class_btn" class="btn btn-warning py-3">
 									<h5>
 										<strong>수강 중 클래스</strong>
 									</h5>
@@ -298,23 +295,23 @@ div {
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn link my-3">수강
+								<button id="done_class_btn" class="btn btn-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn link my-3">개인
+								<button id="person_info_btn" class="btn btn-warning py-3">개인
 									정보 수정</button>
 
 							</div>
 							
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn link my-3">
+								<button id="tutor_page_btn" class="btn btn-warning py-3">
 										
 									튜터 페이지
 										

@@ -42,7 +42,7 @@
         <div class="box">
             
             <input class="btn my-3" name="item" type="file"><br>
-            <input class="btn btn-primary" type="submit" value="수정">
+            <input class="btn btn-warning" type="submit" value="수정">
             
         </div>
         

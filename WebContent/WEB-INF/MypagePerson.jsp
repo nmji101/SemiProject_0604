@@ -8,9 +8,14 @@
 <title>Document</title>
 
 <style>
-div {
-	border: 1px solid black;
-	box-sizing: border-box;
+#header_div{
+ 	border: 1px solid #FFC107;
+ 	box-sizing: border-box;
+ } 
+ #profile_div_row, #profile_div
+{
+	text-align: center;
+	justify-content: center;
 }
 
 #header_row, #profile_row, #contents_row {
@@ -71,6 +76,11 @@ div {
 
 #person_info_btn {
 	color: cornflowerblue;
+}
+#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn
+{
+	width: 100%;
+	height: 100%;
 }
 </style>
 
@@ -166,7 +176,7 @@ div {
 
 		<div id="header_row" class="row">
 
-			<div class="col-10">
+			<div id="header_div" class="col-10">
 
 				<div class="row">
 
@@ -218,16 +228,16 @@ div {
 
 			<div class="col-10 my-3">
 
-				<div class="row">
+				<div id="profile_div_row" class="row">
 
 					<div class="col-lg-6">
 
-						<div class="row">
+						<div id="profile_div" class="row">
 
 							<div id="profile_img_div" class="col-lg-4">
 
-								<button id="profile_img_btn" class="btn">
-									${ dto.m_photo }
+								<button id="profile_img_btn" class="btn">${ dto.m_photo }
+
 								</button>
 
 							</div>
@@ -240,21 +250,7 @@ div {
 
 								</button>
 
-								<br>
-
-								<button class="btn">뭔가 쓸 거 같은 공간</button>
-
 							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col-lg-6">
-
-						<div class="row">
-
-							<div class="col-md-12 my-auto">무언가에 쓸 수 있을 거 같은 공간</div>
 
 						</div>
 
@@ -276,40 +272,40 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn link my-3">수강
-									중 클래스</button>
+								<button id="ing_class_btn" class="btn btn-warning py-3">
+									수강 중 클래스
+								</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn link my-3">수강
+								<button id="done_class_btn" class="btn btn-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn link my-3">
+								<button id="person_info_btn" class="btn btn-warning py-3">
 									<h5>
 										<strong>개인 정보 수정</strong>
-									</h5>
-								</button>
+									</h5></button>
 
 							</div>
 							
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn link my-3">
+								<button id="tutor_page_btn" class="btn btn-warning py-3">
 										
 									튜터 페이지
 										
 								</button>
 
 							</div>
-
+							
 						</div>
 
 					</div>
@@ -395,23 +391,23 @@ div {
 
 									<div class="btn-group-toggle" data-toggle="buttons">
 
-										<label id="at1" class="btn btn-primary my-1"><input
+										<label id="at1" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at1">관심사 1</label>
-										<label id="at2" class="btn btn-primary my-1"><input
+										<label id="at2" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at2">관심사 2</label>
-										<label id="at3" class="btn btn-primary my-1"><input
+										<label id="at3" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at3">관심사 3</label>
-										<label id="at4" class="btn btn-primary my-1"><input
+										<label id="at4" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at4">관심사 4</label>
-										<label id="at5" class="btn btn-primary my-1"><input
+										<label id="at5" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at5">관심사 5</label>
-										<label id="at6" class="btn btn-primary my-1"><input
+										<label id="at6" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at6">관심사 6</label>
-										<label id="at7" class="btn btn-primary my-1"><input
+										<label id="at7" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at7">관심사 7</label>
-										<label id="at8" class="btn btn-primary my-1"><input
+										<label id="at8" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at8">관심사 8</label>
-										<label id="at9" class="btn btn-primary my-1"><input
+										<label id="at9" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at9">관심사 9</label>
 
 									</div>
