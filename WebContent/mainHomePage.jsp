@@ -83,11 +83,11 @@ div {
 	width: 100%;
 }
 
-.menu {
-	height: 100%;
-	width: 33.33%;
-	float: left;
-}
+/* .menu { */
+/* 	height: 100%; */
+/* 	width: 33.33%; */
+/* 	float: left; */
+/* } */
 
 .loactionMenu {
 	padding: 0px;
@@ -148,8 +148,10 @@ a:hover {
 	padding: 0px;
 }
 
-.location, .category {
+.location, .category{
 	background-color: #fffce7;
+	margin:0px;
+	width: 100%;
 }
 
 .dropdown-menu {
@@ -284,10 +286,10 @@ $(function(){
 
 		<div class="jumbotron">
 			<div id=header class=row>
-				<div class="col-12 col-lg-4">
+				<div class="col-12 col-lg-3">
 					<img src="logo.png" id=logo>
 				</div>
-				<div class="col-12 col-lg-4" id=search>
+				<div class="col-12 col-lg-6" id=search>
 					<form class="form-inline my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
@@ -299,7 +301,7 @@ $(function(){
 						</div>
 					</form>
 				</div>
-				<div class="col-12 col-lg-4">
+				<div class="col-12 col-lg-3">
 					<c:choose>
 						<c:when test="${loginId==null}">
 							<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
@@ -319,8 +321,7 @@ $(function(){
 			<h1 class="display-4">나를 위한 시간</h1>
 			<p class="lead">집, 회사, 집, 회사 반복되는 지루한 일상이 싫다면?</p>
 			<hr class="my-4">
-			<p>It uses utility classes for typography and spacing to space
-				content out within the larger container.</p>
+			<p></p>
 			<a class="btn btn-outline-warning btn-lg" href="#" role="button">클래스
 				보러가기</a>
 		</div>
@@ -328,7 +329,7 @@ $(function(){
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -336,6 +337,7 @@ $(function(){
 
 						<ul class="dropdown-menu multi-column columns-6">
 							<div class="row category">
+								<div class="d-none d-lg-block col-lg-1 locationMenu"></div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
@@ -374,6 +376,7 @@ $(function(){
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
+								<div class="d-none d-lg-block col-lg-1 locationMenu"></div>
 							</div>
 						</ul></li>
 
@@ -415,7 +418,7 @@ $(function(){
 										</a></li>
 
 										<div class="col d-none d-md-block">
-											<div class="dropdown-divider&select=info_avgstar desc"></div>
+											<div class="dropdown-divider"></div>
 											<li><a href="info.category?addr=kk-1">일산/파주</a></li>
 											<li><a href="info.category?addr=kk-2">용인/분당/수원</a></li>
 											<li><a href="info.category?addr=kk-3">인천/부천</a></li>
