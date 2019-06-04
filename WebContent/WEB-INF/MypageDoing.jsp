@@ -108,14 +108,10 @@ div {
 		    location.href = "person.mypage?page=1";
 	    });
 	    
-<<<<<<< HEAD
 	    $("#tutor_page_btn").on("click", function()
 		{
-			location.href = "tutor.mypage?page=1";
+			location.href = "tutor.mypage";
 		});	    
-	    
-=======
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 	    $("#profile_img_btn").on("click", function()
 	    {
 		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
@@ -313,7 +309,6 @@ div {
 
 							</div>
 							
-<<<<<<< HEAD
 							<div class="col-6 col-md-4 col-lg-12">
 
 								<button id="tutor_page_btn" class="btn btn link my-3">
@@ -323,21 +318,6 @@ div {
 								</button>
 
 							</div>
-=======
-							<c:if test="${ dto.m_type == 'tutor' }">
-							
-								<div class="col-6 col-md-4 col-lg-12">
-
-									<button id="tutor_page_btn" class="btn btn link my-3">
-										
-										튜터 페이지
-										
-									</button>
-
-								</div>
-							
-							</c:if>
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 							
 						</div>
 

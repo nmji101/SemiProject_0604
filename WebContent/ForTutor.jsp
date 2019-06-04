@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,26 +15,14 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
-=======
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<title>Document</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 </head>
 <style>
 .ui-datepicker-trigger {
@@ -170,10 +157,6 @@ body {
 	background-color: #337ab7;
 	border-color: #2e6da4;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 </style>
 <style>
 body {
@@ -191,11 +174,7 @@ body {
 }
 
 .img {
-<<<<<<< HEAD
 	background-image: url(메인곰2.jpg);
-=======
-	
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 	width: 150px;
 	height: 150px;
 	background-size: contain;
@@ -286,16 +265,19 @@ body {
 	border: 1px ridge red;
 	outline: none;
 }
-<<<<<<< HEAD
-=======
-.mains{
+
+<<<<<<<
+HEAD
+ ======= .mains {
 	height: 40x;
 	overflow-y: auto;
 	border: 1px ridge red;
 	outline: none;
 }
 
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+>>>>>>>
+9
+be01e6f95d1860a068908d7511dd60ffeda440e
 
 .cash {
 	height: 34px;
@@ -324,60 +306,57 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 .searchaddr {
 	width: 250px;
 }
-<<<<<<< HEAD
-/*
+<<<<<<<
+HEAD /*
 		*{
 		border: 1px solid black
 		}
 		*/
 </style>
 <!-- 이미지 업로드 스타일 -->
- <style type="text/css">
+<style type="text/css">
+input[type=file] {
+	display: none;
+}
 
-        input[type=file] {
-            display: none;
-        }
+.my_button {
+	display: inline-block;
+	width: 200px;
+	text-align: center;
+	padding: 10px;
+	background-color: #fdbc0a;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
 
-        .my_button {
-            display: inline-block;
-            width: 200px;
-            text-align: center;
-            padding: 10px;
-            background-color: #fdbc0a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .my_button2 {
-            display: inline-block;
-            width: 90px;
-            text-align: center;
-            padding: 10px;
-            background-color: #fdbc0a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+.my_button2 {
+	display: inline-block;
+	width: 90px;
+	text-align: center;
+	padding: 10px;
+	background-color: #fdbc0a;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+}
 
+.imgs_wrap {
+	border: 1px solid #fdbc0a;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
 
-
-        .imgs_wrap {
-            border: 1px solid #fdbc0a;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-
-        }
-        .imgs_wrap img {
-            max-width: 100px;
-            margin-left: 10px;
-            margin-right: 10px;
-			text-align: center;
-        }
-
-    </style>
-     <script type="text/javascript">
+.imgs_wrap img {
+	max-width: 100px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
 
         // 이미지 정보들을 담을 배열
         var sel_files = [];
@@ -471,20 +450,10 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         }
 
     </script>
-    
+
 <body>
-	<form action="tutor.con" method="post" >
-=======
+	<form action="tutor.con" method="post">
 
-
-</style>
-<!-- 이미지 업로드 스타일 -->
-
-    
-    
-<body>
-	<form action="tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
@@ -504,16 +473,11 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 					<!--튜터 본인 사진-->
 					<div id=id class="array border-warning"></div>
 					<!--ID-->
-<<<<<<< HEAD
+
 					<br>
 					<div class="intro array border-warning" id="imtutor"
 						contentEditable="true" data-placeholder="튜터를 소개하세요"></div>
-=======
-					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
-					<div class="intro array border-warning" id="imtutor"
-						contentEditable="true">
-						</div>
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+
 					<input type="hidden" name="intro">
 				</div>
 			</div>
@@ -530,14 +494,11 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 				<!-- 컨텐츠 부분-->
 				<div class=" col-lg-12 col-md-12 col-sm-12 p-0 m-0"
 					id="collapseExample">
-					<div 	class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
+					<div
+						class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
 						<!--Class등록 Show부분-->
 						<div class=" drop p-0 ">
 							<!-- 드랍버튼 3개-->
-<<<<<<< HEAD
-=======
-
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 							<div class="mr-1 ml-4 p-0 head col-2 btn-group">
 								<button type="button" id="mystatus2"
 									class="btn btn-warning p-1 dropdown-toggle"
@@ -549,14 +510,9 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 									<li><a class="dropdown-item" href="#">디자인</a></li>
 									<li><a class="dropdown-item" href="#">IT</a></li>
 									<li><a class="dropdown-item" href="#">언어</a></li>
-<<<<<<< HEAD
+
 									<li><a class="dropdown-item" href="#">라이프스타일</a></li>
 									<li><a class="dropdown-item" href="#">재테크</a></li>
-=======
-									<li><a class="dropdown-item" href="#">라이프</a></li>
-									<li><a class="dropdown-item" href="#">뷰티</a></li>
-									<li><a class="dropdown-item" href="#">재태크</a></li>
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 								</ul>
 								<input type="hidden" name="down">
 							</div>
@@ -569,8 +525,9 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">희망지역</button>
 								<div class="dropdown-menu">
-									<input type="button" onclick="sample4_execDaumPostcode()" class="btn addr" value="주소 찾기 클릭"> 
-										<span id="guide"	style="color: #999; display: none"></span>
+									<input type="button" onclick="sample4_execDaumPostcode()"
+										class="btn addr" value="주소 찾기 클릭"> <span id="guide"
+										style="color: #999; display: none"></span>
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									<script>
 										//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -619,35 +576,28 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 													}).open();
 										}
 									</script>
-									<input type="text" id="sample4_postcode"class=" searchaddr zipcode text" placeholder="우편번호"
-										name=zipcode readonly > 
-									<input type="text" id="sample4_roadAddress" class=" searchaddr road text"
-										placeholder="도로명주소" name=add1 readonly> 
-									<input type="text" id="sample4_jibunAddress" class=" searchaddr road text" placeholder="지번주소" 
-									name=add2 readonly   readonly> 
-									<input type="text"id="sample4_detailAddress" class=" searchaddr text"
+									<input type="text" id="sample4_postcode"
+										class=" searchaddr zipcode text" placeholder="우편번호"
+										name=zipcode readonly> <input type="text"
+										id="sample4_roadAddress" class=" searchaddr road text"
+										placeholder="도로명주소" name=add1 readonly> <input
+										type="text" id="sample4_jibunAddress"
+										class=" searchaddr road text" placeholder="지번주소" name=add2
+										readonly readonly> <input type="text"
+										id="sample4_detailAddress" class=" searchaddr text"
 										placeholder="상세주소 입력하기" name=add3>
 								</div>
 							</div>
 							<div class="mr-1 ml-4 p-0 cash col-2 head cash form-group">
-								<input type="text" class="inputcash form-control" placeholder="희망인원" name=max>
+								<input type="text" class="inputcash form-control"
+									placeholder="희망인원" name=max>
 							</div>
 							<div class="mr-1 ml-4 p-0 cash col-2 head cash form-group">
-								<input type="text" class="inputcash form-control"	placeholder="희망금액" name=cash>
+								<input type="text" class="inputcash form-control"
+									placeholder="희망금액" name=cash>
 							</div>
 						</div>
 						<br>
-<<<<<<< HEAD
-=======
-					
-						<div ><h3><span class="badge m-0 p-1 badge-warning">제목입력</h3></span>
-						<div contentEditable="true" class="mains p-0 m-0 col-12 border-warning " id=title></div>
-							<input type="hidden" name="inputtitle">
-						</div>
-						
-						<input type="hidden" name="title">
-						
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 						<div class="array clear">
 							<!-- 날짜 고르는 부분 -->
 							<div class="head p-0 m-0 col-2">
@@ -677,12 +627,8 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 													buttonImageOnly : true,
 													buttonText : "날짜 선택",
 													yearSuffix : "년",
-<<<<<<< HEAD
 													monthNamesShort : [ '1', '2', '3', '4', '5','6', '7', '8', '9','10', '11', '12' ],
-=======
-													monthNamesShort : [ '1',	'2', '3', '4', '5','6', '7', '8', '9','10', '11', '12' ],
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
-													monthNames : [ '1월', '2월',	'3월', '4월', '5월',	'6월', '7월', '8월',	'9월', '10월', '11월',	'12월' ],
+													monthNames : [ '1월', '2월',	'3월', '4월', '5월',	'6월', '7월', '8월',	'9월', '10월', '11월','12월' ],
 													dayNamesMin : [ '일', '월',	'화', '수', '목', '금','토' ],
 													dayNames : [ '일요일', '월요일',
 															'화요일', '수요일',
@@ -693,75 +639,58 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 
 										$("#datepicker").datepicker();
 										$("#datepicker2").datepicker();
-<<<<<<< HEAD
-
-=======
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+										
 										$('#datepicker').datepicker('setDate',	'today');
 										$('#datepicker2').datepicker('setDate',		'+1D');
 
 									});
 								</script>
 							</div>
-						</div><!-- 날짜 고르는 부분 끝-->
-						<br>	
+						</div>
+						<!-- 날짜 고르는 부분 끝-->
+						<br>
 
 						<div class="array col-12 p-0 m-0">
 							<!-- 사진 캐러셀+내용입력-->
-<<<<<<< HEAD
-							<div contentEditable="true" class="main head p-0 m-0 col-12 border-warning " id=cont ></div>
-=======
-							<h3><span class="badge m-0 p-1 badge-warning">내용입력</span></h3>
-							<div contentEditable="true" class="main  p-0 m-0 col-12 border-warning " id=cont ></div>
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
-							<input type="hidden" name="explain"><!-- Class 내용 등록-->	
-						</div><!-- 사진 캐러셀 +내용입력 끝--><br>
+							<div contentEditable="true"
+								class="main head p-0 m-0 col-12 border-warning " id=cont></div>
+							<input type="hidden" name="explain">
+							<!-- Class 내용 등록-->
+						</div>
+						<!-- 사진 캐러셀 +내용입력 끝-->
+						<br>
 						<!--  업로드 버튼 -->
-						
-<<<<<<< HEAD
-						<form id="ajaxform" action="upload.file" method="post" enctype="multipart/form-data">
-							<div class="input_wrap">
-            						<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 찾기(최대 3개)</a> 
-          						<input type="file" id="input_imgs" multiple /> 
-						
-        					</div>
-        				
-   			    			<div>
-       				 			<div class="imgs_wrap">
-           			 			<img id="img"  />
-       			 			</div>
-   				 			</div>
-   				 				<input type="button" value="업로드" id="files_send"  class="my_button2">
-   				 			</form>
-   				 
-=======
-							<div class="input_wrap">
-							<input type="file" value="" name="img"><br>
-         						<input type="file" value="" name="img2"><br>
-         						<input type="file" value="" name="img3">
-          						
-        					</div>
-        				
-   			    		
 
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+
+						<form id="ajaxform" action="upload.file" method="post"
+							enctype="multipart/form-data">
+							<div class="input_wrap">
+								<a href="javascript:" onclick="fileUploadAction();"
+									class="my_button">파일 찾기(최대 3개)</a> <input type="file"
+									id="input_imgs" multiple />
+
+							</div>
+
+							<div>
+								<div class="imgs_wrap">
+									<img id="img" />
+								</div>
+							</div>
+							<input type="button" value="업로드" id="files_send"
+								class="my_button2">
+						</form>
 						<br>
 						<div class="head btm m-0 p-0 col-12">
-							<button type="button" id="register" class="btn btn-outline-warning">Class 등록하기</button>
+							<button type="button" id="register"
+								class="btn btn-outline-warning">Class 등록하기</button>
 						</div>
-					
+
 						<!--Class등록 Show부분 끝-->
-<<<<<<< HEAD
+
 					</div>
 				</div>
 			</div>
-=======
-						</form>
-					</div>
-				</div>
-			</div>
-			
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+
 			<!-- 컨텐츠 부분 끝-->
 			<br>
 
@@ -784,19 +713,11 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-</form>
-=======
-
-<br>
-<button type="button" class="btn btn-warning">뒤로가기</button>
-<button type="button" class="btn btn-warning">홈으로 가기</button>
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
+	</form>
 </body>
 
 <script>
 
-<<<<<<< HEAD
 $(document).on('click', '#files_send', function () {
     var formData = new FormData();
          
@@ -812,10 +733,6 @@ $(document).on('click', '#files_send', function () {
         type: 'POST'
     });
 });
- 
-=======
-
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 
 $('#mytype li > a').on('click', function() {
 	// 버튼에 선택된 항목 텍스트 넣기 
@@ -823,10 +740,7 @@ $('#mytype li > a').on('click', function() {
 });
 
 	document.getElementById("register").onclick = function() {
-<<<<<<< HEAD
-=======
 		
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 		$("input[name=intro]").val($("#imtutor").html());
 		$("input[name=down]").val($('#mystatus2').text());
 		$("input[name=zipcode]").val();
@@ -837,12 +751,8 @@ $('#mytype li > a').on('click', function() {
 		$("input[name=cash]").val();
 		$("input[name=startdate]").val();
 		$("input[name=enddate]").val();
-<<<<<<< HEAD
-		$("input[name=explain").val($('#cont').text());
-=======
 		$("input[name=explain]").val($('#cont').text());
 		$("input[name=inputtitle]").val($('#title').text());
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 		$("form").submit();
 	};
 	
