@@ -69,7 +69,7 @@ div {
 	width: 30%;
 }
 
-#person_info_btn {
+#tutor_page_btn {
 	color: cornflowerblue;
 }
 </style>
@@ -88,16 +88,6 @@ div {
 <script>
 	$(function()
     {
-		var attention = ${ dto.m_attention };
-		if(attention != [ "없음" ])
-		{
-			attention.forEach(function(item, index, array)
-			{
-				$("#"+item).attr("class","btn btn-primary my-1 active");
-				$("#"+item).children("input:checkbox").prop("checked", true);
-			});
-		}
-		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -117,18 +107,15 @@ div {
 	    {
 		    location.href = "person.mypage?page=1";
 	    });
-<<<<<<< HEAD
 	    
 	    $("#tutor_page_btn").on("click", function()
 		{
 			location.href = "tutor.mypage?page=1";
 		});
 	    
-=======
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 	    $("#profile_img_btn").on("click", function()
 	    {
-		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+		    var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
 		    
 		    open("changeImg.mypage", "", popOption);
 	    });
@@ -136,20 +123,6 @@ div {
 	    $("#profile_nickname_btn").on("click", function()
 	    {
 		    location.href = "person.mypage";
-	    });
-	    
-	    // 이 위로는 공통 함수
-	    
-	    $("#pw_btn").on("click", function()
-	    {
-		    var popOption = "width=450, height=450, resizable=no, scrollbars=no, status=no top=100, left=100;";
-		    
-		    open("changePw.mypage", "", popOption);
-	    });
-	    
-	    $("#submit_btn").on("click", function()
-	    {
-		    $("#info_form").submit();
 	    });
 	    
     });
@@ -296,165 +269,58 @@ div {
 							<div class="col-6 col-md-4 col-lg-12">
 
 								<button id="person_info_btn" class="btn btn link my-3">
-									<h5>
-										<strong>개인 정보 수정</strong>
-									</h5>
+									개인 정보 수정
 								</button>
 
 							</div>
 							
-<<<<<<< HEAD
 							<div class="col-6 col-md-4 col-lg-12">
 
 								<button id="tutor_page_btn" class="btn btn link my-3">
 										
-									튜터 페이지
+									<h5>
+										<strong>튜터 페이지</strong>
+									</h5>
 										
 								</button>
 
 							</div>
 							
-=======
-							<c:if test="${ dto.m_type == 'tutor' }">
-							
-								<div class="col-6 col-md-4 col-lg-12">
-
-									<button id="tutor_page_btn" class="btn btn link my-3">
-										
-										튜터 페이지
-										
-									</button>
-
-								</div>
-							
-							</c:if>
-
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 						</div>
 
 					</div>
 
 					<div id="contents_div" class="col-lg-9">
 
-						<div class="row my-2 mb-3">
-
-							<div class="col-lg-12 my-auto">
-
-								<h2>
-									<strong>개인 정보 수정</strong>
-								</h2>
-
-							</div>
-
-						</div>
-
-						<div class="row my-2">
-
-							<div class="col-lg-3 my-auto">
-
-								<h4>아이디</h4>
-
-							</div>
-
-							<div class="col-lg-9">
-
-								<label class="form-control my-auto">
+						<c:if test="${ check == 'true' }">
+						
+							<span>현재 신청 대기중</span>
+							
+						</c:if>
+						
+						<c:if test="${ check == 'false' }">
+						
+							<form id="apply_form" action="apply.mypage" method="post">
+						
+								<input name="id" type="hidden" value="${ dto.m_id }">
+								<input name="nickname" type="hidden" value="${ dto.m_nickname }">
 								
-									${ dto.m_id }
+								<input type="submit">
 								
-								</label>
-
-							</div>
-
-						</div>
-
-						<div class="row my-2">
-
-							<div class="col-lg-3 my-auto">
-
-								<h4>비밀번호</h4>
-
-							</div>
-
-							<div class="col-lg-9">
-
-								<input id="pw_btn" class="btn" type="button" value="비밀번호 수정">
-
-							</div>
-
-						</div>
-
-						<form id="info_form" action="update.mypage" method="post">
-
-							<div class="row my-2">
-
-								<div class="col-lg-3 my-auto">
-
-									<h4>닉네임</h4>
-
-								</div>
-
-								<div class="col-lg-9 my-auto">
-
-									<input class="form-control" type="text" name="nickname"
-										value="${ dto.m_nickname }">
-
-								</div>
-
-							</div>
-
-							<div class="row my-2">
-
-								<div class="col-lg-3 my-auto">
-
-									<h4>관심사</h4>
-
-								</div>
-
-								<div class="col-lg-9">
-
-									<div class="btn-group-toggle" data-toggle="buttons">
-
-										<label id="at1" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at1">관심사 1</label>
-										<label id="at2" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at2">관심사 2</label>
-										<label id="at3" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at3">관심사 3</label>
-										<label id="at4" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at4">관심사 4</label>
-										<label id="at5" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at5">관심사 5</label>
-										<label id="at6" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at6">관심사 6</label>
-										<label id="at7" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at7">관심사 7</label>
-										<label id="at8" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at8">관심사 8</label>
-										<label id="at9" class="btn btn-primary my-1"><input
-											type="checkbox" name="attention" value="at9">관심사 9</label>
-
-									</div>
-								</div>
-
-							</div>
-
-							<div class="row mt-5 mb-1">
-
-								<div id="update_btn_div" class="col-12">
-
-									<input id="submit_btn" class="btn btn-primary" type="button"
-										value="수정하기">
-
-								</div>
-
-							</div>
-
-						</form>
-
-
-
-
+							</form>
+							
+						</c:if>
+						
+						<c:if test="${ check == 'tutor' }">
+						
+							<script>
+							
+								location.href = "ForTutor.jsp";
+							
+							</script>
+							
+						</c:if>
+												
 
 					</div>
 
