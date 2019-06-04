@@ -22,9 +22,6 @@ public class UpgradeDAO {
 
 		return DriverManager.getConnection(url, user, password);
 	}
-<<<<<<< HEAD
-	
-	
 	
 	/**
 	 * 튜터요청리스트에 insert
@@ -71,9 +68,6 @@ public class UpgradeDAO {
 	}
 	
 	
-=======
-
->>>>>>> 9be01e6f95d1860a068908d7511dd60ffeda440e
 	/**
 	 * 튜터요청리스트에 있는 목록 불러오기
 	 * @return
