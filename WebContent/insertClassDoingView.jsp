@@ -13,7 +13,7 @@
 		}else{
 			alert("구매실패");
 		}
-		location.href = "detail.jsp?="+${classId};
+		location.href = "clickClass.classInfo?classId="+${classId};
 	</script>
 </body>
 </html>

@@ -273,8 +273,10 @@ $(function(){
 					else if(${loginType == "normal"})
 					{
 						location.href="logout.login";
+					}else{
+						location.href="naverLogout.login";
 					}
-        		})
+        		});
 	}
 })
 	</script>

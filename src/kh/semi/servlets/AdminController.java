@@ -19,6 +19,7 @@ import kh.semi.dto.UpgradeDTO;
 public class AdminController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String cmd = uri.substring(ctx.length());

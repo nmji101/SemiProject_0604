@@ -355,16 +355,14 @@ public class MypageServlets extends HttpServlet
 							e.printStackTrace();
 						}
 					}
-					
-					
-					
 				}
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("close.html");
 			}
-			response.sendRedirect("close.html");
+			
 		}
 		else if(url.equals("review.mypage"))
 		{

@@ -22,7 +22,7 @@ public class CategoryController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = requestURI.substring(ctxPath.length());
-
+		System.out.println(cmd);
 		CategoryDAO dao = new CategoryDAO();
 		if(cmd.contentEquals("/info.category")) {
 			System.out.println("-----------------reset"); //검사
