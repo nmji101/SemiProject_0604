@@ -173,11 +173,6 @@ div {
 <script>
 	$(function()
     {
-		$("#logo").on("click", function()
-		{
-			location.href = "mainHomePage.jsp";
-		});
-		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -274,7 +269,7 @@ div {
 			
 			<div id="logo_div" class="col-12 col-lg-3">
 				
-				<img src="logo.png" id=logo>
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
 			
 			</div>
 			
