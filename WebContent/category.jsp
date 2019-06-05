@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Category</title>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,11 +17,40 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico">
 <script>
 $(function(){
 	$("#logo").on("click", function() {
 		location.href = "mainHomePage.jsp";
 	});
+	$("#search_Btn").on("click",function(){
+		var input = $("#searchbox").val();
+		var regex = /^ {1,}$/g;
+		var result = regex.exec(input);
+		if(input==""){
+			alert("검색어를 입력해주세요.");
+			return;
+		}else if(result!=null){
+			alert("검색할 단어를 입력해주세요.");
+			return;
+		}
+		$("#searchForm").submit();
+	});
+	$(".custom-select").on("click",function(){
+		var select = $(this).val();
+		console.log(select);
+		if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
+			location.href="info.category?select="+select;
+		}
+		
+	});
+	
+
+	$(".classCard").on("click",function(){
+		var classId = $(this).children(".classId").val();
+		location.href="clickClass.classInfo?classId="+classId;
+	});
+	
 	if(${loginId == null }){
 		$("#toLogin").on("click",function(){
 			location.href = "Login.jsp";
@@ -68,9 +97,11 @@ $(function(){
 					}
 	    		})
 	}
+	
+	
+	
 });
 </script>
-</head>
 <style>
 * {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -100,7 +131,6 @@ div {
 	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
-	
 }
 
 .headBtn {
@@ -139,17 +169,26 @@ div {
 	opacity: 50%;
 }
 
-#soon{
+#soon {
 	text-align: center;
-	color : #7e7666;
+	color: #7e7666;
 	font-size: 20px;
-	margin-bottom:80px;
+	margin-bottom: 80px;
 }
 
 #content {
 	margin: auto;
 	width: 80%;
 	height: auto;
+}
+
+.card-body{
+	text-align: left;
+}
+
+#starBox{
+	float: left;
+	margin-right:10px;
 }
 
 .custom-select {
@@ -200,7 +239,7 @@ a:hover {
 
 .location, .category {
 	background-color: #fffce7;
-	margin:0px;
+	margin: 0px;
 }
 
 .dropdown-menu {
@@ -236,6 +275,10 @@ a:hover {
 	width: 100%;
 }
 
+.star {
+	width: 15px;
+}
+
 .card {
 	margin: 20px auto;
 	cursor: pointer;
@@ -263,12 +306,12 @@ a:hover {
 	padding: 0px 10px;
 }
 
-.naviBtn:focus{
-	color:#ffb100;
+.naviBtn:focus {
+	color: #ffb100;
 }
 
 .naviBtn:hover {
-	color:#ffb100;
+	color: #ffb100;
 }
 
 #footer {
@@ -280,6 +323,7 @@ a:hover {
 	width: 50px;
 }
 </style>
+</head>
 <body>
 
 	<div id=wrapper>
@@ -288,17 +332,18 @@ a:hover {
 				<img src="logo.png" id=logo>
 			</div>
 			<div class="col-12 col-lg-6" id=search>
-					<form class="form-inline my-2 my-lg-0">
+
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="button">Search</button>
 							</div>
 						</div>
 					</form>
-				</div>
+			</div>
 			<div class="col-12 col-lg-3">
 				<c:choose>
 					<c:when test="${loginId==null}">
@@ -321,7 +366,7 @@ a:hover {
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -476,92 +521,100 @@ a:hover {
 		</div>
 	</div>
 	<div id=content>
-	
+
 		<c:choose>
-					<c:when test="${size == 0}">
-			<div id=soon>
-			<img src="커밍순.png"><br>
-			현재 클래스 준비 중입니다.<br>
-			튜터가 되어 첫번째 클래스를 오픈해주세요!
-			</div>
-					</c:when>
-					<c:otherwise>
 
-		<select class="custom-select">
-			<option selected>분류</option>
-			<option value="info_avgstar desc">추천순</option>
-			<option value="info_classid desc">최신순</option>
-			<option value="info_price">낮은 가격순</option>
-		</select>
+			<c:when test="${size != 0}">
+			<select class="custom-select">
+							<option selected>분류</option>
+							<option value="info_avgstar desc">추천순</option>
+							<option value="info_classid desc">최신순</option>
+							<option value="info_price">낮은 가격순</option>
+						</select>
 
 
-		<div class="row cardItem">
-			<c:forEach var="list" items="${list }">
-				<div class="col-12 col-md-6 col-lg-4 cardItem classCard">
-					<input type="hidden" class="classId" value="${list.info_classid }">
-					<!-- N명참여 배치용 -->
-					<span class="count"> <span
-						class="badge badge-pill badge-success"> <span
-							class="badge badge-success">${list.totalcount }</span> 명 참여
-					</span>
-					</span>
-					<!----------------->
-					<div class="card" style="width: 18rem">
-						<!-- 캐러셀 시작 -->
-						<div class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="임시1.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
+						<div class="row cardItem">
+							<c:forEach var="list" items="${list }">
+								<div class="col-12 col-md-6 col-lg-4 cardItem classCard">
+									<input type="hidden" class="classId"
+										value="${list.info_classid }">
+									<!-- N명참여 배치용 -->
+									<span class="count"> <span
+										class="badge badge-pill badge-success"> <span
+											class="badge badge-success">${list.totalcount }</span> 명 참여
+									</span>
+									</span>
+									<!----------------->
+									<div class="card" style="width: 18rem">
+										<!-- 캐러셀 시작 -->
+										<div class="carousel slide" data-ride="carousel">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<img src="임시1.png" class="d-block w-100" alt="..."
+														width="200px" height="200px">
+												</div>
+												<div class="carousel-item">
+													<img src="임시2.png" class="d-block w-100" alt="..."
+														width="200px" height="200px">
+												</div>
+												<div class="carousel-item">
+													<img src="임시3.png" class="d-block w-100" alt="..."
+														width="200px" height="200px">
+												</div>
+											</div>
+											<a class="carousel-control-prev" href="#carouselExampleFade"
+												role="button" data-slide="prev"> <span
+												class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a> <a class="carousel-control-next" href="#carouselExampleFade"
+												role="button" data-slide="next"> <span
+												class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
+										</div>
+										<!-- 캐러셀 끝 -->
+										<div class="card-body">
+											<img src=${list.m_photo } width="80px" height="80px"
+												alt="이미지.png" class=face>
+											<div class="card-text">
+												<b>${list.info_title }</b>
+											</div>
+											<div>
+												<span>${list.info_avgstar }</span> | <span>${list.info_addr2 }</span>
+											</div>
+											<div>
+												<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="carousel-item">
-									<img src="임시2.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
-								</div>
-								<div class="carousel-item">
-									<img src="임시3.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
-								</div>
-							</div>
-							<a class="carousel-control-prev" href="#carouselExampleFade"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#carouselExampleFade"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
+							</c:forEach>
 						</div>
-						<!-- 캐러셀 끝 -->
-						<div class="card-body">
-							<img src=${list.m_photo } width="80px" height="80px"
-								alt="이미지.png" class=face>
-							<div class="card-text">
-								<b>${list.info_title }</b>
-							</div>
-							<div>
-								<span>${list.info_avgstar }</span> | <span>${list.info_addr2 }</span>
-							</div>
-							<div>
-								<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
-							</div>
+						<div id=naviBox class="row justify-content-center">
+							<c:forEach var="i" begin="0" end="${size-1}">
+								<form action="info.category" method="post" class=btnForm>
+									<input type=submit value="${navi[i] }" class="naviBtn"
+										name="nowPage">
+								</form>
+							</c:forEach>
 						</div>
-					</div>
+			
+			</c:when>
+			<c:when test="${searchResult != null}">
+				<div id=soon>
+					<img src="커밍순.png"><br> 
+					검색어 : ${searchResult}<br>
+					<b>검색결과가 없습니다.</b><br>
 				</div>
-			</c:forEach>
-		</div>
-		<div id=naviBox class="row justify-content-center">
-			<c:forEach var="i" begin="0" end="${size-1}">
-				<form action="info.category" method="post" class=btnForm>
-					<input type=submit value="${navi[i] }" class="naviBtn" name="nowPage">		
-				</form>		
-			</c:forEach>
-		</div>
+			</c:when>
+			<c:when test="${searchResult == null}">
+				<div id=soon>
+					<img src="커밍순.png"><br> 현재 클래스 준비 중입니다.
+					<br> 튜터가 되어 첫번째 클래스를 오픈해주세요!
+				</div>
+			</c:when>
+	</c:choose>
 	</div>
-	</c:otherwise>
-				</c:choose>	
-	
 	<div id=footer class="row">
 		<div class="col-12 col-md-8"></div>
 		<div class="col-12 col-md-4" id=sns>
@@ -569,30 +622,5 @@ a:hover {
 				src="트위터.png"> <img src="페이스북.png">
 		</div>
 	</div>
-
-	<script>
-			
-			$(".custom-select").on("click",function(){
-				var select = $(this).val();
-				console.log(select);
-				if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
-					location.href="info.category?select="+select;
-				}
-				
-			})
-			
-			$("#logo").on("click",function(){
-				location.href="index.jsp";
-			})
-			
-			$(".classCard").on("click",function(){
-				var classId = $(this).children(".classId").val();
-				location.href="clickClass.classInfo?classId="+classId;
-			})
-
-			
-	
-				
-		</script>
 </body>
 </html>

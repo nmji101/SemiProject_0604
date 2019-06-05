@@ -13,9 +13,9 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="icono.min.css">
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <style>
 
@@ -23,7 +23,6 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 #logo {
 	position: relative;
 	bottom: 20px;
@@ -65,11 +64,13 @@ div {
 	margin: 0px;
 }
 
-#lookBtn{
+
+#lookBtn {
 	font-weight: bold;
 	font-size: 23px;
 	width: auto;
 }
+
 .display-4 {
 	font-family: 'Do Hyeon', sans-serif;
 }
@@ -87,12 +88,6 @@ div {
 .form-control {
 	width: 100%;
 }
-
-/* .menu { */
-/* 	height: 100%; */
-/* 	width: 33.33%; */
-/* 	float: left; */
-/* } */
 
 .loactionMenu {
 	padding: 0px;
@@ -153,9 +148,9 @@ a:hover {
 	padding: 0px;
 }
 
-.location, .category{
+.location, .category {
 	background-color: #fffce7;
-	margin:0px;
+	margin: 0px;
 	width: 100%;
 }
 
@@ -188,22 +183,32 @@ a:hover {
 	z-index: 10;
 }
 
-.cardItem {
-	width: 100%;
+.carousel-item>img {
+	height: 300px;
+	border-radius: 20px;
 }
 
-.card {
-	margin: 20px auto;
-	cursor: pointer;
+#carouselExampleIndicators{
+	margin:20px;
 }
 
-.card-text:hover {
-	text-decoration: underline;
+#main1, #main2 {
+	font-family: 'Do Hyeon', sans-serif;
+	border-radius: 10px;
 }
 
-.face {
-	float: right;
-	border-radius: 50px;
+#main1 {
+	color: black;
+	margin-left: 100px;
+}
+
+#yellow {
+	color: #ffb100;
+}
+
+.carousel-caption {
+	padding-bottom: 90px;
+	width: auto;
 }
 
 #naviBox {
@@ -238,6 +243,20 @@ $(function(){
 	$("#logo").on("click", function() {
 		location.href = "mainHomePage.jsp";
 	})
+	$("#search_Btn").on("click",function(){
+		var input = $("#searchbox").val();
+		var regex = /^ {1,}$/g;
+		var result = regex.exec(input);
+		if(input==""){
+			alert("검색어를 입력해주세요.");
+			return;
+		}else if(result!=null){
+			alert("검색할 단어를 입력해주세요.");
+			return;
+		}
+		//alert("검색어 : " + input)
+		$("#searchForm").submit();
+	});
 	if(${loginId == null }){
 		$("#toLogin").on("click",function(){
 			location.href = "Login.jsp";
@@ -291,20 +310,19 @@ $(function(){
 <body>
 
 	<div id=wrapper>
-
 		<div class="jumbotron">
 			<div id=header class=row>
 				<div class="col-12 col-lg-3">
 					<img src="logo.png" id=logo>
 				</div>
 				<div class="col-12 col-lg-6" id=search>
-					<form class="form-inline my-2 my-lg-0">
+					<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
 							</div>
 						</div>
 					</form>
@@ -330,14 +348,15 @@ $(function(){
 			<p class="lead">집, 회사, 집, 회사 반복되는 지루한 일상이 싫다면?</p>
 			<hr class="my-4">
 			<p></p>
-			<a class="btn btn-outline-light btn-lg" href="#" role="button" id="lookBtn">클래스
-				보러가기</a>
+			<a class="btn btn-outline-light btn-lg"
+				href="info.category?category=main&addr=all&select=info_avgstar desc"
+				role="button" id="lookBtn">클래스 보러가기</a>
 		</div>
 		<div id=navi>
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -495,63 +514,52 @@ $(function(){
 
 		<div id=content>
 
-			<div class="row cardItem">
-				<c:forEach var="list" items="${list }">
-					<div class="col-12 col-md-6 col-lg-4 cardItem">
-						<!-- N명참여 배치용 -->
-						<span class="count"> <span
-							class="badge badge-pill badge-success"> <span
-								class="badge badge-success">${list.totalcount }</span> 명 참여
-						</span>
-						</span>
-						<!----------------->
-						<div class="card" style="width: 18rem">
-							<!-- 캐러셀 시작 -->
-							<div class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img src="임시1.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
-									<div class="carousel-item">
-										<img src="임시2.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
-									<div class="carousel-item">
-										<img src="임시3.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
-								</div>
-								<a class="carousel-control-prev" href="#carouselExampleFade"
-									role="button" data-slide="prev"> <span
-									class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-									class="sr-only">Previous</span>
-								</a> <a class="carousel-control-next" href="#carouselExampleFade"
-									role="button" data-slide="next"> <span
-									class="carousel-control-next-icon" aria-hidden="true"></span> <span
-									class="sr-only">Next</span>
-								</a>
+			<div class="container">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="메인4.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id=main1>
+									현재 <span id=yellow>n</span>개 클래스 등록중!
+								</h1>
+								<p></p>
 							</div>
-							<!-- 캐러셀 끝 -->
-							<div class="card-body">
-								<img src=${list.m_photo } width="80px" height="80px"
-									alt="이미지.png" class=face>
-								<div class="card-text">
-									<b>${list.info_title }</b>
-								</div>
-								<div>
-									<span>${list.info_avgstar }</span> | <span>${list.info_addr }</span>
-								</div>
-								<div>
-									<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
-								</div>
+
+						</div>
+						<div class="carousel-item">
+							<img src="메인2.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id="main2">
+									신규가입 하고, <span id=yellow>1 꿀</span> 받자!
+								</h1>
+								<p></p>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
 			</div>
 
+
 		</div>
+
+
 		<div id=footer class="row">
 			<div class="col-12 col-md-8"></div>
 			<div class="col-12 col-md-4" id=sns>

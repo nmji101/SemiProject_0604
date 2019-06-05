@@ -20,12 +20,12 @@
         <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico">
         <style>
 /*         header	 */
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 #searchbox {
 	height: 38px;
 	position: relative;
@@ -35,16 +35,21 @@
 	padding: 10px;
 }
 
-#logo {
+#logo{
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;
 }
-#header {
+#header{
 	height: 100%;
 	width: 100%;
-	padding: 64px 32px;
-	
+	padding: 64px 32px;	
+}
+#header>div{
+	padding: 0px 15px;
+}
+#header *{
+	text-align: center;
 }
 .headBtn {
 	color: white;
@@ -56,7 +61,9 @@
 	color: white;
 }
 /*         header	 */
-        
+        #myCarousel1{
+        	width : 100%;
+        }
             div{
                 border: 1px solid rgba(0, 0, 0, 0.19);
                 box-sizing: border-box;
@@ -75,7 +82,7 @@
                 width: 25%;
             }
             #contents{
-                margin: auto;
+/*                 margin: auto; */
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
@@ -84,7 +91,7 @@
                 float: left;
             }
             #mainContent{
-                width: 600px;
+                width: 60%;
             }
             #sideContent{
                 width: 300px;
@@ -101,7 +108,7 @@
             #classNavi{
                 overflow: hidden;
                 /*                position: fixed;*/
-                width: 600px;
+                width: 100%;
                 /*                height: 30px;*/
                 background-color: white;
             }
@@ -122,6 +129,7 @@
                 overflow: hidden;
                 /*                margin-top: 30px;*/
             }
+
             .class_name{
                 height: 200px;
                 float: left;
@@ -131,8 +139,8 @@
                 display: inline-block;
                 overflow: hidden;
                 border-radius: 100px;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
             }
             #tutorImg{
                 width: 100%;
@@ -227,6 +235,67 @@
             	$("#logo").on("click", function() {
             		location.href = "mainHomePage.jsp";
             	});
+            	$("#search_Btn").on("click",function(){
+            		var input = $("#searchbox").val();
+            		var regex = /^ {1,}$/g;
+            		var result = regex.exec(input);
+            		if(input==""){
+            			alert("검색어를 입력해주세요.");
+            			return;
+            		}else if(result!=null){
+            			alert("검색할 단어를 입력해주세요.");
+            			return;
+            		}
+            		$("#searchForm").submit();
+            	});
+            	if(${loginId == null }){
+            		$("#toLogin").on("click",function(){
+            			location.href = "Login.jsp";
+            		});
+            		$("#toSignup").on("click",function(){//회원가입
+            			location.href = "SignUp.jsp";
+            		});
+            	}else{
+            		$("#mypage_btn").on("click", function()
+                    		{
+            					if(${type=="admin"}){
+            						location.href = "mypage.admin";
+            					}else{
+            						location.href = "doing.mypage?"+encodeURI("page=1");
+            					}
+                    		})
+                    		$("#logout_btn").on("click", function()
+                    		{
+                    			if(${loginType == "kakao"})
+            					{
+                    				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+                    				
+            						var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+            						window.open("exit.html","",popOption)
+
+            						Kakao.Auth.logout
+            						(
+            							function(data)
+            							{
+            								if(data)
+            								{	
+            									location.href="logout.login";
+            								}
+            								else
+            								{
+            									location.href="error.html";
+            								}
+            						    }
+            						);
+            					}
+            					else if(${loginType == "normal"})
+            					{
+            						location.href="logout.login";
+            					}else{
+            						location.href="naverLogout.login";
+            					}
+                    		});
+            	}
             	
                 var he1 = document.getElementById("myCarousel1").scrollHeight;
                 var he2 = document.getElementById("classNavi").scrollHeight;
@@ -424,72 +493,88 @@
     <c:forEach var="date" items="${closedDateList}">
     	<input class="date" type="hidden" value="${date }">
     </c:forEach>
-        <div id="wrapper" class="container">
+        <div id="wrapper">
             <!--           HEADER-->
             <div id=header class=row>
-			<div class="col-12 col-lg-3">
-				<img src="logo.png" id=logo>
-			</div>
-			<div class="col-12 col-lg-6" id=search>
-					<form class="form-inline my-2 my-lg-0">
+				<div class="col-12 col-lg-3">
+					<img src="logo.png" id=logo>
+				</div>
+				<div class="col-12 col-lg-6" id=search>
+					<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="button">Search</button>
 							</div>
 						</div>
 					</form>
 				</div>
-			<div class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
+				<div class="col-12 col-lg-3">
+					<c:choose>
+						<c:when test="${loginId==null}">
+							<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="button">login</button>
+							<button id="toSignup"
+								class="btn btn-warning my-2 my-sm-0 headBtn" type="button">signup</button>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit" id=mypage_btn>mypage</button>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit" id=logout_btn>logout</button>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
-		</div>
-            <!--           HEADER-->
+            <!--           /HEADER-->
             <div id="contents">
                 <div id="mainContent">
                     <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <c:if test="${classInfo.info_img2 !=null}">
-                            <ol class="carousel-indicators">
-                                <li data-target="#myCarousel1" data-slide-to="0" class="active">
-                                </li>
-                                <li data-target="#myCarousel1" data-slide-to="1"></li>
-                            </ol>
-                        </c:if>
-                        <c:if test="${classInfo.info_img3 !=null}">
-                            <ol class="carousel-indicators">
+                    <c:choose>    
+                        <c:when test="${classInfo.info_img3!=null}">
+                    		<ol class="carousel-indicators">
                                 <li data-target="#myCarousel1" data-slide-to="0" class="active">
                                 </li>
                                 <li data-target="#myCarousel1" data-slide-to="1"></li>
                                 <li data-target="#myCarousel1" data-slide-to="2"></li>
                             </ol>
-                        </c:if>
+                        </c:when>
+                        <c:when test="${classInfo.info_img2!=null}">
+                    		<ol class="carousel-indicators">
+                                <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel1" data-slide-to="1"></li>
+                            </ol>
+                        </c:when> 
+                    </c:choose>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="${classInfo.info_img1 }" class="card-img-top">
+                            	<div style="background:#000;
+                            	width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img1 }');">
+                            	</div>
                             </div>
                             <c:if test="${classInfo.info_img2 !=null}">
                                 <div class="carousel-item">
-                                    <img src="${classInfo.info_img2 }" class="card-img-top">
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img2 }');">
+                            	</div>
                                 </div>
                             </c:if>
                             <c:if test="${classInfo.info_img3 !=null}">
                                 <div class="carousel-item">
-                                    <img src="${classInfo.info_img3 }" class="card-img-top">
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img3 }');">
+                            	</div>
                                 </div>
                             </c:if>
                         </div>
@@ -517,6 +602,7 @@
                     </div>
                     <div id="sumary" class="class_detail">
                         <!--                        요약부분-->
+                        <div id="sumary_wrapper">
                         <div class="class_name">
                             <div class="tutor">
                                 <span class="class_tuImg">
@@ -562,6 +648,7 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div id="tutorinfo" class="class_detail">
                         <h3>튜터정보(쪽지기능)</h3>

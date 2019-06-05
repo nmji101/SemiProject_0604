@@ -38,7 +38,7 @@ public class MypageServlets extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		
 		String m_id = (String)request.getSession().getAttribute("loginId");
-		request.getSession().setAttribute("loginId", m_id);
+//		request.getSession().setAttribute("loginId", m_id);
 		
 		System.out.println(url);
 		if(url.equals("doing.mypage"))
@@ -205,7 +205,6 @@ public class MypageServlets extends HttpServlet
 			{
 				PersonDAO dao = new PersonDAO();
 				PersonDTO dto = dao.selectById(m_id);
-				
 				request.setAttribute("dto", dto);
 			}
 			catch(Exception e)
@@ -214,6 +213,7 @@ public class MypageServlets extends HttpServlet
 			}
 			
 			request.getRequestDispatcher("/WEB-INF/MypagePerson.jsp").forward(request, response);
+		
 		}
 		else if(url.equals("update.mypage"))
 		{
@@ -356,6 +356,7 @@ public class MypageServlets extends HttpServlet
 							e.printStackTrace();
 						}
 					}
+					response.sendRedirect("close.html");
 				}
 			}
 			catch(Exception e)

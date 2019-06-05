@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    
+    <link rel="shortcut icon" href="favicon.ico">
     <style>
         
     </style>
@@ -37,15 +37,16 @@
 
 			setInterval
 			(
-			 	Kakao.Auth.getStatus(function(statusObj)
-			 	{
+			 
+				Kakao.Auth.getStatus(function(statusObj)
+				{
 					console.log("실행");
-			 		if(statusObj.status == "not_connected")
-			 		{
-			 			opener.close();
-		 				self.close();
-			 		}
-			 	})
+					if(statusObj.status == "not_connected")
+					{
+						opener.close();
+						self.close();
+					}
+				}         
 			,500);
 			
         });
