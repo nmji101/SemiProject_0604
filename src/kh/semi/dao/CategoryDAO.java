@@ -18,7 +18,7 @@ public class CategoryDAO {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		String url = "jdbc:oracle:thin:@localhost:49161:xe"; //맥북 : 49161
+		String url = "jdbc:oracle:thin:@localhost:1521:xe"; //맥북 : 49161
 		String user = "semi";
 		String password = "semi";
 		return DriverManager.getConnection(url, user, password);
