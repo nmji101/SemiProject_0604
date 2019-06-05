@@ -38,7 +38,11 @@ public class MypageServlets extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		
 		String m_id = (String)request.getSession().getAttribute("loginId");
+<<<<<<< HEAD
 		request.getSession().setAttribute("loginId", m_id);
+=======
+//		request.getSession().setAttribute("loginId", m_id);
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 		
 		System.out.println(url);
 		if(url.equals("doing.mypage"))

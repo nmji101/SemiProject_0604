@@ -11,11 +11,29 @@
 	margin-top: 12%;
 	overflow: hidden;
 	text-align: center;
+<<<<<<< HEAD
 	border: 1px solid black;
 	width: 400px;
 	height: 500px;
 }
 
+=======
+	width: 400px;
+	height: 500px;
+}
+form>div{
+	background-color: #ffffff95;
+	
+}
+body {
+
+  background: url('main1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 * {
 	
 }
@@ -113,9 +131,15 @@ main>div {
 		<div class="container col-md-6" id="div">
 			<div class="row" id="header">
 				<header class="col-log-2 col-md-2 col-sm-2"> </header>
+<<<<<<< HEAD
 				<!--                     <logo class="col-log-8 col-md-8 col-sm-8 pt-4"> -->
 				<!--                         <img src="카카오톡.png" alt="" id="log"> -->
 				<!--                     </logo> -->
+=======
+				                     <logo class="col-log-8 col-md-8 col-sm-8 pt-4"> 
+				                         <img src="logo.png" alt="" id="log"> 
+				                    </logo> 
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 				<header class="col-log-2 col-md-2 col-sm-2"> </header>
 			</div>
 			<div class="row pt-4" id="main">
@@ -150,8 +174,13 @@ main>div {
 			<div class="row pt-1 mt-2" id="main">
 				<div class="col-2"></div>
 				<div class="col-9 input_text">
+<<<<<<< HEAD
 					<button type="button" class="btn btn-primary" id="login_btn">확인</button>
 					<button type="button" class="btn btn-primary" id="back_btn">돌아가기</button>
+=======
+					<button type="button" class="btn btn-warning" id="login_btn">확인</button>
+					<button type="button" class="btn btn-warning" id="back_btn">돌아가기</button>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 				</div>
 				<div class="col-1"></div>
 			</div>

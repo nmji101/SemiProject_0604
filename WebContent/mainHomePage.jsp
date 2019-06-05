@@ -13,7 +13,11 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link
+<<<<<<< HEAD
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
+=======
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	rel="stylesheet">
 <link rel="shortcut icon" href="favicon.ico">
 </head>
@@ -23,7 +27,10 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 #logo {
 	position: relative;
 	bottom: 20px;
@@ -65,6 +72,10 @@ div {
 	margin: 0px;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 #lookBtn {
 	font-weight: bold;
 	font-size: 23px;
@@ -183,6 +194,7 @@ a:hover {
 	z-index: 10;
 }
 
+<<<<<<< HEAD
 #carousel{
 	margin:100px auto;
 	width:80%;
@@ -190,6 +202,34 @@ a:hover {
 .carousel-indicators>li {
 	/*  색깔바꾸기.. */
 	
+=======
+.carousel-item>img {
+	height: 300px;
+	border-radius: 20px;
+}
+
+#carouselExampleIndicators{
+	margin:20px;
+}
+
+#main1, #main2 {
+	font-family: 'Do Hyeon', sans-serif;
+	border-radius: 10px;
+}
+
+#main1 {
+	color: black;
+	margin-left: 100px;
+}
+
+#yellow {
+	color: #ffb100;
+}
+
+.carousel-caption {
+	padding-bottom: 90px;
+	width: auto;
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 #naviBox {
@@ -235,7 +275,11 @@ $(function(){
 			alert("검색할 단어를 입력해주세요.");
 			return;
 		}
+<<<<<<< HEAD
 		alert("검색어 : " + input)
+=======
+		//alert("검색어 : " + input)
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 		$("#searchForm").submit();
 	});
 	if(${loginId == null }){
@@ -291,7 +335,10 @@ $(function(){
 <body>
 
 	<div id=wrapper>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 		<div class="jumbotron">
 			<div id=header class=row>
 				<div class="col-12 col-lg-3">
@@ -303,8 +350,13 @@ $(function(){
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
 									aria-label="Search" id="searchbox" name="search">
+<<<<<<< HEAD
 								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
 									type="button">Search</button>
+=======
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 							</div>
 						</div>
 					</form>
@@ -496,6 +548,7 @@ $(function(){
 
 		<div id=content>
 
+<<<<<<< HEAD
 			<div id="carousel" class="carousel slide"
 				data-ride="carousel">
 				<ol class="carousel-indicators">
@@ -582,6 +635,48 @@ $(function(){
 					class="carousel-control-next-icon" aria-hidden="true"></span> <span
 					class="sr-only">Next</span>
 				</a>
+=======
+			<div class="container">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="메인4.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id=main1>
+									현재 <span id=yellow>n</span>개 클래스 등록중!
+								</h1>
+								<p></p>
+							</div>
+
+						</div>
+						<div class="carousel-item">
+							<img src="메인2.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id="main2">
+									신규가입 하고, <span id=yellow>1 꿀</span> 받자!
+								</h1>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 			</div>
 
 

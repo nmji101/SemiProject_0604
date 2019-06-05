@@ -26,7 +26,10 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 #searchbox {
 	height: 38px;
 	position: relative;
@@ -36,16 +39,27 @@
 	padding: 10px;
 }
 
+<<<<<<< HEAD
 #logo {
+=======
+#logo{
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;
 }
+<<<<<<< HEAD
 #header {
 	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
 	
+=======
+#header{
+	height: 100%;
+	width: 100%;
+	padding: 64px 32px;	
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 #header>div{
 	padding: 0px 15px;
@@ -63,7 +77,13 @@
 	color: white;
 }
 /*         header	 */
+<<<<<<< HEAD
         
+=======
+        #myCarousel1{
+        	width : 100%;
+        }
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
             div{
                 border: 1px solid rgba(0, 0, 0, 0.19);
                 box-sizing: border-box;
@@ -82,7 +102,11 @@
                 width: 25%;
             }
             #contents{
+<<<<<<< HEAD
                 margin: auto;
+=======
+/*                 margin: auto; */
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
@@ -91,7 +115,11 @@
                 float: left;
             }
             #mainContent{
+<<<<<<< HEAD
                 width: 600px;
+=======
+                width: 60%;
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
             }
             #sideContent{
                 width: 300px;
@@ -108,7 +136,11 @@
             #classNavi{
                 overflow: hidden;
                 /*                position: fixed;*/
+<<<<<<< HEAD
                 width: 600px;
+=======
+                width: 100%;
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                 /*                height: 30px;*/
                 background-color: white;
             }
@@ -129,6 +161,10 @@
                 overflow: hidden;
                 /*                margin-top: 30px;*/
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
             .class_name{
                 height: 200px;
                 float: left;
@@ -138,8 +174,13 @@
                 display: inline-block;
                 overflow: hidden;
                 border-radius: 100px;
+<<<<<<< HEAD
                 width: 150px;
                 height: 150px;
+=======
+                width: 200px;
+                height: 200px;
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
             }
             #tutorImg{
                 width: 100%;
@@ -234,6 +275,22 @@
             	$("#logo").on("click", function() {
             		location.href = "mainHomePage.jsp";
             	});
+<<<<<<< HEAD
+=======
+            	$("#search_Btn").on("click",function(){
+            		var input = $("#searchbox").val();
+            		var regex = /^ {1,}$/g;
+            		var result = regex.exec(input);
+            		if(input==""){
+            			alert("검색어를 입력해주세요.");
+            			return;
+            		}else if(result!=null){
+            			alert("검색할 단어를 입력해주세요.");
+            			return;
+            		}
+            		$("#searchForm").submit();
+            	});
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
             	if(${loginId == null }){
             		$("#toLogin").on("click",function(){
             			location.href = "Login.jsp";
@@ -486,6 +543,7 @@
 					<img src="logo.png" id=logo>
 				</div>
 				<div class="col-12 col-lg-6" id=search>
+<<<<<<< HEAD
 					<form class="form-inline my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
@@ -493,6 +551,15 @@
 									aria-label="Search" id=searchbox>
 								<button class="btn btn-warning my-2 my-sm-0 headBtn"
 									type="submit">Search</button>
+=======
+					<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="button">Search</button>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 							</div>
 						</div>
 					</form>
@@ -515,6 +582,7 @@
 				</div>
 			</div>
             <!--           /HEADER-->
+<<<<<<< HEAD
             <div id="contents" class="container">
                 <div id="mainContent">
                     <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
@@ -540,11 +608,58 @@
                             <c:if test="${classInfo.info_img2 !=null}">
                                 <div class="carousel-item">
                                     <img src="${classInfo.info_img2 }" class="card-img-top">
+=======
+            <div id="contents">
+                <div id="mainContent">
+                    <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <c:choose>    
+                        <c:when test="${classInfo.info_img3!=null}">
+                    		<ol class="carousel-indicators">
+                                <li data-target="#myCarousel1" data-slide-to="0" class="active">
+                                </li>
+                                <li data-target="#myCarousel1" data-slide-to="1"></li>
+                                <li data-target="#myCarousel1" data-slide-to="2"></li>
+                            </ol>
+                        </c:when>
+                        <c:when test="${classInfo.info_img2!=null}">
+                    		<ol class="carousel-indicators">
+                                <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel1" data-slide-to="1"></li>
+                            </ol>
+                        </c:when> 
+                    </c:choose>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                            	<div style="background:#000;
+                            	width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img1 }');">
+                            	</div>
+                            </div>
+                            <c:if test="${classInfo.info_img2 !=null}">
+                                <div class="carousel-item">
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img2 }');">
+                            	</div>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                                 </div>
                             </c:if>
                             <c:if test="${classInfo.info_img3 !=null}">
                                 <div class="carousel-item">
+<<<<<<< HEAD
                                     <img src="${classInfo.info_img3 }" class="card-img-top">
+=======
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img3 }');">
+                            	</div>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                                 </div>
                             </c:if>
                         </div>
@@ -572,6 +687,10 @@
                     </div>
                     <div id="sumary" class="class_detail">
                         <!--                        요약부분-->
+<<<<<<< HEAD
+=======
+                        <div id="sumary_wrapper">
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                         <div class="class_name">
                             <div class="tutor">
                                 <span class="class_tuImg">
@@ -618,6 +737,10 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+                    </div>
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
                     <div id="tutorinfo" class="class_detail">
                         <h3>튜터정보(쪽지기능)</h3>
                         <div>${classInfo.info_intro }</div>

@@ -1,8 +1,11 @@
 package kh.semi.dto;
 
+<<<<<<< HEAD
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+=======
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 public class ClassInfoDTO {
 	
 	
@@ -26,7 +29,11 @@ public class ClassInfoDTO {
 	private String info_date;//18 클래스 등록일
 	private String info_avgstar;//19 별점통계
 	private int info_click;//20 클래스 조회 수
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	public int getInfo_classid() {
 		return info_classid;
 	}
@@ -148,7 +155,11 @@ public class ClassInfoDTO {
 	public void setInfo_click(int info_click) {
 		this.info_click = info_click;
 	}
+<<<<<<< HEAD
 	public ClassInfoDTO(int info_classid_seq, String info_tutorid, String info_category, String info_title, String info_explain,
+=======
+	public ClassInfoDTO(int info_classid, String info_tutorid, String info_category, String info_title, String info_explain,
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 			String info_intro, int info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
 			int info_price, String info_img1, String info_img2, String info_img3, String info_start, String info_end,
 			String info_date, String info_avgstar, int info_click) {
@@ -161,7 +172,10 @@ public class ClassInfoDTO {
 		this.info_addr1 = info_addr1;
 		this.info_addr2 = info_addr2;
 		this.info_addr3 = info_addr3;
+<<<<<<< HEAD
 		this.info_addr4 = info_addr4;
+=======
+>>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 		this.info_maxperson = info_maxperson;
 		this.info_price = info_price;
 		this.info_img1 = info_img1;
