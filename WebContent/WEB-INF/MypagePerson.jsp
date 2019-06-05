@@ -14,17 +14,25 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 div {
+    width: 100%;
+    text-align: center;
 	padding: 0px;
 }
 #header {
 	width: 100%;
-	margin: auto;
-	margin: 0px;
-	padding: 0px;
+	margin-left: 1px !important;
+	margin-right: 1px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+    top: -20px !important;
 	text-align: center;
 	justify-content: center;
 }
-#container_div, #header
+#logo_div{
+	padding-left: 10px !important;
+}
+
+#container_div
 {
 /* 	padding-left: 0px !important; */
 /*     padding-right: 0px !important; */
@@ -36,12 +44,18 @@ div {
 	justify-content: center !important;
 }
 #searchbox {
+	width: 237px;
 	height: 38px;
 	position: relative;
 	top: 4px;
 	border: 1px solid #ffba00;
 	border-radius: 10px;
 	padding: 10px;
+}
+#searchbox_div
+{
+	padding-left: 0px !important;
+	padding-right: 60px !important;
 }
 #logo {
 	position: relative;
@@ -56,6 +70,7 @@ div {
 }
 .headBtn {
 	color: white !important;
+	font-weight: bolder !important;
 }
 .headBtn:hover {
 	background-color: burlywood;
@@ -63,6 +78,12 @@ div {
 	color: white;
 }
 /*         header	 */
+
+#login_btn_div
+{
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
 
 #header_div{
  	border: 1px solid #FFC107;
@@ -232,42 +253,67 @@ div {
 </head>
 <body>
 
-
-	<div id="container_div" class="container col-12 mt-3">
+	<div id="container_div" class="container col-12">
 
 		<!--           HEADER-->
-            <div id=header class=row>
-			<div class="col-12 col-lg-3">
+		<div id=header class=row>
+			
+			<div id="logo_div" class="col-12 col-lg-3">
+				
 				<img src="logo.png" id=logo>
+			
 			</div>
+			
 			<div class="col-12 col-lg-6">
-					<form id=search class="form-inline my-2 my-lg-0">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
-							</div>
+					
+				<form id=search class="form-inline my-2 my-lg-0">
+						
+					<div class="row justify-content-center">
+							
+						<div id="searchbox_div" class="col-12">
+								
+							<input type="search" placeholder="취미를 검색해 보세요!"
+								aria-label="Search" id=searchbox>
+								
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit">Search</button>
+							
 						</div>
-					</form>
-				</div>
-			<div class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
+						
+					</div>
+					
+				</form>
+				
 			</div>
+			
+			<div id="login_btn_div" class="col-12 col-lg-3">
+				
+				<c:choose>
+					
+					<c:when test="${loginId==null}">
+						
+						<button id="toLogin" class="btn btn-warning headBtn"
+							type="button">login</button>
+						
+						<button id="toSignup" class="btn btn-warning headBtn"
+							type="button">signup</button>
+					
+					</c:when>
+					
+					<c:otherwise>
+						
+						<button class="btn btn-warning headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+						
+						<button class="btn btn-warning headBtn" type="submit"
+							id=logout_btn>logout</button>
+					
+					</c:otherwise>
+				
+				</c:choose>
+			
+			</div>
+		
 		</div>
             <!--           HEADER-->
 
