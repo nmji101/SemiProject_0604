@@ -420,7 +420,7 @@ public class MypageServlets extends HttpServlet
 				{
 					UpgradeDAO udao = new UpgradeDAO();
 					Boolean check = udao.selectById(pdto.getM_id());
-					request.setAttribute("check", check);
+					request.setAttribute("check", ""+check);
 				}
 			}
 			catch(Exception e)
