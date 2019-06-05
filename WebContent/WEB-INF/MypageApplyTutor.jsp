@@ -382,7 +382,7 @@ div {
 
 					<div id="contents_div" class="col-lg-9">
 
-						<c:if test="${check==true}">
+						<c:if test="${check=='true'}">
 
 
 							<span>현재 신청 대기중</span>
@@ -390,7 +390,7 @@ div {
 						</c:if>
 
 
-						<c:if test="${check==false}">
+						<c:if test="${check=='false'}">
 
 
 							<form id="apply_form" action="apply.mypage" method="post">
@@ -404,7 +404,7 @@ div {
 
 						</c:if>
 
-						<c:if test="${check==tutor}">
+						<c:if test="${check=='tutor'}">
 
 
 							<script>
