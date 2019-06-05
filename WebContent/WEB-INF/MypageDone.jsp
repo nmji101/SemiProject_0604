@@ -389,7 +389,7 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname }님환영합니다.</h3>
+									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
 
 								</button>
 
