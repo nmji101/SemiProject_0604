@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>클래스 구매 결과</title>
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
 	<script>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="favicon.ico">
 <title>네이버로그아웃</title>
 </head>
 <body>

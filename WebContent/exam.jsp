@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <body>
 <form id="ajaxform" action="upload.file" method="post" enctype="multipart/form-data">
