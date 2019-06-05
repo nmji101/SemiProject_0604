@@ -157,6 +157,11 @@ div {
 <script>
 	$(function()
     {
+		$("#logo").on("click", function()
+		{
+			location.href = "mainHomePage.jsp";
+		});
+		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -409,22 +414,26 @@ div {
 				</div>
 
 				<div id="navi_row" class="row my-3">
+						
+					<div class="col-3">
+						
+					</div>
+						
+					<div id="navi_div" class="col-9">
 
-						<div id="navi_div" class="col-12">
-
-							<c:if test="${ needPrev }">
-			            		<input id="prev_btn" type="button" class="btn btn-link" value="<">
-			            	</c:if>
-			                <c:forEach var="i" begin="${ startNavi }" end="${ endNavi }">
-			                		<input class="btn navi_btn" name="${ i }" type="button" value="${ i }">
-			                </c:forEach>
-			                <c:if test="${ needNext }">
-			            		<input id="next_btn" type="button" class="btn btn-link" value=">">
-			            	</c:if>
-
-						</div>
+						<c:if test="${ needPrev }">
+			            	<input id="prev_btn" type="button" class="btn btn-link" value="<">
+			            </c:if>
+			            <c:forEach var="i" begin="${ startNavi }" end="${ endNavi }">
+			                <input class="btn navi_btn" name="${ i }" type="button" value="${ i }">
+			            </c:forEach>
+			            <c:if test="${ needNext }">
+			            	<input id="next_btn" type="button" class="btn btn-link" value=">">
+			            </c:if>
 
 					</div>
+
+				</div>
 
 			</div>
 

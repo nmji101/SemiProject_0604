@@ -164,6 +164,11 @@ div {
 			});
 		}
 		
+		$("#logo").on("click", function()
+		{
+			location.href = "mainHomePage.jsp";
+		});
+		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
