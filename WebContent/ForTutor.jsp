@@ -316,6 +316,26 @@ $(function(){
 		  var max = /^[0-9]{1,2}$/;
 	      var price = /^[0-9]{1,6}$/;
 	      
+	  	var String =$("input[name=startdate]").val();
+		var Strings = $("input[name=enddate]").val();
+		var regex = /..-..$/;
+		var result=regex.exec(String);
+		var results=regex.exec(Strings);
+		var String2 = result[0];
+		var String2s = results[0];
+		var regex2= /^../;
+		var result2=regex2.exec(String2);
+		var result2s=regex2.exec(String2s);
+// 		document.write(result2[0]);
+// 		document.write(result2s[0]);
+		var lastreg = /..$/;
+		var last1 = lastreg.exec(String2);
+		var last2 = lastreg.exec(String2s);
+// 		document.write(last1[0]);
+// 		document.write(last2[0]);
+		
+
+	      
 	      if(!max.test($('#max').val())){
 	         alert("인원은 99명 이하만 가능합니다 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
 	         return false;
@@ -324,6 +344,14 @@ $(function(){
 		         alert("가격은 100만원 미만만 가능합니다 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
 		      return false;
 	      }  
+	      if(result2[0] > result2s[0] ){
+	    	  alert("'월'을 다시 입력해주세요");
+	    	  return false;
+	      }else  if(last1[0] > last2[0] ){
+	    	  alert(" '일'을 다시 입력해주세요");
+	    	  return false;
+	      }
+	      
 		
 		
 		else{
