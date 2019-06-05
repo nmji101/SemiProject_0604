@@ -2,18 +2,18 @@ package kh.semi.dto;
 
 import java.util.Date;
 
-public class CoingDTO {
+public class DoingDTO {
 	private int do_seq;
 	private String do_classid;
 	private String do_userid;
 	private String do_status; // ������ Y/N
 	private String do_reviewok;
 	private Date do_date;
-	public CoingDTO() {
+	public DoingDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CoingDTO(int do_seq, String do_classid, String do_userid, String do_status, String do_reviewok,
+	public DoingDTO(int do_seq, String do_classid, String do_userid, String do_status, String do_reviewok,
 			Date do_date) {
 		super();
 		this.do_seq = do_seq;

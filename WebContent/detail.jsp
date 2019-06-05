@@ -20,6 +20,7 @@
         <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico">
         <style>
 /*         header	 */
 * {

@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Category</title>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -17,12 +17,13 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico">
 <script>
 $(function(){
 	$("#logo").on("click", function() {
 		location.href = "mainHomePage.jsp";
 	});
-	if(${loginId == null }){
+	if(${loginId == null}){
 		$("#toLogin").on("click",function(){
 			location.href = "Login.jsp";
 		});
@@ -321,7 +322,7 @@ a:hover {
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
