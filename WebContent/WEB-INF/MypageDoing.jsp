@@ -182,44 +182,72 @@ div {
 <script>
 	$(function()
     {
-		$("#logout_btn").on("click", function()
-		{
-			if(${loginType == "kakao"})
-			{
-				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
-				            				
-				var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
-				window.open("exit.html","",popOption)
-		
-				Kakao.Auth.logout
-				(
-					function(data)
-					{
-						if(data)
-						{				
-							location.href="logout.login";
-						}
-						else
-						{
-							location.href="error.html";
-						}
-					}
-				);
-			}
-			else if(${loginType == "normal"})
-			{
-				location.href="logout.login";
-			}
-			else
-			{
-				location.href="naverLogout.login";
-			}
+		$("#logo").on("click", function() {
+			location.href = "mainHomePage.jsp";
 		})
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
+		if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
+						}
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
+						{
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
+						}
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
 		
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
-	    });
 	    
 	    $("#ing_class_btn").on("click", function()
 	    {

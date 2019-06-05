@@ -8,9 +8,94 @@
 <title>관리자 마이페이지</title>
 
 <style>
+/*         header	 */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 div {
-	border: 1px solid black;
+	width: 100%;
+	text-align: center;
+	padding: 0px;
+}
+
+#header {
+	width: 100%;
+	margin-left: 1px !important;
+	margin-right: 1px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	top: -20px !important;
+	text-align: center;
+	justify-content: center;
+}
+
+#logo_div {
+	padding-left: 3px !important;
+}
+
+#container_div {
+	/* 	padding-left: 0px !important; */
+	/*     padding-right: 0px !important; */
+	margin: 0px !important;
+}
+
+#search {
+	text-align: center !important;
+	justify-content: center !important;
+}
+
+#searchbox {
+	width: 237px;
+	height: 38px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #ffba00;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#searchbox_div {
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
+
+#logo {
+	position: relative;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+#header {
+	height: 100%;
+	width: 100%;
+	padding: 64px 32px;
+}
+
+.headBtn {
+	color: white !important;
+	font-weight: bolder !important;
+}
+
+.headBtn:hover {
+	background-color: burlywood;
+	border: 1px solid burlywood;
+	color: white;
+}
+/*         header	 */
+#login_btn_div {
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
+
+#header_div {
+	border: 1px solid #FFC107;
 	box-sizing: border-box;
+}
+
+#profile_div_row, #profile_div {
+	text-align: center;
+	justify-content: center;
 }
 
 #header_row, #profile_row, #contents_row {
@@ -73,11 +158,9 @@ div {
 	color: cornflowerblue;
 	font-weight: bold;
 }
-
 .row * {
 	text-align: center;
 }
-
 #searchSelect {
 	width: 200px;
 	margin: 0px;
@@ -102,11 +185,74 @@ div {
 <script>
 	$(function()
     {
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
-	    });
-	    	    
+
+	    	  
+		$("#logo").on("click", function() {
+			location.href = "mainHomePage.jsp";
+		})
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
+		if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
+						}
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
+						{
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
+						}
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
+		
 	    $("#profile_img_btn").on("click", function()
 	    {
 		    var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
@@ -155,53 +301,62 @@ div {
 <body>
 
 
-	<div class="container col-12 mt-3">
+	<div class="container col-12">
 
-		<div id="header_row" class="row">
+		<div id=header class=row>
 
-			<div class="col-10">
+			<div id="logo_div" class="col-12 col-lg-3">
 
-				<div class="row">
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
 
-					<div id="logo_div" class="col-lg-3 d-none d-xl-block">
+			</div>
 
-						<a href="#"> <img id="logo_img" src="nmnb.jpg" alt="">
+			<div class="col-12 col-lg-6">
 
-						</a>
+				<form id=search class="form-inline my-2 my-lg-0">
 
-					</div>
+					<div class="row justify-content-center">
 
-					<div id="search_div" class="col-lg-12 col-xl-6 my-auto">
+						<div id="searchbox_div" class="col-12">
 
-						<div class="row">
+							<input type="search" placeholder="취미를 검색해 보세요!"
+								aria-label="Search" id=searchbox>
 
-							<div class="col-lg-9">
-
-								<input id="search_text" class="form-control" type="text"
-									placeholder="input text to search">
-
-							</div>
-
-							<div class="col-lg-3">
-
-								<input id="search_btn" class="btn" type="button" value="검색">
-
-							</div>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit">Search</button>
 
 						</div>
 
-
 					</div>
 
-					<div id="event_div" class="col-lg-3 d-none d-xl-block">
+				</form>
 
-						<a href="#"> <img id="event_img" src="nmnb.jpg" alt="">
+			</div>
 
-						</a>
+			<div id="login_btn_div" class="col-12 col-lg-3">
 
-					</div>
+				<c:choose>
 
-				</div>
+					<c:when test="${loginId==null}">
+
+						<button id="toLogin" class="btn btn-warning headBtn" type="button">login</button>
+
+						<button id="toSignup" class="btn btn-warning headBtn"
+							type="button">signup</button>
+
+					</c:when>
+
+					<c:otherwise>
+
+						<button class="btn btn-warning headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+
+						<button class="btn btn-warning headBtn" type="submit"
+							id=logout_btn>logout</button>
+
+					</c:otherwise>
+
+				</c:choose>
 
 			</div>
 
@@ -211,11 +366,11 @@ div {
 
 			<div class="col-10 my-3">
 
-				<div class="row">
+				<div id="profile_div_row" class="row">
 
 					<div class="col-lg-6">
 
-						<div class="row">
+						<div id="profile_div" class="row">
 
 							<div id="profile_img_div" class="col-lg-4">
 
@@ -229,25 +384,11 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname }님환영합니다.</h3>
+									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
 
 								</button>
 
-								<br>
-
-								<button class="btn">뭔가 쓸 거 같은 공간</button>
-
 							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col-lg-6">
-
-						<div class="row">
-
-							<div class="col-md-12 my-auto">무언가에 쓸 수 있을 거 같은 공간</div>
 
 						</div>
 
@@ -342,8 +483,8 @@ div {
 									<option selected value="way">검색방법</option>
 									<option value="memberId">아이디</option>
 									<option value="nickname">닉네임</option>
-								</select> <input id="searchInput" type="text" class="footText"
-									placeholder="검색입력"> <input id="search"
+								</select> <input id="tutor_searchInput" type="text" class="footText"
+									placeholder="검색입력"> <input id="tutor_search_Btn"
 									class="footBtn mr-3" type="button" value="검색">
 							</div>
 						</div>

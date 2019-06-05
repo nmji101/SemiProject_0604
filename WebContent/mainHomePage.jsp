@@ -16,7 +16,6 @@
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
 	rel="stylesheet">
 <link rel="shortcut icon" href="favicon.ico">
-</head>
 <style>
 
 /* 헤드부분 */
@@ -272,7 +271,7 @@ $(function(){
 					}else{
 						location.href = "doing.mypage?"+encodeURI("page=1");
 					}
-        		})
+        		});
         		$("#logout_btn").on("click", function()
         		{
         			if(${loginType == "kakao"})
@@ -297,7 +296,7 @@ $(function(){
 						    }
 						);
 					}
-					else if(${loginType == "normal"})
+					else if(${loginType=="normal"})
 					{
 						location.href="logout.login";
 					}else{
@@ -307,6 +306,7 @@ $(function(){
 	}
 })
 	</script>
+	</head>
 <body>
 
 	<div id=wrapper>

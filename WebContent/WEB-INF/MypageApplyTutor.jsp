@@ -211,7 +211,7 @@ div {
 		
 	    $("#search_btn").on("click", function()
 	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
+		    location.href = "query.query?query="+$("#search_text").val();
 	    });
 	    
 	    $("#ing_class_btn").on("click", function()
@@ -249,6 +249,7 @@ div {
 	    $("#tutorPage").on("click",function(){
 	    	location.href = "id.tutor";
 	    });
+	    alert("${check}");
 	    
     });
     

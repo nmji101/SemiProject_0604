@@ -16,10 +16,12 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import kh.semi.dao.DoClassDAO;
+import kh.semi.dao.MemberDAO;
 import kh.semi.dao.PersonDAO;
 import kh.semi.dao.ReviewDAO;
 import kh.semi.dao.UpgradeDAO;
 import kh.semi.dto.DoClassDTO;
+import kh.semi.dto.MemberDTO;
 import kh.semi.dto.PersonDTO;
 
 
@@ -39,6 +41,11 @@ public class MypageServlets extends HttpServlet
 		
 		String m_id = (String)request.getSession().getAttribute("loginId");
 //		request.getSession().setAttribute("loginId", m_id);
+//		try {
+//	         new MemberDAO().getInsert(new MemberDTO("admin","admin","admin","F","20","0101",null,null,"admin",null));
+//	         }catch(Exception e) {
+//	            
+//	    }
 		
 		System.out.println(url);
 		if(url.equals("doing.mypage"))
@@ -420,7 +427,7 @@ public class MypageServlets extends HttpServlet
 				{
 					UpgradeDAO udao = new UpgradeDAO();
 					Boolean check = udao.selectById(pdto.getM_id());
-					request.setAttribute("check", check);
+					request.setAttribute("check", check+"");
 				}
 			}
 			catch(Exception e)
