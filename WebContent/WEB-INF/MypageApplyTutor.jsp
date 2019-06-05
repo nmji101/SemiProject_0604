@@ -13,29 +13,38 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
+
 div {
+    width: 100%;
+    text-align: center;
 	padding: 0px;
 }
 #header {
 	width: 100%;
-	margin: auto;
-	margin: 0px;
-	padding: 0px;
+	margin-left: 1px !important;
+	margin-right: 1px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+    top: -20px !important;
 	text-align: center;
 	justify-content: center;
 }
-#container_div, #header
-{
-/* 	padding-left: 0px !important; */
-/*     padding-right: 0px !important; */
+#logo_div{
+	padding-left: 3px !important;
+}
+#container_div{
+	/* 	padding-left: 0px !important; */
+	/*     padding-right: 0px !important; */
 	margin: 0px !important;
 }
-#search
-{
+
+#search {
 	text-align: center !important;
 	justify-content: center !important;
 }
+
 #searchbox {
+	width: 237px;
 	height: 38px;
 	position: relative;
 	top: 4px;
@@ -43,35 +52,44 @@ div {
 	border-radius: 10px;
 	padding: 10px;
 }
+#searchbox_div
+{
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
 #logo {
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;
 }
+
 #header {
 	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
-	
 }
+
 .headBtn {
 	color: white !important;
+	font-weight: bolder !important;
 }
 .headBtn:hover {
 	background-color: burlywood;
 	border: 1px solid burlywood;
 	color: white;
 }
-/*         header	 */
-
-
-#header_div{
- 	border: 1px solid #FFC107;
- 	box-sizing: border-box;
- } 
-
-#profile_div_row, #profile_div
+#login_btn_div
 {
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
+/*         header	 */
+#header_div {
+	border: 1px solid #FFC107;
+	box-sizing: border-box;
+}
+
+#profile_div_row, #profile_div {
 	text-align: center;
 	justify-content: center;
 }
@@ -135,8 +153,8 @@ div {
 #tutor_page_btn {
 	color: cornflowerblue;
 }
-#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn
-{
+
+#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
 }
@@ -154,9 +172,43 @@ div {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="shortcut icon" href="favicon.ico">
 <script>
-alert("id : " + "${loginId}");
+// alert("id : " + "${loginId}");
 	$(function()
     {
+		$("#logout_btn").on("click", function()
+		{
+			if(${loginType == "kakao"})
+			{
+				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+			            				            				
+				var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+				window.open("exit.html","",popOption)
+			            		
+				Kakao.Auth.logout
+				(
+					function(data)
+					{
+						if(data)
+						{				
+							location.href="logout.login";
+						}
+						else
+						{
+							location.href="error.html";
+						}
+					}
+				);
+			}
+			else if(${loginType == "normal"})
+			{
+				location.href="logout.login";
+			}
+			else
+			{
+				location.href="naverLogout.login";
+			}
+		})
+		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -210,23 +262,23 @@ alert("id : " + "${loginId}");
 	<div id="container_div" class="container col-12 mt-3">
 
 		<!--           HEADER-->
-            <div id=header class=row>
-			<div class="col-12 col-lg-3">
-				<img src="logo.png" id=logo>
+		<div id=header class=row>
+			<div id="logo_div" class="col-12 col-lg-3">
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
 			</div>
 			<div class="col-12 col-lg-6">
-					<form id=search class="form-inline my-2 my-lg-0">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
-							</div>
+				<form id=search class="form-inline my-2 my-lg-0">
+					<div class="row justify-content-center">
+						<div id="searchbox_div" class="col-12">
+							<input type="search" placeholder="취미를 검색해 보세요!"
+								aria-label="Search" id=searchbox>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit">Search</button>
 						</div>
-					</form>
-				</div>
-			<div class="col-12 col-lg-3">
+					</div>
+				</form>
+			</div>
+			<div id="login_btn_div" class="col-12 col-lg-3">
 				<c:choose>
 					<c:when test="${loginId==null}">
 						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
@@ -243,7 +295,7 @@ alert("id : " + "${loginId}");
 				</c:choose>
 			</div>
 		</div>
-            <!--           HEADER-->
+		<!--           HEADER-->
 
 		<div id="profile_row" class="row">
 
@@ -296,8 +348,7 @@ alert("id : " + "${loginId}");
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
 								<button id="ing_class_btn" class="btn btn-warning py-3">
-									수강 중 클래스
-								</button>
+									수강 중 클래스</button>
 
 							</div>
 
@@ -314,19 +365,17 @@ alert("id : " + "${loginId}");
 									정보 수정</button>
 
 							</div>
-							
+
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
-										
-									<h5>
-										<strong>튜터 페이지</strong>
-									</h5>
-										
+
+									<h5><strong>튜터 페이지</strong></h5>
+
 								</button>
 
 							</div>
-							
+
 						</div>
 
 					</div>
@@ -337,33 +386,33 @@ alert("id : " + "${loginId}");
 
 
 							<span>현재 신청 대기중</span>
-							
+
 						</c:if>
-						
+
 
 						<c:if test="${check=='false'}">
-							
+
 
 							<form id="apply_form" action="apply.mypage" method="post">
-						
-								<input name="id" type="hidden" value="${ dto.m_id }">
-								<input name="nickname" type="hidden" value="${ dto.m_nickname }">
-								
+
+								<input name="id" type="hidden" value="${ dto.m_id }"> <input
+									name="nickname" type="hidden" value="${ dto.m_nickname }">
+
 								<input type="submit">
-								
+
 							</form>
-							
+
 						</c:if>
-						
+
 						<c:if test="${check=='tutor'}">
 
-						
+
 							<script>
  								location.href = "ForTutor.jsp";
 							</script>
-							
+
 						</c:if>
-												
+
 
 					</div>
 

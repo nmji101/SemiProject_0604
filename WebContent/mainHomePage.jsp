@@ -65,6 +65,7 @@ div {
 	margin: 0px;
 }
 
+
 #lookBtn {
 	font-weight: bold;
 	font-size: 23px;
@@ -183,22 +184,34 @@ a:hover {
 	z-index: 10;
 }
 
-#carousel{
-	margin:100px auto;
-	width:80%;
+.carousel-item>img {
+	height: 300px;
+	border-radius: 20px;
 }
 
-.carousel-indicators>li {
-	/*  색깔바꾸기.. */
+#carouselExampleIndicators{
+	margin:20px;
 }
 
-.card, .card-img{
+#main1, #main2 {
+	font-family: 'Do Hyeon', sans-serif;
 	border-radius: 10px;
 }
-.card-title{
-font-family: 'Acme', sans-serif;
 
+#main1 {
+	color: black;
+	margin-left: 100px;
 }
+
+#yellow {
+	color: #ffb100;
+}
+
+.carousel-caption {
+	padding-bottom: 90px;
+	width: auto;
+}
+
 #naviBox {
 	width: 50%;
 	margin: 30px auto;
@@ -310,8 +323,8 @@ $(function(){
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
 									aria-label="Search" id="searchbox" name="search">
-								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="button">Search</button>
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
 							</div>
 						</div>
 					</form>
@@ -503,81 +516,47 @@ $(function(){
 
 		<div id=content>
 
-<!-- 			<div id="carousel" class="carousel slide" -->
-<!-- 				data-ride="carousel"> -->
-<!-- 				<ol class="carousel-indicators"> -->
-<!-- 					<li data-target="#carousel" data-slide-to="0" -->
-<!-- 						class="active"></li> -->
-<!-- 					<li data-target="#carousel" data-slide-to="1"></li> -->
-<!-- 					<li data-target="#carousel" data-slide-to="2"></li> -->
-<!-- 				</ol> -->
-<!-- 				<div class="carousel-inner"> -->
-<!-- 					<div class="carousel-item active"> -->
-<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
-<!-- 							<div class="row no-gutters"> -->
-<!-- 								<div class="col-lg-7"> -->
-<!-- 									<img src="메인4.jpg" class="card-img" alt="..."> -->
-<!-- 								</div> -->
-<!-- 								<div class="col-lg-5"> -->
-<!-- 									<div class="card-body"> -->
-<!-- 										<h2 class="card-title">Life Style & Design</h2> -->
-<!-- 										<p class="card-text">문구</p>	 -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="carousel-item"> -->
-<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
-<!-- 							<div class="row no-gutters"> -->
-<!-- 								<div class="col-lg-7"> -->
-<!-- 									<img src="메인2.jpg" class="card-img" alt="..."> -->
-<!-- 								</div> -->
-<!-- 								<div class="col-lg-5"> -->
-<!-- 									<div class="card-body"> -->
-<!-- 										<h5 class="card-title">Card title</h5> -->
-<!-- 										<p class="card-text">This is a wider card with supporting -->
-<!-- 											text below as a natural lead-in to additional content. This -->
-<!-- 											content is a little bit longer.</p> -->
-<!-- 										<p class="card-text"> -->
-<!-- 											<small class="text-muted">Last updated 3 mins ago</small> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="carousel-item"> -->
-<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
-<!-- 							<div class="row no-gutters"> -->
-<!-- 								<div class="col-lg-7"> -->
-<!-- 									<img src="메인5.jpg" class="card-img" alt="..."> -->
-<!-- 								</div> -->
-<!-- 								<div class="col-lg-5"> -->
-<!-- 									<div class="card-body"> -->
-<!-- 										<h5 class="card-title">Card title</h5> -->
-<!-- 										<p class="card-text">This is a wider card with supporting -->
-<!-- 											text below as a natural lead-in to additional content. This -->
-<!-- 											content is a little bit longer.</p> -->
-<!-- 										<p class="card-text"> -->
-<!-- 											<small class="text-muted">Last updated 3 mins ago</small> -->
-<!-- 										</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<a class="carousel-control-prev" href="#carouselExampleIndicators" -->
-<!-- 					role="button" data-slide="prev"> <span -->
-<!-- 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span -->
-<!-- 					class="sr-only">Previous</span> -->
-<!-- 				</a> <a class="carousel-control-next" href="#carouselExampleIndicators" -->
-<!-- 					role="button" data-slide="next"> <span -->
-<!-- 					class="carousel-control-next-icon" aria-hidden="true"></span> <span -->
-<!-- 					class="sr-only">Next</span> -->
-<!-- 				</a> -->
-<!-- 			</div> -->
+			<div class="container">
+				<div id="carouselExampleIndicators" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="메인4.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id=main1>
+									현재 <span id=yellow>n</span>개 클래스 등록중!
+								</h1>
+								<p></p>
+							</div>
+
+						</div>
+						<div class="carousel-item">
+							<img src="메인2.jpg" class="d-block w-100" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h1 id="main2">
+									신규가입 하고, <span id=yellow>1 꿀</span> 받자!
+								</h1>
+								<p></p>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
 
 
 		</div>

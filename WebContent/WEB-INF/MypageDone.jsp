@@ -32,7 +32,7 @@ div {
 }
 
 #logo_div {
-	padding-left: 10px !important;
+	padding-left: 3px !important;
 }
 
 #container_div {
@@ -415,33 +415,31 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="ing_class_btn" class="btn btn-warning py-3">
 									수강 중 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="done_class_btn" class="btn btn-warning py-3">
 
-									<h5>
-										<strong>수강 한 클래스</strong>
-									</h5>
+									<h5><strong>수강 한 클래스</strong></h5>
 
 								</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="person_info_btn" class="btn btn-warning py-3">개인
 									정보 수정</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
 
