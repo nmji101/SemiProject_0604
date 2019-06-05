@@ -184,7 +184,7 @@ div {
 		{
 			attention.forEach(function(item, index, array)
 			{
-				$("#"+item).attr("class","btn btn-primary my-1 active");
+				$("#"+item).attr("class","btn btn-warning my-1 font-weight-bolder active");
 				$("#"+item).children("input:checkbox").prop("checked", true);
 			});
 		}
