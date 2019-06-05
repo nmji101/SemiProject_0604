@@ -13,29 +13,41 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
+
 div {
+	width: 100%;
+	text-align: center;
 	padding: 0px;
 }
+
 #header {
 	width: 100%;
-	margin: auto;
-	margin: 0px;
-	padding: 0px;
+	margin-left: 1px !important;
+	margin-right: 1px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	top: -20px !important;
 	text-align: center;
 	justify-content: center;
 }
-#container_div, #header
-{
-/* 	padding-left: 0px !important; */
-/*     padding-right: 0px !important; */
+
+#logo_div {
+	padding-left: 10px !important;
+}
+
+#container_div {
+	/* 	padding-left: 0px !important; */
+	/*     padding-right: 0px !important; */
 	margin: 0px !important;
 }
-#search
-{
+
+#search {
 	text-align: center !important;
 	justify-content: center !important;
 }
+
 #searchbox {
+	width: 237px;
 	height: 38px;
 	position: relative;
 	top: 4px;
@@ -43,36 +55,46 @@ div {
 	border-radius: 10px;
 	padding: 10px;
 }
+
+#searchbox_div {
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
+
 #logo {
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;
 }
+
 #header {
 	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
-	
 }
+
 .headBtn {
 	color: white !important;
+	font-weight: bolder !important;
 }
+
 .headBtn:hover {
 	background-color: burlywood;
 	border: 1px solid burlywood;
 	color: white;
 }
 /*         header	 */
+#login_btn_div {
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
 
+#header_div {
+	border: 1px solid #FFC107;
+	box-sizing: border-box;
+}
 
-
- #header_div{
- 	border: 1px solid #FFC107;
- 	box-sizing: border-box;
- } 
-
-#profile_div_row, #profile_div
-{
+#profile_div_row, #profile_div {
 	text-align: center;
 	justify-content: center;
 }
@@ -124,7 +146,8 @@ div {
 .class_btn_div {
 	text-align: center;
 }
-#navi_row{
+
+#navi_row {
 	justify-content: center;
 }
 
@@ -136,8 +159,8 @@ div {
 	color: cornflowerblue;
 	font-weight: bold;
 }
-#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn
-{
+
+#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
 }
@@ -153,10 +176,46 @@ div {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico">	
 
 <script>
 	$(function()
     {
+		$("#logout_btn").on("click", function()
+		{
+			if(${loginType == "kakao"})
+			{
+				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+				            				
+				var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+				window.open("exit.html","",popOption)
+		
+				Kakao.Auth.logout
+				(
+					function(data)
+					{
+						if(data)
+						{				
+							location.href="logout.login";
+						}
+						else
+						{
+							location.href="error.html";
+						}
+					}
+				);
+			}
+			else if(${loginType == "normal"})
+			{
+				location.href="logout.login";
+			}
+			else
+			{
+				location.href="naverLogout.login";
+			}
+		})
+		
 	    $("#search_btn").on("click", function()
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
@@ -181,8 +240,6 @@ div {
 		{
 			location.href = "tutor.mypage";
 		});	    
-
-	    
 
 	    $("#profile_img_btn").on("click", function()
 	    {
@@ -242,44 +299,68 @@ div {
 </head>
 <body>
 
-
 	<div id="container_div" class="container col-12">
 
 		<!--           HEADER-->
-            <div id=header class=row>
-			<div class="col-12 col-lg-3">
-				<img src="logo.png" id=logo>
+		<div id=header class=row>
+
+			<div id="logo_div" class="col-12 col-lg-3">
+
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+
 			</div>
+
 			<div class="col-12 col-lg-6">
-					<form id=search class="form-inline my-2 my-lg-0">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
-							</div>
+
+				<form id=search class="form-inline my-2 my-lg-0">
+
+					<div class="row justify-content-center">
+
+						<div id="searchbox_div" class="col-12">
+
+							<input type="search" placeholder="취미를 검색해 보세요!"
+								aria-label="Search" id=searchbox>
+
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit">Search</button>
+
 						</div>
-					</form>
-				</div>
-			<div class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
+
+					</div>
+
+				</form>
+
 			</div>
+
+			<div id="login_btn_div" class="col-12 col-lg-3">
+
+				<c:choose>
+
+					<c:when test="${loginId==null}">
+
+						<button id="toLogin" class="btn btn-warning headBtn" type="button">login</button>
+
+						<button id="toSignup" class="btn btn-warning headBtn"
+							type="button">signup</button>
+
+					</c:when>
+
+					<c:otherwise>
+
+						<button class="btn btn-warning headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+
+						<button class="btn btn-warning headBtn" type="submit"
+							id=logout_btn>logout</button>
+
+					</c:otherwise>
+
+				</c:choose>
+
+			</div>
+
 		</div>
-            <!--           HEADER-->
+		<!--           HEADER-->
 
 		<div id="profile_row" class="row">
 
@@ -352,17 +433,15 @@ div {
 									정보 수정</button>
 
 							</div>
-							
+
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
-										
-									튜터 페이지
-										
-								</button>
+
+									튜터 페이지</button>
 
 							</div>
-							
+
 						</div>
 
 					</div>
@@ -377,25 +456,23 @@ div {
 
 									<div class="row">
 
-										<div class="class_img_div col-lg-2 my-auto">
-
-											${ list[i-1].img }
+										<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
 										</div>
 
 										<div class="class_text_div col-lg-7 my-auto">
 
 											<h4>${ list[i-1].title }</h4>
-											${ list[i-1].tutorId } <br> 
-											${ list[i-1].date } <br>
+											${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
 										</div>
 
 										<div class="class_btn_div col-lg-3 my-auto">
 
-											<input class="btn btn-primary detail_class_btn" name=${ list[i-1].classId } type="button" value="자세히">
+											<input class="btn btn-primary detail_class_btn"
+												name=${ list[i-1].classId } type="button" value="자세히">
 
 										</div>
-										
+
 									</div>
 
 								</div>
@@ -410,21 +487,24 @@ div {
 
 				<div id="navi_row" class="row my-3">
 
-						<div id="navi_div" class="col-12">
+					<div class="col-3"></div>
 
-							<c:if test="${ needPrev }">
-			            		<input id="prev_btn" type="button" class="btn btn-link" value="<">
-			            	</c:if>
-			                <c:forEach var="i" begin="${ startNavi }" end="${ endNavi }">
-			                		<input class="btn navi_btn" name="${ i }" type="button" value="${ i }">
-			                </c:forEach>
-			                <c:if test="${ needNext }">
-			            		<input id="next_btn" type="button" class="btn btn-link" value=">">
-			            	</c:if>
+					<div id="navi_div" class="col-9">
 
-						</div>
+						<c:if test="${ needPrev }">
+							<input id="prev_btn" type="button" class="btn btn-link" value="<">
+						</c:if>
+						<c:forEach var="i" begin="${ startNavi }" end="${ endNavi }">
+							<input class="btn navi_btn" name="${ i }" type="button"
+								value="${ i }">
+						</c:forEach>
+						<c:if test="${ needNext }">
+							<input id="next_btn" type="button" class="btn btn-link" value=">">
+						</c:if>
 
 					</div>
+
+				</div>
 
 			</div>
 

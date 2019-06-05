@@ -47,6 +47,12 @@
 	padding: 64px 32px;
 	
 }
+#header>div{
+	padding: 0px 15px;
+}
+#header *{
+	text-align: center;
+}
 .headBtn {
 	color: white;
 }
@@ -228,6 +234,54 @@
             	$("#logo").on("click", function() {
             		location.href = "mainHomePage.jsp";
             	});
+            	if(${loginId == null }){
+            		$("#toLogin").on("click",function(){
+            			location.href = "Login.jsp";
+            		});
+            		$("#toSignup").on("click",function(){//회원가입
+            			location.href = "SignUp.jsp";
+            		});
+            	}else{
+            		$("#mypage_btn").on("click", function()
+                    		{
+            					if(${type=="admin"}){
+            						location.href = "mypage.admin";
+            					}else{
+            						location.href = "doing.mypage?"+encodeURI("page=1");
+            					}
+                    		})
+                    		$("#logout_btn").on("click", function()
+                    		{
+                    			if(${loginType == "kakao"})
+            					{
+                    				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+                    				
+            						var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+            						window.open("exit.html","",popOption)
+
+            						Kakao.Auth.logout
+            						(
+            							function(data)
+            							{
+            								if(data)
+            								{	
+            									location.href="logout.login";
+            								}
+            								else
+            								{
+            									location.href="error.html";
+            								}
+            						    }
+            						);
+            					}
+            					else if(${loginType == "normal"})
+            					{
+            						location.href="logout.login";
+            					}else{
+            						location.href="naverLogout.login";
+            					}
+                    		});
+            	}
             	
                 var he1 = document.getElementById("myCarousel1").scrollHeight;
                 var he2 = document.getElementById("classNavi").scrollHeight;
@@ -425,13 +479,13 @@
     <c:forEach var="date" items="${closedDateList}">
     	<input class="date" type="hidden" value="${date }">
     </c:forEach>
-        <div id="wrapper" class="container">
+        <div id="wrapper">
             <!--           HEADER-->
             <div id=header class=row>
-			<div class="col-12 col-lg-3">
-				<img src="logo.png" id=logo>
-			</div>
-			<div class="col-12 col-lg-6" id=search>
+				<div class="col-12 col-lg-3">
+					<img src="logo.png" id=logo>
+				</div>
+				<div class="col-12 col-lg-6" id=search>
 					<form class="form-inline my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
@@ -443,25 +497,25 @@
 						</div>
 					</form>
 				</div>
-			<div class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
+				<div class="col-12 col-lg-3">
+					<c:choose>
+						<c:when test="${loginId==null}">
+							<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="button">login</button>
+							<button id="toSignup"
+								class="btn btn-warning my-2 my-sm-0 headBtn" type="button">signup</button>
+						</c:when>
+						<c:otherwise>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit" id=mypage_btn>mypage</button>
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit" id=logout_btn>logout</button>
+						</c:otherwise>
+					</c:choose>
+				</div>
 			</div>
-		</div>
-            <!--           HEADER-->
-            <div id="contents">
+            <!--           /HEADER-->
+            <div id="contents" class="container">
                 <div id="mainContent">
                     <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
                         <c:if test="${classInfo.info_img2 !=null}">

@@ -151,6 +151,7 @@ body {
    border-color: #2e6da4;
 }
 
+
 </style>
 <style>
 body {
@@ -296,10 +297,12 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 }
 
 
+
 </style>
     
 <body>
    <form action="tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
+
       <div class="container">
          <div class="row">
             <!-- 헤더부분 -->
@@ -457,6 +460,7 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
                         <div class="head p-0 m-0 col-lg-6 col-md-6 col-sm-6">
                            종료: <input type="text" id="datepicker2" name=enddate>
                         </div>
+                       
                         <script>
                            $(function() {
                               //모든 datepicker에 대한 공통 옵션 설정
@@ -543,10 +547,12 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 <br>
 <button type="button" class="btn btn-warning" id=back>뒤로가기</button>
 <button type="button" class="btn btn-warning">홈으로 가기</button>
+
          
       </div>
 
       </form>
+
 </body>
 
 <script>
