@@ -8,8 +8,6 @@
 <title>로그인</title>
 <link rel="shortcut icon" href="favicon.ico">
 <style>
-<<<<<<< HEAD
-=======
 body {
 
   background: url('main1.jpg') no-repeat center center fixed;
@@ -18,7 +16,6 @@ body {
   background-size: cover;
   -o-background-size: cover;
 }
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 #layer {
 	position: absolute;
 	top: 0;
@@ -31,15 +28,6 @@ body {
 	display: -webkit-flex; -webkit-align-item; center;
 	-webkit-justify-content: center;
 }
-<<<<<<< HEAD
-
-div {
-	border: 1px solid black;
-	box-sizing: border-box;
-}
-
-.row>div {
-=======
 .row{
 	background-color: #ffffff95;
 	width:15%;
@@ -49,7 +37,6 @@ div {
 
 .row>div {
 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	text-align: center;
 }
 
@@ -147,24 +134,15 @@ div {
 </head>
 <body>
 
-<<<<<<< HEAD
-=======
 	<body>
 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	<div id="layer">
 
 		<div class="row">
 
 			<div class="col-12 my-1">
-<<<<<<< HEAD
-
-				<input id="email_login_btn" class="btn btn-primary" type="button"
-					value="이메일로 로그인">
-=======
 				<button id="email_login_btn" class="btn btn-primary"><b>이메일로 로그인</b></button>
 				
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 
 			</div>
 
@@ -186,17 +164,6 @@ div {
 			</div>
 
 			<div class="col-12 mt-5">
-<<<<<<< HEAD
-
-				<input id="sign_up_btn" class="btn btn-primary" type="button"
-					value="회원 가입">
-
-			</div>
-			<div class="col-12 my-2">
-
-				<input id="toMain_btn" class="btn btn-primary" type="button"
-					value="메인화면으로 돌아가기">
-=======
 				
 				<button id="sign_up_btn" class="btn btn-warning"><b>회원가입</b></button>
 
@@ -204,7 +171,6 @@ div {
 			<div class="col-12 my-2">
 				<button id="toMain_btn" class="btn btn-warning"><b>메인화면으로 돌아가기</b></button>
 				
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 
 			</div>
 

@@ -15,10 +15,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<<<<<<< HEAD
-=======
-<link rel="shortcut icon" href="favicon.ico">
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 </head>
 <style>
 .ui-datepicker-trigger {

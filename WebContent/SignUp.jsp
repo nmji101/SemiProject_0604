@@ -16,9 +16,6 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<link rel="shortcut icon" href="favicon.ico">
 <style>
-<<<<<<< HEAD
-#div {
-=======
 *{
 }
 body {
@@ -34,22 +31,16 @@ body {
 
 #div {
 	background-color:#ffffff95;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	margin-top: 12%;
 	overflow: hidden;
 	text-align: center;
 	width: 430px;
 	height: 800px;
-<<<<<<< HEAD
-}
-
-=======
 	border-radius: 10px;
 }
 label{
 color: #8e7540;
 }
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 #header {
 	width: 108.5%;
 	height: 25%;
@@ -57,23 +48,13 @@ color: #8e7540;
 
 #img {
 	margin-top: 1%;
-<<<<<<< HEAD
-	float: left;
-	width: 100%;
-	height: 100%;
-=======
 	width: 100%;
 	height: auto;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 loge {
 	float: left;
-<<<<<<< HEAD
-	height: 100%;
-=======
 	height: 75%;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 .text_label {
@@ -85,14 +66,10 @@ loge {
 select {
 	padding: 0px;
 }
-<<<<<<< HEAD
-
-=======
 .btn-warning{
 margin-top: 30px;
 cursor: pointer;
 }
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 </style>
 <style>
 .ui-datepicker-trigger {
@@ -102,10 +79,7 @@ cursor: pointer;
 .hasDatepicker {
 	cursor: pointer;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 </style>
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
@@ -377,21 +351,13 @@ cursor: pointer;
 		<div class="container col-md-5 mt-5" id="div">
 			<div class="row" id="header">
 				<div class="col-1"></div>
-<<<<<<< HEAD
-				<loge class="col-10"> <img src="#" alt="없음" id="img"> </loge>
-=======
 				<loge class="col-10"><img src="로고.png" alt="없음" id="img"></loge>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 				<div class="col-1"></div>
 			</div>
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label ">
-<<<<<<< HEAD
-					<label for="" class="mt-3 mb-1 mr-3">아이디 </label><span
-=======
 					<label for="" class="mt-3 mb-1 mr-3"><strong>아이디</strong></label><span
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						id="idcheckin"></span><input type="hidden" id="idcheckvar"
 						namd="idcheck">
 				</div>
@@ -410,11 +376,7 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label ">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1 mr-3">비밀번호 </label><span
-=======
 					<label for="" class="mt-2 mb-1 mr-3"><strong>비밀번호</strong></label><span
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						id="pwcheckin"></span><input type="hidden" id="pwcheckvar"
 						namd="pwcheck">
 				</div>
@@ -432,11 +394,7 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label ">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1">비밀번호 확인 </label>
-=======
 					<label for="" class="mt-2 mb-1"><strong>비밀번호 확인</strong></label>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 				</div>
 				<div class="col-1"></div>
 			</div>
@@ -452,11 +410,7 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label ">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1 mr-3">닉네임</label><span
-=======
 					<label for="" class="mt-2 mb-1 mr-3"><strong>닉네임</strong></label><span
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						id="nicknamecheckin"></span><input type="hidden"
 						id="nicknamecheckvar" namd="nicknamecheck">
 				</div>
@@ -474,17 +428,10 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1 mr-5">성 별</label> <input
-						type="radio" class="gender ml-4 mr-3" name="gender" value="M"
-						required><span class="mr-3"> 남</span> <input type="radio"
-						class="gender ml-4 mr-3" name="gender" value="F" required><span>
-=======
 					<label for="" class="mt-2 mb-1 mr-5"><strong>성 별</strong></label> <input
 						type="radio" class="gender ml-4 mr-3" name="gender" value="M"
 						required><span class="mr-3" id="span1"> 남</span> <input type="radio"
 						class="gender ml-4 mr-3" name="gender" value="F" required><span id="span2">
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						여</span>
 				</div>
 				<div class="col-1"></div>
@@ -497,11 +444,7 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label ">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1 mr-4">생년월일</label> <input
-=======
 					<label for="" class="mt-2 mb-1 mr-4"><strong>생년월일</strong></label> <input
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						type="text" id="datepicker" name="birth">
 					<div class="col-1"></div>
 				</div>
@@ -510,11 +453,7 @@ cursor: pointer;
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 text_label">
-<<<<<<< HEAD
-					<label for="" class="mt-2 mb-1 mr-3">휴대폰</label><span
-=======
 					<label for="" class="mt-2 mb-1 mr-3"><strong>휴대폰</strong></label><span
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 						id="phonecheckin" required></span><input type="hidden"
 						id="phonecheckvar" namd="phonecheck">
 				</div>
@@ -532,14 +471,8 @@ cursor: pointer;
 			<div class="row pt-1 mt-2" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
-<<<<<<< HEAD
-					<button type="button" class="btn btn-primary" id="ok" name="ok">확인</button>
-					<button type="button" class="btn btn-primary ml-4" id="back_btn">취소</button>
-
-=======
 					<button type="button" class="btn btn-warning px-3 py-2" id="ok" name="ok">확인</button>
 					<button type="button" class="btn btn-warning ml-4 px-3 py-2" id="back_btn">취소</button>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 
 				</div>
 				<div class="col-1"></div>

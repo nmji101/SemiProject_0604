@@ -6,11 +6,7 @@ public class MemberDTO
     private String m_password; //not null
     private String m_nickname; //not null
     private String m_gender;
-<<<<<<< HEAD
-    private String m_agerange; //not null
-=======
     private String m_agerange; 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
     private String m_monthday; 
     private String m_phone;
     private String m_photo;

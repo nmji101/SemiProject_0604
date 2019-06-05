@@ -23,9 +23,6 @@ $(function(){
 	$("#logo").on("click", function() {
 		location.href = "mainHomePage.jsp";
 	});
-<<<<<<< HEAD
-	if(${loginId == null}){
-=======
 	$("#search_Btn").on("click",function(){
 		var input = $("#searchbox").val();
 		var regex = /^ {1,}$/g;
@@ -55,7 +52,6 @@ $(function(){
 	});
 	
 	if(${loginId == null }){
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 		$("#toLogin").on("click",function(){
 			location.href = "Login.jsp";
 		});
@@ -101,17 +97,11 @@ $(function(){
 					}
 	    		})
 	}
-<<<<<<< HEAD
-});
-</script>
-</head>
-=======
 	
 	
 	
 });
 </script>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 <style>
 * {
 	font-family: 'Noto Sans KR', sans-serif;
@@ -141,10 +131,6 @@ div {
 	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
-<<<<<<< HEAD
-	
-=======
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 .headBtn {
@@ -183,19 +169,11 @@ div {
 	opacity: 50%;
 }
 
-<<<<<<< HEAD
-#soon{
-	text-align: center;
-	color : #7e7666;
-	font-size: 20px;
-	margin-bottom:80px;
-=======
 #soon {
 	text-align: center;
 	color: #7e7666;
 	font-size: 20px;
 	margin-bottom: 80px;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 #content {
@@ -204,8 +182,6 @@ div {
 	height: auto;
 }
 
-<<<<<<< HEAD
-=======
 .card-body{
 	text-align: left;
 }
@@ -215,7 +191,6 @@ div {
 	margin-right:10px;
 }
 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 .custom-select {
 	width: 200px;
 	margin: 20px 0px;
@@ -264,11 +239,7 @@ a:hover {
 
 .location, .category {
 	background-color: #fffce7;
-<<<<<<< HEAD
-	margin:0px;
-=======
 	margin: 0px;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 .dropdown-menu {
@@ -304,13 +275,10 @@ a:hover {
 	width: 100%;
 }
 
-<<<<<<< HEAD
-=======
 .star {
 	width: 15px;
 }
 
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 .card {
 	margin: 20px auto;
 	cursor: pointer;
@@ -338,21 +306,12 @@ a:hover {
 	padding: 0px 10px;
 }
 
-<<<<<<< HEAD
-.naviBtn:focus{
-	color:#ffb100;
-}
-
-.naviBtn:hover {
-	color:#ffb100;
-=======
 .naviBtn:focus {
 	color: #ffb100;
 }
 
 .naviBtn:hover {
 	color: #ffb100;
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 }
 
 #footer {
@@ -364,10 +323,7 @@ a:hover {
 	width: 50px;
 }
 </style>
-<<<<<<< HEAD
-=======
 </head>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 <body>
 
 	<div id=wrapper>
@@ -376,19 +332,6 @@ a:hover {
 				<img src="logo.png" id=logo>
 			</div>
 			<div class="col-12 col-lg-6" id=search>
-<<<<<<< HEAD
-					<form class="form-inline my-2 my-lg-0">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
-							</div>
-						</div>
-					</form>
-				</div>
-=======
 
 				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
@@ -401,7 +344,6 @@ a:hover {
 						</div>
 					</form>
 			</div>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 			<div class="col-12 col-lg-3">
 				<c:choose>
 					<c:when test="${loginId==null}">
@@ -579,94 +521,6 @@ a:hover {
 		</div>
 	</div>
 	<div id=content>
-<<<<<<< HEAD
-	
-		<c:choose>
-					<c:when test="${size == 0}">
-			<div id=soon>
-			<img src="커밍순.png"><br>
-			현재 클래스 준비 중입니다.<br>
-			튜터가 되어 첫번째 클래스를 오픈해주세요!
-			</div>
-					</c:when>
-					<c:otherwise>
-
-		<select class="custom-select">
-			<option selected>분류</option>
-			<option value="info_avgstar desc">추천순</option>
-			<option value="info_classid desc">최신순</option>
-			<option value="info_price">낮은 가격순</option>
-		</select>
-
-
-		<div class="row cardItem">
-			<c:forEach var="list" items="${list }">
-				<div class="col-12 col-md-6 col-lg-4 cardItem classCard">
-					<input type="hidden" class="classId" value="${list.info_classid }">
-					<!-- N명참여 배치용 -->
-					<span class="count"> <span
-						class="badge badge-pill badge-success"> <span
-							class="badge badge-success">${list.totalcount }</span> 명 참여
-					</span>
-					</span>
-					<!----------------->
-					<div class="card" style="width: 18rem">
-						<!-- 캐러셀 시작 -->
-						<div class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="임시1.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
-								</div>
-								<div class="carousel-item">
-									<img src="임시2.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
-								</div>
-								<div class="carousel-item">
-									<img src="임시3.png" class="d-block w-100" alt="..."
-										width="200px" height="200px">
-								</div>
-							</div>
-							<a class="carousel-control-prev" href="#carouselExampleFade"
-								role="button" data-slide="prev"> <span
-								class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="carousel-control-next" href="#carouselExampleFade"
-								role="button" data-slide="next"> <span
-								class="carousel-control-next-icon" aria-hidden="true"></span> <span
-								class="sr-only">Next</span>
-							</a>
-						</div>
-						<!-- 캐러셀 끝 -->
-						<div class="card-body">
-							<img src=${list.m_photo } width="80px" height="80px"
-								alt="이미지.png" class=face>
-							<div class="card-text">
-								<b>${list.info_title }</b>
-							</div>
-							<div>
-								<span>${list.info_avgstar }</span> | <span>${list.info_addr2 }</span>
-							</div>
-							<div>
-								<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-		<div id=naviBox class="row justify-content-center">
-			<c:forEach var="i" begin="0" end="${size-1}">
-				<form action="info.category" method="post" class=btnForm>
-					<input type=submit value="${navi[i] }" class="naviBtn" name="nowPage">		
-				</form>		
-			</c:forEach>
-		</div>
-	</div>
-	</c:otherwise>
-				</c:choose>	
-	
-=======
 
 		<c:choose>
 
@@ -761,7 +615,6 @@ a:hover {
 			</c:when>
 	</c:choose>
 	</div>
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 	<div id=footer class="row">
 		<div class="col-12 col-md-8"></div>
 		<div class="col-12 col-md-4" id=sns>
@@ -769,33 +622,5 @@ a:hover {
 				src="트위터.png"> <img src="페이스북.png">
 		</div>
 	</div>
-<<<<<<< HEAD
-
-	<script>
-			
-			$(".custom-select").on("click",function(){
-				var select = $(this).val();
-				console.log(select);
-				if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
-					location.href="info.category?select="+select;
-				}
-				
-			})
-			
-			$("#logo").on("click",function(){
-				location.href="index.jsp";
-			})
-			
-			$(".classCard").on("click",function(){
-				var classId = $(this).children(".classId").val();
-				location.href="clickClass.classInfo?classId="+classId;
-			})
-
-			
-	
-				
-		</script>
-=======
->>>>>>> 0896bc0db75d79a4a207badcca4fea70d2195f17
 </body>
 </html>
