@@ -13,7 +13,7 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
 	rel="stylesheet">
 <link rel="shortcut icon" href="favicon.ico">
 </head>
@@ -187,11 +187,18 @@ a:hover {
 	margin:100px auto;
 	width:80%;
 }
+
 .carousel-indicators>li {
 	/*  색깔바꾸기.. */
-	
 }
 
+.card, .card-img{
+	border-radius: 10px;
+}
+.card-title{
+font-family: 'Acme', sans-serif;
+
+}
 #naviBox {
 	width: 50%;
 	margin: 30px auto;
@@ -496,93 +503,81 @@ $(function(){
 
 		<div id=content>
 
-			<div id="carousel" class="carousel slide"
-				data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0"
-						class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				</ol>
-				<div class="carousel-inner">
-
-					<div class="carousel-item active">
-						<div class="card mb-3" style="max-width: auto;">
-							<div class="row no-gutters">
-								<div class="col-lg-7">
-									<img src="메인4.jpg" class="card-img" alt="...">
-								</div>
-								<div class="col-lg-5">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a wider card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="carousel-item">
-						<div class="card mb-3" style="max-width: auto;">
-							<div class="row no-gutters">
-								<div class="col-lg-7">
-									<img src="메인2.jpg" class="card-img" alt="...">
-								</div>
-								<div class="col-lg-5">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a wider card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="carousel-item">
-						<div class="card mb-3" style="max-width: auto;">
-							<div class="row no-gutters">
-								<div class="col-lg-7">
-									<img src="메인5.jpg" class="card-img" alt="...">
-								</div>
-								<div class="col-lg-5">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a wider card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-										<p class="card-text">
-											<small class="text-muted">Last updated 3 mins ago</small>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators"
-					role="button" data-slide="prev"> <span
-					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-					class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
-			</div>
+<!-- 			<div id="carousel" class="carousel slide" -->
+<!-- 				data-ride="carousel"> -->
+<!-- 				<ol class="carousel-indicators"> -->
+<!-- 					<li data-target="#carousel" data-slide-to="0" -->
+<!-- 						class="active"></li> -->
+<!-- 					<li data-target="#carousel" data-slide-to="1"></li> -->
+<!-- 					<li data-target="#carousel" data-slide-to="2"></li> -->
+<!-- 				</ol> -->
+<!-- 				<div class="carousel-inner"> -->
+<!-- 					<div class="carousel-item active"> -->
+<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-lg-7"> -->
+<!-- 									<img src="메인4.jpg" class="card-img" alt="..."> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-5"> -->
+<!-- 									<div class="card-body"> -->
+<!-- 										<h2 class="card-title">Life Style & Design</h2> -->
+<!-- 										<p class="card-text">문구</p>	 -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="carousel-item"> -->
+<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-lg-7"> -->
+<!-- 									<img src="메인2.jpg" class="card-img" alt="..."> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-5"> -->
+<!-- 									<div class="card-body"> -->
+<!-- 										<h5 class="card-title">Card title</h5> -->
+<!-- 										<p class="card-text">This is a wider card with supporting -->
+<!-- 											text below as a natural lead-in to additional content. This -->
+<!-- 											content is a little bit longer.</p> -->
+<!-- 										<p class="card-text"> -->
+<!-- 											<small class="text-muted">Last updated 3 mins ago</small> -->
+<!-- 										</p> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="carousel-item"> -->
+<!-- 						<div class="card mb-3" style="max-width: auto;"> -->
+<!-- 							<div class="row no-gutters"> -->
+<!-- 								<div class="col-lg-7"> -->
+<!-- 									<img src="메인5.jpg" class="card-img" alt="..."> -->
+<!-- 								</div> -->
+<!-- 								<div class="col-lg-5"> -->
+<!-- 									<div class="card-body"> -->
+<!-- 										<h5 class="card-title">Card title</h5> -->
+<!-- 										<p class="card-text">This is a wider card with supporting -->
+<!-- 											text below as a natural lead-in to additional content. This -->
+<!-- 											content is a little bit longer.</p> -->
+<!-- 										<p class="card-text"> -->
+<!-- 											<small class="text-muted">Last updated 3 mins ago</small> -->
+<!-- 										</p> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<a class="carousel-control-prev" href="#carouselExampleIndicators" -->
+<!-- 					role="button" data-slide="prev"> <span -->
+<!-- 					class="carousel-control-prev-icon" aria-hidden="true"></span> <span -->
+<!-- 					class="sr-only">Previous</span> -->
+<!-- 				</a> <a class="carousel-control-next" href="#carouselExampleIndicators" -->
+<!-- 					role="button" data-slide="next"> <span -->
+<!-- 					class="carousel-control-next-icon" aria-hidden="true"></span> <span -->
+<!-- 					class="sr-only">Next</span> -->
+<!-- 				</a> -->
+<!-- 			</div> -->
 
 
 		</div>

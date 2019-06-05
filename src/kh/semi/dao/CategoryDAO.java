@@ -244,9 +244,9 @@ public class CategoryDAO {
 		return list;
 	}
 	
-	public List<CategoryDTO> searchCategoryByWord(String searchParam){
-		String sql = "select ";
-	}
+//	public List<CategoryDTO> searchCategoryByWord(String searchParam){
+//		String sql = "select ";
+//	}
 
 	
 }
