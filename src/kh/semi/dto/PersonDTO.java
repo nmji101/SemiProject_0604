@@ -11,21 +11,11 @@ public class PersonDTO
     private String m_photo;
     private String m_type;
     private String m_attention;
-    private String m_unique;
 	
     public PersonDTO()
 	{
 		super();
 	}
-
-//	public PersonDTO(String m_id, String m_nickname, String m_photo, String m_attention)
-//	{
-//		super();
-//		this.m_id = m_id;
-//		this.m_nickname = m_nickname;
-//		this.m_photo = m_photo;
-//		this.m_attention = m_attention;
-//	}
 
 	public PersonDTO(String m_id, String m_nickname, String m_photo, String m_type, String m_attention)
 	{
@@ -38,7 +28,7 @@ public class PersonDTO
 	}
 
 	public PersonDTO(
-		String m_id, String m_password, String m_nickname, String m_gender, String m_birth, String m_phone, String m_photo, String m_type, String m_attention, String m_unique
+		String m_id, String m_password, String m_nickname, String m_gender, String m_birth, String m_phone, String m_photo, String m_type, String m_attention
 	)
 	{
 		super();
@@ -51,7 +41,6 @@ public class PersonDTO
 		this.m_photo = m_photo;
 		this.m_type = m_type;
 		this.m_attention = m_attention;
-		this.m_unique = m_unique;
 	}
 
 	public String getM_id()
@@ -143,17 +132,5 @@ public class PersonDTO
 	{
 		this.m_attention = m_attention;
 	}
-
-	public String getM_unique()
-	{
-		return m_unique;
-	}
-
-	public void setM_unique(String m_unique)
-	{
-		this.m_unique = m_unique;
-	}
-	
-    
     
 }
