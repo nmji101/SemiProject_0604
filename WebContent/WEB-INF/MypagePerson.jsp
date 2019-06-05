@@ -174,6 +174,7 @@ div {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <script>
 	$(function()
@@ -187,6 +188,45 @@ div {
 				$("#"+item).children("input:checkbox").prop("checked", true);
 			});
 		}
+		
+		$("#logout_btn").on("click", function()
+		{
+			if(${loginType == "kakao"})
+			{
+		    	Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+		            		            				            				
+		        var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+		        window.open("exit.html","",popOption)
+		            		            		
+		        Kakao.Auth.logout
+		        (
+		        	function(data)
+		        	{
+			            if(data)
+			            {				
+			            	location.href="logout.login";
+			            }
+			            else
+			            {
+			            	location.href="error.html";
+			            }
+		            }
+		         );
+		  	}
+			else if(${loginType == "normal"})
+			{
+				location.href="logout.login";
+			}
+			else
+			{
+				location.href="naverLogout.login";
+			}
+		})
+		
+		$("#logout_btn").on("click", function()
+		{
+			location.href = "logout.login";
+		});
 		
 	    $("#search_btn").on("click", function()
 	    {
