@@ -39,17 +39,19 @@ public class AdminController extends HttpServlet {
 				List<UpgradeDTO> allList = u_dao.selectAllupgradeList();
 				List<String> naviList = u_dao.getNavi(currentPage, allList.size());
 				request.setAttribute("navi", naviList);
+				if(naviList.size()!=0) {
+					String beginPage = naviList.get(0);
+					if(naviList.get(0).equals("<이전")) {
+						beginPage = naviList.get(1);
+					}
+					String endPage = naviList.get(naviList.size()-1);
+					if(naviList.get(naviList.size()-1).equals("다음>")) {
+						endPage = naviList.get(naviList.size()-2);
+					}
+					request.setAttribute("beginPage", beginPage);
+					request.setAttribute("endPage", endPage);
+				}
 				
-				String beginPage = naviList.get(0);
-				if(naviList.get(0).equals("<이전")) {
-					beginPage = naviList.get(1);
-				}
-				String endPage = naviList.get(naviList.size()-1);
-				if(naviList.get(naviList.size()-1).equals("다음>")) {
-					endPage = naviList.get(naviList.size()-2);
-				}
-				request.setAttribute("beginPage", beginPage);
-				request.setAttribute("endPage", endPage);
 				//3. 로그인한 관리자 정보 보내주기.
 				PersonDAO p_dao = new PersonDAO();
 				String loginId = (String)request.getSession().getAttribute("loginId");

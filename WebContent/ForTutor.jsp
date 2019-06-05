@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +18,12 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css"
-	rel="stylesheet">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+
 </head>
 <style>
 .ui-datepicker-trigger {
@@ -157,6 +158,8 @@ body {
 	background-color: #337ab7;
 	border-color: #2e6da4;
 }
+
+
 </style>
 <style>
 body {
@@ -265,19 +268,6 @@ body {
 	border: 1px ridge red;
 	outline: none;
 }
-
-<<<<<<<
-HEAD
- ======= .mains {
-	height: 40x;
-	overflow-y: auto;
-	border: 1px ridge red;
-	outline: none;
-}
-
->>>>>>>
-9
-be01e6f95d1860a068908d7511dd60ffeda440e
 
 .cash {
 	height: 34px;
@@ -450,9 +440,9 @@ input[type=file] {
         }
 
     </script>
-
+    
 <body>
-	<form action="tutor.con" method="post">
+	<form action="tutor.con" method="post" >
 
 		<div class="container">
 			<div class="row">
@@ -499,6 +489,8 @@ input[type=file] {
 						<!--Class등록 Show부분-->
 						<div class=" drop p-0 ">
 							<!-- 드랍버튼 3개-->
+
+
 							<div class="mr-1 ml-4 p-0 head col-2 btn-group">
 								<button type="button" id="mystatus2"
 									class="btn btn-warning p-1 dropdown-toggle"
@@ -628,7 +620,7 @@ input[type=file] {
 													buttonText : "날짜 선택",
 													yearSuffix : "년",
 													monthNamesShort : [ '1', '2', '3', '4', '5','6', '7', '8', '9','10', '11', '12' ],
-													monthNames : [ '1월', '2월',	'3월', '4월', '5월',	'6월', '7월', '8월',	'9월', '10월', '11월','12월' ],
+													monthNames : [ '1월', '2월',	'3월', '4월', '5월',	'6월', '7월', '8월',	'9월', '10월', '11월',	'12월' ],
 													dayNamesMin : [ '일', '월',	'화', '수', '목', '금','토' ],
 													dayNames : [ '일요일', '월요일',
 															'화요일', '수요일',
@@ -639,7 +631,7 @@ input[type=file] {
 
 										$("#datepicker").datepicker();
 										$("#datepicker2").datepicker();
-										
+
 										$('#datepicker').datepicker('setDate',	'today');
 										$('#datepicker2').datepicker('setDate',		'+1D');
 
@@ -652,33 +644,27 @@ input[type=file] {
 
 						<div class="array col-12 p-0 m-0">
 							<!-- 사진 캐러셀+내용입력-->
-							<div contentEditable="true"
-								class="main head p-0 m-0 col-12 border-warning " id=cont></div>
-							<input type="hidden" name="explain">
-							<!-- Class 내용 등록-->
-						</div>
-						<!-- 사진 캐러셀 +내용입력 끝-->
-						<br>
+							<div contentEditable="true" class="main head p-0 m-0 col-12 border-warning " id=cont ></div>
+
+							<input type="hidden" name="explain"><!-- Class 내용 등록-->	
+						</div><!-- 사진 캐러셀 +내용입력 끝--><br>
 						<!--  업로드 버튼 -->
+						
 
-
-						<form id="ajaxform" action="upload.file" method="post"
-							enctype="multipart/form-data">
+						<form id="ajaxform" action="upload.file" method="post" enctype="multipart/form-data">
 							<div class="input_wrap">
-								<a href="javascript:" onclick="fileUploadAction();"
-									class="my_button">파일 찾기(최대 3개)</a> <input type="file"
-									id="input_imgs" multiple />
-
-							</div>
-
-							<div>
-								<div class="imgs_wrap">
-									<img id="img" />
-								</div>
-							</div>
-							<input type="button" value="업로드" id="files_send"
-								class="my_button2">
-						</form>
+            						<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 찾기(최대 3개)</a> 
+          						<input type="file" id="input_imgs" multiple /> 
+						
+        					</div>
+        				
+   			    			<div>
+       				 			<div class="imgs_wrap">
+           			 			<img id="img"  />
+       			 			</div>
+   				 			</div>
+   				 				<input type="button" value="업로드" id="files_send"  class="my_button2">
+   				 			</form>
 						<br>
 						<div class="head btm m-0 p-0 col-12">
 							<button type="button" id="register"
@@ -686,7 +672,6 @@ input[type=file] {
 						</div>
 
 						<!--Class등록 Show부분 끝-->
-
 					</div>
 				</div>
 			</div>
@@ -713,7 +698,6 @@ input[type=file] {
 				</div>
 			</div>
 		</div>
-	</form>
 </body>
 
 <script>
@@ -733,14 +717,13 @@ $(document).on('click', '#files_send', function () {
         type: 'POST'
     });
 });
-
+ 
 $('#mytype li > a').on('click', function() {
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 });
 
 	document.getElementById("register").onclick = function() {
-		
 		$("input[name=intro]").val($("#imtutor").html());
 		$("input[name=down]").val($('#mystatus2').text());
 		$("input[name=zipcode]").val();
@@ -751,8 +734,7 @@ $('#mytype li > a').on('click', function() {
 		$("input[name=cash]").val();
 		$("input[name=startdate]").val();
 		$("input[name=enddate]").val();
-		$("input[name=explain]").val($('#cont').text());
-		$("input[name=inputtitle]").val($('#title').text());
+		$("input[name=explain").val($('#cont').text());
 		$("form").submit();
 	};
 	

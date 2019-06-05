@@ -293,22 +293,12 @@ alert("id : " + "${loginId}");
 
 					<div id="contents_div" class="col-lg-9">
 
-						<c:if test="${ check == 'true' }">
-							<script>
-								alert("a"+"${check}");
- 								//location.href = "ForTutor.jsp";
-							
-							</script>
+						<c:if test="${check=='true'}">
 							<span>현재 신청 대기중</span>
 							
 						</c:if>
 						
-						<c:if test="${ check == 'false' }">
-							<script>
-								alert("b : "+"${check}");
- 								//location.href = "ForTutor.jsp";
-							
-							</script>
+						<c:if test="${check=='false'}">
 							
 							<form id="apply_form" action="apply.mypage" method="post">
 						
@@ -321,12 +311,10 @@ alert("id : " + "${loginId}");
 							
 						</c:if>
 						
-						<c:if test="${ check == 'tutor' }">
+						<c:if test="${check=='tutor'}">
 						
 							<script>
-								alert("c : "+"${check}");
- 								//location.href = "ForTutor.jsp";
-							
+ 								location.href = "ForTutor.jsp";
 							</script>
 							
 						</c:if>
@@ -342,13 +330,6 @@ alert("id : " + "${loginId}");
 
 
 	</div>
-
-</body>
-</html>
-
-
-
-
 
 </body>
 </html>

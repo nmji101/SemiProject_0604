@@ -112,6 +112,9 @@ div {
 		{
 			location.href = "tutor.mypage";
 		});	    
+
+	    
+
 	    $("#profile_img_btn").on("click", function()
 	    {
 		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";

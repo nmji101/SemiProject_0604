@@ -117,10 +117,12 @@ div {
 	    {
 		    location.href = "person.mypage?page=1";
 	    });
+
 	    $("#tutor_page_btn").on("click", function()
 		{
 			location.href = "tutor.mypage";
 		});
+
 	    $("#profile_img_btn").on("click", function()
 	    {
 		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
@@ -298,7 +300,6 @@ div {
 
 							</div>
 							
-
 							<div class="col-6 col-md-4 col-lg-12">
 
 								<button id="tutor_page_btn" class="btn btn link my-3">
@@ -308,6 +309,7 @@ div {
 								</button>
 
 							</div>
+
 						</div>
 
 					</div>
@@ -444,13 +446,6 @@ div {
 
 
 	</div>
-
-</body>
-</html>
-
-
-
-
 
 </body>
 </html>
