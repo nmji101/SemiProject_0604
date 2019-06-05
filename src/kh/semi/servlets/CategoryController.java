@@ -153,6 +153,13 @@ public class CategoryController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(cmd.equals("/search.category")) {//헤더의 검색기능
+			String searchInput = request.getParameter("search");
+			System.out.println(searchInput);
+			
+			
+			
+			//request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}
 
