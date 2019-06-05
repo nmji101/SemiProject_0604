@@ -20,12 +20,12 @@
         <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
+	<link rel="shortcut icon" href="favicon.ico">
         <style>
 /*         header	 */
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 #searchbox {
 	height: 38px;
 	position: relative;
@@ -129,6 +129,7 @@
                 overflow: hidden;
                 /*                margin-top: 30px;*/
             }
+
             .class_name{
                 height: 200px;
                 float: left;
@@ -138,8 +139,8 @@
                 display: inline-block;
                 overflow: hidden;
                 border-radius: 100px;
-                width: 150px;
-                height: 150px;
+                width: 200px;
+                height: 200px;
             }
             #tutorImg{
                 width: 100%;
@@ -549,16 +550,31 @@
                     </c:choose>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="${classInfo.info_img1 }" class="card-img-top">
+                            	<div style="background:#000;
+                            	width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img1 }');">
+                            	</div>
                             </div>
                             <c:if test="${classInfo.info_img2 !=null}">
                                 <div class="carousel-item">
-                                    <img src="${classInfo.info_img2 }" class="card-img-top">
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img2 }');">
+                            	</div>
                                 </div>
                             </c:if>
                             <c:if test="${classInfo.info_img3 !=null}">
                                 <div class="carousel-item">
-                                    <img src="${classInfo.info_img3 }" class="card-img-top">
+                                <div style="background:#000;
+                            	z-index:0;width:100%;height:540px;
+                            	background-size:cover;
+                            	background-position:center;
+                            	background-image:url('${classInfo.info_img3 }');">
+                            	</div>
                                 </div>
                             </c:if>
                         </div>
@@ -586,6 +602,7 @@
                     </div>
                     <div id="sumary" class="class_detail">
                         <!--                        요약부분-->
+                        <div id="sumary_wrapper">
                         <div class="class_name">
                             <div class="tutor">
                                 <span class="class_tuImg">
@@ -631,6 +648,7 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <div id="tutorinfo" class="class_detail">
                         <h3>튜터정보(쪽지기능)</h3>

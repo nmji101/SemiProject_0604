@@ -5,9 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>로그인</title>
+<link rel="shortcut icon" href="favicon.ico">
 <style>
+body {
+
+  background: url('main1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
 #layer {
 	position: absolute;
 	top: 0;
@@ -20,13 +28,15 @@
 	display: -webkit-flex; -webkit-align-item; center;
 	-webkit-justify-content: center;
 }
-
-div {
-	border: 1px solid black;
-	box-sizing: border-box;
+.row{
+	background-color: #ffffff95;
+	width:15%;
+	height: 35%;
+	border-radius: 10px;
 }
 
 .row>div {
+
 	text-align: center;
 }
 
@@ -124,14 +134,15 @@ div {
 </head>
 <body>
 
+	<body>
+
 	<div id="layer">
 
 		<div class="row">
 
 			<div class="col-12 my-1">
-
-				<input id="email_login_btn" class="btn btn-primary" type="button"
-					value="이메일로 로그인">
+				<button id="email_login_btn" class="btn btn-primary"><b>이메일로 로그인</b></button>
+				
 
 			</div>
 
@@ -153,15 +164,13 @@ div {
 			</div>
 
 			<div class="col-12 mt-5">
-
-				<input id="sign_up_btn" class="btn btn-primary" type="button"
-					value="회원 가입">
+				
+				<button id="sign_up_btn" class="btn btn-warning"><b>회원가입</b></button>
 
 			</div>
 			<div class="col-12 my-2">
-
-				<input id="toMain_btn" class="btn btn-primary" type="button"
-					value="메인화면으로 돌아가기">
+				<button id="toMain_btn" class="btn btn-warning"><b>메인화면으로 돌아가기</b></button>
+				
 
 			</div>
 

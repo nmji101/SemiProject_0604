@@ -296,6 +296,7 @@ public class CategoryDAO {
 		}
 	}
 
+
 	public int getTotalBySearch(String searchParam) throws Exception {
 		String sql = "select count(*) from classinfo where info_title like ? or info_explain like ?";
 		ResultSet rs = null;

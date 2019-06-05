@@ -356,6 +356,7 @@ public class MypageServlets extends HttpServlet
 							e.printStackTrace();
 						}
 					}
+					response.sendRedirect("close.html");
 				}
 			}
 			catch(Exception e)

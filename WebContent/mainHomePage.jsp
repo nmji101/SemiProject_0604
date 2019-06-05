@@ -15,7 +15,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="icono.min.css">
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <style>
 
@@ -23,7 +23,6 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 #logo {
 	position: relative;
 	bottom: 20px;
@@ -65,11 +64,12 @@ div {
 	margin: 0px;
 }
 
-#lookBtn{
+#lookBtn {
 	font-weight: bold;
 	font-size: 23px;
 	width: auto;
 }
+
 .display-4 {
 	font-family: 'Do Hyeon', sans-serif;
 }
@@ -87,12 +87,6 @@ div {
 .form-control {
 	width: 100%;
 }
-
-/* .menu { */
-/* 	height: 100%; */
-/* 	width: 33.33%; */
-/* 	float: left; */
-/* } */
 
 .loactionMenu {
 	padding: 0px;
@@ -153,9 +147,9 @@ a:hover {
 	padding: 0px;
 }
 
-.location, .category{
+.location, .category {
 	background-color: #fffce7;
-	margin:0px;
+	margin: 0px;
 	width: 100%;
 }
 
@@ -188,22 +182,13 @@ a:hover {
 	z-index: 10;
 }
 
-.cardItem {
-	width: 100%;
+#carousel{
+	margin:100px auto;
+	width:80%;
 }
-
-.card {
-	margin: 20px auto;
-	cursor: pointer;
-}
-
-.card-text:hover {
-	text-decoration: underline;
-}
-
-.face {
-	float: right;
-	border-radius: 50px;
+.carousel-indicators>li {
+	/*  색깔바꾸기.. */
+	
 }
 
 #naviBox {
@@ -305,7 +290,6 @@ $(function(){
 <body>
 
 	<div id=wrapper>
-
 		<div class="jumbotron">
 			<div id=header class=row>
 				<div class="col-12 col-lg-3">
@@ -344,14 +328,15 @@ $(function(){
 			<p class="lead">집, 회사, 집, 회사 반복되는 지루한 일상이 싫다면?</p>
 			<hr class="my-4">
 			<p></p>
-			<a class="btn btn-outline-light btn-lg" href="#" role="button" id="lookBtn">클래스
-				보러가기</a>
+			<a class="btn btn-outline-light btn-lg"
+				href="info.category?category=main&addr=all&select=info_avgstar desc"
+				role="button" id="lookBtn">클래스 보러가기</a>
 		</div>
 		<div id=navi>
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -509,63 +494,98 @@ $(function(){
 
 		<div id=content>
 
-			<div class="row cardItem">
-				<c:forEach var="list" items="${list }">
-					<div class="col-12 col-md-6 col-lg-4 cardItem">
-						<!-- N명참여 배치용 -->
-						<span class="count"> <span
-							class="badge badge-pill badge-success"> <span
-								class="badge badge-success">${list.totalcount }</span> 명 참여
-						</span>
-						</span>
-						<!----------------->
-						<div class="card" style="width: 18rem">
-							<!-- 캐러셀 시작 -->
-							<div class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										<img src="임시1.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
-									<div class="carousel-item">
-										<img src="임시2.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
-									<div class="carousel-item">
-										<img src="임시3.png" class="d-block w-100" alt="..."
-											width="200px" height="200px">
-									</div>
+			<div id="carousel" class="carousel slide"
+				data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0"
+						class="active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+
+					<div class="carousel-item active">
+						<div class="card mb-3" style="max-width: auto;">
+							<div class="row no-gutters">
+								<div class="col-lg-7">
+									<img src="메인4.jpg" class="card-img" alt="...">
 								</div>
-								<a class="carousel-control-prev" href="#carouselExampleFade"
-									role="button" data-slide="prev"> <span
-									class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-									class="sr-only">Previous</span>
-								</a> <a class="carousel-control-next" href="#carouselExampleFade"
-									role="button" data-slide="next"> <span
-									class="carousel-control-next-icon" aria-hidden="true"></span> <span
-									class="sr-only">Next</span>
-								</a>
-							</div>
-							<!-- 캐러셀 끝 -->
-							<div class="card-body">
-								<img src=${list.m_photo } width="80px" height="80px"
-									alt="이미지.png" class=face>
-								<div class="card-text">
-									<b>${list.info_title }</b>
-								</div>
-								<div>
-									<span>${list.info_avgstar }</span> | <span>${list.info_addr }</span>
-								</div>
-								<div>
-									<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
+								<div class="col-lg-5">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+										<p class="card-text">This is a wider card with supporting
+											text below as a natural lead-in to additional content. This
+											content is a little bit longer.</p>
+										<p class="card-text">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</c:forEach>
+
+
+					<div class="carousel-item">
+						<div class="card mb-3" style="max-width: auto;">
+							<div class="row no-gutters">
+								<div class="col-lg-7">
+									<img src="메인2.jpg" class="card-img" alt="...">
+								</div>
+								<div class="col-lg-5">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+										<p class="card-text">This is a wider card with supporting
+											text below as a natural lead-in to additional content. This
+											content is a little bit longer.</p>
+										<p class="card-text">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="carousel-item">
+						<div class="card mb-3" style="max-width: auto;">
+							<div class="row no-gutters">
+								<div class="col-lg-7">
+									<img src="메인5.jpg" class="card-img" alt="...">
+								</div>
+								<div class="col-lg-5">
+									<div class="card-body">
+										<h5 class="card-title">Card title</h5>
+										<p class="card-text">This is a wider card with supporting
+											text below as a natural lead-in to additional content. This
+											content is a little bit longer.</p>
+										<p class="card-text">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
 			</div>
 
+
 		</div>
+
+
 		<div id=footer class="row">
 			<div class="col-12 col-md-8"></div>
 			<div class="col-12 col-md-4" id=sns>

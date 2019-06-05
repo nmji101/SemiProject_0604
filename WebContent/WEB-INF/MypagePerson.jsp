@@ -14,17 +14,25 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 div {
+    width: 100%;
+    text-align: center;
 	padding: 0px;
 }
 #header {
 	width: 100%;
-	margin: auto;
-	margin: 0px;
-	padding: 0px;
+	margin-left: 1px !important;
+	margin-right: 1px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+    top: -20px !important;
 	text-align: center;
 	justify-content: center;
 }
-#container_div, #header
+#logo_div{
+	padding-left: 3px !important;
+}
+
+#container_div
 {
 /* 	padding-left: 0px !important; */
 /*     padding-right: 0px !important; */
@@ -36,12 +44,18 @@ div {
 	justify-content: center !important;
 }
 #searchbox {
+	width: 237px;
 	height: 38px;
 	position: relative;
 	top: 4px;
 	border: 1px solid #ffba00;
 	border-radius: 10px;
 	padding: 10px;
+}
+#searchbox_div
+{
+	padding-left: 0px !important;
+	padding-right: 60px !important;
 }
 #logo {
 	position: relative;
@@ -56,6 +70,7 @@ div {
 }
 .headBtn {
 	color: white !important;
+	font-weight: bolder !important;
 }
 .headBtn:hover {
 	background-color: burlywood;
@@ -63,6 +78,12 @@ div {
 	color: white;
 }
 /*         header	 */
+
+#login_btn_div
+{
+	padding-left: 0px !important;
+	padding-right: 60px !important;
+}
 
 #header_div{
  	border: 1px solid #FFC107;
@@ -138,6 +159,9 @@ div {
 	width: 100%;
 	height: 100%;
 }
+#id_label_div, #pw_btn_div{
+	text-align: left;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -150,7 +174,8 @@ div {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link rel="shortcut icon" href="favicon.ico">
 <script>
 	$(function()
     {
@@ -159,14 +184,48 @@ div {
 		{
 			attention.forEach(function(item, index, array)
 			{
-				$("#"+item).attr("class","btn btn-primary my-1 active");
+				$("#"+item).attr("class","btn btn-warning my-1 font-weight-bolder active");
 				$("#"+item).children("input:checkbox").prop("checked", true);
 			});
 		}
 		
-		$("#logo").on("click", function()
+		$("#logout_btn").on("click", function()
 		{
-			location.href = "mainHomePage.jsp";
+			if(${loginType == "kakao"})
+			{
+		    	Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+		            		            				            				
+		        var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+		        window.open("exit.html","",popOption)
+		            		            		
+		        Kakao.Auth.logout
+		        (
+		        	function(data)
+		        	{
+			            if(data)
+			            {				
+			            	location.href="logout.login";
+			            }
+			            else
+			            {
+			            	location.href="error.html";
+			            }
+		            }
+		         );
+		  	}
+			else if(${loginType == "normal"})
+			{
+				location.href="logout.login";
+			}
+			else
+			{
+				location.href="naverLogout.login";
+			}
+		})
+		
+		$("#logout_btn").on("click", function()
+		{
+			location.href = "logout.login";
 		});
 		
 	    $("#search_btn").on("click", function()
@@ -232,42 +291,67 @@ div {
 </head>
 <body>
 
-
-	<div id="container_div" class="container col-12 mt-3">
+	<div id="container_div" class="container col-12">
 
 		<!--           HEADER-->
-            <div id=header class=row>
-			<div class="col-12 col-lg-3">
-				<img src="logo.png" id=logo>
+		<div id=header class=row>
+			
+			<div id="logo_div" class="col-12 col-lg-3">
+				
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+			
 			</div>
+			
 			<div class="col-12 col-lg-6">
-					<form id=search class="form-inline my-2 my-lg-0">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
-							</div>
+					
+				<form id=search class="form-inline my-2 my-lg-0">
+						
+					<div class="row justify-content-center">
+							
+						<div id="searchbox_div" class="col-12">
+								
+							<input type="search" placeholder="취미를 검색해 보세요!"
+								aria-label="Search" id=searchbox>
+								
+							<button class="btn btn-warning my-2 my-sm-0 headBtn"
+								type="submit">Search</button>
+							
 						</div>
-					</form>
-				</div>
-			<div class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
-							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
+						
+					</div>
+					
+				</form>
+				
 			</div>
+			
+			<div id="login_btn_div" class="col-12 col-lg-3">
+				
+				<c:choose>
+					
+					<c:when test="${loginId==null}">
+						
+						<button id="toLogin" class="btn btn-warning headBtn"
+							type="button">login</button>
+						
+						<button id="toSignup" class="btn btn-warning headBtn"
+							type="button">signup</button>
+					
+					</c:when>
+					
+					<c:otherwise>
+						
+						<button class="btn btn-warning headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+						
+						<button class="btn btn-warning headBtn" type="submit"
+							id=logout_btn>logout</button>
+					
+					</c:otherwise>
+				
+				</c:choose>
+			
+			</div>
+		
 		</div>
             <!--           HEADER-->
 
@@ -319,7 +403,7 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="ing_class_btn" class="btn btn-warning py-3">
 									수강 중 클래스
@@ -327,23 +411,24 @@ div {
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="done_class_btn" class="btn btn-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="person_info_btn" class="btn btn-warning py-3">
-									<h5>
-										<strong>개인 정보 수정</strong>
-									</h5></button>
+									
+									<h5><strong>개인 정보 수정</strong></h5>
+								
+								</button>
 
 							</div>
 							
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
 										
@@ -363,9 +448,7 @@ div {
 
 							<div class="col-lg-12 my-auto">
 
-								<h2>
-									<strong>개인 정보 수정</strong>
-								</h2>
+								<h2><strong>개인 정보 수정</strong></h2>
 
 							</div>
 
@@ -379,7 +462,7 @@ div {
 
 							</div>
 
-							<div class="col-lg-9">
+							<div id="id_label_div" class="col-lg-9">
 
 								<label class="form-control my-auto">
 								
@@ -399,9 +482,9 @@ div {
 
 							</div>
 
-							<div class="col-lg-9">
+							<div id="pw_btn_div" class="col-lg-9">
 
-								<input id="pw_btn" class="btn" type="button" value="비밀번호 수정">
+								<input id="pw_btn" class="btn btn-primary" type="button" value="비밀번호 수정">
 
 							</div>
 
@@ -448,16 +531,9 @@ div {
 											type="checkbox" name="attention" value="at4">관심사 4</label>
 										<label id="at5" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at5">관심사 5</label>
-										<label id="at6" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at6">관심사 6</label>
-										<label id="at7" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at7">관심사 7</label>
-										<label id="at8" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at8">관심사 8</label>
-										<label id="at9" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at9">관심사 9</label>
 
 									</div>
+									
 								</div>
 
 							</div>

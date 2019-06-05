@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet
 		PrintWriter writer = response.getWriter();
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
 		System.out.println(url);
+		System.out.println(request.getRealPath("/"));
 		if(url.equals("kakao.login"))
 		{
 			String info = request.getParameter("json").substring(1, request.getParameter("json").length() - 1);
