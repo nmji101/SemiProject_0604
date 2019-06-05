@@ -15,6 +15,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" href="favicon.ico">
 </head>
 <style>
 .ui-datepicker-trigger {
@@ -355,6 +356,7 @@ $(function(){
 		
 		
 		else{
+		$("input[name=tutorid]").val($("#tutor").html());
 		$("input[name=intro]").val($("#imtutor").html());
 		$("input[name=down]").val($('#mystatus2').text());
 		$("input[name=zipcode]").val();
@@ -396,7 +398,9 @@ $(function(){
 				<div class="array col-lg-12">
 					<div class=img></div>
 					<!--튜터 본인 사진-->
-					<div id=id class="array border-warning"></div>
+					<div id=id class="array border-warning" >
+				<input  type="hidden"  name=tutorid><label id=tutor>	${ loginId }</label>
+					</div>
 					<!--ID-->
 					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
 					<div class="intro array border-warning" id="imtutor"

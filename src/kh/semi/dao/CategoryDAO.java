@@ -244,6 +244,7 @@ public class CategoryDAO {
 		}
 		return list;
 	}
+
 	/**
 	 * 검색단어에 맞는 list return.
 	 * @param searchParam
@@ -318,6 +319,9 @@ public class CategoryDAO {
 			}
 		}
 	}
+
+
+	
 
 
 }

@@ -23,6 +23,7 @@ public class ClassInfoDTO {
 	private String info_date;//18 클래스 등록일
 	private String info_avgstar;//19 별점통계
 	private int info_click;//20 클래스 조회 수
+
 	public int getInfo_classid() {
 		return info_classid;
 	}

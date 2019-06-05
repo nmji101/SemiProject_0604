@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import kh.semi.dao.MemberDAO;
 import kh.semi.dto.MemberDTO;
 
@@ -453,6 +452,7 @@ public class LoginServlet extends HttpServlet
 					request.getSession().setAttribute("loginId", "N"+naverCode);
 					request.getSession().setAttribute("loginType", "Naver");
 					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+					
 
 
 					//접근토큰삭제 -> 탈퇴할때? 없애기... 

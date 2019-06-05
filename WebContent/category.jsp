@@ -182,6 +182,15 @@ div {
 	height: auto;
 }
 
+.card-body{
+	text-align: left;
+}
+
+#starBox{
+	float: left;
+	margin-right:10px;
+}
+
 .custom-select {
 	width: 200px;
 	margin: 20px 0px;
@@ -266,6 +275,10 @@ a:hover {
 	width: 100%;
 }
 
+.star {
+	width: 15px;
+}
+
 .card {
 	margin: 20px auto;
 	cursor: pointer;
@@ -319,6 +332,7 @@ a:hover {
 				<img src="logo.png" id=logo>
 			</div>
 			<div class="col-12 col-lg-6" id=search>
+
 				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
@@ -509,6 +523,7 @@ a:hover {
 	<div id=content>
 
 		<c:choose>
+
 			<c:when test="${size != 0}">
 			<select class="custom-select">
 							<option selected>분류</option>
