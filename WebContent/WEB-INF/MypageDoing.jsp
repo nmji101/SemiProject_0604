@@ -222,13 +222,13 @@ div {
 	   	});
 	   	
 	   	
-	   	if(${ currentPage } % 5 == 0)
+	   	if("${ currentPage }" % 5 == 0)
 		{
-			$($(".navi_btn")[${ 4 }]).css("color", "red");
+			$($(".navi_btn")[4]).css("color", "red");
 		}
 		else
 		{
-			$($(".navi_btn")[${ currentPage %5 - 1 }]).css("color", "red");
+			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "red");
 		}
     });
     
