@@ -32,7 +32,7 @@ div {
 }
 
 #logo_div {
-	padding-left: 10px !important;
+	padding-left: 3px !important;
 }
 
 #container_div {
