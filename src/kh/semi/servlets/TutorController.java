@@ -20,9 +20,6 @@ import kh.semi.dao.TutorDAO;
 import kh.semi.dto.ClassInfoDTO;
 
 
-
-
-
 @WebServlet("/tutor")
 public class TutorController extends HttpServlet {
 
@@ -90,8 +87,7 @@ public class TutorController extends HttpServlet {
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
  doGet(request,response);
-   }
+	}
 }
-
 
 
