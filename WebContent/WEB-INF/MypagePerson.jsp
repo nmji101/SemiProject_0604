@@ -159,7 +159,7 @@ div {
 	width: 100%;
 	height: 100%;
 }
-#id_label_div{
+#id_label_div, #pw_btn_div{
 	text-align: left;
 }
 </style>
@@ -403,7 +403,7 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="ing_class_btn" class="btn btn-warning py-3">
 									수강 중 클래스
@@ -411,23 +411,24 @@ div {
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="done_class_btn" class="btn btn-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="person_info_btn" class="btn btn-warning py-3">
-									<h5>
-										<strong>개인 정보 수정</strong>
-									</h5></button>
+									
+									<h5><strong>개인 정보 수정</strong></h5>
+								
+								</button>
 
 							</div>
 							
-							<div class="col-6 col-md-4 col-lg-12 my-1">
+							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
 										
@@ -447,9 +448,7 @@ div {
 
 							<div class="col-lg-12 my-auto">
 
-								<h2>
-									<strong>개인 정보 수정</strong>
-								</h2>
+								<h2><strong>개인 정보 수정</strong></h2>
 
 							</div>
 
@@ -483,9 +482,9 @@ div {
 
 							</div>
 
-							<div class="col-lg-9">
+							<div id="pw_btn_div" class="col-lg-9">
 
-								<input id="pw_btn" class="btn" type="button" value="비밀번호 수정">
+								<input id="pw_btn" class="btn btn-primary" type="button" value="비밀번호 수정">
 
 							</div>
 
@@ -532,16 +531,9 @@ div {
 											type="checkbox" name="attention" value="at4">관심사 4</label>
 										<label id="at5" class="btn btn-warning my-1"><input
 											type="checkbox" name="attention" value="at5">관심사 5</label>
-										<label id="at6" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at6">관심사 6</label>
-										<label id="at7" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at7">관심사 7</label>
-										<label id="at8" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at8">관심사 8</label>
-										<label id="at9" class="btn btn-warning my-1"><input
-											type="checkbox" name="attention" value="at9">관심사 9</label>
 
 									</div>
+									
 								</div>
 
 							</div>
