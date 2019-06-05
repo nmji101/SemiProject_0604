@@ -319,7 +319,7 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname }님 환영합니다.</h3>
+									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
 
 								</button>
 
@@ -370,9 +370,7 @@ div {
 
 								<button id="tutor_page_btn" class="btn btn-warning py-3">
 
-									<h5>
-										<strong>튜터 페이지</strong>
-									</h5>
+									<h5><strong>튜터 페이지</strong></h5>
 
 								</button>
 
