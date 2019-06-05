@@ -35,16 +35,15 @@
 	padding: 10px;
 }
 
-#logo {
+#logo{
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;
 }
-#header {
+#header{
 	height: 100%;
 	width: 100%;
-	padding: 64px 32px;
-	
+	padding: 64px 32px;	
 }
 #header>div{
 	padding: 0px 15px;
@@ -62,7 +61,9 @@
 	color: white;
 }
 /*         header	 */
-        
+        #myCarousel1{
+        	width : 100%;
+        }
             div{
                 border: 1px solid rgba(0, 0, 0, 0.19);
                 box-sizing: border-box;
@@ -81,7 +82,7 @@
                 width: 25%;
             }
             #contents{
-                margin: auto;
+/*                 margin: auto; */
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
@@ -90,7 +91,7 @@
                 float: left;
             }
             #mainContent{
-                width: 600px;
+                width: 60%;
             }
             #sideContent{
                 width: 300px;
@@ -107,7 +108,7 @@
             #classNavi{
                 overflow: hidden;
                 /*                position: fixed;*/
-                width: 600px;
+                width: 100%;
                 /*                height: 30px;*/
                 background-color: white;
             }
@@ -232,6 +233,19 @@
             $(function(){
             	$("#logo").on("click", function() {
             		location.href = "mainHomePage.jsp";
+            	});
+            	$("#search_Btn").on("click",function(){
+            		var input = $("#searchbox").val();
+            		var regex = /^ {1,}$/g;
+            		var result = regex.exec(input);
+            		if(input==""){
+            			alert("검색어를 입력해주세요.");
+            			return;
+            		}else if(result!=null){
+            			alert("검색할 단어를 입력해주세요.");
+            			return;
+            		}
+            		$("#searchForm").submit();
             	});
             	if(${loginId == null }){
             		$("#toLogin").on("click",function(){
@@ -485,13 +499,13 @@
 					<img src="logo.png" id=logo>
 				</div>
 				<div class="col-12 col-lg-6" id=search>
-					<form class="form-inline my-2 my-lg-0">
+					<form id="searchForm" action="search.category" class="my-2 my-lg-0">
 						<div class="row justify-content-center">
 							<div class="col-12">
 								<input type="search" placeholder="취미를 검색해 보세요!"
-									aria-label="Search" id=searchbox>
-								<button class="btn btn-warning my-2 my-sm-0 headBtn"
-									type="submit">Search</button>
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="button">Search</button>
 							</div>
 						</div>
 					</form>
@@ -514,24 +528,25 @@
 				</div>
 			</div>
             <!--           /HEADER-->
-            <div id="contents" class="container">
+            <div id="contents">
                 <div id="mainContent">
                     <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <c:if test="${classInfo.info_img2 !=null}">
-                            <ol class="carousel-indicators">
-                                <li data-target="#myCarousel1" data-slide-to="0" class="active">
-                                </li>
-                                <li data-target="#myCarousel1" data-slide-to="1"></li>
-                            </ol>
-                        </c:if>
-                        <c:if test="${classInfo.info_img3 !=null}">
-                            <ol class="carousel-indicators">
+                    <c:choose>    
+                        <c:when test="${classInfo.info_img3!=null}">
+                    		<ol class="carousel-indicators">
                                 <li data-target="#myCarousel1" data-slide-to="0" class="active">
                                 </li>
                                 <li data-target="#myCarousel1" data-slide-to="1"></li>
                                 <li data-target="#myCarousel1" data-slide-to="2"></li>
                             </ol>
-                        </c:if>
+                        </c:when>
+                        <c:when test="${classInfo.info_img2!=null}">
+                    		<ol class="carousel-indicators">
+                                <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel1" data-slide-to="1"></li>
+                            </ol>
+                        </c:when> 
+                    </c:choose>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="${classInfo.info_img1 }" class="card-img-top">

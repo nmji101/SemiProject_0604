@@ -249,7 +249,7 @@ $(function(){
 			alert("검색할 단어를 입력해주세요.");
 			return;
 		}
-		alert("검색어 : " + input)
+		//alert("검색어 : " + input)
 		$("#searchForm").submit();
 	});
 	if(${loginId == null }){
