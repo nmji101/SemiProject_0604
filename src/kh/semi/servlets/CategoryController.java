@@ -74,7 +74,7 @@ public class CategoryController extends HttpServlet {
 					addr = null;
 					request.getSession().removeAttribute("ssAddr");
 				}
-
+				
 				List<CategoryDTO> list = null;	
 				System.out.println("select:"+select+" category:"+category+" addr:"+addr+" ssAddr:" +ssAddr);
 
@@ -124,25 +124,13 @@ public class CategoryController extends HttpServlet {
 					request.getSession().setAttribute("ssSelect", select);
 					request.getSession().setAttribute("ssAddr", addr);
 					System.out.println("addr:"+addr);
-					if(addr.equals("se")) {
-						addr = "서울";
-					}else if(addr.equals("kk")) {
-						addr = "경기";
-					}else if(addr.equals("ch")) {
-						addr = "충청";
-					}else if(addr.equals("ks")) {
-						addr = "경상";
-					}else if(addr.equals("jl")) {
-						addr = "전라";
-					}else if(addr.equals("kwjj")) {
-						addr = "강원제주";
-					}		
+					
 					list = dao.getInfoByLocation(select, addr, start, end);
 					recordTotalCount = dao.getTotalByMenu("info_addr2", addr);
 				}
 
 				request.setAttribute("list", list);	
-
+				
 				//페이지 네비 마무리
 				List<String> navi = dao.getNavi(currentPage, recordTotalCount);
 				int size = navi.size();
