@@ -159,6 +159,9 @@ div {
 	width: 100%;
 	height: 100%;
 }
+#id_label_div{
+	text-align: left;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -425,7 +428,7 @@ div {
 
 							</div>
 
-							<div class="col-lg-9">
+							<div id="id_label_div" class="col-lg-9">
 
 								<label class="form-control my-auto">
 								
