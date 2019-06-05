@@ -13,7 +13,6 @@ import kh.semi.dao.CategoryDAO;
 import kh.semi.dto.CategoryDTO;
 
 
-
 @WebServlet("*.category")
 public class CategoryController extends HttpServlet {
 
@@ -29,20 +28,27 @@ public class CategoryController extends HttpServlet {
 			try {
 				//페이지네비
 				String nowPage = request.getParameter("nowPage");
+				int endNavi = CategoryDAO.endNavi;
+				int startNavi = CategoryDAO.startNavi;
+				System.out.println("endNavi"+endNavi);
+				
 				//System.out.println("nowPage : "+nowPage);
 				int currentPage = 0;
 				int recordTotalCount = 0;
 				if(nowPage==null) {				
 					currentPage = 1;
+				}else if (nowPage.contentEquals("다음>")){
+					currentPage= endNavi+1;	 
+				}else if (nowPage.contentEquals("<이전")){
+					currentPage = startNavi-3;
 				}else {
 					currentPage = Integer.parseInt(nowPage);
 				}
 				int end = currentPage * CategoryDAO.recordCountPerPage;
 				int start = (currentPage * CategoryDAO.recordCountPerPage) - (CategoryDAO.recordCountPerPage - 1);
 				//System.out.println(start + "start, " + end + "end");
-
-				
-				//셀렉트, 카테고리, 지역 가져오
+								
+				//셀렉트, 카테고리, 지역 가져오기
 				String select = request.getParameter("select");
 				String ssSelect = (String) request.getSession().getAttribute("ssSelect");
 				String category = request.getParameter("category");
@@ -53,29 +59,35 @@ public class CategoryController extends HttpServlet {
 				if(select == null) {
 					select = ssSelect;
 				}
+				
+				if(ssCategory == null) {
+					ssCategory = "main";
+				}
 				if(category == null) {
 					category = ssCategory;
 				}	
+				
 				if(addr == null) {
 					addr = ssAddr;
 				}else if(addr.equals("all")) {
 					addr = null;
+					request.getSession().removeAttribute("ssAddr");
 				}
 				
 				List<CategoryDTO> list = null;	
 				System.out.println("select:"+select+" category:"+category+" addr:"+addr+" ssAddr:" +ssAddr);
 				
 				
-				//1.추천 부분
-				System.out.println("여기1");
-				if(select == null && category.contentEquals("main") || category ==null && addr == null) {
+				//1.추천 부분	
+				if(select == null && category.contentEquals("main") &&  addr == null) {
+					System.out.println("여기1");
 					request.getSession().setAttribute("ssSelect", select);
 					request.getSession().setAttribute("ssCategory", "main");
 					list = dao.getInfoBySelect(select, start, end);		
 				}
-				//1-1. 추천 부분 - 셀렉트있는 경우
-				System.out.println("여기1-1");
-				if (category.contentEquals("main") || category ==null && addr == null) {
+				//1-1. 추천 부분 - 셀렉트있는 경우			
+				if (category.contentEquals("main") && addr == null) {
+					System.out.println("여기1-1");
 					request.getSession().setAttribute("ssSelect", select);
 					request.getSession().setAttribute("ssCategory", "main");
 					list = dao.getInfoBySelect(select, start, end);	
@@ -123,24 +135,31 @@ public class CategoryController extends HttpServlet {
 						addr = "전라";
 					}else if(addr.equals("kwjj")) {
 						addr = "강원제주";
-					}
-						
+					}		
 					list = dao.getInfoByLocation(select, addr, start, end);
-					recordTotalCount = list.size();
+					recordTotalCount = dao.getTotalByMenu("info_addr2", addr);
 				}
 				
 				request.setAttribute("list", list);	
-
+				request.setAttribute("size", list.size());
 				//페이지 네비 마무리
 				List<String> navi = dao.getNavi(currentPage, recordTotalCount);
 				int size = navi.size();
 				request.setAttribute("navi", navi);
 				request.setAttribute("size", size);
+				request.setAttribute("currentPage", currentPage);
 				request.getRequestDispatcher("category.jsp").forward(request, response);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(cmd.equals("/search.category")) {//헤더의 검색기능
+			String searchInput = request.getParameter("search");
+			System.out.println(searchInput);
+			
+			
+			
+			//request.getRequestDispatcher("category.jsp").forward(request, response);
 		}
 	}
 

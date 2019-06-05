@@ -8,9 +8,72 @@
 <title>Document</title>
 
 <style>
+
+/*         header	 */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 div {
-	border: 1px solid black;
-	box-sizing: border-box;
+	padding: 0px;
+}
+#header {
+	width: 100%;
+	margin: auto;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	justify-content: center;
+}
+#container_div, #header
+{
+/* 	padding-left: 0px !important; */
+/*     padding-right: 0px !important; */
+	margin: 0px !important;
+}
+#search
+{
+	text-align: center !important;
+	justify-content: center !important;
+}
+#searchbox {
+	height: 38px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #ffba00;
+	border-radius: 10px;
+	padding: 10px;
+}
+#logo {
+	position: relative;
+	bottom: 20px;
+	cursor: pointer;
+}
+#header {
+	height: 100%;
+	width: 100%;
+	padding: 64px 32px;
+	
+}
+.headBtn {
+	color: white !important;
+}
+.headBtn:hover {
+	background-color: burlywood;
+	border: 1px solid burlywood;
+	color: white;
+}
+/*         header	 */
+
+
+#header_div{
+ 	border: 1px solid #FFC107;
+ 	box-sizing: border-box;
+ } 
+
+#profile_div_row, #profile_div
+{
+	text-align: center;
+	justify-content: center;
 }
 
 #header_row, #profile_row, #contents_row {
@@ -71,6 +134,11 @@ div {
 
 #tutor_page_btn {
 	color: cornflowerblue;
+}
+#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn
+{
+	width: 100%;
+	height: 100%;
 }
 </style>
 
@@ -139,72 +207,58 @@ alert("id : " + "${loginId}");
 <body>
 
 
-	<div class="container col-12 mt-3">
+	<div id="container_div" class="container col-12 mt-3">
 
-		<div id="header_row" class="row">
-
-			<div class="col-10">
-
-				<div class="row">
-
-					<div id="logo_div" class="col-lg-3 d-none d-xl-block">
-
-						<a href="Homepage.jsp"> <img id="logo_img" src="nmnb.jpg" alt="">
-
-						</a>
-
-					</div>
-
-					<div id="search_div" class="col-lg-12 col-xl-6 my-auto">
-
-						<div class="row">
-
-							<div class="col-lg-9">
-
-								<input id="search_text" class="form-control" type="text"
-									placeholder="input text to search">
-
-							</div>
-
-							<div class="col-lg-3">
-
-								<input id="search_btn" class="btn" type="button" value="검색">
-
-							</div>
-
-						</div>
-
-
-					</div>
-
-					<div id="event_div" class="col-lg-3 d-none d-xl-block">
-
-						<a href="#"> <img id="event_img" src="nmnb.jpg" alt="">
-
-						</a>
-
-					</div>
-
-				</div>
-
+		<!--           HEADER-->
+            <div id=header class=row>
+			<div class="col-12 col-lg-3">
+				<img src="logo.png" id=logo>
 			</div>
-
+			<div class="col-12 col-lg-6">
+					<form id=search class="form-inline my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id=searchbox>
+								<button class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="submit">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			<div class="col-12 col-lg-3">
+				<c:choose>
+					<c:when test="${loginId==null}">
+						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">login</button>
+						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
+							type="button">signup</button>
+					</c:when>
+					<c:otherwise>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=mypage_btn>mypage</button>
+						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+							id=logout_btn>logout</button>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
+            <!--           HEADER-->
 
 		<div id="profile_row" class="row">
 
 			<div class="col-10 my-3">
 
-				<div class="row">
+				<div id="profile_div_row" class="row">
 
 					<div class="col-lg-6">
 
-						<div class="row">
+						<div id="profile_div" class="row">
 
 							<div id="profile_img_div" class="col-lg-4">
 
-								<button id="profile_img_btn" class="btn">
-									${ dto.m_photo }
+								<button id="profile_img_btn" class="btn">${ dto.m_photo }
+
 								</button>
 
 							</div>
@@ -217,21 +271,7 @@ alert("id : " + "${loginId}");
 
 								</button>
 
-								<br>
-
-								<button class="btn">뭔가 쓸 거 같은 공간</button>
-
 							</div>
-
-						</div>
-
-					</div>
-
-					<div class="col-lg-6">
-
-						<div class="row">
-
-							<div class="col-md-12 my-auto">무언가에 쓸 수 있을 거 같은 공간</div>
 
 						</div>
 
@@ -253,31 +293,31 @@ alert("id : " + "${loginId}");
 
 						<div class="row">
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn link my-3">수강
-									중 클래스</button>
+								<button id="ing_class_btn" class="btn btn-warning py-3">
+									수강 중 클래스
+								</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn link my-3">수강
+								<button id="done_class_btn" class="btn btn-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn link my-3">
-									개인 정보 수정
-								</button>
+								<button id="person_info_btn" class="btn btn-warning py-3">개인
+									정보 수정</button>
 
 							</div>
 							
-							<div class="col-6 col-md-4 col-lg-12">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn link my-3">
+								<button id="tutor_page_btn" class="btn btn-warning py-3">
 										
 									<h5>
 										<strong>튜터 페이지</strong>
@@ -294,12 +334,16 @@ alert("id : " + "${loginId}");
 					<div id="contents_div" class="col-lg-9">
 
 						<c:if test="${check=='true'}">
+
+
 							<span>현재 신청 대기중</span>
 							
 						</c:if>
 						
+
 						<c:if test="${check=='false'}">
 							
+
 							<form id="apply_form" action="apply.mypage" method="post">
 						
 								<input name="id" type="hidden" value="${ dto.m_id }">
@@ -312,6 +356,7 @@ alert("id : " + "${loginId}");
 						</c:if>
 						
 						<c:if test="${check=='tutor'}">
+
 						
 							<script>
  								location.href = "ForTutor.jsp";

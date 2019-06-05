@@ -26,7 +26,7 @@ public class CategoryDAO {
 
 	
 	public List<CategoryDTO> getInfoBySelect(String select, int start, int end) throws Exception {
-		String sql = "select row_number() over(order by "+select+") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by info_avgstar desc) as rown, classinfo.* from classinfo) where rown between ? and ?";
+		String sql = "select row_number() over(order by "+select+") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+select+") as rown, classinfo.* from classinfo) where rown between ? and ?";
 		Connection con = this.getConnection();	
 		PreparedStatement pstat = con.prepareStatement(sql);
 		//pstat.setString(1, select);		
@@ -62,7 +62,7 @@ public class CategoryDAO {
 	}
 	
 	public List<CategoryDTO> getInfoByCategory(String select, String category, int start, int end) throws Exception {
-		String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by info_classid desc) as rown, classinfo.* "
+		String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+ select +") as rown, classinfo.* "
 				+ "from classinfo where info_category= ? ) where rown between ? and ? ";
 		Connection con = this.getConnection();	
 		PreparedStatement pstat = con.prepareStatement(sql);
@@ -92,19 +92,18 @@ public class CategoryDAO {
 			dto.setM_photo(tutor[1]);
 			
 			list.add(dto);	
-			System.out.println("닉네임 : " + list.get(0).getM_nickname());
 		}
 		con.close();
 		return list;
 	}
 	
 		
-	public List<CategoryDTO> getInfoByLocation(String select, String addr2, int start, int end) throws Exception {
-		String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by info_classid desc) as rown, classinfo.* "
+	public List<CategoryDTO> getInfoByLocation(String select, String addr, int start, int end) throws Exception {
+		String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+select+") as rown, classinfo.* "
 				+ "from classinfo where info_addr2 like ?)  where rown between ? and ?";
 		Connection con = this.getConnection();	
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setString(1, "%"+addr2+"%");
+		pstat.setString(1, "%"+addr+"%");
 		pstat.setInt(2, start);
 		pstat.setInt(3, end);
 		ResultSet rs = pstat.executeQuery();
@@ -120,6 +119,7 @@ public class CategoryDAO {
 			dto.setInfo_img3(rs.getString("info_img3"));
 			
 			int classid = rs.getInt("info_classid");
+			dto.setInfo_classid(classid);
 			//�� �����ο� set
 			int count = this.getTotalForCategory(classid);
 			dto.setTotalcount(count);
@@ -179,10 +179,10 @@ public class CategoryDAO {
 	}
 	
 	public int getTotalByMenu(String coloumn, String value) throws Exception {
-		String sql = "select count(*) from classinfo where "+ coloumn +" = ?";
+		String sql = "select count(*) from classinfo where "+ coloumn +" like ?";
 		Connection con = this.getConnection();	
 		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setString(1, value);	
+		pstat.setString(1, "%"+value+"%");	
 		ResultSet rs = pstat.executeQuery();
 		int result = 0;
 		while(rs.next()) {
@@ -194,10 +194,10 @@ public class CategoryDAO {
 	
 	public static int recordCountPerPage = 6; 
 	public static int pageTotalCount = 0;
-	
+	public static int startNavi = 0;
+	public static int endNavi = 0;
 	public List<String> getNavi(int currentPage, int recordTotalCount) throws Exception {
 		System.out.println("레코드토탈카운트:"+recordTotalCount);
-		recordCountPerPage = 6;
 		int naviCountPerPage = 3;	
 		int pageTotalCount = 0; 
 		if(recordTotalCount % recordCountPerPage == 0) {
@@ -211,9 +211,6 @@ public class CategoryDAO {
 		}else if(currentPage > pageTotalCount) {
 			currentPage = pageTotalCount;
 		}
-		int startNavi;
-		int endNavi;
-		
 		startNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1; 
 		endNavi = startNavi + (naviCountPerPage-1);
 
@@ -236,7 +233,7 @@ public class CategoryDAO {
 		}
 		List<String> list = new ArrayList<String>();
 		if(needPrev) {
-			list.add("<이전 ");
+			list.add("<이전");
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			list.add(i+"");
@@ -245,7 +242,11 @@ public class CategoryDAO {
 			list.add("다음>");
 		}
 		return list;
-	}	
+	}
+	
+	public List<CategoryDTO> searchCategoryByWord(String searchParam){
+		String sql = "select ";
+	}
 
 	
 }

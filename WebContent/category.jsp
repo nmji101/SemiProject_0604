@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -77,6 +76,15 @@ $(function(){
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+#searchbox {
+	height: 38px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #ffba00;
+	border-radius: 10px;
+	padding: 10px;
+}
+
 #logo {
 	position: relative;
 	bottom: 20px;
@@ -89,9 +97,10 @@ div {
 }
 
 #header {
-	height: 200px;
+	height: 100%;
 	width: 100%;
 	padding: 64px 32px;
+	
 }
 
 .headBtn {
@@ -130,6 +139,13 @@ div {
 	opacity: 50%;
 }
 
+#soon{
+	text-align: center;
+	color : #7e7666;
+	font-size: 20px;
+	margin-bottom:80px;
+}
+
 #content {
 	margin: auto;
 	width: 80%;
@@ -138,7 +154,10 @@ div {
 
 .custom-select {
 	width: 200px;
+	margin: 20px 0px;
 	float: right;
+	border-color: #ffba00;
+	border-radius: 10px;
 }
 
 #navi {
@@ -181,6 +200,7 @@ a:hover {
 
 .location, .category {
 	background-color: #fffce7;
+	margin:0px;
 }
 
 .dropdown-menu {
@@ -243,8 +263,12 @@ a:hover {
 	padding: 0px 10px;
 }
 
+.naviBtn:focus{
+	color:#ffb100;
+}
+
 .naviBtn:hover {
-	background-color: #a6e2bf;
+	color:#ffb100;
 }
 
 #footer {
@@ -260,19 +284,22 @@ a:hover {
 
 	<div id=wrapper>
 		<div id=header class=row>
-			<div class="col-12 col-lg-4">
+			<div class="col-12 col-lg-3">
 				<img src="logo.png" id=logo>
 			</div>
-			<div class="col-12 col-lg-4" id=search>
-				<form class="form-inline my-2 my-lg-0">
-					<div class="row justify-content-center">
-						<input class="form-control mr-sm-2" type="search"
-							placeholder="취미를 검색해 보세요!" aria-label="Search">
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit">Search</button>
-					</div>
-				</form>
-			</div>
-			<div class="col-12 col-lg-4">
+			<div class="col-12 col-lg-6" id=search>
+					<form class="form-inline my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id=searchbox>
+								<button class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="submit">Search</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			<div class="col-12 col-lg-3">
 				<c:choose>
 					<c:when test="${loginId==null}">
 						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
@@ -294,7 +321,7 @@ a:hover {
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main">추천</a></li>
+						href="info.category?category=main&addr=all&select=info_avgstar">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -381,7 +408,7 @@ a:hover {
 										</a></li>
 
 										<div class="col d-none d-md-block">
-											<div class="dropdown-divider&select=info_avgstar desc"></div>
+											<div class="dropdown-divider"></div>
 											<li><a href="info.category?addr=kk-1">일산/파주</a></li>
 											<li><a href="info.category?addr=kk-2">용인/분당/수원</a></li>
 											<li><a href="info.category?addr=kk-3">인천/부천</a></li>
@@ -449,6 +476,17 @@ a:hover {
 		</div>
 	</div>
 	<div id=content>
+	
+		<c:choose>
+					<c:when test="${size == 0}">
+			<div id=soon>
+			<img src="커밍순.png"><br>
+			현재 클래스 준비 중입니다.<br>
+			튜터가 되어 첫번째 클래스를 오픈해주세요!
+			</div>
+					</c:when>
+					<c:otherwise>
+
 		<select class="custom-select">
 			<option selected>분류</option>
 			<option value="info_avgstar desc">추천순</option>
@@ -516,12 +554,14 @@ a:hover {
 		<div id=naviBox class="row justify-content-center">
 			<c:forEach var="i" begin="0" end="${size-1}">
 				<form action="info.category" method="post" class=btnForm>
-					<%-- 					<button class="naviBtn">${navi[i] }</button> --%>
-					<input type=submit value="${navi[i] }" class="naviBtn" name="nowPage">
-				</form>
+					<input type=submit value="${navi[i] }" class="naviBtn" name="nowPage">		
+				</form>		
 			</c:forEach>
 		</div>
 	</div>
+	</c:otherwise>
+				</c:choose>	
+	
 	<div id=footer class="row">
 		<div class="col-12 col-md-8"></div>
 		<div class="col-12 col-md-4" id=sns>
@@ -535,14 +575,11 @@ a:hover {
 			$(".custom-select").on("click",function(){
 				var select = $(this).val();
 				console.log(select);
-
 				if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
 					location.href="info.category?select="+select;
 				}
 				
 			})
-			
-			
 			
 			$("#logo").on("click",function(){
 				location.href="index.jsp";
@@ -551,8 +588,11 @@ a:hover {
 			$(".classCard").on("click",function(){
 				var classId = $(this).children(".classId").val();
 				location.href="clickClass.classInfo?classId="+classId;
-			});
+			})
 
+			
+	
+				
 		</script>
 </body>
 </html>
