@@ -246,6 +246,10 @@ div {
 		    location.href = "person.mypage";
 	    });
 	    
+	    $("#tutorPage").on("click",function(){
+	    	location.href = "id.tutor";
+	    });
+	    
     });
     
     onload = function()
@@ -365,16 +369,19 @@ div {
 									정보 수정</button>
 
 							</div>
+							
+						
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn-warning py-3">
+								<button id="tutor_page_btn" class="btn btn-warning py-3" > 
 
 									<h5><strong>튜터 페이지</strong></h5>
 
-								</button>
 
 							</div>
+						
+							
 
 						</div>
 

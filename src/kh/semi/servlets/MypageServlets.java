@@ -205,7 +205,6 @@ public class MypageServlets extends HttpServlet
 			{
 				PersonDAO dao = new PersonDAO();
 				PersonDTO dto = dao.selectById(m_id);
-				
 				request.setAttribute("dto", dto);
 			}
 			catch(Exception e)
@@ -214,6 +213,7 @@ public class MypageServlets extends HttpServlet
 			}
 			
 			request.getRequestDispatcher("/WEB-INF/MypagePerson.jsp").forward(request, response);
+		
 		}
 		else if(url.equals("update.mypage"))
 		{

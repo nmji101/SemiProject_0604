@@ -6,7 +6,7 @@ import java.net.URLEncoder;
 public class ClassInfoDTO {
 	
 	
-	private int info_classid_seq;//1 클래스id
+	private int info_classid;//1 클래스id
 	private String info_tutorid;// 2 튜터아이디
 	private String info_category; //3 카테고리
 	private String info_title;//4 제목
@@ -26,11 +26,12 @@ public class ClassInfoDTO {
 	private String info_date;//18 클래스 등록일
 	private String info_avgstar;//19 별점통계
 	private int info_click;//20 클래스 조회 수
-	public int getInfo_classid_seq() {
-		return info_classid_seq;
+	
+	public int getInfo_classid() {
+		return info_classid;
 	}
-	public void setInfo_classid_seq(int info_classid_seq) {
-		this.info_classid_seq = info_classid_seq;
+	public void setInfo_classid(int info_classid) {
+		this.info_classid = info_classid;
 	}
 	public String getInfo_tutorid() {
 		return info_tutorid;
@@ -151,7 +152,7 @@ public class ClassInfoDTO {
 			String info_intro, int info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
 			int info_price, String info_img1, String info_img2, String info_img3, String info_start, String info_end,
 			String info_date, String info_avgstar, int info_click) {
-		this.info_classid_seq = info_classid_seq;
+		this.info_classid = info_classid;
 		this.info_tutorid = info_tutorid;
 		this.info_category = info_category;
 		this.info_title = info_title;
