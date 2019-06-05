@@ -6,7 +6,7 @@ import java.net.URLEncoder;
 public class ClassInfoDTO {
 	
 	
-	private int info_classid_seq;//1 클래스id
+	private int info_classid;//1 클래스id
 	private String info_tutorid;// 2 튜터아이디
 	private String info_category; //3 카테고리
 	private String info_title;//4 제목
