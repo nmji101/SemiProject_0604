@@ -1,7 +1,5 @@
 package kh.semi.dto;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 public class ClassInfoDTO {
 	
@@ -12,7 +10,7 @@ public class ClassInfoDTO {
 	private String info_title;//4 제목
 	private String info_explain;//5 클래스 설명
 	private String info_intro;//6 튜터소개
-	private int info_addr1;//7 우편번호
+	private String info_addr1;//7 우편번호
 	private String info_addr2;//8 도로명
 	private String info_addr3;//9 지번
 	private String info_addr4;//10 상세주소
@@ -63,10 +61,10 @@ public class ClassInfoDTO {
 	public void setInfo_intro(String info_intro) {
 		this.info_intro = info_intro;
 	}
-	public int getInfo_addr1() {
+	public String getInfo_addr1() {
 		return info_addr1;
 	}
-	public void setInfo_addr1(int info_addr1) {
+	public void setInfo_addr1(String info_addr1) {
 		this.info_addr1 = info_addr1;
 	}
 	public String getInfo_addr2() {
@@ -149,7 +147,7 @@ public class ClassInfoDTO {
 		this.info_click = info_click;
 	}
 	public ClassInfoDTO(int info_classid_seq, String info_tutorid, String info_category, String info_title, String info_explain,
-			String info_intro, int info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
+			String info_intro, String info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
 			int info_price, String info_img1, String info_img2, String info_img3, String info_start, String info_end,
 			String info_date, String info_avgstar, int info_click) {
 		this.info_classid = info_classid;
