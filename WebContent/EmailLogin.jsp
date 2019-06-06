@@ -113,6 +113,43 @@ main>div {
 	    {
 		    location.href = "Login.jsp";
 	    })
+        
+        $("#id, #pw").on("keydown", function(key)
+        {
+            if(key.keyCode == 13)
+            {
+                $.ajax
+                ({
+                    type: "POST",
+                    url:"email.login",
+                    data:
+                    {
+                        id:$("#id").val(),
+                        pw:$("#pw").val()
+                    }
+                })
+                .done(function(response)
+                {
+                    if(response == "Y")
+                    {
+                        location.href = "mainHomePage.jsp";
+                    }
+                    else if(response == "N")
+                    {
+                        alert("아이디 혹은 비밀번호를 확인해주세요.");
+                    }
+                    else
+                    {
+                        alert("ERROR");
+                    }
+                })
+                .fail(function()
+                {
+                    window.location.href = "error.pc";
+                });
+            }
+        });
+        
     })
 </script>
 </head>
