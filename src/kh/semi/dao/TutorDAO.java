@@ -22,10 +22,10 @@ public class TutorDAO {
 	
 	
 	   public int test(ClassInfoDTO dto)    throws Exception{ 
-		      //                                                                                     1,2,3,4,5,6,7,8,9,10,11
-		      String sql = "insert into classinfo values(info_classid_seq.nextval,?,?, ?,?,?,?,?, ?,?, ?, ?, "
+		      //                                                                  1,2,3,4,5,6,7,8,9, 10,11
+		      String sql = "insert into classinfo values(info_classid_seq.nextval,?,?,?,?,?,?,?, ?,?, ?, ?, "
 		      //        12,13,14,15,16,     17        18      19
-		            + " ?,  ?,  ?, ? , ? , default,default,default)";
+		            + " ?,  ?, ?, ?, ? , default,default,default)";
 		      Connection con = this.getConnection();
 		      PreparedStatement pstat = con.prepareStatement(sql);
 		      
@@ -35,7 +35,7 @@ public class TutorDAO {
 		      pstat.setString(3, dto.getInfo_title());//3번 타이틀
 		      pstat.setString(4, dto.getInfo_explain());//4번 클래스설명
 		      pstat.setString(5, dto.getInfo_intro());//5번 튜터소개
-		      pstat.setInt(6, dto.getInfo_addr1()); //6번 우편번호
+		      pstat.setString(6, dto.getInfo_addr1()); //6번 우편번호
 		      pstat.setString(7, dto.getInfo_addr2());//7번 도로명
 		      pstat.setString(8, dto.getInfo_addr3());//8번 지번
 		      pstat.setString(9, dto.getInfo_addr4());//9번 상세주소

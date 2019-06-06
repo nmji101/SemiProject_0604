@@ -96,6 +96,9 @@ div {
 	width: 100%;
 	text-align: center;
 	opacity: 50%;
+	padding: 0;
+	border: 0px;
+	margin: auto;
 }
 
 #content {
@@ -122,13 +125,12 @@ div {
 	font-weight: bold;
 }
 
-a {
+.nav-link {
 	color: #ffb100;
 	width: 200px;
 	font-family: 'Raleway', sans-serif;
 }
-
-a:hover {
+.nav-link:hover {
 	color: #d8b13a;
 }
 
@@ -136,7 +138,7 @@ a:hover {
 	position: static;
 }
 
-.dropdown-menu li a {
+.dropdown-menu li{
 	padding: 5px 5px;
 	font-weight: 400;
 	color: #d8b13a;
@@ -153,13 +155,7 @@ a:hover {
 	width: 100%;
 }
 
-.dropdown-menu {
-	padding: 0;
-	border: 0px;
-	margin: auto;
-}
-
-.multi-column-dropdown li a {
+.multi-column-dropdown li, a{
 	display: block;
 	clear: both;
 	line-height: 1.428571429;
@@ -167,9 +163,10 @@ a:hover {
 	white-space: normal;
 	padding: 5px;
 	width: 100%;
+	cursor: pointer;
 }
 
-.multi-column-dropdown li a:hover {
+.multi-column-dropdown li:hover, a:hover {
 	text-decoration: none;
 	color: #ffb100;
 	font-weight: bold;
@@ -304,7 +301,16 @@ $(function(){
 					}
         		});
 	}
+	
+	$(".locationMenu li").on("click",function(){
+		var addr = $(this).text();
+		alert(addr);
+		location.href="info.category?addr="+addr+"&select=info_avgstar desc";
+	})
 })
+
+
+			
 	</script>
 	</head>
 <body>
@@ -364,8 +370,8 @@ $(function(){
 
 						<ul class="dropdown-menu multi-column columns-6">
 							<div class="row category">
-								<div class="d-none d-lg-block col-lg-1 locationMenu"></div>
-								<div class="col-12 col-md-4 col-lg-2 locationMenu">
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
+								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=design&select=info_avgstar desc&addr=all">
@@ -374,7 +380,7 @@ $(function(){
 
 									</ul>
 								</div>
-								<div class="col-12 col-md-4 col-lg-2  locationMenu">
+								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=it&select=info_avgstar desc&addr=all"
@@ -382,33 +388,32 @@ $(function(){
 
 									</ul>
 								</div>
-								<div class="col-12 col-md-4 col-lg-2 locationMenu">
+								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=lang&select=info_avgstar desc&addr=all">언어
 										</a> <input type=hidden value="lang" class=cate></li>
 									</ul>
 								</div>
-								<div class="col-12 col-md-4 col-lg-2  locationMenu">
+								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=life&select=info_avgstar desc&addr=all">라이프
 												스타일 </a> <input type=hidden value="life" class=cate></li>
 									</ul>
 								</div>
-								<div class="col-12 col-md-4 col-lg-2 locationMenu">
+								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=money&select=info_avgstar desc&addr=all">제테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
-								<div class="d-none d-lg-block col-lg-1 locationMenu"></div>
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
 							</div>
 						</ul></li>
 
-
-					<li class="nav-item dropdown has-megamenu"><a href="#"
+<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">지역별</a>
@@ -418,95 +423,83 @@ $(function(){
 							<div class="row location">
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=se&select=info_avgstar desc"> 서울
-										</a></li>
-
+										<li>서울</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=se-1">강남</a></li>
-											<li><a href="info.category?addr=se-2">신촌/홍대</a></li>
-											<li><a href="info.category?addr=se-3">건대</a></li>
-											<li><a href="info.category?addr=se-4">잠실</a></li>
-											<li><a href="info.category?addr=se-5">종로</a></li>
-											<li><a href="info.category?addr=se-6">노원</a></li>
-											<li><a href="info.category?addr=se-7">사당</a></li>
-											<li><a href="info.category?addr=se-8">성북</a></li>
-											<li><a href="info.category?addr=se-9">신림</a></li>
-											<li><a href="info.category?addr=se-10">목동</a></li>
-											<li><a href="info.category?addr=se-11">용산</a></li>
-										</div>
-									</ul>
-								</div>
-								<div class="col-12 col-md-4 col-lg-2  locationMenu">
-									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=kk&select=info_avgstar desc"> 경기
-										</a></li>
-
-										<div class="col d-none d-md-block">
-											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=kk-1">일산/파주</a></li>
-											<li><a href="info.category?addr=kk-2">용인/분당/수원</a></li>
-											<li><a href="info.category?addr=kk-3">인천/부천</a></li>
-											<li><a href="info.category?addr=kk-4">남양주/구리/하남</a></li>
-											<li><a href="info.category?addr=kk-5">안양/안산/광명</a></li>
+											<li>강남</li>
+											<li>신촌/홍대</li>
+											<li>건대</li>
+											<li>잠실</li>
+											<li>종로</li>
+											<li>노원</li>
+											<li>사당</li>
+											<li>성북</li>
+											<li>신림</li>
+											<li>목동</li>
+											<li>용산</li>
 										</div>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=ch&select=info_avgstar desc"> 충청
-										</a></li>
-
+										<li>경기</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=ch-1">대전</a></li>
-											<li><a href="info.category?addr=ch-2">충청</a></li>
-										</div>
-									</ul>
-								</div>
-								<div class="col-12 col-md-4 col-lg-2  locationMenu">
-									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=ks&select=info_avgstar desc"> 경상
-										</a></li>
-										<div class="col d-none d-md-block">
-											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=ks-1">대구</a></li>
-											<li><a href="info.category?addr=ks-2">경북</a></li>
-											<li><a href="info.category?addr=ks-3">부산</a></li>
-											<li><a href="info.category?addr=ks-4">경남</a></li>
+											<li>일산/파주</li>
+											<li>용인/분당/수원</li>
+											<li>인천/부천</li>
+											<li>남양주/구리/하남</li>
+											<li>안양/안산/광명</li>
 										</div>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=jl&select=info_avgstar desc"> 전라
-										</a></li>
+										<li>충청</li>
+
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=jl-1">광주</a></li>
-											<li><a href="info.category?addr=jl-2">전라</a></li>
+											<li>대전</li>
+											<li>충청</li>
 										</div>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li><a
-											href="info.category?addr=kwjj&select=info_avgstar desc">
-												강원 / 제주 </a></li>
+										<li>경상</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li><a href="info.category?addr=kwjj-1">강원</a></li>
-											<li><a href="info.category?addr=kwjj-2">제주</a></li>
+											<li>대구</li>
+											<li>경북</li>
+											<li>부산</li>
+											<li>경남</li>
+										</div>
+									</ul>
+								</div>
+								<div class="col-12 col-md-4 col-lg-2 locationMenu">
+									<ul class="multi-column-dropdown">
+										<li>전라</li>
+										<div class="col d-none d-md-block">
+											<div class="dropdown-divider"></div>
+											<li>광주</li>
+											<li>전라</li>
+										</div>
+									</ul>
+								</div>
+								<div class="col-12 col-md-4 col-lg-2  locationMenu">
+									<ul class="multi-column-dropdown">
+										<li>강원 / 제주</li>
+										<div class="col d-none d-md-block">
+											<div class="dropdown-divider"></div>
+											<li>강원</li>
+											<li>제주</li>
 										</div>
 									</ul>
 								</div>
 							</div>
 						</ul></li>
+
+					
 
 				</ul>
 			</nav>

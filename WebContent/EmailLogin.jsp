@@ -66,16 +66,14 @@ main>div {
 </style>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
 	
-</script>
+<!-- </script> -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<link rel="shortcut icon" href="favicon.ico">
 <script>
-
 	$(function()
     {
 		$("#login_btn").on("click", function()
@@ -115,6 +113,43 @@ main>div {
 	    {
 		    location.href = "Login.jsp";
 	    })
+        
+        $("#id, #pw").on("keydown", function(key)
+        {
+            if(key.keyCode == 13)
+            {
+                $.ajax
+                ({
+                    type: "POST",
+                    url:"email.login",
+                    data:
+                    {
+                        id:$("#id").val(),
+                        pw:$("#pw").val()
+                    }
+                })
+                .done(function(response)
+                {
+                    if(response == "Y")
+                    {
+                        location.href = "mainHomePage.jsp";
+                    }
+                    else if(response == "N")
+                    {
+                        alert("아이디 혹은 비밀번호를 확인해주세요.");
+                    }
+                    else
+                    {
+                        alert("ERROR");
+                    }
+                })
+                .fail(function()
+                {
+                    window.location.href = "error.pc";
+                });
+            }
+        });
+        
     })
 </script>
 </head>
@@ -153,7 +188,7 @@ main>div {
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
 					<a href="#">아이디 비밀번호 찾기</a> <span>/</span> <a
-						href="input_insert.jsp">회원가입</a>
+						href="SignUp.jsp">회원가입</a>
 				</div>
 				<div class="col-1"></div>
 			</div>
