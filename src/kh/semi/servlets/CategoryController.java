@@ -38,9 +38,9 @@ public class CategoryController extends HttpServlet {
 				int recordTotalCount = 0;
 				if(nowPage==null) {				
 					currentPage = 1;
-				}else if (nowPage.contentEquals("다음>")){
+				}else if (nowPage.contentEquals("다음 ▶")){
 					currentPage= endNavi+1;	 
-				}else if (nowPage.contentEquals("<이전")){
+				}else if (nowPage.contentEquals("◀ 이전")){
 					currentPage = startNavi-3;
 				}else {
 					currentPage = Integer.parseInt(nowPage);

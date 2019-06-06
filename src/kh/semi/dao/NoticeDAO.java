@@ -60,8 +60,8 @@ public class NoticeDAO
 			PreparedStatement pstat = con.prepareStatement(sql);
 		)
 		{
-			pstat.setInt(1, page * 3 - 2);
-			pstat.setInt(2, page * 3);
+			pstat.setInt(1, page * 10 - 9);
+			pstat.setInt(2, page * 10);
 			try
 			(
 				ResultSet rs = pstat.executeQuery();
@@ -69,10 +69,55 @@ public class NoticeDAO
 			{
 				while(rs.next())
 				{
-					list.add(new NoticeDTO());
+					list.add(new NoticeDTO(rs.getInt("no_seq"), rs.getString("no_writer"), rs.getString("no_title"), rs.getString("no_contents"), rs.getDate("no_time")));
 				}
 				
 				return list;
+			}
+		}
+	}
+	public int selectCount() throws Exception
+	{
+		String sql = "select count(*) from notice";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+			ResultSet rs = pstat.executeQuery();
+		)
+		{
+			if(rs.next())
+			{
+				int count = rs.getInt("count(*)");
+				return count;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+	public NoticeDTO selectDetail(int seq) throws Exception
+	{
+		String sql = "select * from notice where no_seq = ?";
+			
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, seq);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				if(rs.next())
+				{
+					return new NoticeDTO(rs.getInt("no_seq"), rs.getString("no_writer"), rs.getString("no_title"), rs.getString("no_contents"), rs.getDate("no_time"));
+				}
+				return null;
 			}
 		}
 	}

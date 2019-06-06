@@ -16,13 +16,19 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import kh.semi.dao.DoClassDAO;
 import kh.semi.dao.NoticeDAO;
+import kh.semi.dto.DoClassDTO;
+import kh.semi.dto.NoticeDTO;
 
 @WebServlet("*.notice")
 public class NoticeServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
+	static int recordCountPerPage = 10;
+	static int naviCountPerPage = 10;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException 
 	{
@@ -93,7 +99,7 @@ public class NoticeServlet extends HttpServlet
 				
 				if(result > 0)
 				{
-					request.getRequestDispatcher("NoticeWrite.jsp").forward(request, response);
+					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
 				}
 				else
 				{
@@ -108,7 +114,91 @@ public class NoticeServlet extends HttpServlet
 		}
 		else if(url.equals("list.notice"))
 		{
+			try
+			{
+				NoticeDAO dao = new NoticeDAO();
+				
+				int currentPage;
+
+				currentPage = Integer.parseInt(request.getParameter("page"));
+				
+				List<NoticeDTO> list = dao.selectList(currentPage);
+				
+				int recordTotalCount = dao.selectCount();
+				
+				int pageTotalCount;
+				
+				boolean needPrev = true;
+				boolean needNext = true;
+				
+				if( recordTotalCount % recordCountPerPage == 0)
+				{
+					pageTotalCount = recordTotalCount / recordCountPerPage;
+				}
+				else
+				{
+					pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+				}
+
+				if(currentPage < 1)
+				{
+					currentPage = 1;
+				}
+				else if(currentPage > pageTotalCount)
+				{
+					currentPage = pageTotalCount;
+				}
+				
+				int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+				int endNavi = startNavi + naviCountPerPage - 1;
+				if(endNavi > pageTotalCount)
+				{
+					endNavi = pageTotalCount;
+				}
+				
+				if(startNavi == 1)
+				{
+					needPrev = false;
+				}
+				if(endNavi == pageTotalCount)
+				{
+					needNext = false;
+				}
+				
+				request.setAttribute("list", list);
+				request.setAttribute("listsize", list.size());
+				
+				request.setAttribute("currentPage", currentPage);
+				request.setAttribute("needPrev", needPrev);
+				request.setAttribute("needNext", needNext);
+				request.setAttribute("startNavi", startNavi);
+				request.setAttribute("endNavi", endNavi);
 			
+				request.getRequestDispatcher("NoticeView.jsp?page="+currentPage).forward(request, response);
+			}
+			catch (Exception e) 
+			{
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}
+		else if(url.equals("detail.notice"))
+		{
+			int seq = Integer.parseInt(request.getParameter("seq"));
+			try
+			{
+				NoticeDAO dao = new NoticeDAO();
+				NoticeDTO dto = dao.selectDetail(seq);
+				
+				request.setAttribute("dto", dto);
+				
+				request.getRequestDispatcher("NoticeDetail.jsp").forward(request, response);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
 		}
 	}
 

@@ -6,7 +6,7 @@ public class NoticeDTO
 {
 	private int no_seq;
 	private String no_writer;
-	private String title;
+	private String no_title;
     private String no_contents;
     private Date no_time;
 	
@@ -15,21 +15,21 @@ public class NoticeDTO
 		super();
 	}
 
-	public NoticeDTO(int no_seq, String no_writer, String title, Date no_time)
+	public NoticeDTO(int no_seq, String no_writer, String no_title, Date no_time)
 	{
 		super();
 		this.no_seq = no_seq;
 		this.no_writer = no_writer;
-		this.title = title;
+		this.no_title = no_title;
 		this.no_time = no_time;
 	}
 
-	public NoticeDTO(int no_seq, String no_writer, String title, String no_contents, Date no_time)
+	public NoticeDTO(int no_seq, String no_writer, String no_title, String no_contents, Date no_time)
 	{
 		super();
 		this.no_seq = no_seq;
 		this.no_writer = no_writer;
-		this.title = title;
+		this.no_title = no_title;
 		this.no_contents = no_contents;
 		this.no_time = no_time;
 	}
@@ -54,14 +54,14 @@ public class NoticeDTO
 		this.no_writer = no_writer;
 	}
 
-	public String getTitle()
+	public String getNo_title()
 	{
-		return title;
+		return no_title;
 	}
 
-	public void setTitle(String title)
+	public void setNo_title(String no_title)
 	{
-		this.title = title;
+		this.no_title = no_title;
 	}
 
 	public String getNo_contents()
