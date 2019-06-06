@@ -50,7 +50,7 @@ public class NoticeDAO
 	}
 	public List<NoticeDTO> selectList(int page) throws Exception
 	{
-		String sql = "select * from (select row_number() over(order by no_seq) as rown, notice.* from notice) WHERE ROWN BETWEEN ? and ?";
+		String sql = "select * from (select row_number() over(order by no_seq desc) as rown, notice.* from notice) WHERE ROWN BETWEEN ? and ?";
 
 		List<NoticeDTO> list = new ArrayList<NoticeDTO>();
 		

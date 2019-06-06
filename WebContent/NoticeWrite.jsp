@@ -129,22 +129,24 @@ $(function()
 	  
 	    $('#regNotice').on("click", function(e)
 		{
-// 	    	var form = $('<form></form>');
-// 		    form.attr('action', 'write.notice');
-// 		    form.attr('method', 'POST');
-// 		    form.appendTo('body');
+	    	var form = $('<form></form>');
+		    form.attr('action', 'write.notice');
+		    form.attr('method', 'POST');
+		    form.appendTo('body');
 		
-// 		    var text = $(".note-editable").html();
+		    var text = $(".note-editable").children("p").html();
+		    var html = `<input type="hidden" value=`+text+` name="contents">`;
 		    
-// 			var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
-// 			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
-// 			var contents = $('<input type="hidden" value=`'+text+'` name="contents">');
-		 
-// 		    form.append(writer).append(title).append(contents);
-// 		    form.submit();
+			var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
+			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+			var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+		 	
 			
-			location.href = "write.notice?writer="+"${ loginId }"+"&title="+$("#title_text").val()+"&contents="+$(".note-editable").html();
 			
+		    form.append(writer).append(title).append(contents);
+		    $("#contents_hidden").val("`"+text+"`");
+		    
+		    form.submit();
 		});
 	    
   });
