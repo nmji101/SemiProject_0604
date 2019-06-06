@@ -6,6 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>관리자 마이페이지</title>
+        <link rel="shortcut icon" href="favicon.ico">
         <style>
             /*         header	 */
             * {
@@ -182,6 +183,12 @@
             }
             .content>div:hover{
                 background-color: rgba(157, 255, 0, 0.15);
+            }
+            #contents_div>.row{
+            	height : 30px;
+            }
+            .footer{
+            	height :50px !important;
             }
         </style>
 
@@ -453,7 +460,6 @@
 
                         </div>
                         <div id="contents_div" class="col-lg-9">
-
                             <div class="row header">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <span>튜터 승인 요청 목록</span>
