@@ -21,7 +21,7 @@
 <script>
 $(function(){
 	$("#logo").on("click", function() {
-		location.href = "mainHomePage.jsp";
+		location.href = "start.main";
 	});
 	if(${loginId == null}){
 		$("#toLogin").on("click",function(){
@@ -502,7 +502,7 @@ div {
 								</div>
 								<!-- 캐러셀 끝 -->
 								<div class="card-body">
-									<img src=${list.m_photo } width="80px" height="80px"
+									<img src= ${list.m_photo } width="80px" height="80px"
 										alt="이미지가 없습니다." class=face>
 									<span id=starBox> <c:choose>
 											<c:when test="${list.info_avgstar == '0'}">
@@ -555,10 +555,6 @@ div {
 					location.href="info.category?select="+select;
 				}
 				
-			})
-			
-			$("#logo").on("click",function(){
-				location.href="index.jsp";
 			})
 			
 			$(".classCard").on("click",function(){
