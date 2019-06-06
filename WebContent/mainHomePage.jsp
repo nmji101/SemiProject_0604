@@ -15,12 +15,13 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
 	rel="stylesheet">
+	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon" href="favicon.ico">
 <style>
-
 /* 헤드부분 */
 * {
-	font-family: 'Noto Sans KR', sans-serif;
+   font-family: 'Noto Sans KR', sans-serif;
 }
 #logo{
 	position: relative;
@@ -29,215 +30,228 @@
 }
 
 #header {
-	height: 200px;
-	width: 100%;
+   height: 200px;
+   width: 100%;
 }
 
 div {
-	width: 100%;
-	text-align: center;
+   width: 100%;
+   text-align: center;
 }
 
 .headBtn {
-	color: white;
+   color: white;
 }
 
 .headBtn:hover {
-	background-color: burlywood;
-	border: 1px solid burlywood;
-	color: white;
+   background-color: burlywood;
+   border: 1px solid burlywood;
+   color: white;
 }
 
 #searchbox {
-	height: 38px;
-	position: relative;
-	top: 4px;
-	border: 1px solid #ffba00;
-	border-radius: 10px;
-	padding: 10px;
+   height: 38px;
+   position: relative;
+   top: 4px;
+   border: 1px solid #ffba00;
+   border-radius: 10px;
+   padding: 10px;
 }
 
 .jumbotron {
-	background-image: url("main1.jpg");
-	background-size: cover;
-	margin: 0px;
+   background-image: url("main1.jpg");
+   background-size: cover;
+   margin: 0px;
 }
 
 
 #lookBtn {
-	font-weight: bold;
-	font-size: 23px;
-	width: auto;
+   font-weight: bold;
+   font-size: 23px;
+   width: auto;
 }
 
 .display-4 {
-	font-family: 'Do Hyeon', sans-serif;
+   font-family: 'Do Hyeon', sans-serif;
 }
 
 #navi {
-	width: 100%;
-	height: auto;
-	position: static;
+   width: 100%;
+   height: auto;
+   position: static;
 }
 
 .collapse {
-	text-align: center;
+   text-align: center;
 }
 
 .form-control {
-	width: 100%;
+   width: 100%;
 }
 
 .loactionMenu {
-	padding: 0px;
+   padding: 0px;
 }
 
 .dropdown-menu {
-	width: 100%;
-	text-align: center;
-	opacity: 50%;
-	padding: 0;
-	border: 0px;
-	margin: auto;
+   width: 100%;
+   text-align: center;
+   opacity: 50%;
+   padding: 0;
+   border: 0px;
+   margin: auto;
 }
 
 #content {
-	margin: auto;
-	width: 80%;
-	height: auto;
+   margin: auto;
+   padding: 50px 0px;
+   width: 80%;
+   height: auto;
 }
 
 .custom-select {
-	width: 200px;
-	float: right;
+   width: 200px;
+   float: right;
 }
 
 #navi {
-	background-color: #fced80;
-	text-align: center;
+   background-color: #fced80;
+   text-align: center;
 }
 
 .nav-item {
-	width: 33.3%;
-	margin: auto;
-	padding: 20px;
-	font-size: 20px;
-	font-weight: bold;
+   width: 33.3%;
+   margin: auto;
+   padding: 20px;
+   font-size: 20px;
+   font-weight: bold;
 }
 
 .nav-link {
-	color: #ffb100;
-	width: 200px;
-	font-family: 'Raleway', sans-serif;
+   color: #ffb100;
+   width: 200px;
+   font-family: 'Raleway', sans-serif;
 }
 .nav-link:hover {
-	color: #d8b13a;
+   color: #d8b13a;
 }
 
 .has-megamenu {
-	position: static;
+   position: static;
 }
 
 .dropdown-menu li{
-	padding: 5px 5px;
-	font-weight: 400;
-	color: #d8b13a;
+   padding: 5px 5px;
+   font-weight: 400;
+   color: #d8b13a;
 }
 
 .multi-column-dropdown {
-	list-style: none;
-	padding: 0px;
+   list-style: none;
+   padding: 0px;
 }
 
 .location, .category {
-	background-color: #fffce7;
-	margin: 0px;
-	width: 100%;
+   background-color: #fffce7;
+   margin: 0px;
+   width: 100%;
 }
 
 .multi-column-dropdown li, a{
-	display: block;
-	clear: both;
-	line-height: 1.428571429;
-	color: #d8b13a;
-	white-space: normal;
-	padding: 5px;
-	width: 100%;
-	cursor: pointer;
+   display: block;
+   clear: both;
+   line-height: 1.428571429;
+   color: #d8b13a;
+   white-space: normal;
+   padding: 5px;
+   width: 100%;
+   cursor: pointer;
 }
 
 .multi-column-dropdown li:hover, a:hover {
-	text-decoration: none;
-	color: #ffb100;
-	font-weight: bold;
+   text-decoration: none;
+   color: #ffb100;
+   font-weight: bold;
 }
 
 .count {
-	position: relative;
-	right: 100px;
-	top: 50px;
-	z-index: 10;
+   position: relative;
+   right: 100px;
+   top: 50px;
+   z-index: 10;
 }
 
 .carousel-item>img {
-	height: 300px;
-	border-radius: 20px;
+   height: 300px;
+   border-radius: 20px;
 }
 
 #carouselExampleIndicators{
-	margin:20px;
+   margin:20px;
 }
 
 #main1, #main2 {
-	font-family: 'Do Hyeon', sans-serif;
-	border-radius: 10px;
+   font-family: 'Do Hyeon', sans-serif;
+   border-radius: 10px;
 }
 
 #main1 {
-	color: black;
-	margin-left: 100px;
+   color: black;
+   margin-left: 100px;
 }
 
 #yellow {
-	color: #ffb100;
+   color: #ffb100;
 }
 
 .carousel-caption {
-	padding-bottom: 90px;
-	width: auto;
+   padding-bottom: 90px;
+   width: auto;
 }
 
 #naviBox {
-	width: 50%;
-	margin: 30px auto;
-	padding: 10px;
+   width: 50%;
+   margin: 30px auto;
+   padding: 10px;
 }
 
 .naviBtn {
-	background-color: white;
-	font-weight: bold;
-	border: 0px;
-	padding: 0px 10px;
+   background-color: white;
+   font-weight: bold;
+   border: 0px;
+   padding: 0px 10px;
 }
 
 .naviBtn:hover {
-	background-color: #a6e2bf;
+   background-color: #a6e2bf;
 }
 
 #footer {
-	height: 150px;
-	margin: auto;
+   height: 150px;
+   margin: auto;
 }
 
-#sns>img {
-	width: 50px;
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+}
+
+#sns>img{
+	margin:30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg{
+	margin-right:50px;
+	text-align: right;
 }
 </style>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 $(function(){
 	$("#logo").on("click", function() {
-		location.href = "mainHomePage.jsp";
+		location.href = "start.main";
 	})
 	$("#search_Btn").on("click",function(){
 		var input = $("#searchbox").val();
@@ -413,7 +427,7 @@ $(function(){
 							</div>
 						</ul></li>
 
-<li class="nav-item dropdown has-megamenu"><a href="#"
+					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">지역별</a>
@@ -499,49 +513,91 @@ $(function(){
 							</div>
 						</ul></li>
 
-					
+
 
 				</ul>
 			</nav>
 		</div>
 
 		<div id=content>
+			<div class="row">
+			<div class="col-12 col-lg-6">
+			<div class="card mb-3" style="max-width: auto;">
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img src="..." class="card-img" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">This is a wider card with supporting
+								text below as a natural lead-in to additional content. This
+								content is a little bit longer.</p>
+							<p class="card-text">
+								<small class="text-muted">Last updated 3 mins ago</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="col-12 col-lg-6">
+			<div class="card mb-3" style="max-width: auto;">
+				<div class="row no-gutters">
+					<div class="col-md-4">
+						<img src="..." class="card-img" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">This is a wider card with supporting
+								text below as a natural lead-in to additional content. This
+								content is a little bit longer.</p>
+							<p class="card-text">
+								<small class="text-muted">Last updated 3 mins ago</small>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+</div>
 
-			<div class="container">
-				<div id="carouselExampleIndicators" class="carousel slide"
+
+			
+				<div id="carousel" class="carousel slide"
 					data-ride="carousel">
 					<ol class="carousel-indicators">
-						<li data-target="#carouselExampleIndicators" data-slide-to="0"
+						<li data-target="#carousel" data-slide-to="0"
 							class="active"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+						<li data-target="#carousel" data-slide-to="1"></li>
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="메인4.jpg" class="d-block w-100" alt="...">
+							<img src="메인1.jpg" class="d-block w-100 mainImg" alt="...">
 							<div class="carousel-caption d-none d-md-block">
 								<h1 id=main1>
-									현재 <span id=yellow>n</span>개 클래스 등록중!
+									현재 <span id=count class=yellow>${count }</span>개 클래스 등록!
 								</h1>
 								<p></p>
 							</div>
 
 						</div>
 						<div class="carousel-item">
-							<img src="메인2.jpg" class="d-block w-100" alt="...">
+							<img src="메인2.jpg" class="d-block w-100 mainImg" alt="...">
 							<div class="carousel-caption d-none d-md-block">
 								<h1 id="main2">
-									신규가입 하고, <span id=yellow>1 꿀</span> 받자!
+									신규가입 하고, <span id=honey class=yellow>1 꿀</span> 받자!
 								</h1>
 								<p></p>
 							</div>
 						</div>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleIndicators"
+					<a class="carousel-control-prev" href="#carousel"
 						role="button" data-slide="prev"> <span
 						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+					</a> <a class="carousel-control-next" href="#carousel"
 						role="button" data-slide="next"> <span
 						class="carousel-control-next-icon" aria-hidden="true"></span> <span
 						class="sr-only">Next</span>
@@ -550,14 +606,18 @@ $(function(){
 			</div>
 
 
-		</div>
-
 
 		<div id=footer class="row">
 			<div class="col-12 col-md-8"></div>
 			<div class="col-12 col-md-4" id=sns>
-				<img src="블로그.png"> <img src="인스타그램.png"> <img
-					src="트위터.png"> <img src="페이스북.png">
+		<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+		<img src="https://img.icons8.com/ios/48/000000/twitter.png">
+		<img src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+		<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br>
+			© Gooldanji. all rights reserved.	
 			</div>
 		</div>
 	</div>

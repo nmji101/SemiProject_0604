@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import kh.semi.dao.DoClassDAO;
+import kh.semi.dao.MemberDAO;
 import kh.semi.dao.NoticeDAO;
 import kh.semi.dto.DoClassDTO;
 import kh.semi.dto.NoticeDTO;
@@ -116,6 +117,12 @@ public class NoticeServlet extends HttpServlet
 		{
 			try
 			{
+				MemberDAO mdao = new MemberDAO();
+				String m_id = (String)request.getSession().getAttribute("loginId");
+				String type = mdao.selectTypeById(m_id);
+				
+				request.setAttribute("type", type);
+				
 				NoticeDAO dao = new NoticeDAO();
 				
 				int currentPage;

@@ -423,7 +423,19 @@ div {
 					</div>
 
 				</div>
+				<c:if test="${ type == 'admin' }">
+					
+					<div class="row">
+					
+						<div class="col-12">
+						
+							<a href="NoticeWrite.jsp" class="btn btn-primary">글 쓰기</a>
+							
+						</div>
+						
+					</div>					
 
+				</c:if>
 			</div>
 
 		</div>
