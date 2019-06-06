@@ -234,13 +234,13 @@ public class CategoryDAO {
 		}
 		List<String> list = new ArrayList<String>();
 		if(needPrev) {
-			list.add("<이전");
+			list.add("◀ 이전");
 		}
 		for(int i = startNavi ; i <= endNavi ; i++) {
 			list.add(i+"");
 		}
 		if(needNext) {
-			list.add("다음>");
+			list.add("다음 ▶");
 		}
 		return list;
 	}
