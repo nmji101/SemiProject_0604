@@ -20,9 +20,35 @@
         <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="favicon.sico">
         <style>
 /*         header	 */
+
+/* 해당 #3f51b5 색상코드 변경 시 디자인 일괄적용 */
+
+/* datepicker Style */
+.ui-datepicker { width: 270px; padding: 0; display: none; border: 0; margin-top: 10px; font-size: 15px;}
+.ui-widget.ui-widget-content { border: 0; border-radius: 3px; overflow: hidden; background: none; box-shadow: 0 0 8px rgba(0,0,0,0.3);}
+.ui-datepicker .ui-widget-header { position: relative; padding: 6px 0 36px 0; border: 0; background: #3f51b5; color: #fff; border-radius: 0; }
+.ui-state-default:not(.ui-state-highlight){background:#fff !important; text-align:center !important;}
+.ui-state-highlight{text-align:center !important;}
+.ui-state-active{color:skyblue !important; border:1px solid skyblue !important;}
+
+#schedule *{
+	font-size : 16px;
+	width:100%;
+	text-align:center;
+}
+#select *:not(img){
+	font-size : 16px;
+	width:100%;
+}
+#select{
+	border : 1px solid blue;
+	border-radius: 10px;
+	padding : 1px;
+}
+
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
@@ -60,12 +86,13 @@
 	border: 1px solid burlywood;
 	color: white;
 }
+
 /*         header	 */
         #myCarousel1{
         	width : 100%;
         }
             div{
-                border: 1px solid rgba(0, 0, 0, 0.19);
+                border: none;
                 box-sizing: border-box;
             }
             #wrapper{
@@ -86,12 +113,14 @@
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
+                background-color: yellow;
             }
             #contents>div{
                 float: left;
             }
             #mainContent{
                 width: 60%;
+                background-color: white;
             }
             #sideContent{
                 width: 300px;
@@ -99,11 +128,14 @@
                 /*                position: fixed;*/
                 /*                left: 60.5%;*/
                 overflow: hidden;
+                margin-left : 10px;
             }
+            
             #sideFixed{
-                position: fixed;
-                width: 300px;
+/*                 position: fixed; */
+                width: 290px;
                 font-size: 12px;
+                background-color: white;
             }
             #classNavi{
                 overflow: hidden;
@@ -111,6 +143,7 @@
                 width: 100%;
                 /*                height: 30px;*/
                 background-color: white;
+                border-bottom: 1px solid black;
             }
             #clickNavi{
                 margin: 0px;
@@ -198,6 +231,7 @@
             .class_detail{
                 padding-top: 40px;
                 margin: 0px 40px;
+                border-bottom: 1px solid black;
             }
             /*            사이드 fixed 메뉴*/
             #sideTop{
@@ -210,7 +244,6 @@
             /*                임시*/
             #purchase{
                 text-align: center;
-                margin-top: 20px;
             }
             #purchaseBtn{
                 font-size: 15px;
@@ -225,6 +258,10 @@
             #scdBtn{
             	background-color: transparent;
             	text-align : center;
+            }
+            #datepicker>div{
+            width:100%;
+            height:100%;
             }
         </style>
 		<!--         다음지도 api cdn -->
@@ -299,11 +336,21 @@
             	
                 var he1 = document.getElementById("myCarousel1").scrollHeight;
                 var he2 = document.getElementById("classNavi").scrollHeight;
+                var mainWidth = $("#mainContent").css("width");
                 $(window).scroll(function() {
                     if($(this).scrollTop() > he1+he2){
-                        $("#classNavi").css({ "position": "fixed", "top": "0px" });
+                        $("#classNavi").css({ "position": "fixed", "top": "0px" ,"width":mainWidth});
                     }else{
                         $("#classNavi").css({ "position": "relative"});
+                    }
+                });
+                
+                var side = document.getElementById("sideFixed").scrollHeight;
+                $(window).scroll(function() {
+                    if($(this).scrollTop() > side){
+                        $("#sideFixed").css({ "position": "fixed", "top": "0px" });
+                    }else{
+                        $("#sideFixed").css({ "position": "relative"});
                     }
                 });
                 $(".class_detail").each(function(i,item){//해당 카테고리 위치로 이동하면 일단 배경색 바꿔놓기.
@@ -619,20 +666,15 @@
                             </div>
                             <div class="star">
                             <c:choose>
-                            	<c:when test="${info_avgstar==0 }">
-                            	
+                            	<c:when test="${info_avgstar==0}">
+                            		<span class="badge badge-info">NEW</span>
                             	</c:when>
                             	<c:otherwise>
-                            	
-                            	
+                            		<c:forEach var="i" begin="0" end="${classInfo.info_avgstar}">
+                            			<img src="Content/Images/star.jfif">
+                            		</c:forEach>                        
                             	</c:otherwise>
                             </c:choose>
-                                <a id="starImg" class="starImg" href="#">
-                                    <!--                                 별점에 따라..몇개로할건지..... -->
-<%--                                     <c:forEach var="i" begin="0" end="${classInfo.info_avgstar"> --%>
-<!--                                     	<img src="Content/Images/star.jfif"> -->
-<%--                                     </c:forEach> --%>
-                                </a>
                             </div>
                             <div class="info">
                                 <ul>
@@ -676,7 +718,7 @@
                     <div id="review" class="class_detail">
                         <h3>후기</h3>
                         <div>
-                        	<iframe src="http://localhost:8080/Semi/index.review" id="the_iframe" onload="calcHeight();" name="WrittenPublic" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
+                        	<iframe src="http://localhost:8080/Semi/index.review" id="the_iframe" onload="" name="WrittenPublic" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
                         </div>
                     </div>
                     <!--                    여기까지 mainContent   -->
