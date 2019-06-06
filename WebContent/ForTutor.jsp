@@ -293,6 +293,15 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 .searchaddr {
 	width: 250px;
 }
+   
+    .logo{
+        background-image: url(로고.png);
+        background-size: cover;
+        height: 70px;
+    }
+    .tutorid{
+    width:100%;
+    }
 
 
 </style>
@@ -306,12 +315,17 @@ $(function(){
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 	});
-	$("#findaddr").on("click",function(){
-	$("#hope").text("희망주소 : " + $("#sample4_roadAddress").val());	
-	})
-	
-
+ 	$("#findaddr").on("click",function(){
+ 	$("#hope").text($("#sample4_roadAddress").val());	
+        $('.dropdown-menu').hide();
+ 	})
+    
 	$("#register").on("click", function() {
+		
+		if($("#hope").text()=="희망지역"){
+            alert('주소저장을 해주세요');
+            return false;
+        }
 	      
 		  var max = /^[0-9]{1,2}$/;
 	      var price = /^[0-9]{1,6}$/;
@@ -372,6 +386,12 @@ $(function(){
 	}
 	});
 	
+ 	$("#back").on('click', function(){
+ 		history.go(-1);
+ 	})
+ 	$("#home").on('click', function(){
+ 		location.href="mainHomePage.jsp";
+ 	})
 
 		
 });
@@ -383,10 +403,11 @@ $(function(){
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
+				<div class="logo col-2 ml-3"></div>
 				<div class="top col-lg-12">
 					<div class="head welcome">
 						<h4>
-							<span class="badge welcome badge-warning">'튜터'님 환영합니다</span>
+							<span class="badge welcome badge-warning">튜터 페이지입니다</span>
 						</h4>
 					</div>
 					<div class=send>
@@ -398,7 +419,7 @@ $(function(){
 					<div class=img></div>
 					<!--튜터 본인 사진-->
 					<div id=id class="array border-warning" >
-				<input  type="hidden"  name=tutorid><label id=tutor>	${ loginId }</label>
+				<input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
 					</div>
 					<!--ID-->
 					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
@@ -628,7 +649,7 @@ $(function(){
 		
 <br>
 <button type="button" class="btn btn-warning" id=back>뒤로가기</button>
-<button type="button" class="btn btn-warning">홈으로 가기</button>
+<button type="button" class="btn btn-warning" id=home>홈으로 가기</button>
 		</div>	
 		
 	
