@@ -225,7 +225,6 @@ body {
 }
 
 .intro {
-	width: 200px;
 	height: 95px;
 	overflow-y: auto;
 	border: 1px ridge red;
@@ -233,7 +232,6 @@ body {
 }
 
 #id {
-	width: 200px;
 	height: 30px;
 	border: 1px ridge red;
 	outline: none;
@@ -274,7 +272,7 @@ body {
 .inputcash {
 	width: 100%;
 	height: 100%;
-	border: 1px solid #dec99a;
+	border: 1px solid #ffba00;
 }
 
 div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
@@ -291,7 +289,7 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 }
 
 .searchaddr {
-	width: 250px;
+	width: 326px;
 }
    
     .logo{
@@ -302,7 +300,18 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
     .tutorid{
     width:100%;
     }
-
+    .text{
+        height: 30px;
+    }
+    
+    .red{
+        background: red;
+    }
+    .makeclass{
+        width: 100%;
+        height: 30px;
+        text-align: center;
+    }
 
 </style>
     
@@ -315,17 +324,17 @@ $(function(){
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 	});
- 	$("#findaddr").on("click",function(){
- 	$("#hope").text($("#sample4_roadAddress").val());	
-        $('.dropdown-menu').hide();
- 	})
     
-	$("#register").on("click", function() {
-		
-		if($("#hope").text()=="희망지역"){
-            alert('주소저장을 해주세요');
+// 	$("#findaddr").on("click",function(){
+// 	$("#hope").text($("#sample4_roadAddress").val());	
+//        $('.dropdown-menu').hide();
+// 	})
+    
+	$("#register").on("click", function() { //클래스완료 버튼 클릭시
+		if($("#sample4_postcode").val()==""){
+            alert('주소를 확인해주세요');
             return false;
-        }
+    }
 	      
 		  var max = /^[0-9]{1,2}$/;
 	      var price = /^[0-9]{1,6}$/;
@@ -372,10 +381,10 @@ $(function(){
 		$("input[name=tutorid]").val($("#tutor").html());
 		$("input[name=intro]").val($("#imtutor").html());
 		$("input[name=down]").val($('#mystatus2').text());
-		$("input[name=zipcode]").val();
-		$("input[name=add1]").val();
-		$("input[name=add2]").val();
-		$("input[name=add3]").val();
+		$("input[name=addr1]").val();
+		$("input[name=addr2]").val();
+		$("input[name=addr3]").val();
+		$("input[name=addr4]").val();
 		$("input[name=max]").val();
 		$("input[name=cash]").val();
 		$("input[name=startdate]").val();
@@ -418,12 +427,12 @@ $(function(){
 				<div class="array col-lg-12">
 					<div class=img></div>
 					<!--튜터 본인 사진-->
-					<div id=id class="array border-warning" >
-				<input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
+					<div id=id class="m-0 p-0 col-4 array border-warning" >
+				    <input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
 					</div>
 					<!--ID-->
 					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
-					<div class="intro array border-warning" id="imtutor"
+					<div class="intro m-0 p-0 col-4 array border-warning" id="imtutor"
 						contentEditable="true">
 						</div>
 					<input type="hidden" name="intro">
@@ -432,53 +441,49 @@ $(function(){
 			<br>
 			
 			<!-- 헤더부분 끝 -->
+<!--
 
 			<p>
 				<a class="btn btn-warning" data-toggle="collapse"
 					href="#collapseExample" role="button" aria-expanded="false"
 					aria-controls="collapseExample"> Class 만들기 ▼ </a>
 			</p>
+-->
 
 			<div class=row>
 				<!-- 컨텐츠 부분-->
-				<div class=" col-lg-12 col-md-12 col-sm-12 p-0 m-0"
-					id="collapseExample">
+				<div class=" col-lg-12 col-md-12 col-sm-12 p-0 m-0"id="collapseExample">
 					<div 	class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
+				
+				        <h4><span class="badge makeclass badge-warning">Class 만들기</span></h4>
 						<!--Class등록 Show부분-->
-						<div class=" drop p-0 ">
-							<!-- 드랍버튼 3개-->
+						<div class="pt-2 ">	
 							
-							<div class="mr-1 ml-4 p-0 head col-3 btn-group">
+							<div class="mr-3   p-0 head col-3 btn-group">
 								<button type="button" id="mystatus2"class="btn btn-warning p-1 dropdown-toggle"
 									data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">카테고리</button>
-
 								<ul id="mytype" class="dropdown-menu" role="menu"
 									aria-labelledby="searchType">
 									<li><a class="dropdown-item" href="#">디자인</a></li>
 									<li><a class="dropdown-item" href="#">IT</a></li>
 									<li><a class="dropdown-item" href="#">언어</a></li>
 									<li><a class="dropdown-item" href="#">라이프스타일</a></li>
-									<li><a class="dropdown-item" href="#">재태크</a></li>
+									<li><a class="dropdown-item" href="#">재테크</a></li>
 								</ul>
-								
 								<input type="hidden" name="down">
-							</div>
-							
-							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
+							</div>			
+							<div class="mr-3   p-0 cash col-3 head cash form-group">
 								<input type="text" class="inputcash form-control" placeholder="희망인원" name=max id=max>
 							</div>
-							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
+							<div class="mr-3   p-0 cash col-3 head cash form-group">
 								<input type="text" class="inputcash form-control"	placeholder="희망금액" name=cash id=price>
 							</div>
-
-							
-							<div class="mr-1 ml-4 p-0 pb-2 head col-10 btn-group">
-								<button type="button"
-									class="btn btn-warning p-1 dropdown-toggle"data-toggle="dropdown" aria-haspopup="true"aria-expanded="false" id=hope>희망지역</button>
-								<div class="dropdown-menu">
-									<input type="button" onclick="sample4_execDaumPostcode()" class="btn addr" value="주소 찾기 클릭" > 
-										<span id="guide"	style="color: #999; display: none"></span>
+							<div class="head mr-3   p-0  head col-3 btn-group">
+								<button type="button" onclick="sample4_execDaumPostcode()"
+									class="btn addr btn-warning p-1"data-aria-haspopup="true"aria-expanded="false" id=hope>주소검색</button>
+                            </div>
+                            <div class="col-8 head  p-0 ">
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 									<script>  <!--주소등록-->
 										//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -527,18 +532,12 @@ $(function(){
 													}).open();
 										}
 									</script>
-									<input type="text" id="sample4_postcode"class=" searchaddr zipcode text" placeholder="우편번호"
-										name=zipcode readonly > 
-									<input type="text" id="sample4_roadAddress" class=" searchaddr road text"	placeholder="도로명주소" name=add1 readonly> 
-									<input type="text" id="sample4_jibunAddress" class=" searchaddr road text" placeholder="지번주소" 
-									name=add2 readonly   readonly> 
-									<input type="text"id="sample4_detailAddress" class=" searchaddr text"
-										placeholder="상세주소 입력하기" name=add3>
-										<input type="button"  class="btn addr" value="주소저장" id=findaddr> 
-								</div>
+									<input type="text" id="sample4_postcode"class="searchaddr inputcash zipcode text" placeholder="우편번호"name=addr1 readonly > 
+									<input type="text" id="sample4_roadAddress" class="inputcash searchaddr road text"	placeholder="도로명주소" name=addr2 readonly> 
+									<input type="text" id="sample4_jibunAddress" class="inputcash searchaddr road text" placeholder="지번주소" name=addr3 readonly> 
+									<input type="text"id="sample4_detailAddress" class="inputcash searchaddr text"placeholder="상세주소 입력하기" name=addr4>
+<!--							  <input type="button"  class="btn addr" value="주소저장" id=findaddr> -->
 							</div>
-							
-							
 						</div>
 						<br>
 
@@ -601,22 +600,20 @@ $(function(){
 						<br>	
 
 						<div class="array col-12 p-0 m-0">
-							<!-- 사진 캐러셀+내용입력-->
+							<!-- 내용입력-->
 							<h3><span class="badge m-0 p-1 badge-warning">내용입력</span></h3>
 							<div contentEditable="true" class="main  p-0 m-0 col-12 border-warning " id=cont ></div>
 							<input type="hidden" name="explain"><!-- Class 내용 등록-->	
-						</div><!-- 사진 캐러셀 +내용입력 끝--><br>
+						</div><!-- 내용입력 끝--><br>
 						<!--  업로드 버튼 -->
 						
 							<div class="input_wrap">
 							<input type="file" value="" name="img"><br>
          						<input type="file" value="" name="img2"><br>
          						<input type="file" value="" name="img3">
-        					</div>
-       
-						<br>
+        					</div><br>
 						<div class="head btm m-0 p-0 col-12">
-							<button type="button" id="register" class="btn btn-outline-warning">Class 등록하기</button>
+							<button type="button" id="register" class="btn btn-warning">Class 등록하기</button>
 						</div>
 					
 						<!--Class등록 Show부분 끝-->
