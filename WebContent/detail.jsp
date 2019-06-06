@@ -618,6 +618,15 @@
                                 <h5>${classInfo.info_title}</h5>
                             </div>
                             <div class="star">
+                            <c:choose>
+                            	<c:when test="${info_avgstar==0 }">
+                            	
+                            	</c:when>
+                            	<c:otherwise>
+                            	
+                            	
+                            	</c:otherwise>
+                            </c:choose>
                                 <a id="starImg" class="starImg" href="#">
                                     <!--                                 별점에 따라..몇개로할건지..... -->
 <%--                                     <c:forEach var="i" begin="0" end="${classInfo.info_avgstar"> --%>

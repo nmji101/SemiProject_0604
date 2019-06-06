@@ -22,7 +22,7 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-#logo {
+#logo{
 	position: relative;
 	bottom: 20px;
 	cursor: pointer;

@@ -23,7 +23,6 @@ import kh.semi.dto.ClassInfoDTO;
 @WebServlet("/tutor")
 public class TutorController extends HttpServlet {
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -91,10 +90,8 @@ public class TutorController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request,response);
 	}
 }
-
 
 
