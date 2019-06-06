@@ -478,15 +478,15 @@ div {
 								<div class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">
 										<div class="carousel-item active">
-											<img src="임시1.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img1 }" class="d-block w-100" alt="..."
 												width="200px" height="200px">
 										</div>
 										<div class="carousel-item">
-											<img src="임시2.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
 										<div class="carousel-item">
-											<img src="임시3.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
 									</div>
@@ -503,7 +503,7 @@ div {
 								<!-- 캐러셀 끝 -->
 								<div class="card-body">
 									<img src=${list.m_photo } width="80px" height="80px"
-										alt="이미지.png" class=face>
+										alt="이미지가 없습니다." class=face>
 									<span id=starBox> <c:choose>
 											<c:when test="${list.info_avgstar == '0'}">
 												<span class="badge badge-pill badge-info">New</span>
@@ -576,7 +576,6 @@ div {
 			
 			$(".locationMenu li").on("click",function(){
 				var addr = $(this).text();
-				alert(addr);
 				location.href="info.category?addr="+addr+"&select=info_avgstar desc";
 			})
 			
