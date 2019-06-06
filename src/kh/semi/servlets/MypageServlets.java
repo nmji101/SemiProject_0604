@@ -347,9 +347,8 @@ public class MypageServlets extends HttpServlet
 							String tmpName = System.currentTimeMillis() + "_" + fi.getName();
 							fi.write(new File(filePath + "/" + tmpName));
 
-							String file = "<img src=/files/"+tmpName+">";
+							String file = "<img src=\"/files/"+tmpName+"\">";
 							dao.updateImgById(file,m_id);
-
 							break;
 						}
 						catch(org.apache.commons.io.FileExistsException e)
@@ -460,6 +459,7 @@ public class MypageServlets extends HttpServlet
 				e.printStackTrace();
 			}
 		}
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{

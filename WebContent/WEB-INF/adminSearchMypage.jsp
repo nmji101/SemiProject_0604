@@ -304,7 +304,7 @@
                     }else if(page=="다음>"){
                         page = ${endpage}+1;
                     }
-                    location.href = "clickPage.admin?currentPage="+page;
+                    location.href = "clickSearchPage.admin?currentPage="+page;
                 });
                 
                 $("#tutor_search_Btn").on("click",function(){//검색버튼 눌렀을때
@@ -325,6 +325,10 @@
                 	}
                 	location.href = "searchTutor.admin?way="+way+"&search="+searchInput;
                 });
+                
+                $("#toAdminPage").on("click",function(){
+                	location.href = "mypage.admin?search=search";
+                })
             });
 
         </script>
@@ -472,7 +476,7 @@
                                 <c:choose>
                                     <c:when test="${upgradeList==null}">
                                         <div class="col-lg-12 col-md-12 col-sm-12">
-                                            <span>튜터 승인 요청 목록이 없습니다.</span>
+                                            <span>검색어 : ${search} / 검색결과가 없습니다.</span>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
@@ -505,6 +509,7 @@
                             <div class="row footer mt-2">
                                 <div class="col-lg-3 col-md-12 col-sm-12">
                                     <button  id="toApplyTutor" type="button" class="btn btn-outline-warning footBtn">튜터승인하기</button>
+                                    <button  id="toAdminPage" type="button" class="btn btn-outline-warning footBtn">전체목록보기</button>
                                 </div>
                                 <div class="col-lg-9 col-md-12 col-sm-12 text-right">
                                     <select id="searchSelect" class="custom-select mb-2">

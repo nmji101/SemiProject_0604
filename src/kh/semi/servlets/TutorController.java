@@ -34,7 +34,7 @@ public class TutorController extends HttpServlet {
 		String time = sdf.format(date);
 		//      PrintWriter pw = response.getWriter();
 
-
+		
 		String rootPath = request.getServletContext().getRealPath("/");
 		String filePath = rootPath + "files" ; //files�뒗 蹂� ���옣�냼�씠硫� �엫�떆���옣�냼媛� �븘�땲�떎
 		String filePath2 = filePath + "/"+time;
@@ -51,7 +51,7 @@ public class TutorController extends HttpServlet {
 		//      String requestURI = request.getRequestURI();
 		//      String contextPath = request.getContextPath();
 		//      String command = requestURI.substring(contextPath.length());
-
+		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 			Enumeration files = multi.getFileNames();
@@ -60,7 +60,7 @@ public class TutorController extends HttpServlet {
 			//          String file_name = multi.getFilesystemName(file);
 			//          String ori_file_name = multi.getOriginalFileName(file);
 
-
+			dto.setInfo_tutorid((String)request.getSession().getAttribute("loginId"));
 			dto.setInfo_category(multi.getParameter("down"));
 			dto.setInfo_title(multi.getParameter("inputtitle"));
 			dto.setInfo_explain(multi.getParameter("explain"));
@@ -76,13 +76,12 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_img3(multi.getFilesystemName("img3"));
 			dto.setInfo_start(multi.getParameter("startdate"));
 			dto.setInfo_end(multi.getParameter("enddate"));
-			//         �벑濡앹씪
-			//         蹂꾩젏�넻怨�
-			//         議고쉶�닔}
 
-
-			dao.test(dto);   
-			System.out.println("DB�벑濡� �맖");
+			int result = dao.test(dto);   
+			if(result>0) {
+				System.out.println("DB등록 됨");
+				request.getRequestDispatcher("ForTutorAfter.jsp").forward(request, response);
+			}  
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
