@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
-<link rel="shortcut icon" href="favicon.ico">
+<title>Insert title here</title>
+
 <style>
 body {
 
@@ -30,8 +30,8 @@ body {
 }
 .row{
 	background-color: #ffffff95;
-	width:15%;
-	height: 35%;
+	width: 300px;
+ 	height: 400px;
 	border-radius: 10px;
 }
 
@@ -134,16 +134,14 @@ body {
 </head>
 <body>
 
-	<body>
-
 	<div id="layer">
 
 		<div class="row">
-
-			<div class="col-12 my-1">
+ 
+			<div class="col-12 my-1 mt-3">
+				
 				<button id="email_login_btn" class="btn btn-primary"><b>이메일로 로그인</b></button>
 				
-
 			</div>
 
 			<div class="col-12 my-1">

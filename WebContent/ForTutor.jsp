@@ -293,6 +293,15 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 .searchaddr {
 	width: 250px;
 }
+   
+    .logo{
+        background-image: url(로고.png);
+        background-size: cover;
+        height: 70px;
+    }
+    .tutorid{
+    width:100%;
+    }
 
 
 </style>
@@ -306,12 +315,17 @@ $(function(){
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 	});
-	$("#findaddr").on("click",function(){
-	$("#hope").text("희망주소 : " + $("#sample4_roadAddress").val());	
-	})
-	
-
+ 	$("#findaddr").on("click",function(){
+ 	$("#hope").text($("#sample4_roadAddress").val());	
+        $('.dropdown-menu').hide();
+ 	})
+    
 	$("#register").on("click", function() {
+		
+		if($("#hope").text()=="희망지역"){
+            alert('주소저장을 해주세요');
+            return false;
+        }
 	      
 		  var max = /^[0-9]{1,2}$/;
 	      var price = /^[0-9]{1,6}$/;
@@ -337,11 +351,11 @@ $(function(){
 
 	      
 	      if(!max.test($('#max').val())){
-	         alert("인원은 99명 이하만 가능합니다 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
+	         alert("인원을 확인해주세요 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
 	         return false;
 	      }
 	      if(!price.test($('#price').val())){
-		         alert("가격은 100만원 미만만 가능합니다 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
+		         alert("가격을 확인해주세요 \n\r 100만원 이상의 금액은 관리자에게 문의주세요");
 		      return false;
 	      }  
 	      if(result2[0] > result2s[0] ){
@@ -372,6 +386,12 @@ $(function(){
 	}
 	});
 	
+ 	$("#back").on('click', function(){
+ 		history.go(-1);
+ 	})
+ 	$("#home").on('click', function(){
+ 		location.href="mainHomePage.jsp";
+ 	})
 
 		
 });
@@ -383,10 +403,11 @@ $(function(){
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
+				<div class="logo col-2 ml-3"></div>
 				<div class="top col-lg-12">
 					<div class="head welcome">
 						<h4>
-							<span class="badge welcome badge-warning">'튜터'님 환영합니다</span>
+							<span class="badge welcome badge-warning">튜터 페이지입니다</span>
 						</h4>
 					</div>
 					<div class=send>
@@ -398,7 +419,7 @@ $(function(){
 					<div class=img></div>
 					<!--튜터 본인 사진-->
 					<div id=id class="array border-warning" >
-				<input  type="hidden"  name=tutorid><label id=tutor>	${ loginId }</label>
+				<input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
 					</div>
 					<!--ID-->
 					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
@@ -426,6 +447,30 @@ $(function(){
 						<!--Class등록 Show부분-->
 						<div class=" drop p-0 ">
 							<!-- 드랍버튼 3개-->
+							
+							<div class="mr-1 ml-4 p-0 head col-3 btn-group">
+								<button type="button" id="mystatus2"class="btn btn-warning p-1 dropdown-toggle"
+									data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false">카테고리</button>
+
+								<ul id="mytype" class="dropdown-menu" role="menu"
+									aria-labelledby="searchType">
+									<li><a class="dropdown-item" href="#">디자인</a></li>
+									<li><a class="dropdown-item" href="#">IT</a></li>
+									<li><a class="dropdown-item" href="#">언어</a></li>
+									<li><a class="dropdown-item" href="#">라이프스타일</a></li>
+									<li><a class="dropdown-item" href="#">재태크</a></li>
+								</ul>
+								
+								<input type="hidden" name="down">
+							</div>
+							
+							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
+								<input type="text" class="inputcash form-control" placeholder="희망인원" name=max id=max>
+							</div>
+							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
+								<input type="text" class="inputcash form-control"	placeholder="희망금액" name=cash id=price>
+							</div>
 
 							
 							<div class="mr-1 ml-4 p-0 pb-2 head col-10 btn-group">
@@ -435,7 +480,7 @@ $(function(){
 									<input type="button" onclick="sample4_execDaumPostcode()" class="btn addr" value="주소 찾기 클릭" > 
 										<span id="guide"	style="color: #999; display: none"></span>
 									<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-									<script>
+									<script>  <!--주소등록-->
 										//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 										function sample4_execDaumPostcode() {
 											new daum.Postcode(
@@ -493,29 +538,7 @@ $(function(){
 								</div>
 							</div>
 							
-							<div class="mr-1 ml-4 p-0 head col-3 btn-group">
-								<button type="button" id="mystatus2"class="btn btn-warning p-1 dropdown-toggle"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">카테고리</button>
-
-								<ul id="mytype" class="dropdown-menu" role="menu"
-									aria-labelledby="searchType">
-									<li><a class="dropdown-item" href="#">디자인</a></li>
-									<li><a class="dropdown-item" href="#">IT</a></li>
-									<li><a class="dropdown-item" href="#">언어</a></li>
-									<li><a class="dropdown-item" href="#">라이프스타일</a></li>
-									<li><a class="dropdown-item" href="#">재태크</a></li>
-								</ul>
-								
-								<input type="hidden" name="down">
-							</div>
 							
-							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
-								<input type="text" class="inputcash form-control" placeholder="희망인원" name=max id=max>
-							</div>
-							<div class="mr-1 ml-4 p-0 cash col-3 head cash form-group">
-								<input type="text" class="inputcash form-control"	placeholder="희망금액" name=cash id=price>
-							</div>
 						</div>
 						<br>
 
@@ -626,7 +649,7 @@ $(function(){
 		
 <br>
 <button type="button" class="btn btn-warning" id=back>뒤로가기</button>
-<button type="button" class="btn btn-warning">홈으로 가기</button>
+<button type="button" class="btn btn-warning" id=home>홈으로 가기</button>
 		</div>	
 		
 	
