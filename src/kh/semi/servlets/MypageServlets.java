@@ -372,7 +372,7 @@ public class MypageServlets extends HttpServlet
 		}
 		else if(url.equals("review.mypage"))
 		{
-			request.setAttribute("m_id", request.getSession().getAttribute("loginId"));
+			request.setAttribute("nickname", request.getParameter("nickname"));
 			request.setAttribute("c_id", request.getParameter("c_id"));
 			request.setAttribute("date", request.getParameter("date"));
 			request.setAttribute("title", request.getParameter("title"));
@@ -396,7 +396,7 @@ public class MypageServlets extends HttpServlet
 				Date date = new Date(year, month-1, day);
 
 				dao.insertReview(request.getParameter("c_id"),
-						request.getParameter("m_id"), 
+						request.getParameter("nickname"), 
 						request.getParameter("text"), 
 						request.getParameter("star"),
 						date
