@@ -51,7 +51,7 @@ public class MemberDAO
 	public int kakaoSignUp(MemberDTO dto) throws Exception
 	{
 		String sql = "INSERT INTO MEMBER(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_type,m_photo) " + 
-				"VALUES (?,?,?,?,?,?,'normal','<img src=\"\" alt=\"이미지가 없습니다\">')";
+				"VALUES (?,?,?,?,?,?,'normal','<img src=\"Content/Images/m_photo_1.jpg\" alt=\"이미지가 없습니다\">')";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
