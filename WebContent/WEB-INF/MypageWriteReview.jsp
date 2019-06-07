@@ -97,7 +97,7 @@
 		        <div class="col-12">
 		        	
 		        	<input name="c_id" type="hidden" value=${ c_id }>
-		        	<input name="nickname" type="hidden" value=${ nickname }>
+		        	<input name="m_id" type="hidden" value=${ m_id }>
 		        	<input name="date" type="hidden" value=${ date }>
 		        	
 		        </div>

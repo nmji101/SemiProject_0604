@@ -11,8 +11,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.sun.xml.internal.ws.api.pipe.NextAction;
-
 import kh.semi.dto.ReviewDTO;
 
 public class ReviewDAO
@@ -280,6 +278,26 @@ public class ReviewDAO
 		)
 		{
 			pstat.setInt(1, seq);
+			pstat.setString(2, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
+	}
+	public boolean overlapReviewCheck(int classid, String id) throws Exception
+	{
+		String sql = "select * from REVIEW where re_classid = ? and re_userid = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, classid);
 			pstat.setString(2, id);
 			try
 			(
