@@ -60,14 +60,14 @@ public class FrontController_review extends HttpServlet {
 					list.get(i-1).setRe_userId(pado.selectById(list.get(i-1).getRe_userId()).getM_nickname());
 				}
 				
-				for(int i = 1 ; i <= list.size() ; i++)
-				{
-					int seq  = list.get(i-1).getRe_seq();
-					if(dao.overlapCheck(seq, id))
-					{
-						request.setAttribute("likeCheck"+(i-1), "true");
-					}
-				}
+//				for(int i = 1 ; i <= list.size() ; i++)
+//				{
+//					int seq  = list.get(i-1).getRe_seq();
+//					if(dao.overlapCheck(seq, id))
+//					{
+//						request.setAttribute("likeCheck"+(i-1), "true");
+//					}
+//				}
 				
 				/*
 				 * int aveStar = dao.aveStar(classId); // 평균 별점 dao.updateAveStar(aveStar,
