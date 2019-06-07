@@ -7,6 +7,7 @@
         <meta charset="UTF-8">
         <title>관리자 마이페이지</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
         <style>
             /*         header	 */
             * {
@@ -313,7 +314,7 @@
                 	var way = select[select.selectedIndex].value;
                 	
                 	var searchInput = $("#tutor_searchInput").val();
-                	var regex = /^.?$/;
+                	var regex = /^ +?$/;
                 	var result = regex.exec(searchInput);
                 	
                 	if(way=="way"){

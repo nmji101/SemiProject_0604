@@ -506,9 +506,9 @@ h2 {
 
 												<div class="class_btn_div col-lg-3 my-auto">
 
-													<input class="btn btn-primary detail_class_btn mx-3"
+													<input class="btn btn-info detail_class_btn mx-3"
 														name=${ list[i-1].classId } type="button" value="자세히">
-													<input class="btn btn-primary review_class_btn mx-3"
+													<input class="btn btn-info review_class_btn mx-3"
 														name=${ list[i-1].classId } type="button" value="리뷰 작성">
 
 													<input class="class_title" type="hidden"

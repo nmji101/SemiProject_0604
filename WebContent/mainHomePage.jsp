@@ -241,7 +241,7 @@ div {
 
 #footerMsg{
 	margin-right:50px;
-	text-align: right;
+	text-align:right;
 }
 </style>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
