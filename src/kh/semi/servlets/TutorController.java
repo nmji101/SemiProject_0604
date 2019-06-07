@@ -34,16 +34,16 @@ public class TutorController extends HttpServlet {
 		String time = sdf.format(date);
 		//      PrintWriter pw = response.getWriter();
 
-		
+
 		String rootPath = request.getServletContext().getRealPath("/");
-		String filePath = rootPath + "files" ; //files�뒗 蹂� ���옣�냼�씠硫� �엫�떆���옣�냼媛� �븘�땲�떎
+		String filePath = rootPath + "files" ; 
 		String filePath2 = filePath + "/"+time;
 		File uploadPath1 = new File(filePath);
 		if(!uploadPath1.exists()) {
 			uploadPath1.mkdir();
 		}
 		File uploadPath = new File(filePath2);
-		if(!uploadPath.exists()) {//�빐�떦 �뤃�뜑媛� 議댁옱�븯吏� �븡�뒗�떎硫� mkdir濡� 留뚮뱾�뼱�씪
+		if(!uploadPath.exists()) {
 			uploadPath.mkdir();
 		}
 		System.out.println(filePath2);
@@ -51,7 +51,7 @@ public class TutorController extends HttpServlet {
 		//      String requestURI = request.getRequestURI();
 		//      String contextPath = request.getContextPath();
 		//      String command = requestURI.substring(contextPath.length());
-		
+
 		try {
 			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 			Enumeration files = multi.getFileNames();
@@ -65,10 +65,14 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_title(multi.getParameter("inputtitle"));
 			dto.setInfo_explain(multi.getParameter("explain"));
 			dto.setInfo_intro(multi.getParameter("intro"));
+<<<<<<< HEAD
+			dto.setInfo_addr1(multi.getParameter("zipcode"));
+=======
+>>>>>>> ecdd0830cd8e62c30bc8d83a68aa0608ed982ec2
 			dto.setInfo_addr1(multi.getParameter("addr1"));
-		    dto.setInfo_addr2(multi.getParameter("addr2"));
-		    dto.setInfo_addr3(multi.getParameter("addr3"));
-		    dto.setInfo_addr4(multi.getParameter("addr4"));
+			dto.setInfo_addr2(multi.getParameter("addr2"));
+			dto.setInfo_addr3(multi.getParameter("addr3"));
+			dto.setInfo_addr4(multi.getParameter("addr4"));
 			dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
 			dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
 			dto.setInfo_img1(multi.getFilesystemName("img"));

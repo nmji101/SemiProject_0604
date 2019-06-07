@@ -16,6 +16,11 @@ public class ReviewDTO {
 		super();
 	}
 	
+	public ReviewDTO(String star) {
+		super();
+		this.star = star;
+	}
+	
 	public ReviewDTO(int re_seq, int re_classId, String re_userId, String re_review, String star, Date re_date,
 			Date re_writeDate, int re_like) {
 		super();

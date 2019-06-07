@@ -346,7 +346,7 @@
                 var mainWidth = $("#mainContent").css("width");
                 $(window).scroll(function() {
                     if($(this).scrollTop() > he1+he2){
-                        $("#classNavi").css({ "position": "fixed", "top": "0px" ,"width":mainWidth});
+                        $("#classNavi").css({ "position": "fixed", "top": "0px" ,"width":mainWidth , "z-index" : "2"});
                     }else{
                         $("#classNavi").css({ "position": "relative"});
                     }
@@ -449,6 +449,7 @@
             $("#scdBtn").hide();
             $("#select").hide();
             $("#selectScd").hide();
+            $("#selectInfo").prop("flag","false");
 				
             	var selectedDate = "";
                 $(".calendar").on("click",function(){
@@ -543,8 +544,17 @@
                 	
                 	$(purchaseForm).submit();
                 });
-  
                 
+                var addr = "${classInfo.info_addr2}";
+                var addrRegex = /(.+?) (.+?) .*/g;
+                var addrResult = addrRegex.exec(addr);
+                if(addrResult!=null){
+                	addr = addrResult[1];
+                    if(addrResult[1]=="서울"){
+                    	addr = addrResult[2];
+                    }
+                }
+                $("#simpleAddr").text(addr);
             });
         </script>
     </head>
@@ -694,7 +704,7 @@
                                         <div>
                                             <img src="Content/Images/map-location.png">
                                         </div>
-                                        위치
+                                       	<span id="simpleAddr"></span>
                                     </li>
                                     <li>
                                         <div>
@@ -733,7 +743,7 @@
                     <div id="review" class="class_detail">
                         <h3>후기</h3>
                         <div>
-                        	<iframe src="http://localhost:8080/Semi/index.review" id="the_iframe" onload="" name="WrittenPublic" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
+                        	<iframe src="index.review?classId=${classInfo.info_classid}" id="the_iframe" onload="" name="WrittenPublic" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
                         </div>
                     </div>
                     <!--                    여기까지 mainContent   -->
@@ -761,7 +771,7 @@
                         </div>
                         <div id="select">
                         	<div>
-                        		<div id="selectInfo" class="d-flex" flag="false">
+                        		<div id="selectInfo" class="d-flex">
                         			<span id="selectDate"></span><img class="ml-auto" id="closeImg" src="Content/Images/close.png">
                         		</div>
                         		<div>참가비 (1인)</div>

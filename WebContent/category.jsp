@@ -523,7 +523,7 @@ div {
 								<div class="card-body">
 									${list.m_photo }
 									<span id=starBox> <c:choose>
-											<c:when test="${list.info_avgstar == '0'}">
+											<c:when test="${list.info_avgstar =='0'}">
 												<span class="badge badge-pill badge-info">New</span>
 											</c:when>
 										</c:choose> <c:forEach begin="1" end="${list.info_avgstar}">
@@ -556,7 +556,7 @@ div {
 				</c:otherwise>
 	</c:choose>
 	</div>
-	
+
 
 	<div id=footer class="row">
 			<div class="col-12 col-md-8"></div>

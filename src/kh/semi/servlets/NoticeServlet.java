@@ -194,12 +194,89 @@ public class NoticeServlet extends HttpServlet
 			int seq = Integer.parseInt(request.getParameter("seq"));
 			try
 			{
+				MemberDAO mdao = new MemberDAO();
+				String m_id = (String)request.getSession().getAttribute("loginId");
+				String type = mdao.selectTypeById(m_id);
+				
+				request.setAttribute("type", type);
+				
 				NoticeDAO dao = new NoticeDAO();
 				NoticeDTO dto = dao.selectDetail(seq);
 				
 				request.setAttribute("dto", dto);
 				
 				request.getRequestDispatcher("NoticeDetail.jsp").forward(request, response);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}
+		else if(url.equals("delete.notice"))
+		{
+			try
+			{
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				NoticeDAO dao = new NoticeDAO();
+				
+				int result = dao.deleteBySeq(seq);
+				
+				if(result > 0)
+				{
+					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
+				}
+				else
+				{
+					response.sendRedirect("error.html");
+				}
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}
+		else if(url.equals("passon.notice"))
+		{
+			try
+			{
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");
+				
+				request.setAttribute("seq", seq);
+				request.setAttribute("title", title);
+				request.setAttribute("contents", contents);
+				
+				request.getRequestDispatcher("NoticeUpdate.jsp").forward(request, response);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}
+		else if(url.equals("update.notice"))
+		{
+			try
+			{
+				int seq = Integer.parseInt(request.getParameter("seq"));
+				String title = request.getParameter("title");
+				String contents = request.getParameter("contents");
+				
+				NoticeDAO dao = new NoticeDAO();
+				int result1 = dao.updateTitleBySeq(title, seq);
+				int result2 = dao.updateContentsBySeq(contents, seq);
+				
+				if(!(result1 > 0) || !(result2 > 0))
+				{
+					response.sendRedirect("error.html");
+				}
+				else
+				{
+					response.sendRedirect("list.notice?page=1");
+				}
 			}
 			catch(Exception e)
 			{
