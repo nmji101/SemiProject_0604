@@ -139,22 +139,75 @@ $(function()
 		    form.appendTo('body');
 		
 		    var text = $(".note-editable").children("p").html();
-		    var html = `<input type="hidden" value=`+text+` name="contents">`;
 		    
-		    var seq = $('<input type="hidden" value='+"${ seq }"+' name="seq">');
-			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
-			var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-		 	
-			
-			
-		    form.append(seq).append(title).append(contents);
-		    $("#contents_hidden").val(text);
-		    
-		    form.submit();
+		    if((text != "<br>") && ($("#title_text").val() != ""))
+		    {
+		    	var seq = $('<input type="hidden" value='+"${ seq }"+' name="seq">');
+				var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+				var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+			 	
+			    form.append(seq).append(title).append(contents);
+			    $("#contents_hidden").val(text);
+			    
+			    form.submit();
+		    }
+		    else
+		    {
+		    	alert("작성 내용을 확인하세요.");
+		    }
 		});
 	    
 	    $("#title_text").val("${ title }");
 		$(".note-editable").children("p").html(`${ contents }`);
+		
+		if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
+						}
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
+						{
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
+						}
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
   });
   
   onload = function()

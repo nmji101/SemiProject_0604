@@ -120,6 +120,55 @@ div {
 		{
 			location.href = "list.notice?page=1";
 		});
+		
+		if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
+						}
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
+						{
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
+						}
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
 		        
 	});
         
@@ -238,8 +287,8 @@ div {
 			<div class="col-10">
 				
 				<c:set var="contents" value="${ dto.no_contents }"/>
-				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p>
-			
+<%-- 				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p> --%>
+				<p id="html" class="my-5">${contents}</p>
 			</div>
 		
 		</div>
