@@ -68,6 +68,12 @@ public class MypageServlets extends HttpServlet
 
 				List<DoClassDTO> list = dcdao.selectDoingClass(m_id, currentPage);
 				
+				for(int i = 1 ; i <= list.size() ; i++)
+				{
+					String tutorId = list.get(i-1).getTutorId();
+					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+				}
+				
 				int recordTotalCount = dcdao.selectDoingCount(m_id);
 				
 				int pageTotalCount;
@@ -145,6 +151,12 @@ public class MypageServlets extends HttpServlet
 				
 				List<DoClassDTO> list = dcdao.selectDoneClass(m_id, currentPage);
 
+				for(int i = 1 ; i <= list.size() ; i++)
+				{
+					String tutorId = list.get(i-1).getTutorId();
+					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+				}
+				
 				ReviewDAO rdao = new ReviewDAO();
 				
 				List<String> strList = new ArrayList<String>();
