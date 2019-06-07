@@ -30,7 +30,7 @@ public class TutorController extends HttpServlet {
 		ClassInfoDTO dto = new ClassInfoDTO();
 
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪 E�슂�씪");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년MM월DD일E요일");
 		String time = sdf.format(date);
 		//      PrintWriter pw = response.getWriter();
 
@@ -88,7 +88,7 @@ public class TutorController extends HttpServlet {
 
 			int result = dao.test(dto);   
 			if(result>0) {
-				System.out.println("DB�벑濡� �맖");
+				System.out.println("DB저장완료");
 				request.getRequestDispatcher("ForTutorAfter.jsp").forward(request, response);
 			}  
 		}catch(Exception e) {
