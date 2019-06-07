@@ -45,6 +45,12 @@ public class MypageServlets extends HttpServlet
 		
 		String m_id = (String)request.getSession().getAttribute("loginId");
 		
+		if(m_id == null)
+		{
+			System.out.println("세션에 아이디 없음");
+			response.sendRedirect("Login.jsp");
+		}
+		
 		System.out.println(url);
 		if(url.equals("doing.mypage"))
 		{
