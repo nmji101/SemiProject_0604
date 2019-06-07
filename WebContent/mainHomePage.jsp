@@ -231,6 +231,7 @@ div {
 	height: 300px;
 	width: 100%;
 	background-color: #f2f0e1;
+	margin: 0px;
 }
 
 #sns>img{

@@ -146,6 +146,9 @@ div {
 .card-body>img{
 	height: 80px;
 	width: 80px;
+	float:right;
+	border-radius: 50px;
+
 }
 
 #starBox{
@@ -262,6 +265,7 @@ div {
 	height: 300px;
 	width: 100%;
 	background-color: #f2f0e1;
+	margin: 0px;
 }
 #sns>img {
 	width: 50px;
@@ -547,10 +551,12 @@ div {
 								name="nowPage">
 						</form>
 					</c:forEach>
+		
 				</div>
-	</div>
-	</c:otherwise>
+				</c:otherwise>
 	</c:choose>
+	</div>
+	
 
 	<div id=footer class="row">
 			<div class="col-12 col-md-8"></div>
@@ -564,7 +570,7 @@ div {
 			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br>
 			© Ggooldanji. all rights reserved.	
 			</div>
-		</div>
+	</div>
 
 	<script>
 			
@@ -582,14 +588,14 @@ div {
 				location.href="clickClass.classInfo?classId="+classId;
 			})			
 			
-			
-			var tmp = $(".tmp").val();
-			
-			if(tmp!=null){
+
+			$(".tmp").each(function(i,item){
+				var tmp = $(item).val();
 				var result = tmp.replace(/[0-9]/g,"");
-			$(".addr2").html(result);
-			}
-			
+				$(item).parent().html(result);
+			})
+
+
 			$(".locationMenu li").on("click",function(){
 				var addr = $(this).text();
 				location.href="info.category?addr="+addr+"&select=info_avgstar desc";
