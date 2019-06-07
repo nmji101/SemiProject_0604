@@ -32,6 +32,8 @@ public class FrontController_review extends HttpServlet {
 				
 				ReviewDAO dao = new ReviewDAO();
 				
+				String id = (String)request.getSession().getAttribute("loginId");
+				
 				int classId =Integer.parseInt(request.getParameter("classId"));
 				System.out.println("classId :" + classId);
 				
@@ -49,6 +51,15 @@ public class FrontController_review extends HttpServlet {
 				int end = currentPage * recordCountPerPage;
 				int start = end - (recordCountPerPage-1);
 				List<ReviewDTO> list = dao.selectAll(start, end, classId);
+				
+				for(int i = 1 ; i <= list.size() ; i++)
+				{
+					int seq  = list.get(i-1).getRe_seq();
+					if(dao.overlapCheck(seq, id))
+					{
+						request.setAttribute("likeCheck"+(i-1), "true");
+					}
+				}
 				
 				/*
 				 * int aveStar = dao.aveStar(classId); // 평균 별점 dao.updateAveStar(aveStar,
