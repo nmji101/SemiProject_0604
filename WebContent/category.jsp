@@ -198,7 +198,6 @@ div {
 	border-radius: 50px;
 
 }
-
 #starBox{
 	float: left;
 	margin-right:10px;
@@ -524,82 +523,99 @@ div {
 	<div id=content>
 
 		<c:choose>
-
 			<c:when test="${size != 0}">
-			<select class="custom-select">
-							<option selected>분류</option>
-							<option value="info_avgstar desc">추천순</option>
-							<option value="info_classid desc">최신순</option>
-							<option value="info_price">낮은 가격순</option>
-						</select>
+				<select class="custom-select">
+					<option selected>분류</option>
+					<option value="info_avgstar desc">추천순</option>
+					<option value="info_classid desc">최신순</option>
+					<option value="info_price">낮은 가격순</option>
+				</select>
 
 
-						<div class="row cardItem">
-							<c:forEach var="list" items="${list }">
-								<div class="col-12 col-md-6 col-lg-4 cardItem classCard">
-									<input type="hidden" class="classId"
-										value="${list.info_classid }">
-									<!-- N명참여 배치용 -->
-									<span class="count"> <span
-										class="badge badge-pill badge-success"> <span
-											class="badge badge-success">${list.totalcount }</span> 명 참여
-									</span>
-									</span>
-									<!----------------->
-									<div class="card" style="width: 18rem">
-										<!-- 캐러셀 시작 -->
-										<div class="carousel slide" data-ride="carousel">
-											<div class="carousel-inner">
-												<div class="carousel-item active">
-													<img src="임시1.png" class="d-block w-100" alt="..."
-														width="200px" height="200px">
-												</div>
-												<div class="carousel-item">
-													<img src="임시2.png" class="d-block w-100" alt="..."
-														width="200px" height="200px">
-												</div>
-												<div class="carousel-item">
-													<img src="임시3.png" class="d-block w-100" alt="..."
-														width="200px" height="200px">
-												</div>
-											</div>
-											<a class="carousel-control-prev" href="#carouselExampleFade"
-												role="button" data-slide="prev"> <span
-												class="carousel-control-prev-icon" aria-hidden="true"></span>
-												<span class="sr-only">Previous</span>
-											</a> <a class="carousel-control-next" href="#carouselExampleFade"
-												role="button" data-slide="next"> <span
-												class="carousel-control-next-icon" aria-hidden="true"></span>
-												<span class="sr-only">Next</span>
-											</a>
+				<div class="row cardItem">
+					<c:forEach var="list" items="${list }">
+						<div class="col-12 col-md-6 col-lg-4 cardItem classCard">
+							<input type="hidden" class="classId"
+								value="${list.info_classid }">
+							<!-- N명참여 배치용 -->
+							<span class="count"> 
+							<span class="badge badge-pill badge-success"> 
+							<span class="badge badge-success">${list.totalcount }</span> 명 참여
+							</span>
+							</span>
+							<!----------------->
+							<div class="card" style="width: 18rem">
+								<!-- 캐러셀 시작 -->
+								<div class="carousel slide" data-ride="carousel">
+									<div class="carousel-inner">
+										<div class="carousel-item active">
+											<img src="${list.info_img1 }" class="d-block w-100" alt="이미지가 없습니다."
+												width="200px" height="200px">
 										</div>
-										<!-- 캐러셀 끝 -->
-										<div class="card-body">
-											<img src=${list.m_photo } width="80px" height="80px"
-												alt="이미지.png" class=face>
-											<div class="card-text">
-												<b>${list.info_title }</b>
-											</div>
-											<div>
-												<span>${list.info_avgstar }</span> | <span>${list.info_addr2 }</span>
-											</div>
-											<div>
-												<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
-											</div>
+										
+										<c:choose>
+										<c:when test="${list.info_img2 != null }">
+										<div class="carousel-item">
+											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
+												width="200px" height="200px">
 										</div>
+										</c:when>		
+										</c:choose>
+										
+										<c:choose>
+										<c:when test="${list.info_img3 != null }">
+										<div class="carousel-item">
+											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
+												width="200px" height="200px">
+										</div>
+										</c:when>		
+										</c:choose>
+										
 									</div>
+									<a class="carousel-control-prev" href="#carousel" role="button"
+										data-slide="prev"> <span
+										class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a> <a class="carousel-control-next" href="#carousel"
+										role="button" data-slide="next"> <span
+										class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
 								</div>
-							</c:forEach>
+								<!-- 캐러셀 끝 -->
+								<div class="card-body">
+									${list.m_photo }
+									<span id=starBox> <c:choose>
+											<c:when test="${list.info_avgstar =='0'}">
+												<span class="badge badge-pill badge-info">New</span>
+											</c:when>
+										</c:choose> <c:forEach begin="1" end="${list.info_avgstar}">
+											<img src="star.jfif" class=star>
+										</c:forEach>
+									</span><br>
+									<p class="card-text">
+										<b>${list.info_title }</b>
+									</p>
+									<p>
+										<span><input type="hidden" value=${list.info_price } class=price></span> | <span>${list.m_nickname }</span>
+									</p>
+									<p class=addr2>
+										<input type="hidden" value="${list.info_addr2 }" class=tmp>
+									</p>
+								</div>
+							</div>
 						</div>
-						<div id=naviBox class="row justify-content-center">
-							<c:forEach var="i" begin="0" end="${size-1}">
-								<form action="info.category" method="post" class=btnForm>
-									<input type=submit value="${navi[i] }" class="naviBtn"
-										name="nowPage">
-								</form>
-							</c:forEach>
-						</div>
-			
+					</c:forEach>
+				</div>
+				<div id=naviBox class="row justify-content-center">
+					<c:forEach var="i" begin="0" end="${size-1}">
+						<form action="info.category" method="post" class=btnForm>
+							<input type=submit value="${navi[i] }" class="naviBtn"
+								name="nowPage">
+						</form>
+					</c:forEach>
+		
+				</div>
 			</c:when>
 			<c:when test="${searchResult != null}">
 				<div id=soon>

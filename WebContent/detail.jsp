@@ -646,7 +646,7 @@ div {
                 	}
                 	var tutorId = "${classInfo.info_tutorid}";
                 	if(tutorId==userId){
-                		alert("본인이 등록한 class입니다. \r\n 다른 사람의 클래스를 들어보시는건 어때요?*^^*");
+                		alert("본인이 등록한 class입니다.\r\n 다른 사람의 클래스를 들어보시는건 어때요?");
                 		return;
                 	}
                 	if($("#selectInfo").prop("flag")=="false"){

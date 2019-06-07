@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.dao.CategoryDAO;
+import kh.semi.dao.MemberDAO;
 import kh.semi.dto.CategoryDTO;
 
 @WebServlet("/start.main")
@@ -20,6 +21,7 @@ public class MainController extends HttpServlet {
 		try {
 			int count = dao.recordTotalCount();
 			request.setAttribute("count", count);
+			//new MemberDAO().insertAdmin();
 			
 			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar", 1, 4);
 			request.setAttribute("popularList", popularList );

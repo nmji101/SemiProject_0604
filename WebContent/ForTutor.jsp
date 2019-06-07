@@ -8,7 +8,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>클래스 등록페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -22,11 +22,9 @@
 .ui-datepicker-trigger {
 	cursor: pointer;
 }
-
 .hasDatepicker {
 	cursor: pointer;
 }
-
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -172,7 +170,6 @@ body {
 	
 	width: 150px;
 	height: 150px;
-	background-size: contain;
 	float: left;
 }
 
@@ -316,8 +313,10 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         height: 30px;
         text-align: center;
     }
-
-
+	#tutorImg>img{
+		width:150px;
+		height:150px;
+	}
 </style>
     
 <script>
@@ -446,7 +445,7 @@ $(function(){
 				</div>
 				<br>
 				<div class="array col-lg-12">
-					<div class="img head"></div>
+					<div id="tutorImg" class="img head">${dto.m_photo }</div>
 					<!--튜터 본인 사진-->
 					<div id=id class=" m-0 p-0 col-5  array border-warning" >
 				    <input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>

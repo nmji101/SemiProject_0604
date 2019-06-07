@@ -318,7 +318,7 @@ font-family: 'Gugi', cursive;
 
 				<div id="profile_div_row" class="row">
 
-					<div class="col-lg-6">
+					<div class="col-lg-9">
 
 						<div id="profile_div" class="row">
 
