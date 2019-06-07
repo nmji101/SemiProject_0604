@@ -2,6 +2,7 @@ package kh.semi.servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -25,31 +26,27 @@ public class TutorController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-
 		TutorDAO dao = new TutorDAO();
 		ClassInfoDTO dto = new ClassInfoDTO();
 
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪 E�슂�씪");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
 		String time = sdf.format(date);
-		//      PrintWriter pw = response.getWriter();
+		PrintWriter pw = response.getWriter();
 
 
 		String rootPath = request.getServletContext().getRealPath("/");
-		String filePath = rootPath + "files" ; 
+		String filePath = rootPath + "files" ; //files는 본 저장소이며 임시저장소가 아니다
 		String filePath2 = filePath + "/"+time;
-		File uploadPath1 = new File(filePath);
-		if(!uploadPath1.exists()) {
-			uploadPath1.mkdir();
-		}
-		File uploadPath = new File(filePath2);
-		if(!uploadPath.exists()) {
+		File uploadPath2 = new File(filePath2);
+		File uploadPath = new File(filePath);
+		if(!uploadPath.exists()) {//해당 폴더가 존재하지 않는다면 mkdir로 만들어라
 			uploadPath.mkdir();
 		}
-//		System.out.println(rootPath);
-//		System.out.println(filePath2);
-		System.out.println(filePath2.substring(rootPath.length()));
-		String filePathtoImg = filePath2.substring(rootPath.length());
+		if(!uploadPath2.exists()) {//해당 폴더가 존재하지 않는다면 mkdir로 만들어라
+			uploadPath2.mkdir();
+		}
+		System.out.println(filePath2);
 		//      
 		//      String requestURI = request.getRequestURI();
 		//      String contextPath = request.getContextPath();
@@ -63,7 +60,7 @@ public class TutorController extends HttpServlet {
 			//          String file_name = multi.getFilesystemName(file);
 			//          String ori_file_name = multi.getOriginalFileName(file);
 
-			dto.setInfo_tutorid((String)request.getSession().getAttribute("loginId"));
+			dto.setInfo_tutorid(multi.getParameter("tutorid"));
 			dto.setInfo_category(multi.getParameter("down"));
 			dto.setInfo_title(multi.getParameter("inputtitle"));
 			dto.setInfo_explain(multi.getParameter("explain"));
@@ -74,29 +71,27 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_addr4(multi.getParameter("addr4"));
 			dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
 			dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
-			dto.setInfo_img1(filePathtoImg+"/"+multi.getFilesystemName("img"));
-			dto.setInfo_img2(filePathtoImg+"/"+multi.getFilesystemName("img2"));
-			if(multi.getFilesystemName("img2")==null) {
-				dto.setInfo_img2(multi.getFilesystemName("img2"));
-			}
-			dto.setInfo_img3(filePathtoImg+"/"+multi.getFilesystemName("img3"));
-			if(multi.getFilesystemName("img3")==null) {
-				dto.setInfo_img3(multi.getFilesystemName("img3"));
-			}
+			dto.setInfo_img1(multi.getFilesystemName("img"));
+			dto.setInfo_img2(multi.getFilesystemName("img2"));
+			dto.setInfo_img3(multi.getFilesystemName("img3"));
 			dto.setInfo_start(multi.getParameter("startdate"));
 			dto.setInfo_end(multi.getParameter("enddate"));
+			//         등록일
+			//         별점통계
+			//         조회수}
+
 
 			int result = dao.test(dto);   
 			if(result>0) {
-				System.out.println("DB�벑濡� �맖");
+				System.out.println("DB등록 됨");
 				request.getRequestDispatcher("ForTutorAfter.jsp").forward(request, response);
-			}  
+			}	
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		doGet(request,response);
 	}
 }
