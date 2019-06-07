@@ -44,9 +44,10 @@
 	width:100%;
 }
 #select{
-	border : 1px solid blue;
+	border : 2px solid rgba(135, 206, 235, 0.52);
 	border-radius: 10px;
 	padding : 1px;
+	margin : 2px;
 }
 
 * {
@@ -244,6 +245,7 @@
             /*                임시*/
             #purchase{
                 text-align: center;
+                background-color: transparent;
             }
             #purchaseBtn{
                 font-size: 15px;
@@ -252,6 +254,7 @@
                 width: 100%;
                 transition-duration: 1s;
                 height:30px;
+                border-radius: 5px;
             }
             #purchaseBtn:hover{
                 background-color: rgba(43, 43, 227, 0.63);
@@ -688,7 +691,7 @@
                             </div>
                             <div class="star">
                             <c:choose>
-                            	<c:when test="${info_avgstar==0}">
+                            	<c:when test="${classInfo.info_avgstar=='0'}">
                             		<span class="badge badge-info">NEW</span>
                             	</c:when>
                             	<c:otherwise>

@@ -460,7 +460,8 @@ div {
 
 									<div class="row">
 
-										<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
+										<div class="class_img_div col-lg-2 my-auto">
+											<img src="${ list[i-1].img }">
 										</div>
 
 										<div class="class_text_div col-lg-7 my-auto">

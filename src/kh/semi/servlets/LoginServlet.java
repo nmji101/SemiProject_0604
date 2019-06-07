@@ -391,7 +391,7 @@ public class LoginServlet extends HttpServlet
 					//age
 					String birthday = null;
 					if(resObj.get("birthday")!=null) {
-						birthday = resObj.get("birthday").getAsString();
+						birthday = resObj.get("birthday").getAsString().replace("-", "");
 					}
 					String agerange = null;
 					if(resObj.get("age")!=null) {
@@ -434,9 +434,6 @@ public class LoginServlet extends HttpServlet
 					//접근 토큰 삭제요청
 					//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id={클라이언트 아이디}
 					//&client_secret={클라이언트 시크릿}&access_token={접근 토큰}&service_provider=NAVER
-
-
-
 
 					//request.getSession().setAttribute("delete", deleteToken);
 					//https://nid.naver.com/oauth2.0/token?grant_type=delete
