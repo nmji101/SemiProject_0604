@@ -65,9 +65,6 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_title(multi.getParameter("inputtitle"));
 			dto.setInfo_explain(multi.getParameter("explain"));
 			dto.setInfo_intro(multi.getParameter("intro"));
-
-			dto.setInfo_addr1(multi.getParameter("zipcode"));
-
 			dto.setInfo_addr1(multi.getParameter("addr1"));
 			dto.setInfo_addr2(multi.getParameter("addr2"));
 			dto.setInfo_addr3(multi.getParameter("addr3"));

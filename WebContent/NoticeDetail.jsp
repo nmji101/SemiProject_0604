@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,11 @@
 	#btn_div
 	{
 		text-align: right;
+	}
+	#header_row > div
+	{
+		text-align: center;
+		border: 1px solid #ffba00;
 	}
 	
 </style>
@@ -28,7 +34,10 @@
 	$(function()
 	{
 		
-		
+		$("#back_btn").on("click", function()
+		{
+			location.href = "list.notice?page=1";
+		});
 		        
 	});
         
@@ -46,7 +55,7 @@
 
 	<div class="container">
 	
-		<div class="row my-5">
+		<div id="header_row" class="row my-5">
 		
 			<div class="col-1">
 				
@@ -79,26 +88,28 @@
 		
 			<div class="col-12">
 				
-				<p id="html" class="my-5">${ dto.no_contents }</p>
-				
+				<c:set var="contents" value="${ dto.no_contents }"/>
+				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p>
+			
 			</div>
 		
 		</div>
 		
-		<c:if test="${ type == 'admin' }">
+		
 		
 			<div class="row">
 			
 				<div id="btn_div" class="col-12">
-					
-					<input id="update_btn" class="btn btn-primary" type="button" value="수정">
-					<input id="delete_btn" class="btn btn-primary" type="button" value="삭제">
-					
+					<c:if test="${ type == 'admin' }">
+						<input id="update_btn" class="btn btn-primary" type="button" value="수정">
+						<input id="delete_btn" class="btn btn-primary" type="button" value="삭제">
+					</c:if>
+						<input id="back_btn" class="btn btn-primary" type="button" value="목록으로">
 				</div>
 			
 			</div>
 		
-		</c:if>
+		
 	
 	</div>
 
