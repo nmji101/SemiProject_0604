@@ -114,7 +114,7 @@ div {
 #popular>h2 {
 	font-family: 'Do Hyeon', sans-serif;
 	text-align: left;
-	color: #E74781;
+	color: #EE8585;
 }
 
 .custom-select {
@@ -209,8 +209,8 @@ div {
 	font-size: 50px;
 }
 
-#card{
-	width:100%;
+#card {
+	width: 100%;
 	margin: 30px auto;
 }
 
@@ -219,8 +219,8 @@ div {
 	width: auto;
 }
 
-.row{
-	margin:0px;
+.row {
+	margin: 0px;
 }
 
 #naviBox {
@@ -542,130 +542,130 @@ $(function(){
 								stroke-linecap="butt" stroke-linejoin="miter"
 								stroke-miterlimit="10" stroke-width="1" text-anchor="none">
 							<path fill="none" d="M 0 192 v -192 h 192 v 192 Z" />
-							<g fill="#e74781">
+							<g fill="#ee8585">
 							<path
 								d="M 38 24 c -21.68 0 -38 16.0013 -38 37.2813 c 0 26.2403 28.5613 51.2787 39.2813 60.7187 l 21.9687 19.656 c 3.44 3.584 9.32 3.012 12 -1.172 l 1.12504 -2.0464 c -5.92 -8.752 -10.375 -18.9152 -10.375 -30.2032 c 0 -24.8 20.24 -44.2344 46 -44.2344 c 7.44 0 14.96 1.83752 22 5.43752 c 1.12 -0.56 2.2392 -1.11376 3.3592 -1.59376 c 0.4 -2.16 0.6408 -4.32248 0.6408 -6.56248 c 0 -21.28 -16.32 -37.2813 -38 -37.2813 c -13.12 0 -23.68 7.19688 -30 12.7969 c -6.32 -5.6 -16.88 -12.7969 -30 -12.7969 Z M 110 80 c -17.12 0 -30 12.1544 -30 28.2344 c 0 7.6 3.364 14.9712 7.844 21.5312 c 6.96 10.16 16.8832 18.3872 21.8432 22.5472 l 17.516 14.0152 c 2.808 2.24 6.7936 2.24 9.5936 0 l 17.516 -14.0152 c 8.08 -6.8 29.6872 -24.6384 29.6872 -44.0784 c 0 -16.08 -12.88 -28.2344 -30 -28.2344 c -9.36 0 -17.04 4.3928 -22 8.3128 c -1.04 -0.8 -2.2376 -1.5912 -3.4376 -2.3912 c -4.8 -3.2 -11.1224 -5.9216 -18.5624 -5.9216 Z" /></g></g></svg>
 						요즘 인기많은 클래스
 					</h2>
 				</div>
 				<div id=card>
-				<div class="row">
-				<div class="col-12 col-lg-6">
-					<div class="card mb-3" style="max-width: auto;">
-						<div class="row no-gutters">
-							<div class="col-md-4">
-								<!-- 캐러셀 시작 -->
-								<div class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img src="${list.info_img1 }" class="d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
+					<div class="row">
+						<div class="col-12 col-lg-6">
+							<div class="card mb-3" style="max-width: auto;">
+								<div class="row no-gutters">
+									<div class="col-md-4">
+										<!-- 캐러셀 시작 -->
+										<div class="carousel slide" data-ride="carousel">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<img src="${list.info_img1 }" class="d-block w-100"
+														alt="이미지가 없습니다." width="200px" height="200px">
+												</div>
+
+												<c:choose>
+													<c:when test="${list.info_img2 != null }">
+														<div class="carousel-item">
+															<img src="${list.info_img2 }" class="d-block w-100"
+																alt="이미지가 없습니다." width="200px" height="200px">
+														</div>
+													</c:when>
+												</c:choose>
+
+												<c:choose>
+													<c:when test="${list.info_img3 != null }">
+														<div class="carousel-item">
+															<img src="${list.info_img3 }" class=d-block
+																w-100" alt="이미지가 없습니다." width="200px" height="200px">
+														</div>
+													</c:when>
+												</c:choose>
+
+											</div>
+											<a class="carousel-control-prev" href="#carousel"
+												role="button" data-slide="prev"> <span
+												class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a> <a class="carousel-control-next" href="#carousel"
+												role="button" data-slide="next"> <span
+												class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
 										</div>
-										
-										<c:choose>
-										<c:when test="${list.info_img2 != null }">
-										<div class="carousel-item">
-											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
-										</div>
-										</c:when>		
-										</c:choose>
-										
-										<c:choose>
-										<c:when test="${list.info_img3 != null }">
-										<div class="carousel-item">
-											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
-										</div>
-										</c:when>		
-										</c:choose>
-										
+										<!-- 캐러셀 끝 -->
 									</div>
-									<a class="carousel-control-prev" href="#carousel" role="button"
-										data-slide="prev"> <span
-										class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a> <a class="carousel-control-next" href="#carousel"
-										role="button" data-slide="next"> <span
-										class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">Card title</h5>
+											<p class="card-text">This is a wider card with supporting
+												text below as a natural lead-in to additional content. This
+												content is a little bit longer.</p>
+											<p class="card-text">
+												<small class="text-muted">Last updated 3 mins ago</small>
+											</p>
+										</div>
+									</div>
 								</div>
-								<!-- 캐러셀 끝 -->
 							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
-									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</p>
+						</div>
+						<div class="col-12 col-lg-6">
+							<div class="card mb-3" style="max-width: auto;">
+								<div class="row no-gutters">
+									<div class="col-md-4">
+										<!-- 캐러셀 시작 -->
+										<div class="carousel slide" data-ride="carousel">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<img src="${list.info_img1 }" class="d-block w-100"
+														alt="이미지가 없습니다." width="200px" height="200px">
+												</div>
+
+												<c:choose>
+													<c:when test="${list.info_img2 != null }">
+														<div class="carousel-item">
+															<img src="${list.info_img2 }" class="d-block w-100"
+																alt="이미지가 없습니다." width="200px" height="200px">
+														</div>
+													</c:when>
+												</c:choose>
+
+												<c:choose>
+													<c:when test="${list.info_img3 != null }">
+														<div class="carousel-item">
+															<img src="${list.info_img3 }" class=d-block
+																w-100" alt="이미지가 없습니다." width="200px" height="200px">
+														</div>
+													</c:when>
+												</c:choose>
+
+											</div>
+											<a class="carousel-control-prev" href="#carousel"
+												role="button" data-slide="prev"> <span
+												class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a> <a class="carousel-control-next" href="#carousel"
+												role="button" data-slide="next"> <span
+												class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
+										</div>
+										<!-- 캐러셀 끝 -->
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">Card title</h5>
+											<p class="card-text">This is a wider card with supporting
+												text below as a natural lead-in to additional content. This
+												content is a little bit longer.</p>
+											<p class="card-text">
+												<small class="text-muted">Last updated 3 mins ago</small>
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-lg-6">
-					<div class="card mb-3" style="max-width: auto;">
-						<div class="row no-gutters">
-							<div class="col-md-4">
-								<!-- 캐러셀 시작 -->
-								<div class="carousel slide" data-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item active">
-											<img src="${list.info_img1 }" class="d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
-										</div>
-										
-										<c:choose>
-										<c:when test="${list.info_img2 != null }">
-										<div class="carousel-item">
-											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
-										</div>
-										</c:when>		
-										</c:choose>
-										
-										<c:choose>
-										<c:when test="${list.info_img3 != null }">
-										<div class="carousel-item">
-											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
-												width="200px" height="200px">
-										</div>
-										</c:when>		
-										</c:choose>
-										
-									</div>
-									<a class="carousel-control-prev" href="#carousel" role="button"
-										data-slide="prev"> <span
-										class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="sr-only">Previous</span>
-									</a> <a class="carousel-control-next" href="#carousel"
-										role="button" data-slide="next"> <span
-										class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="sr-only">Next</span>
-									</a>
-								</div>
-								<!-- 캐러셀 끝 -->
-							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<h5 class="card-title">Card title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
-									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			</div>
 			</div>
 
 
