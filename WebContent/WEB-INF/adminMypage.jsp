@@ -228,14 +228,6 @@
                     //alert("검색어 : " + input)
                     $("#searchForm").submit();
                 });
-                if(${loginId == null }){
-                    $("#toLogin").on("click",function(){
-                        location.href = "Login.jsp";
-                    });
-                    $("#toSignup").on("click",function(){//회원가입
-                        location.href = "SignUp.jsp";
-                    });
-                }else{
                     $("#mypage_btn").on("click", function()
                                         {
                         if(${type=="admin"}){
@@ -275,7 +267,6 @@
                             location.href="naverLogout.login";
                         }
                     });
-                }
 
                 $("#profile_img_btn").on("click", function()
                                          {
@@ -378,29 +369,12 @@
 
                 <div id="login_btn_div" class="col-12 col-lg-3">
 
-                    <c:choose>
-
-                        <c:when test="${loginId==null}">
-
-                            <button id="toLogin" class="btn btn-warning headBtn" type="button">login</button>
-
-                            <button id="toSignup" class="btn btn-warning headBtn"
-                                    type="button">signup</button>
-
-                        </c:when>
-
-                        <c:otherwise>
 
                             <button class="btn btn-warning headBtn" type="submit"
                                     id=mypage_btn>mypage</button>
 
                             <button class="btn btn-warning headBtn" type="submit"
                                     id=logout_btn>logout</button>
-
-                        </c:otherwise>
-
-                    </c:choose>
-
                 </div>
 
             </div>

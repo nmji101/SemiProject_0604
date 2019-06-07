@@ -186,6 +186,10 @@ font-family: 'Gugi', cursive;
 // alert("id : " + "${loginId}");
 	$(function()
     {
+		$("#mypage_btn").on("click", function()
+	    		{
+						location.href = "doing.mypage?"+encodeURI("page=1");
+	    		});
 		$("#logout_btn").on("click", function()
 		{
 			if(${loginType == "kakao"})
@@ -218,13 +222,24 @@ font-family: 'Gugi', cursive;
 			{
 				location.href="naverLogout.login";
 			}
+		});
+		$("#logo").on("click", function() {
+			location.href = "start.main";
 		})
-		
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query="+$("#search_text").val();
-	    });
-	    
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
 	    $("#ing_class_btn").on("click", function()
 	    {
 		    location.href = "doing.mypage?page=1";
@@ -267,12 +282,8 @@ font-family: 'Gugi', cursive;
 	    
     };
 </script>
-
-
 </head>
 <body>
-
-
 	<div id="container_div" class="container col-12 mt-3">
 
 		<!--           HEADER-->
@@ -293,20 +304,10 @@ font-family: 'Gugi', cursive;
 				</form>
 			</div>
 			<div id="login_btn_div" class="col-12 col-lg-3">
-				<c:choose>
-					<c:when test="${loginId==null}">
-						<button id="toLogin" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">login</button>
-						<button id="toSignup" class="btn btn-warning my-2 my-sm-0 headBtn"
-							type="button">signup</button>
-					</c:when>
-					<c:otherwise>
 						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
 							id=mypage_btn>mypage</button>
 						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
 							id=logout_btn>logout</button>
-					</c:otherwise>
-				</c:choose>
 			</div>
 		</div>
 		<!--           HEADER-->
@@ -361,21 +362,21 @@ font-family: 'Gugi', cursive;
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn-warning py-3">
+								<button id="ing_class_btn" class="btn btn-outline-warning py-3">
 									수강 중 클래스</button>
 
 							</div>
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn-warning py-3">수강
+								<button id="done_class_btn" class="btn btn-outline-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn-warning py-3">개인
+								<button id="person_info_btn" class="btn btn-outline-warning py-3">개인
 									정보 수정</button>
 
 							</div>

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,7 +44,12 @@ public class MypageServlets extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		
 		String m_id = (String)request.getSession().getAttribute("loginId");
-//		request.getSession().setAttribute("loginId", m_id);
+		
+		if(m_id == null)
+		{
+			System.out.println("세션에 아이디 없음");
+			response.sendRedirect("Login.jsp");
+		}
 		
 		System.out.println(url);
 		if(url.equals("doing.mypage"))
@@ -54,19 +61,11 @@ public class MypageServlets extends HttpServlet
 				
 				request.setAttribute("dto", dto);
 				
-//				if(dto.getM_type().equals("admin")) {//관리자 라면 관리자 페이지로 보내기.
-//					request.getRequestDispatcher("/WEB-INF/adminMypage.jsp").forward(request, response);
-//				}
-				
-				
 				DoClassDAO dcdao = new DoClassDAO();
 				
 				int currentPage;
-				
-
 				currentPage = Integer.parseInt(request.getParameter("page"));
 
-				
 				List<DoClassDTO> list = dcdao.selectDoingClass(m_id, currentPage);
 				
 				int recordTotalCount = dcdao.selectDoingCount(m_id);
@@ -300,21 +299,64 @@ public class MypageServlets extends HttpServlet
 		}
 		else if(url.equals("pw.mypage"))
 		{
-			String pw = request.getParameter("pw").replace("<script>", "");
-			
 			try
 			{
-				PersonDAO dao = new PersonDAO();
-				String changedPW = dao.toSha256(pw);
+				String pw = request.getParameter("pw").replace("<script>", "asdasdasdasdasdasd");
+				String pwc = request.getParameter("pwc").replace("<script>", "asdasdasdasdasdasd");
 				
-				dao.updatePwById(changedPW, m_id);
+				System.out.println(pw);
+				System.out.println(pwc);
+				
+				if(((6 <= pw.length()) && (pw.length() <= 12)) && ((6 <= pwc.length()) && (pwc.length() <= 12)))
+				{
+					System.out.println("길이 통과");
+					if(pw.equals(pwc))
+					{
+						System.out.println("문자 일치 통과");
+						Pattern p = Pattern.compile("[a-z|A-Z|0-9]", Pattern.CASE_INSENSITIVE);
+						Matcher m = p.matcher(pw);
+						boolean check = m.find();
+						
+						if(!check)
+						{
+							System.out.println("정규식 통과");
+							try
+							{
+								PersonDAO dao = new PersonDAO();
+								String changedPW = dao.toSha256(pw);
+								
+								dao.updatePwById(changedPW, m_id);
+								response.sendRedirect("close.html");
+							}
+							catch(Exception e)
+							{
+								e.printStackTrace();
+								response.sendRedirect("error.html");
+							}
+						}
+						else
+						{
+							System.out.println("정규식 ERRRRRRROR");
+							response.sendRedirect("error.html");
+						}
+					}
+					else
+					{
+						System.out.println("문자 일치 ERRRRRRROR");
+						response.sendRedirect("error.html");
+					}
+				}
+				else
+				{
+					System.out.println("길이 ERRRRRRROR");
+					response.sendRedirect("error.html");
+				}
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
-			
-			response.sendRedirect("close.html");
 		}
 		else if(url.equals("changeImg.mypage"))
 		{
@@ -324,6 +366,7 @@ public class MypageServlets extends HttpServlet
 		{
 			String rootPath = this.getServletContext().getRealPath("/");
 			String filePath = rootPath + "files";
+			System.out.println(filePath);
 			
 			File uploadPath = new File(filePath);
 			if(!uploadPath.exists())
