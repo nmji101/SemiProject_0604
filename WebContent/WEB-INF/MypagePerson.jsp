@@ -305,13 +305,6 @@ h2 {
 	    
 	    // 이 위로는 공통 함수
 	    
-	    $("#pw_btn").on("click", function()
-	    {
-		    var popOption = "width=450, height=450, resizable=no, scrollbars=no, status=no top=100, left=100;";
-		    
-		    open("changePw.mypage", "", popOption);
-	    });
-	    
 	    $("#submit_btn").on("click", function()
 	    {
 		    $("#info_form").submit();
@@ -503,8 +496,14 @@ h2 {
 
 							<div id="pw_btn_div" class="col-lg-9">
 
-								<input id="pw_btn" class="btn btn-info" type="button"
+								<c:if test="${ snsLogin == 'true' }">
+									<label> SNS 로그인 계정은 비밀번호 수정이 불가합니다. </label>
+								</c:if>
+								
+								<c:if test="${ snsLogin != 'true' }">
+									<input id="pw_btn" class="btn btn-info" type="button"
 									value="비밀번호 수정">
+								</c:if>
 
 							</div>
 
@@ -583,4 +582,18 @@ h2 {
 	</div>
 
 </body>
+<c:if test="${ snsLogin != 'true' }">
+
+	<script>
+	
+	$("#pw_btn").on("click", function()
+	{
+		var popOption = "width=450, height=450, resizable=no, scrollbars=no, status=no top=100, left=100;";
+	        		    
+		open("changePw.mypage", "", popOption);
+	});
+	
+	</script>
+
+</c:if>
 </html>

@@ -243,55 +243,68 @@ public class MypageServlets extends HttpServlet
 			{
 				PersonDAO dao = new PersonDAO();
 				
-				String m_nickname = request.getParameter("nickname").replace("<script>", "");
+				String m_nickname = request.getParameter("nickname").replace("<script>", "asdasdasdasdasdasd");
 				
-				if(m_nickname == null)
+				if(m_nickname != null)
 				{
-					response.sendRedirect("error.html");
-				}
-				
-				int result1 = dao.updateNicknameById(m_nickname, m_id);
-				
-				String[] attention = request.getParameterValues("attention");
-				
-				String collection = "";
-				
-				if(attention == null)
-				{
-					
+					if((1 <= m_nickname.length()) || (m_nickname.length() <= 6))
+					{
+						System.out.println("닉네임 통과");
+						int result1 = dao.updateNicknameById(m_nickname, m_id);
+					}
+					else
+					{
+						System.out.println("닉네임이 길이가 1 ~ 6 이 아님");
+						response.sendRedirect("error.html");
+					}
 				}
 				else
 				{
-					collection = "[ ";
-					
+					System.out.println("닉네임이 Null");
+					response.sendRedirect("error.html");
+				}
+				
+				String[] attention = request.getParameterValues("attention");
+				String collection = "";
+				if(attention != null)
+				{
 					for(int i = 1 ; i <= attention.length ; i++)
 					{
-						if(i == attention.length)
+						if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
 						{
-							collection = collection + "\"" + attention[i-1] + "\"";
+							collection = "[ ";
+							
+							for(int j = 1 ; j <= attention.length ; j++)
+							{
+								if(j == attention.length)
+								{
+									collection = collection + "\"" + attention[j-1] + "\"";
+								}
+								else
+								{
+									collection = collection + "\"" + attention[j-1] + "\"" + ", ";
+								}
+							}
+							
+							collection = collection + " ]";
 						}
 						else
 						{
-							collection = collection + "\"" + attention[i-1] + "\"" + ", ";
+							System.out.println("관심사에 이상한 값이 들어있다.");
+							response.sendRedirect("error.html");
 						}
 					}
-					
-					collection = collection + " ]";
+					dao.updateAttentionById(collection, m_id);
 				}
-				
-				int result2 = dao.updateAttentionById(collection.replace("<script>", ""), m_id);
-					
-				if((result1 == 0) || (result2 == 0))
-				{
-					response.sendRedirect("error.html");
-				}
+				response.sendRedirect("person.mypage");
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 			
-			response.sendRedirect("person.mypage");
+//			response.sendRedirect("person.mypage");
 		}
 		else if(url.equals("changePw.mypage"))
 		{
