@@ -129,25 +129,30 @@ $(function()
 	    }
 	  
 	    $('#regNotice').on("click", function(e)
-		{
+	    {
 	    	var form = $('<form></form>');
-		    form.attr('action', 'write.notice');
-		    form.attr('method', 'POST');
-		    form.appendTo('body');
-		
-		    var text = $(".note-editable").children("p").html();
-		    
-			var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
-			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
-			var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-		 	
-			
-			
-		    form.append(writer).append(title).append(contents);
-		    $("#contents_hidden").val("`"+text+"`");
-		    
-		    form.submit();
-		});
+	    	form.attr('action', 'write.notice');
+	    	form.attr('method', 'POST');
+	    	form.appendTo('body');
+	               		
+	    	var text = $(".note-editable").children("p").html();
+	    	
+		    if((text != "<br>") && ($("#title_text").val() != ""))
+		    {
+		    	var seq = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
+		    	var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+		    	var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+		               			 	
+		   		form.append(seq).append(title).append(contents);
+		    	$("#contents_hidden").val(text);
+		               			    
+		    	form.submit();
+		    }
+		    else
+		    {
+		   		alert("작성 내용을 확인하세요.");
+		    }
+	    });
 	    
 	    if(${loginId == null }){
 			$("#toLogin").on("click",function(){

@@ -284,8 +284,8 @@ div {
 			<div class="col-10">
 				
 				<c:set var="contents" value="${ dto.no_contents }"/>
-				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p>
-			
+<%-- 				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p> --%>
+				<p id="html" class="my-5">${contents}</p>
 			</div>
 		
 		</div>

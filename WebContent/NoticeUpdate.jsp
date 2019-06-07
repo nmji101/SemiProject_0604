@@ -136,18 +136,22 @@ $(function()
 		    form.appendTo('body');
 		
 		    var text = $(".note-editable").children("p").html();
-		    var html = `<input type="hidden" value=`+text+` name="contents">`;
 		    
-		    var seq = $('<input type="hidden" value='+"${ seq }"+' name="seq">');
-			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
-			var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-		 	
-			
-			
-		    form.append(seq).append(title).append(contents);
-		    $("#contents_hidden").val(text);
-		    
-		    form.submit();
+		    if((text != "<br>") && ($("#title_text").val() != ""))
+		    {
+		    	var seq = $('<input type="hidden" value='+"${ seq }"+' name="seq">');
+				var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+				var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+			 	
+			    form.append(seq).append(title).append(contents);
+			    $("#contents_hidden").val(text);
+			    
+			    form.submit();
+		    }
+		    else
+		    {
+		    	alert("작성 내용을 확인하세요.");
+		    }
 		});
 	    
 	    $("#title_text").val("${ title }");
