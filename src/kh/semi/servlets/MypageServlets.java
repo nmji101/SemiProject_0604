@@ -472,6 +472,7 @@ public class MypageServlets extends HttpServlet
 			try
 			{
 				ReviewDAO dao = new ReviewDAO();
+				DoClassDAO dcdao = new DoClassDAO();
 				
 				String time = request.getParameter("date");
 				
@@ -485,26 +486,36 @@ public class MypageServlets extends HttpServlet
 				int c_id = Integer.parseInt(request.getParameter("c_id"));
 				String req_m_id = request.getParameter("m_id");
 				
-				if(m_id.equals(req_m_id))
+				if(dcdao.existCheck(req_m_id, c_id))
 				{
-					if(!dao.overlapReviewCheck(c_id, req_m_id))
+					if(m_id.equals(req_m_id))
 					{
-						dao.insertReview(request.getParameter("c_id"),
-							request.getParameter("m_id"),
-							request.getParameter("text"), 
-							request.getParameter("star"),
-							date
-							);
-						
-						response.sendRedirect("close.html");
+						if(!dao.overlapReviewCheck(c_id, req_m_id))
+						{
+							dao.insertReview(request.getParameter("c_id"),
+								request.getParameter("m_id"),
+								request.getParameter("text"), 
+								request.getParameter("star"),
+								date
+								);
+							
+							response.sendRedirect("close.html");
+						}
+						else
+						{
+							System.out.println(" 이미 리뷰를 작성함 ");
+							response.sendRedirect("error.html");
+						}
 					}
 					else
 					{
+						System.out.println("아이디가 이상하다.");
 						response.sendRedirect("error.html");
 					}
 				}
 				else
 				{
+					System.out.println("classdoing에 없다");
 					response.sendRedirect("error.html");
 				}
 			}
