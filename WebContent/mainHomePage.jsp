@@ -13,7 +13,7 @@
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme|Nanum+Pen+Script&display=swap"
 	rel="stylesheet">
 
 <link rel="stylesheet"
@@ -112,7 +112,8 @@ div {
 }
 
 #popular>h2 {
-	font-family: 'Do Hyeon', sans-serif;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size:50px;
 	text-align: left;
 	color: #EE8585;
 }
@@ -192,14 +193,22 @@ div {
 	font-family: 'Do Hyeon', sans-serif;
 	color: #ffba00;
 }
-
+.card-title{
+	font-family: 'Do Hyeon', sans-serif;;
+}
 .carousel-item>img {
-	height: 300px;
+	width: 100%;
+	height: 350px;
+	margin:auto;
 	border-radius: 20px;
 }
 
 #carousel {
 	margin: 30px auto;
+}
+
+.popular>img{
+	height:100%;
 }
 
 #main1, #main2 {
@@ -214,6 +223,11 @@ div {
 	margin: 30px auto;
 }
 
+.card{
+	border-radius: 20px;
+	height: 200px;
+	
+}
 .carousel-caption {
 	padding-bottom: 90px;
 	width: auto;
@@ -555,37 +569,37 @@ $(function(){
 								<div class="row no-gutters">
 									<div class="col-md-4">
 										<!-- 캐러셀 시작 -->
-										<div class="carousel slide" data-ride="carousel">
+										<div class="carousel slide" data-ride="carousel" id=main1>
 											<div class="carousel-inner">
-												<div class="carousel-item active">
-													<img src="${list.info_img1 }" class="d-block w-100"
-														alt="이미지가 없습니다." width="200px" height="200px">
+												<div class="carousel-item active popular">
+													<img src="${dto1.info_img1 }" class="d-block w-100"
+														alt="이미지가 없습니다."">
 												</div>
 
 												<c:choose>
-													<c:when test="${list.info_img2 != null }">
-														<div class="carousel-item">
-															<img src="${list.info_img2 }" class="d-block w-100"
-																alt="이미지가 없습니다." width="200px" height="200px">
+													<c:when test="${dto1.info_img2 != null }">
+														<div class="carousel-item popular">
+															<img src="${dto1.info_img2 }" class="d-block w-100"
+																alt="이미지가 없습니다.">
 														</div>
 													</c:when>
 												</c:choose>
 
 												<c:choose>
-													<c:when test="${list.info_img3 != null }">
-														<div class="carousel-item">
-															<img src="${list.info_img3 }" class=d-block
-																w-100" alt="이미지가 없습니다." width="200px" height="200px">
+													<c:when test="${dto1.info_img3 != null }">
+														<div class="carousel-item popular">
+															<img src="${dto1.info_img3 }" class="d-block
+																w-100" alt="이미지가 없습니다.">
 														</div>
 													</c:when>
 												</c:choose>
 
 											</div>
-											<a class="carousel-control-prev" href="#carousel"
+											<a class="carousel-control-prev" href="#main1"
 												role="button" data-slide="prev"> <span
 												class="carousel-control-prev-icon" aria-hidden="true"></span>
 												<span class="sr-only">Previous</span>
-											</a> <a class="carousel-control-next" href="#carousel"
+											</a> <a class="carousel-control-next" href="#main1"
 												role="button" data-slide="next"> <span
 												class="carousel-control-next-icon" aria-hidden="true"></span>
 												<span class="sr-only">Next</span>
@@ -595,12 +609,14 @@ $(function(){
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">This is a wider card with supporting
-												text below as a natural lead-in to additional content. This
-												content is a little bit longer.</p>
+											<h5 class="card-title"> ${dto1.info_category} : ${dto1.info_title }</h5>
 											<p class="card-text">
-												<small class="text-muted">Last updated 3 mins ago</small>
+											<c:forEach items="${review1}" var="list">
+												${list.re_review }
+											</c:forEach>
+											</p>
+											<p class="card-text">
+												<small class="text-muted"><button type="button" class="btn btn-outline-info">자세히 보기</button></small>
 											</p>
 										</div>
 									</div>
@@ -612,37 +628,37 @@ $(function(){
 								<div class="row no-gutters">
 									<div class="col-md-4">
 										<!-- 캐러셀 시작 -->
-										<div class="carousel slide" data-ride="carousel">
+										<div class="carousel slide" data-ride="carousel" id="main2">
 											<div class="carousel-inner">
-												<div class="carousel-item active">
-													<img src="${list.info_img1 }" class="d-block w-100"
-														alt="이미지가 없습니다." width="200px" height="200px">
+												<div class="carousel-item active popular">
+													<img src="${dto2.info_img1 }" class="d-block w-100"
+														alt="이미지가 없습니다.">
 												</div>
 
 												<c:choose>
-													<c:when test="${list.info_img2 != null }">
-														<div class="carousel-item">
-															<img src="${list.info_img2 }" class="d-block w-100"
-																alt="이미지가 없습니다." width="200px" height="200px">
+													<c:when test="${dto2.info_img2 != null }">
+														<div class="carousel-item popular">
+															<img src="${dto2.info_img2 }" class="d-block w-100"
+																alt="이미지가 없습니다.">
 														</div>
 													</c:when>
 												</c:choose>
 
 												<c:choose>
-													<c:when test="${list.info_img3 != null }">
-														<div class="carousel-item">
-															<img src="${list.info_img3 }" class=d-block
-																w-100" alt="이미지가 없습니다." width="200px" height="200px">
+													<c:when test="${dto2.info_img3 != null }">
+														<div class="carousel-item popular">
+															<img src="${dto2.info_img3 }" class="d-block
+																w-100" alt="이미지가 없습니다.">
 														</div>
 													</c:when>
 												</c:choose>
 
 											</div>
-											<a class="carousel-control-prev" href="#carousel"
+											<a class="carousel-control-prev" href="#main2"
 												role="button" data-slide="prev"> <span
 												class="carousel-control-prev-icon" aria-hidden="true"></span>
 												<span class="sr-only">Previous</span>
-											</a> <a class="carousel-control-next" href="#carousel"
+											</a> <a class="carousel-control-next" href="#main2"
 												role="button" data-slide="next"> <span
 												class="carousel-control-next-icon" aria-hidden="true"></span>
 												<span class="sr-only">Next</span>
@@ -652,12 +668,14 @@ $(function(){
 									</div>
 									<div class="col-md-8">
 										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<p class="card-text">This is a wider card with supporting
-												text below as a natural lead-in to additional content. This
-												content is a little bit longer.</p>
+											<h5 class="card-title">${dto2.info_category} : ${dto2.info_title }</h5>
 											<p class="card-text">
-												<small class="text-muted">Last updated 3 mins ago</small>
+											<c:forEach items="${review2}" var="list">
+												${list.re_review }
+											</c:forEach>
+											</p>
+											<p class="card-text">
+												<small class="text-muted"><button type="button" class="btn btn-outline-info">자세히 보기</button></small>
 											</p>
 										</div>
 									</div>
