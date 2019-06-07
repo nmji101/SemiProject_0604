@@ -455,6 +455,7 @@ public class LoginServlet extends HttpServlet
 							System.out.println("DB INSERT ERROR");
 						}
 					}
+					request.getSession().setAttribute("snsLogin", "true");
 					request.getSession().setAttribute("loginId", "N"+naverCode);
 					request.getSession().setAttribute("loginType", "Naver");
 					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
