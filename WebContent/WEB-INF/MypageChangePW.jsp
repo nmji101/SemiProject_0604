@@ -27,21 +27,32 @@
         {
             $("#pw_text ,#pwc_text").on("input", function() 
             {
-                if ((($("#pw_text").val() !== "") && ($("#pwc_text").val() !== "")) && ($("#pw_text").val() == $("#pwc_text").val())) 
+            	var pw = $("#pw_text").val();
+            	var pwc = $("#pwc_text").val();
+                if (((pw !== "") && (pwc !== "")) && (pw == pwc)) 
                 {
-                    $("#pwc_label").text("비밀번호가 일치합니다.");
-                    $("#pwc_label").css("color","green");
+                	var regex = /^[A-Za-z0-9]{6,12}$/g
+                	if(regex.exec(pw) != null)
+                    {
+                		$("#pwc_label").text("사용 가능한 비밀번호");
+                        $("#pwc_label").css("color","green");
+                    }
+                	else
+                    {
+                        $("#pwc_label").text("사용 불가능한 비밀번호");
+                        $("#pwc_label").css("color","red");
+                    }
                 }
                 else
                 {
-                    $("#pwc_label").text("비밀번호가 일치하지 않습니다.");
+                    $("#pwc_label").text("사용 불가능한 비밀번호");
                     $("#pwc_label").css("color","red");
                 }
             });
             
             $("#submit_btn").on("click", function()
 			{
-            	if($("#pwc_label").text() == "비밀번호가 일치합니다.")
+            	if($("#pwc_label").text() == "사용 가능한 비밀번호")
             	{
             		$("#pw_form").submit();
             	}
@@ -65,7 +76,7 @@
         <h3>비밀번호</h3>
         <input id="pw_text" class="form-control my-1" name="pw" type="password" placeholder="비밀번호">
         <h3>비밀번호 확인</h3>
-        <input id="pwc_text" class="form-control my-1" type="password" placeholder="비밀번호 확인">
+        <input id="pwc_text" class="form-control my-1" name="pwc" type="password" placeholder="비밀번호 확인">
         <label id="pwc_label"></label><br>
         
         <div id="btn_div">
