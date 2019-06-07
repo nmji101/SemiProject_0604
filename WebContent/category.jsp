@@ -505,7 +505,7 @@ div {
 									<img src= ${list.m_photo } width="80px" height="80px"
 										alt="이미지가 없습니다." class=face>
 									<span id=starBox> <c:choose>
-											<c:when test="${list.info_avgstar == '0'}">
+											<c:when test="${list.info_avgstar =='0'}">
 												<span class="badge badge-pill badge-info">New</span>
 											</c:when>
 										</c:choose> <c:forEach begin="1" end="${list.info_avgstar}">
@@ -534,9 +534,9 @@ div {
 						</form>
 					</c:forEach>
 				</div>
-	</div>
-	</c:otherwise>
+				</c:otherwise>
 	</c:choose>
+	</div>
 
 	<div id=footer class="row">
 		<div class="col-12 col-md-8"></div>

@@ -35,6 +35,11 @@ public class LoginServlet extends HttpServlet
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
 		System.out.println(url);
 		System.out.println(request.getRealPath("/"));
+		try {
+			//new MemberDAO().getInsert(dto);
+		}catch(Exception e) {
+			
+		}
 		if(url.equals("kakao.login"))
 		{
 			String info = request.getParameter("json").substring(1, request.getParameter("json").length() - 1);
@@ -389,7 +394,8 @@ public class LoginServlet extends HttpServlet
 					}
 					String agerange = null;
 					if(resObj.get("age")!=null) {
-						agerange = resObj.get("age").getAsString();
+						agerange = resObj.get("age").getAsString().substring(0, 2);
+						System.out.println(agerange);
 					}
 					String gender = null;
 					if(resObj.get("gender")!=null) {

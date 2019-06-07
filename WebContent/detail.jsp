@@ -449,6 +449,7 @@
             $("#scdBtn").hide();
             $("#select").hide();
             $("#selectScd").hide();
+            $("#selectInfo").prop("flag","false");
 				
             	var selectedDate = "";
                 $(".calendar").on("click",function(){
@@ -761,7 +762,7 @@
                         </div>
                         <div id="select">
                         	<div>
-                        		<div id="selectInfo" class="d-flex" flag="false">
+                        		<div id="selectInfo" class="d-flex">
                         			<span id="selectDate"></span><img class="ml-auto" id="closeImg" src="Content/Images/close.png">
                         		</div>
                         		<div>참가비 (1인)</div>

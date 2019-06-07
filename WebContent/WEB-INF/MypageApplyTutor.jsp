@@ -248,9 +248,7 @@ div {
 	    
 	    $("#tutorPage").on("click",function(){
 	    	location.href = "id.tutor";
-	    });
-	    alert("${check}");
-	    
+	    });	    
     });
     
     onload = function()
