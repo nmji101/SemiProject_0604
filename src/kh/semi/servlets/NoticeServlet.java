@@ -39,6 +39,8 @@ public class NoticeServlet extends HttpServlet
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter pw = response.getWriter();
 		
+		String id = (String)request.getSession().getAttribute("loginId");
+		
 		if(url.equals("upload.notice"))
 		{
 			String rootPath = this.getServletContext().getRealPath("/");
@@ -92,30 +94,41 @@ public class NoticeServlet extends HttpServlet
 			try
 			{
 				NoticeDAO dao = new NoticeDAO();
-				
-				String writer = request.getParameter("writer");
-				String title = request.getParameter("title");
-				String contents = request.getParameter("contents");
-				
 				PersonDAO pdao = new PersonDAO();
-				writer = pdao.selectById(writer).getM_nickname();
+				MemberDAO mdao = new MemberDAO();
 				
-				int result = dao.insertNew(writer, title, contents);
+				String type = mdao.selectTypeById(id);
 				
-				if(result > 0)
+				if(type.equals("admin"))
 				{
-//					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
-					response.sendRedirect("list.notice?page=1");
+					String writer = request.getParameter("writer");
+					String title = request.getParameter("title");
+					String contents = request.getParameter("contents");
+					
+					writer = pdao.selectById(writer).getM_nickname();
+					
+					int result = dao.insertNew(writer, title, contents);
+					
+					if(result > 0)
+					{
+						response.sendRedirect("list.notice?page=1");
+					}
+					else
+					{
+						System.out.println(" Insert Error ");
+						response.sendRedirect("error.html");
+					}
 				}
 				else
 				{
+					System.out.println("m_type != admin ");
 					response.sendRedirect("error.html");
 				}
-				
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
 		}
 		else if(url.equals("list.notice"))
@@ -222,18 +235,28 @@ public class NoticeServlet extends HttpServlet
 		{
 			try
 			{
-				int seq = Integer.parseInt(request.getParameter("seq"));
-				NoticeDAO dao = new NoticeDAO();
+				MemberDAO mdao = new MemberDAO();
+				String type = mdao.selectTypeById(id);
 				
-				int result = dao.deleteBySeq(seq);
-				
-				if(result > 0)
+				if(type.equals("admin"))
 				{
-//					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
-					response.sendRedirect("list.notice?page=1");
+					int seq = Integer.parseInt(request.getParameter("seq"));
+					NoticeDAO dao = new NoticeDAO();
+					
+					int result = dao.deleteBySeq(seq);
+					
+					if(result > 0)
+					{
+						response.sendRedirect("list.notice?page=1");
+					}
+					else
+					{
+						response.sendRedirect("error.html");
+					}
 				}
 				else
 				{
+					System.out.println("m_type != admin ");
 					response.sendRedirect("error.html");
 				}
 			}
@@ -242,6 +265,7 @@ public class NoticeServlet extends HttpServlet
 				e.printStackTrace();
 				response.sendRedirect("error.html");
 			}
+			
 		}
 		else if(url.equals("passon.notice"))
 		{
