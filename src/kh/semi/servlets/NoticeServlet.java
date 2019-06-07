@@ -19,6 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import kh.semi.dao.DoClassDAO;
 import kh.semi.dao.MemberDAO;
 import kh.semi.dao.NoticeDAO;
+import kh.semi.dao.PersonDAO;
 import kh.semi.dto.DoClassDTO;
 import kh.semi.dto.NoticeDTO;
 
@@ -95,6 +96,9 @@ public class NoticeServlet extends HttpServlet
 				String writer = request.getParameter("writer");
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
+				
+				PersonDAO pdao = new PersonDAO();
+				writer = pdao.selectById(writer).getM_nickname();
 				
 				int result = dao.insertNew(writer, title, contents);
 				
