@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+					
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,7 +17,6 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 </head>
 <style>
 .ui-datepicker-trigger {
@@ -190,10 +191,12 @@ body {
 	width: 150px;
 }
 
-.list {
+.list, .list2 {
 	width: 680px;
 	height: 200px;
 	border: 1px solid black;
+	overflow-y: auto;
+	
 }
 
 #inputimg {
@@ -314,12 +317,12 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         text-align: center;
     }
 
+
 </style>
     
 <script>
-$(function(){
 	
-
+$(function(){
 
 	$('#mytype li > a').on('click', function() {
 	// 버튼에 선택된 항목 텍스트 넣기 
@@ -402,6 +405,21 @@ $(function(){
  	$("#home").on('click', function(){
  		location.href="mainHomePage.jsp";
  	})
+	
+// 	$(".list").hide();
+// 	$(".openlist").on("click", function(){
+// 		$(".list").toggle();
+// 		$.ajax({
+// 			url:"openlist.list",
+// 			type:"post"
+// 		});
+// 	})
+	
+// 	$(".list2").hide();
+// 	$(".openlist2").on("click", function(){
+// 		$(".list2").toggle();
+// 	})
+	
 
 		
 });
@@ -413,7 +431,9 @@ $(function(){
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
-				<div class="logo col-2 ml-3"></div>
+				<div class="col-12 col-lg-3">
+					<img src="logo.png" id=logo>
+				</div>
 				<div class="top col-lg-12">
 					<div class="head welcome">
 						<h4>
@@ -426,15 +446,14 @@ $(function(){
 				</div>
 				<br>
 				<div class="array col-lg-12">
-					<div class=img></div>
+					<div class="img head"></div>
 					<!--튜터 본인 사진-->
-					<div id=id class="m-0 p-0 col-4 array border-warning" >
+					<div id=id class=" m-0 p-0 col-5  array border-warning" >
 				    <input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
 					</div>
 					<!--ID-->
-					<span class="badge m-0 p-1 badge-warning">튜터 소개글(필수)</span>
-					<div class="intro m-0 p-0 col-4 array border-warning" id="imtutor"
-						contentEditable="true">
+					<span class="badge  m-0 p-1 badge-warning">튜터 소개글(필수)</span>
+					<div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"	contentEditable="true">
 						</div>
 					<input type="hidden" name="intro">
 				</div>
@@ -442,14 +461,6 @@ $(function(){
 			<br>
 			
 			<!-- 헤더부분 끝 -->
-<!--
-
-			<p>
-				<a class="btn btn-warning" data-toggle="collapse"
-					href="#collapseExample" role="button" aria-expanded="false"
-					aria-controls="collapseExample"> Class 만들기 ▼ </a>
-			</p>
--->
 
 			<div class=row>
 				<!-- 컨텐츠 부분-->
@@ -628,20 +639,53 @@ $(function(){
 
 			<div class=row>
 				<div id=myclass class="col-lg-12 col-md-12 col-sm-12">
+<!--
 					<h4>
-						<span class="badge welcome badge-warning">MY CLASS 모아보기</span>
+						<span class="badge welcome badge-warning btn">MY CLASS 모아보기</span>
 					</h4>
-					<div class="list col-lg-12 col-md-12 col-sm-12 border-warning"></div>
+--> 				<button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
+
+					<div class="list col-lg-12 col-md-12 col-sm-12 border-warning">
+					
+					<div class="head col-lg-3 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">분류</div>
+					<div class="head col-lg-4 col-md-5 col-sm-6 m-0 p-0 ">제목</div>
+					<div class="head col-lg-5 col-md-2 col-sm-4 m-0 p-0">등록일</div>
+					
+					<div class=" col-lg-12 m-0 p-0 " >
+					<c:forEach var="tmp" items="${page}">
+				
+					<div class="head col-lg-3 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">
+					${tmp.info_category}
+					</div>
+				
+					<div class="head col-lg-4 col-md-5 col-sm-6 m-0 p-0 ">
+					<a href = "click.ForTutor?seq=${tmp.info_title}">
+					${tmp.info_title}
+					</a>
+					</div>
+				
+					<div class="head col-lg-5 col-md-2 col-sm-4 m-0 p-0">
+					${tmp.info_date}
+					</div>
+					</c:forEach>
+				    </div>
+							
+					
+					</div>
 					<br>
 				</div>
 			</div>
 
-			<div class=row>
-				<div id=afterclass class="col-lg-12 col-md-12 col-sm-12">
-					<h4>
-						<span class="badge welcome badge-warning">MY CLASS 후기</span>
-					</h4>
-					<div class="list col-lg-12 col-md-12 col-sm-12 border-warning"></div>
+				<div class=row>
+				<div id=myclass class="col-lg-12 col-md-12 col-sm-12">
+				<button type="button" class="btn btn-warning openlist2">MY CLASS 후기</button>
+					<div class="list2 col-lg-12 col-md-12 col-sm-12 border-warning">
+					<div class="head col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">분류</div>
+					<div class="head col-lg-2 col-md-5 col-sm-6 m-0 p-0 ">제목</div>
+					<div class="head col-lg-6 col-md-1 d-none d-md-block view m-0 p-0">설명</div>
+					<div class="head col-lg-2 col-md-2 col-sm-4 m-0 p-0">등록일</div>
+					</div>
+					<br>
 				</div>
 			</div>
 		
