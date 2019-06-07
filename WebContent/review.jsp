@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <!DOCTYPE html>
         <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>¸®ºä</title>
+                <title>ë¦¬ë·°</title>
                 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
                 <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
                 <script src="https://kit.fontawesome.com/6e8dd0d413.js"></script>
+                <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
             </head>
             <style>
                 div{
@@ -63,6 +64,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                     $(".btnLike1").on("click", function(){
@@ -75,6 +77,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                     $(".btnLike2").on("click", function(){
@@ -87,6 +90,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                 });
@@ -101,12 +105,12 @@
                                     <div class="col-10 col-sm-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 px-0 center">
                                         <div class="row mx-0">
                                             <div class="col-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-0 center">
-                                                <img class ="imgSize m-1 ml-3" src="À¯ÀúÀÌ¹ÌÁö.PNG" class="rounded float-left" alt="...">
+                                                <img class ="imgSize m-1 ml-3" src="ìœ ì €ì´ë¯¸ì§€.PNG" class="rounded float-left" alt="...">
                                             </div>
                                         </div>
                                         <div class="row mx-0 center">
                                             <div class="col-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-0 center">
-                                                <!--´Ð³×ÀÓ-->
+                                                <!--ë‹‰ë„¤ìž„-->
                                                 ${tmp.re_userId }
                                             </div>
                                         </div>
@@ -118,17 +122,17 @@
                             </div>
                             <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 px-0 ">
                                 <div class="row mx-0">
-                                    <!-- º°Á¡ -->
+                                    <!-- ë³„ì  -->
                                     <div class="col-12 col-sm-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 px-0 text-warning">
                                         ${tmp.star }
                                     </div>
-                                    <!-- ÈÄ±âµî·ÏÀÏÀÚ -->
+                                    <!-- í›„ê¸°ë“±ë¡ì¼ìž -->
                                     <div class="col-8 col-sm-8 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-0">
                                         ${tmp.re_writeDate }
                                     </div>
                                     <div class="col-4 col-sm-4 col-sm-3 col-md-3 col-lg-3 col-xl-3 px-0">
                                         <div class="row mx-0">
-                                            <!-- ÁÁ¾Æ¿ä È½¼ö -->
+                                            <!-- ì¢‹ì•„ìš” íšŸìˆ˜ -->
                                             <div class="col-6 col-sm-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 px-0 center like${status.index}">
 													<script>
 														${tmp.re_seq}
@@ -143,7 +147,7 @@
                                     </div>
                                 </div>
                                 <div class="row mx-0 textArea">
-                                    <!-- ÈÄ±â ³»¿ë -->
+                                    <!-- í›„ê¸° ë‚´ìš© -->
                                     ${tmp.re_review }
                                 </div>
                             </div>

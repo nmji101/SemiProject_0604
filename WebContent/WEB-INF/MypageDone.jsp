@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-
+<link
+	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <style>
 
 /*         header	 */
@@ -138,7 +140,7 @@ div {
 	text-align: center;
 }
 
-#contents_div  img {
+.my-auto>img {
 	width: 100%;
 	height: 100%;
 }
@@ -152,14 +154,30 @@ div {
 }
 
 #done_class_btn {
-	color: cornflowerblue;
-	font-weight: bold;
+	color: white;
+	font-weight: bold
 }
 
 #ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
 }
+
+h2 {
+	font-family: 'Gugi', cursive;
+	color: #ffba00
+}
+
+#noClass {
+	width:300px;
+	text-align: center;
+	color: #7e7666;
+	font-size: 20px;
+	height: 300px;
+	position: relative;
+	left:150px;
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -173,7 +191,7 @@ div {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 	$(function()
     {
@@ -267,7 +285,7 @@ div {
 	    
 	    $(document).on("click", ".detail_class_btn", function()
 	    {
-	       location.href = "detail.page?id=" + $(this).attr("name");
+	       location.href = "clickClass.classInfo?classId=" + $(this).attr("name");
 	    });
 	           	    
 	    $(document).on("click", ".navi_btn", function()
@@ -389,7 +407,10 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
+									<h2>${ dto.m_nickname }
+										님, 환영합니다! <img
+											src="https://img.icons8.com/color/48/000000/smiling.png">
+									</h2>
 
 								</button>
 
@@ -426,7 +447,9 @@ div {
 
 								<button id="done_class_btn" class="btn btn-warning py-3">
 
-									<h5><strong>수강 한 클래스</strong></h5>
+									<h5>
+										<strong>수강 한 클래스</strong>
+									</h5>
 
 								</button>
 
@@ -451,49 +474,62 @@ div {
 					</div>
 
 					<div id="contents_div" class="col-lg-9">
+						<c:choose>
+							<c:when test="${ listsize == 0}">
+								<div id="noClass">
+									<img src="done.png">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="i" begin="1" end="${ listsize }" step="1">
 
-						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
+									<div class="row class_div my-3">
 
-							<div class="row class_div my-3">
+										<div class="col-12">
 
-								<div class="col-12">
+											<div class="row">
 
-									<div class="row">
+
+
 
 										<div class="class_img_div col-lg-2 my-auto">
 											<img src="${ list[i-1].img }">
 										</div>
 
-										<div class="class_text_div col-lg-7 my-auto">
+												<div class="class_text_div col-lg-7 my-auto">
 
-											<h4>${ list[i-1].title }</h4>
-											${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
-										</div>
+													<h4>${ list[i-1].title }</h4>
+													${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
-										<div class="class_btn_div col-lg-3 my-auto">
+												</div>
 
-											<input class="btn btn-primary detail_class_btn mx-3"
-												name=${ list[i-1].classId } type="button" value="자세히">
-											<input class="btn btn-primary review_class_btn mx-3"
-												name=${ list[i-1].classId } type="button" value="리뷰 작성">
+												<div class="class_btn_div col-lg-3 my-auto">
 
-											<input class="class_title" type="hidden"
-												value="${ list[i-1].title }"> <input
-												class="class_date" type="hidden" value="${ list[i-1].date }">
-											<input class="class_id" type="hidden"
-												value="${ list[i-1].classId }">
+													<input class="btn btn-primary detail_class_btn mx-3"
+														name=${ list[i-1].classId } type="button" value="자세히">
+													<input class="btn btn-primary review_class_btn mx-3"
+														name=${ list[i-1].classId } type="button" value="리뷰 작성">
+
+													<input class="class_title" type="hidden"
+														value="${ list[i-1].title }"> <input
+														class="class_date" type="hidden"
+														value="${ list[i-1].date }"> <input
+														class="class_id" type="hidden"
+														value="${ list[i-1].classId }">
+
+												</div>
+
+											</div>
 
 										</div>
 
 									</div>
 
-								</div>
-
-							</div>
-
-						</c:forEach>
-
+								</c:forEach>
+								</c:otherwise>
+								</c:choose>
+								
 					</div>
 
 

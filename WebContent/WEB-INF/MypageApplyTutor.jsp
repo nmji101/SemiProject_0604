@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-
+<link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
 <style>
 
 /*         header	 */
@@ -151,12 +151,17 @@ div {
 }
 
 #tutor_page_btn {
-	color: cornflowerblue;
+	color: white;
+	font-weight: bold;
 }
 
 #ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
+}
+h2{
+font-family: 'Gugi', cursive;
+	color: #ffba00
 }
 </style>
 
@@ -170,7 +175,7 @@ div {
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 // alert("id : " + "${loginId}");
 	$(function()
@@ -322,7 +327,7 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
+									<h2>${ dto.m_nickname } 님, 환영합니다! <img src="https://img.icons8.com/color/48/000000/smiling.png"></h2>
 
 								</button>
 

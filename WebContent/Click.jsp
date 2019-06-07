@@ -8,7 +8,7 @@
 	<title>Document</title>
 		<script
   src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
- <link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 </head>
 <body>
 	<input type="button" id=btn value="통계">

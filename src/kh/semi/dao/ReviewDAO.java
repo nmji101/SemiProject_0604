@@ -11,6 +11,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.sun.xml.internal.ws.api.pipe.NextAction;
+
 import kh.semi.dto.ReviewDTO;
 
 public class ReviewDAO
@@ -118,7 +120,7 @@ public class ReviewDAO
 			return result;
 		}
 	}
-	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId) {
+	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId){
 
 		int naviCountPerPage = 5;
 
@@ -266,5 +268,26 @@ public class ReviewDAO
 		  }
 		int aveStar =  sum / starList.size();
 		return aveStar;
+	}
+	
+	public boolean overlapCheck(int seq, String id) throws Exception
+	{
+		String sql = "select * from likes where l_seq = ? and l_userid = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, seq);
+			pstat.setString(2, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
 	}
 }
