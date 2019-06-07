@@ -34,7 +34,7 @@ public class TutorController extends HttpServlet {
 		String time = sdf.format(date);
 		//      PrintWriter pw = response.getWriter();
 
-		
+
 		String rootPath = request.getServletContext().getRealPath("/");
 		String filePath = rootPath + "files" ; //files�뒗 蹂� ���옣�냼�씠硫� �엫�떆���옣�냼媛� �븘�땲�떎
 		String filePath2 = filePath + "/"+time;
@@ -51,7 +51,7 @@ public class TutorController extends HttpServlet {
 		//      String requestURI = request.getRequestURI();
 		//      String contextPath = request.getContextPath();
 		//      String command = requestURI.substring(contextPath.length());
-		
+
 		try {
 			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 			Enumeration files = multi.getFileNames();
@@ -66,9 +66,10 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_explain(multi.getParameter("explain"));
 			dto.setInfo_intro(multi.getParameter("intro"));
 			dto.setInfo_addr1(multi.getParameter("zipcode"));
-			dto.setInfo_addr2(multi.getParameter("addr1"));
-			dto.setInfo_addr3(multi.getParameter("addr2"));
-			dto.setInfo_addr4(multi.getParameter("addr3"));
+			dto.setInfo_addr1(multi.getParameter("addr1"));
+			dto.setInfo_addr2(multi.getParameter("addr2"));
+			dto.setInfo_addr3(multi.getParameter("addr3"));
+			dto.setInfo_addr4(multi.getParameter("addr4"));
 			dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
 			dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
 			dto.setInfo_img1(multi.getFilesystemName("img"));
