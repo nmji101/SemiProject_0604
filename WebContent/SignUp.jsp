@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
         </script>
 <link rel="stylesheet"

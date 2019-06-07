@@ -6,7 +6,7 @@
     <head>
         <meta charset="UTF-8">
         <title>관리자 마이페이지</title>
-        <link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <style>
             /*         header	 */
             * {

@@ -5,7 +5,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<title>공지사항</title>
 
 <style>
 
