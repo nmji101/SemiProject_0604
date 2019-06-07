@@ -30,7 +30,7 @@ public class TutorController extends HttpServlet {
 		ClassInfoDTO dto = new ClassInfoDTO();
 
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 E요일");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy�뀈 MM�썡 dd�씪 E�슂�씪");
 		String time = sdf.format(date);
 		//      PrintWriter pw = response.getWriter();
 
@@ -65,10 +65,6 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_title(multi.getParameter("inputtitle"));
 			dto.setInfo_explain(multi.getParameter("explain"));
 			dto.setInfo_intro(multi.getParameter("intro"));
-<<<<<<< HEAD
-			dto.setInfo_addr1(multi.getParameter("zipcode"));
-=======
->>>>>>> ecdd0830cd8e62c30bc8d83a68aa0608ed982ec2
 			dto.setInfo_addr1(multi.getParameter("addr1"));
 			dto.setInfo_addr2(multi.getParameter("addr2"));
 			dto.setInfo_addr3(multi.getParameter("addr3"));
@@ -83,7 +79,7 @@ public class TutorController extends HttpServlet {
 
 			int result = dao.test(dto);   
 			if(result>0) {
-				System.out.println("DB등록 됨");
+				System.out.println("DB�벑濡� �맖");
 				request.getRequestDispatcher("ForTutorAfter.jsp").forward(request, response);
 			}  
 		}catch(Exception e) {

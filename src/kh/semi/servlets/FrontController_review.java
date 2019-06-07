@@ -74,15 +74,26 @@ public class FrontController_review extends HttpServlet {
 				System.out.println(loginId);
 				String seq = r_seq.substring(15, 16);
 				int re_seq = Integer.parseInt(seq);
-				try {
+				try 
+				{
 					ReviewDAO dao = new ReviewDAO();
-					int result = dao.clickLike(re_seq, loginId);
-					if(result>0) {
-						int countLike = dao.countLike(re_seq);
-						System.out.println(countLike);
-						dao.updateLike(re_seq, countLike);
-						String str = "추천";
+					
+					if(dao.overlapCheck(re_seq, loginId))
+					{
+						String str = "이미 추천 하신 리뷰입니다.";
 						pw.print(str);
+					}
+					else
+					{
+						int result = dao.clickLike(re_seq, loginId);
+						if(result>0) 
+						{
+							int countLike = dao.countLike(re_seq);
+							System.out.println(countLike);
+							dao.updateLike(re_seq, countLike);
+							String str = "추천";
+							pw.print(str);
+						}
 					}
 				} catch (Exception e) {
 					e.printStackTrace();

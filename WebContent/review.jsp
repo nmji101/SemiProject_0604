@@ -63,6 +63,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                     $(".btnLike1").on("click", function(){
@@ -75,6 +76,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                     $(".btnLike2").on("click", function(){
@@ -87,6 +89,7 @@
                         	} 
                         }).done(function(resp){
                         	alert(resp);
+                        	location.reload();
                         });
                     });
                 });
