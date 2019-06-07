@@ -9,7 +9,7 @@
 </head>
 <body>
 	<script>
-	location.href="start.main";
+		location.href="start.main";
 	</script>
 </body>
 </html>

@@ -638,15 +638,19 @@ div {
                 	$("#selectScd").hide();
                 });
                 $("#purchaseBtn").click(function(){ //구매하기버튼눌렀을때
-                	if($("#selectInfo").prop("flag")=="false"){
-                		alert("상품을 선택해주세요");
-                		return;
-                	}
-                
                 	var classId = "${classInfo.info_classid}";
                 	var userId = "${loginId}"
                 	if(userId==""){
                 		alert("로그인 후 구매해주세요.");
+                		return;
+                	}
+                	var tutorId = "${classInfo.info_tutorid}";
+                	if(tutorId==userId){
+                		alert("본인이 등록한 class입니다. \r\n 다른 사람의 클래스를 들어보시는건 어때요?*^^*");
+                		return;
+                	}
+                	if($("#selectInfo").prop("flag")=="false"){
+                		alert("상품을 선택해주세요");
                 		return;
                 	}
                 	

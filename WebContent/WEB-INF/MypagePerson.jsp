@@ -352,7 +352,6 @@ h2 {
 							</div>
 						</div>
 					</form>
-
 			</div>
 
 			<div id="login_btn_div" class="col-12 col-lg-3">
