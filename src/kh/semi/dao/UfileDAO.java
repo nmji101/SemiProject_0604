@@ -12,7 +12,7 @@ import kh.semi.dto.UfileDTO;
 public class UfileDAO {
 	private Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:49161:xe";
 		String user = "semi";
 		String pw = "semi";
 		return DriverManager.getConnection(url,user,pw);

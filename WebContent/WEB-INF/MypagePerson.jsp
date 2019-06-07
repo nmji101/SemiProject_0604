@@ -186,6 +186,23 @@ h2 {
 	font-family: 'Gugi', cursive;
 	color: #ffba00
 }
+
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 100px 0px 0px 0px;
+}
+
+#sns>img {
+	margin: 30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg {
+	margin-right: 50px;
+	text-align: right;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -345,7 +362,6 @@ h2 {
 							</div>
 						</div>
 					</form>
-
 			</div>
 
 			<div id="login_btn_div" class="col-12 col-lg-3">
@@ -580,7 +596,19 @@ h2 {
 
 
 	</div>
-
+<div id=footer class="row">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+				<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+				<img src="https://img.icons8.com/ios/48/000000/twitter.png"> <img
+					src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+				<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+				(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br> © Ggooldanji. all rights
+				reserved.
+			</div>
+		</div>
 </body>
 <c:if test="${ snsLogin != 'true' }">
 

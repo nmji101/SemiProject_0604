@@ -289,7 +289,7 @@ font-family: 'Gugi', cursive;
 		<!--           HEADER-->
 		<div id=header class=row>
 			<div id="logo_div" class="col-12 col-lg-3">
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 			</div>
 			<div class="col-12 col-lg-6">
 				<form id=search class="form-inline my-2 my-lg-0">

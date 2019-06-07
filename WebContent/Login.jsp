@@ -122,7 +122,8 @@ body {
 			location.href = "SignUp.jsp";
 		});
 		$("#toMain_btn").on("click", function() {
-			location.href = "mainHomePage.jsp";
+
+			location.href = "start.main";
 		});
 
 	});
