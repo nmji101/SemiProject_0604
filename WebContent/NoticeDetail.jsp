@@ -299,10 +299,10 @@ div {
 			
 				<div id="btn_div" class="col-10">
 					<c:if test="${ type == 'admin' }">
-						<input id="update_btn" class="btn btn-primary" type="button" value="수정">
-						<input id="delete_btn" class="btn btn-primary" type="button" value="삭제">
+						<input id="update_btn" class="btn btn-info" type="button" value="수정">
+						<input id="delete_btn" class="btn btn-info" type="button" value="삭제">
 					</c:if>
-						<input id="back_btn" class="btn btn-primary" type="button" value="목록으로">
+						<input id="back_btn" class="btn btn-info" type="button" value="목록으로">
 				</div>
 			
 			</div>
