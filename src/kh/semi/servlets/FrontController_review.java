@@ -51,9 +51,9 @@ public class FrontController_review extends HttpServlet {
 				List<ReviewDTO> list = dao.selectAll(start, end, classId);
 				
 				/*
-				 * int aveStar = dao.aveStar(classId); // ��� ���� dao.updateAveStar(aveStar,
-				 * classId);// ��� ���� ������Ʈ
-				 */				System.out.println("여긴가2");
+				 * int aveStar = dao.aveStar(classId); // 평균 별점 dao.updateAveStar(aveStar,
+				 * classId);// 평균 별점 업데이트
+				 */				
 				request.setAttribute("list", list);
 
 				int recordTotalCount = dao.boardCount(classId);
@@ -67,7 +67,7 @@ public class FrontController_review extends HttpServlet {
 			}
 
 		}else if(cmd.contentEquals("/like.review")) {
-			System.out.println("��õ�´�");
+			System.out.println("추천");
 			String loginId = (String)request.getSession().getAttribute("loginId");
 			String r_seq = request.getParameter("re_seq");
 			if(loginId != null) {
@@ -81,7 +81,7 @@ public class FrontController_review extends HttpServlet {
 						int countLike = dao.countLike(re_seq);
 						System.out.println(countLike);
 						dao.updateLike(re_seq, countLike);
-						String str = "��õ";
+						String str = "추천";
 						pw.print(str);
 					}
 				} catch (Exception e) {
@@ -89,7 +89,7 @@ public class FrontController_review extends HttpServlet {
 				}
 
 			}else {
-				String result = "�α����� �ʿ��մϴ�";
+				String result = "로그인이 필요합니다";
 				pw.print(result);
 			}
 		}

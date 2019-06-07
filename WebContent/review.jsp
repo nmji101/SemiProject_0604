@@ -101,7 +101,7 @@
                                     <div class="col-10 col-sm-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 px-0 center">
                                         <div class="row mx-0">
                                             <div class="col-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-0 center">
-                                                <img class ="imgSize m-1 ml-3" src="1111.PNG" class="rounded float-left" alt="...">
+                                                <img class ="imgSize m-1 ml-3" src="유저이미지.PNG" class="rounded float-left" alt="...">
                                             </div>
                                         </div>
                                         <div class="row mx-0 center">

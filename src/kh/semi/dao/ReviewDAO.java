@@ -31,7 +31,7 @@ public class ReviewDAO
 
 	public int insertReview(String c_id, String m_id, String contents, String star, Date date) throws Exception
 	{
-		String sql = "insert into REVIEW values(re_seq_seq.nextval, ?, ?, ?, ?, ?, default, default, default)";
+		String sql = "insert into REVIEW values(re_seq_seq.nextval, ?, ?, ?, ?, ?, default, default)";
 		try
 		(
 				Connection con = this.getConnection();
@@ -82,19 +82,19 @@ public class ReviewDAO
 		}
 	}
 
-	// º°Á¡ º¸¿©ÁÖ±â
+	// ë³„ì  ë³´ì—¬ì£¼ê¸°
 	public String viewStar(String star) {
 		String result="";
 		if(star.contentEquals("1")) {
-			result = "¡Ú¡Ù¡Ù¡Ù¡Ù";
+			result = "â˜…â˜†â˜†â˜†â˜†";
 		}else if(star.contentEquals("2")) {
-			result = "¡Ú¡Ú¡Ù¡Ù¡Ù";
+			result = "â˜…â˜…â˜†â˜†â˜†";
 		}else if(star.contentEquals("3")) {
-			result = "¡Ú¡Ú¡Ú¡Ù¡Ù";
+			result = "â˜…â˜…â˜…â˜†â˜†";
 		}else if(star.contentEquals("4")) {
-			result = "¡Ú¡Ú¡Ú¡Ú¡Ù";
+			result = "â˜…â˜…â˜…â˜…â˜†";
 		}else if(star.contentEquals("5")) {
-			result = "¡Ú¡Ú¡Ú¡Ú¡Ú";
+			result = "â˜…â˜…â˜…â˜…â˜…";
 
 		}else {
 			result =  "";
@@ -140,12 +140,12 @@ public class ReviewDAO
 
 		int startNavi = (currentPage -1) / naviCountPerPage * naviCountPerPage + 1;
 		int endNavi = startNavi + (naviCountPerPage-1);
-		// ÇöÀç À§Ä¡¿¡ µû¸¥ ³×ºñ ½ÃÀÛ°ú ³¡À» ±¸ÇÏ±â
+		// í˜„ì¬ ìœ„ì¹˜ì— ë”°ë¥¸ ë„¤ë¹„ ì‹œì‘ê³¼ ëì„ êµ¬í•˜ê¸°
 
 		if(endNavi > pageTotalCount) {
 			endNavi = pageTotalCount;
 		}
-		//³×ºñ ³¡°ªÀÌ ÃÖ´ë ÆäÀÌÁö ¹øÈ£¸¦ ³Ñ¾î°¡¸é ÃÖ´ë ÆäÀÌÁö¹øÈ£·Î ³×ºñ ³¡°ªÀ» ¼³Á¤ÇÑ´Ù.
+		//ë„¤ë¹„ ëê°’ì´ ìµœëŒ€ í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ë„˜ì–´ê°€ë©´ ìµœëŒ€ í˜ì´ì§€ë²ˆí˜¸ë¡œ ë„¤ë¹„ ëê°’ì„ ì„¤ì •í•œë‹¤.
 
 		boolean needPrev = true;
 		boolean needNext = true;
@@ -221,7 +221,7 @@ public class ReviewDAO
 		}
 	}
 	
-	//Å¬·¡½º Æò±Õ º°Á¡ ¾÷µ¥ÀÌÆ®
+	//í´ë˜ìŠ¤ í‰ê·  ë³„ì  ì—…ë°ì´íŠ¸
 	public int updateAveStar(int Star, int classId)throws Exception {
 		String sql= "UPDATE classinfo SET INFO_AVGSTAR = ? WHERE INFO_CLASSID = ?";
 		
@@ -235,18 +235,18 @@ public class ReviewDAO
 			con.commit();
 			int result = pstat.executeUpdate();
 			if(result>0) {
-				System.out.println("º°Á¡ ¾÷µ¥ÀÌÆ® ¼º°ø");
+				System.out.println("ë³„ì  ì—…ë°ì´íŠ¸ ì„±ê³µ");
 			}else {
-				System.out.println("º°Á¡ ¾÷µ¥ÀÌÆ® ½ÇÆĞ");
+				System.out.println("ë³„ì  ì—…ë°ì´íŠ¸ ì‹¤íŒ¨");
 			}
 			return result;
 		}
 	
 	}
 	
-	//Æò±Õ º°Á¡ ±¸ÇÏ±â
+	//í‰ê·  ë³„ì  êµ¬í•˜ê¸°
 	public int aveStar(int classId)throws Exception{
-		// ¼±ÅÃÇÑ Å¬·¡½º¿¡ ÀÛ¼ºµÈ ¸®ºä¿¡¼­ »ÌÀº º°Á¡µé
+		// ì„ íƒí•œ í´ë˜ìŠ¤ì— ì‘ì„±ëœ ë¦¬ë·°ì—ì„œ ë½‘ì€ ë³„ì ë“¤
 		String sql = "select re_star from review where re_classId = ?";
 		Connection con = this.getConnection();
 		PreparedStatement pstat = con.prepareStatement(sql);

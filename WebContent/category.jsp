@@ -143,6 +143,11 @@ div {
 .card-body{
 	text-align: left;
 }
+.card-body>img{
+	height: 80px;
+	width: 80px;
+}
+
 #starBox{
 	float: left;
 	margin-right:10px;
@@ -254,11 +259,21 @@ div {
 	color: #ffb100;
 }
 #footer {
-	height: 150px;
-	margin: auto;
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
 }
 #sns>img {
 	width: 50px;
+}
+#sns>img{
+	margin:30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg{
+	margin-right:50px;
+	text-align: right;
 }
 </style>
 <body>
@@ -502,10 +517,9 @@ div {
 								</div>
 								<!-- 캐러셀 끝 -->
 								<div class="card-body">
-									<img src= ${list.m_photo } width="80px" height="80px"
-										alt="이미지가 없습니다." class=face>
+									${list.m_photo }
 									<span id=starBox> <c:choose>
-											<c:when test="${list.info_avgstar == '0'}">
+											<c:when test="${list.info_avgstar =='0'}">
 												<span class="badge badge-pill badge-info">New</span>
 											</c:when>
 										</c:choose> <c:forEach begin="1" end="${list.info_avgstar}">
@@ -534,17 +548,23 @@ div {
 						</form>
 					</c:forEach>
 				</div>
-	</div>
-	</c:otherwise>
+				</c:otherwise>
 	</c:choose>
+	</div>
 
 	<div id=footer class="row">
-		<div class="col-12 col-md-8"></div>
-		<div class="col-12 col-md-4" id=sns>
-			<img src="블로그.png"> <img src="인스타그램.png"> <img
-				src="트위터.png"> <img src="페이스북.png">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+		<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+		<img src="https://img.icons8.com/ios/48/000000/twitter.png">
+		<img src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+		<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br>
+			© Ggooldanji. all rights reserved.	
+			</div>
 		</div>
-	</div>
 
 	<script>
 			
