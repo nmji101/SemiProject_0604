@@ -294,6 +294,7 @@ public class MypageServlets extends HttpServlet
 							response.sendRedirect("error.html");
 						}
 					}
+					System.out.println("관심사 통과");
 					dao.updateAttentionById(collection, m_id);
 				}
 				response.sendRedirect("person.mypage");
