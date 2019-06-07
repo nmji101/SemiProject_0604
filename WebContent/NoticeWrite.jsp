@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
+	rel="stylesheet">
 <title>공지사항</title>
     
 <style>
@@ -129,25 +132,79 @@ $(function()
 	    }
 	  
 	    $('#regNotice').on("click", function(e)
-		{
+	    {
 	    	var form = $('<form></form>');
-		    form.attr('action', 'write.notice');
-		    form.attr('method', 'POST');
-		    form.appendTo('body');
-		
-		    var text = $(".note-editable").children("p").html();
-		    
-			var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
-			var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
-			var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-		 	
-			
-			
-		    form.append(writer).append(title).append(contents);
-		    $("#contents_hidden").val("`"+text+"`");
-		    
-		    form.submit();
-		});
+	    	form.attr('action', 'write.notice');
+	    	form.attr('method', 'POST');
+	    	form.appendTo('body');
+	               		
+	    	var text = $(".note-editable").children("p").html();
+	    	
+		    if((text != "<br>") && ($("#title_text").val() != ""))
+		    {
+		    	var seq = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
+		    	var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+		    	var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+		               			 	
+		   		form.append(seq).append(title).append(contents);
+		    	$("#contents_hidden").val(text);
+		               			    
+		    	form.submit();
+		    }
+		    else
+		    {
+		   		alert("작성 내용을 확인하세요.");
+		    }
+	    });
+	    
+	    if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
+						}
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
+						{
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
+						}
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
 	    
   });
   

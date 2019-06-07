@@ -5,7 +5,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="/favicon-32x32.png">
+<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
+	rel="stylesheet">
 <title>공지사항</title>
 
 <style>
@@ -139,22 +143,48 @@ div {
 #navi_div {
 	text-align: center;
 }
-#notice_row > div
-{
+
+#notice_row>div {
 	border-left: 1px solid #ffba00;
 	border-right: 1px solid #ffba00;
 }
-#notice_row
-{
+
+#notice_row {
 	border: 1px solid #ffba00;
 	background-color: #ffba00;
 	color: white;
 }
-#notice_div
-{
+
+#notice_div {
 	border-top: 1px solid #ffba00;
 	border-bottom: 1px solid #ffba00;
 }
+
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 0px
+}
+
+#sns>img {
+	width: 50px;
+}
+
+#sns>img {
+	margin: 30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg {
+	margin-right: 50px;
+	text-align: right;
+}
+
+.write{
+	margin-bottom:60px;
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -168,44 +198,60 @@ div {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">	
+<link rel="shortcut icon" href="favicon.ico">
 
 <script>
 	$(function()
     {
-		$("#logout_btn").on("click", function()
-		{
-			if(${loginType == "kakao"})
-			{
-				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
-				            				
-				var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
-				window.open("exit.html","",popOption)
 		
-				Kakao.Auth.logout
-				(
-					function(data)
-					{
-						if(data)
-						{				
-							location.href="logout.login";
+		if(${loginId == null }){
+			$("#toLogin").on("click",function(){
+				location.href = "Login.jsp";
+			});
+			$("#toSignup").on("click",function(){//회원가입
+				location.href = "SignUp.jsp";
+			});
+		}else{
+			$("#mypage_btn").on("click", function()
+	        		{
+						if(${type=="admin"}){
+							location.href = "mypage.admin";
+						}else{
+							location.href = "doing.mypage?"+encodeURI("page=1");
 						}
-						else
+	        		});
+	        		$("#logout_btn").on("click", function()
+	        		{
+	        			if(${loginType == "kakao"})
 						{
-							location.href="error.html";
+	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+	        				
+							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+							window.open("exit.html","",popOption)
+
+							Kakao.Auth.logout
+							(
+								function(data)
+								{
+									if(data)
+									{	
+										location.href="logout.login";
+									}
+									else
+									{
+										location.href="error.html";
+									}
+							    }
+							);
 						}
-					}
-				);
-			}
-			else if(${loginType == "normal"})
-			{
-				location.href="logout.login";
-			}
-			else
-			{
-				location.href="naverLogout.login";
-			}
-		})
+						else if(${loginType == "normal"})
+						{
+							location.href="logout.login";
+						}else{
+							location.href="naverLogout.login";
+						}
+	        		});
+		}
 		
 	    $("#search_btn").on("click", function()
 	    {
@@ -260,7 +306,7 @@ div {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 
 			</div>
 
@@ -323,44 +369,28 @@ div {
 				<div class="row">
 
 					<div id="contents_div" class="col-lg-12">
-						
+
 						<div class="row my-3">
 
-								<div class="col-12">
+							<div class="col-12">
 
-									<div id="notice_row" class="row">
+								<div id="notice_row" class="row">
 
-										<div class="notice_seq_div col-lg-1 my-auto">
-											
-											글 번호
-										
-										</div>
+									<div class="notice_seq_div col-lg-1 my-auto">글 번호</div>
 
-										<div class="notice_text_div col-lg-5 my-auto">
+									<div class="notice_text_div col-lg-5 my-auto">글 제목</div>
 
-											글 제목
+									<div class="notice_writer_div col-lg-3 my-auto">글 작성자</div>
 
-										</div>
-
-										<div class="notice_writer_div col-lg-3 my-auto">
-											
-											글 작성자
-
-										</div>
-										
-										<div class="notice_time_div col-lg-3 my-auto">
-										
-											글 작성 시간
-										
-										</div>
-										
-									</div>
+									<div class="notice_time_div col-lg-3 my-auto">글 작성 시간</div>
 
 								</div>
 
 							</div>
-						
-						
+
+						</div>
+
+
 						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
 
 							<div class="row my-3">
@@ -369,11 +399,7 @@ div {
 
 									<div id="notice_div" class="row">
 
-										<div class="col-lg-1 my-auto">
-											
-											${ list[i-1].no_seq }
-										
-										</div>
+										<div class="col-lg-1 my-auto">${ list[i-1].no_seq }</div>
 
 										<div class="col-lg-5 my-auto">
 
@@ -381,18 +407,10 @@ div {
 
 										</div>
 
-										<div class="col-lg-3 my-auto">
-											
-											${ list[i-1].no_writer }
+										<div class="col-lg-3 my-auto">${ list[i-1].no_writer }</div>
 
-										</div>
-										
-										<div class="col-lg-3 my-auto">
-										
-											${ list[i-1].no_time }
-										
-										</div>
-										
+										<div class="col-lg-3 my-auto">${ list[i-1].no_time }</div>
+
 									</div>
 
 								</div>
@@ -424,16 +442,16 @@ div {
 
 				</div>
 				<c:if test="${ type == 'admin' }">
-					
+
 					<div class="row">
-					
-						<div class="col-12">
-						
-							<a href="NoticeWrite.jsp" class="btn btn-primary">글 쓰기</a>
-							
+
+						<div class="col-12 write">
+
+							<a href="NoticeWrite.jsp" class="btn btn-info">글 쓰기</a>
+
 						</div>
-						
-					</div>					
+
+					</div>
 
 				</c:if>
 			</div>
@@ -441,6 +459,18 @@ div {
 		</div>
 
 	</div>
-
+	<div id=footer class="row">
+		<div class="col-12 col-md-8"></div>
+		<div class="col-12 col-md-4" id=sns>
+			<img src="https://img.icons8.com/ios/48/000000/facebook.png"> <img
+				src="https://img.icons8.com/ios/48/000000/twitter.png"> <img
+				src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+			<img src="https://img.icons8.com/ios/48/000000/github.png">
+		</div>
+		<div id=footerMsg>
+			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br> © Ggooldanji. all rights
+			reserved.
+		</div>
+	</div>
 </body>
 </html>

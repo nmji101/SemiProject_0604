@@ -128,6 +128,7 @@ div {
 	padding: 0;
 	border: 0px;
 	margin: auto;
+	transition-duration: 1s;
 }
 #soon {
 	text-align: center;
@@ -167,7 +168,7 @@ div {
 	text-align: center;
 }
 .nav-item {
-	width: 33.3%;
+	width: 25%;
 	margin: auto;
 	padding: 20px;
 	font-size: 20px;
@@ -185,6 +186,11 @@ div {
 }
 .has-megamenu {
 	position: static;
+}
+
+.navbar>ul{
+	width:70%;
+	margin:auto;
 }
 
 .dropdown-menu li, a{
@@ -322,13 +328,15 @@ div {
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
 						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
-					<li class="nav-item dropdown has-megamenu"><a href="#"
+				
+				<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">카테고리</a>
 
 						<ul class="dropdown-menu multi-column columns-6">
 							<div class="row category">
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
@@ -342,7 +350,7 @@ div {
 									<ul class="multi-column-dropdown">
 										<li><a
 											href="info.category?category=it&select=info_avgstar desc&addr=all"
-											class=cateA>IT </a> <input type=hidden value="it" class=cate></li>
+											class=cateA> IT </a> <input type=hidden value="it" class=cate></li>
 
 									</ul>
 								</div>
@@ -363,10 +371,11 @@ div {
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
+											href="info.category?category=money&select=info_avgstar desc&addr=all">제테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
 							</div>
 						</ul></li>
 
@@ -456,7 +465,11 @@ div {
 								</div>
 							</div>
 						</ul></li>
-
+						
+						
+					<li class="nav-item"><a class="nav-link active"
+						href="list.notice?page=1">공지사항</a></li>
+		
 				</ul>
 			</nav>
 		</div>
@@ -545,7 +558,7 @@ div {
 										<b>${list.info_title }</b>
 									</p>
 									<p>
-										<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
+										<span><input type="hidden" value=${list.info_price } class=price></span> | <span>${list.m_nickname }</span>
 									</p>
 									<p class=addr2>
 										<input type="hidden" value="${list.info_addr2 }" class=tmp>
@@ -610,6 +623,13 @@ div {
 			$(".locationMenu li").on("click",function(){
 				var addr = $(this).text();
 				location.href="info.category?addr="+addr+"&select=info_avgstar desc";
+			})
+			
+			$(".price").each(function (i, item) {
+				var price = $(item).val();
+				var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/g,"$1,$2 원");
+				console.log(result);
+				$(item).parent().text(result);
 			})
 			
 		</script>

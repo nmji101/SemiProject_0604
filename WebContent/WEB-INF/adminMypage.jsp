@@ -7,7 +7,9 @@
         <meta charset="UTF-8">
         <title>관리자 마이페이지</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
         <style>
             /*         header	 */
             * {
@@ -101,6 +103,10 @@
                 justify-content: center;
             }
 
+			h2{
+				font-family: 'Gugi', cursive;
+				color: #ffba00;
+			}
             #header_row, #profile_row, #contents_row {
                 justify-content: center;
             }
@@ -208,10 +214,6 @@
             $(function()
               {
 
-
-                $("#logo").on("click", function() {
-                    location.href = "mainHomePage.jsp";
-                })
                 $("#search_Btn").on("click",function(){
                     var input = $("#searchbox").val();
                     var regex = /^ {1,}$/g;
@@ -348,7 +350,7 @@
 
                 <div id="logo_div" class="col-12 col-lg-3">
 
-                    <a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+                    <a href="start.main"><img src="logo.png" id=logo></a>
 
                 </div>
 
@@ -423,7 +425,7 @@
 
                                 <div id="profile_text_div" class="col-lg-8 my-auto px-3">
 
-                                        <h3>${ dto.m_nickname } <br>[관리자모드]</h3>
+                                        <h2>${ dto.m_nickname } <br>[관리자 모드]</h2>
 
                                 </div>
 
