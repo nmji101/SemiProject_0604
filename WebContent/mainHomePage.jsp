@@ -226,10 +226,6 @@ div {
    background-color: #a6e2bf;
 }
 
-#footer {
-   height: 150px;
-   margin: auto;
-}
 
 #footer {
 	height: 300px;
@@ -617,7 +613,7 @@ $(function(){
 			</div>
 			<div id=footerMsg>
 			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br>
-			© Gooldanji. all rights reserved.	
+			© Ggooldanji. all rights reserved.	
 			</div>
 		</div>
 	</div>
