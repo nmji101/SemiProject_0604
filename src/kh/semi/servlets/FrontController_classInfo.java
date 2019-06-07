@@ -42,9 +42,11 @@ public class FrontController_classInfo extends HttpServlet {
 				ClassInfoDTO dto = i_dao.selectInfoByClassId(classId);
 				request.setAttribute("classInfo", dto);
 				//2. 해당 클래스의 tutor의 사진과 닉네임 얻어오기.
+				System.out.println("id :" + dto.getInfo_tutorid());
 				String[] nick_photo = m_dao.getTutorImg(dto.getInfo_tutorid());
 				request.setAttribute("tutorNickname", nick_photo[0]);
 				request.setAttribute("tutorImg", nick_photo[1]);
+				System.out.println("사진" + nick_photo[1]);
 				//달력표시작업
 				//3. 해당클래스의 수업가능 시작날짜 ~ 종료날짜 는 dto에서 사용하기.
 				//4. 해당클래스의 정원꽉찬 날짜만 따로 보내주기.(for문때문에 size도 보내주기

@@ -17,7 +17,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 $(function(){
 	$("#logo").on("click", function() {
@@ -497,17 +497,28 @@ div {
 								<div class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">
 										<div class="carousel-item active">
-											<img src="${list.info_img1 }" class="d-block w-100" alt="..."
+											<img src="${list.info_img1 }" class="d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										
+										<c:choose>
+										<c:when test="${list.info_img2 != null }">
 										<div class="carousel-item">
 											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										</c:when>		
+										</c:choose>
+										
+										<c:choose>
+										<c:when test="${list.info_img3 != null }">
 										<div class="carousel-item">
 											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										</c:when>		
+										</c:choose>
+										
 									</div>
 									<a class="carousel-control-prev" href="#carousel" role="button"
 										data-slide="prev"> <span

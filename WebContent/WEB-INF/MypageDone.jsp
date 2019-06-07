@@ -191,7 +191,7 @@ h2 {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 	$(function()
     {
@@ -285,7 +285,7 @@ h2 {
 	    
 	    $(document).on("click", ".detail_class_btn", function()
 	    {
-	       location.href = "detail.page?id=" + $(this).attr("name");
+	       location.href = "clickClass.classInfo?classId=" + $(this).attr("name");
 	    });
 	           	    
 	    $(document).on("click", ".navi_btn", function()
@@ -489,10 +489,15 @@ h2 {
 
 											<div class="row">
 
-												<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
-												</div>
+
+
+
+										<div class="class_img_div col-lg-2 my-auto">
+											<img src="${ list[i-1].img }">
+										</div>
 
 												<div class="class_text_div col-lg-7 my-auto">
+
 
 													<h4>${ list[i-1].title }</h4>
 													${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>

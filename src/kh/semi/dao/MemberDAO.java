@@ -231,7 +231,7 @@ public class MemberDAO
 	}
 
 	public String[] getTutorImg(String tutorId) throws Exception{
-		String sql = "select m_nickname, m_phone from member where m_id = ?";
+		String sql = "select m_nickname, m_photo from member where m_id = ?";
 		ResultSet rs = null;
 		try(
 				Connection con = this.getConnection();

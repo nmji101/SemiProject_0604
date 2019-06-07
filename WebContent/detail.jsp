@@ -20,7 +20,7 @@
         <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-	<link rel="shortcut icon" href="favicon.sico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <style>
 /*         header	 */
 
@@ -44,9 +44,10 @@
 	width:100%;
 }
 #select{
-	border : 1px solid blue;
+	border : 2px solid rgba(135, 206, 235, 0.52);
 	border-radius: 10px;
 	padding : 1px;
+	margin : 2px;
 }
 
 * {
@@ -113,7 +114,7 @@
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
-                background-color: rgba(44, 31, 31, 0.1);
+/*                 background-color: rgba(44, 31, 31, 0.1); */
             }
             #contents>div{
                 float: left;
@@ -143,7 +144,7 @@
                 width: 100%;
                 /*                height: 30px;*/
                 background-color: white;
-                border-bottom: 1px solid black;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.28);
             }
             #clickNavi{
                 margin: 0px;
@@ -155,12 +156,18 @@
                 list-style: none;
                 width: 20%;
             }
+            #clickNavi>li>a{
+            	color : #ffba00;
+            	text-decoration: none;
+            	font-size: 20px;
+            }
             /*            요약정보*/
             #sumary{
                 /*                임시 : 내용채워지는대로 자동으로 높이 생기도록하기*/
                 height: 250px;
                 overflow: hidden;
                 /*                margin-top: 30px;*/
+                margin : 0px 70px;
             }
 
             .class_name{
@@ -172,11 +179,12 @@
                 display: inline-block;
                 overflow: hidden;
                 border-radius: 100px;
-                width: 200px;
-                height: 200px;
+                width: 150px;
+                height: 150px;
             }
             #tutorImg{
-                width: 100%;
+                width: 150px;
+                height: 150px;
             }
             /*            /이미지원형*/
             .class_nickname{
@@ -188,6 +196,9 @@
                 width: 330px;
                 overflow: hidden;
                 margin-left: 20px;
+            }
+            .title>*{
+            	font-size : 20px;
             }
             .class_title>.star{
                 height: 50px;
@@ -231,7 +242,10 @@
             .class_detail{
                 padding-top: 40px;
                 margin: 0px 40px;
-                border-bottom: 1px solid black;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.28);
+            }
+            .class_detail>h3{
+            	font-weight: bold;
             }
             /*            사이드 fixed 메뉴*/
             #sideTop{
@@ -244,6 +258,7 @@
             /*                임시*/
             #purchase{
                 text-align: center;
+                background-color: transparent !important;
             }
             #purchaseBtn{
                 font-size: 15px;
@@ -252,9 +267,10 @@
                 width: 100%;
                 transition-duration: 1s;
                 height:30px;
+                border-radius: 5px;
             }
             #purchaseBtn:hover{
-                background-color: rgba(43, 43, 227, 0.63);
+                background-color: #ffba00;
             }
             #scdBtn{
             	background-color: rgba(92, 92, 96, 0.13);
@@ -269,6 +285,12 @@
             }
             #map_addr{
             	text-align : center;
+            }
+            #map{
+            	border-radius: 10px;
+            }
+            .carousel-item>div{
+            	border-radius: 10px;
             }
         </style>
 		<!--         다음지도 api cdn -->
@@ -544,7 +566,7 @@
                 	
                 	$(purchaseForm).submit();
                 });
-                
+                //주소위치 설정
                 var addr = "${classInfo.info_addr2}";
                 var addrRegex = /(.+?) (.+?) .*/g;
                 var addrResult = addrRegex.exec(addr);
@@ -555,6 +577,8 @@
                     }
                 }
                 $("#simpleAddr").text(addr);
+                
+                $(".class_tuImg").children("img").prop("id","tutorImg");
             });
         </script>
     </head>
@@ -675,7 +699,7 @@
                         <div class="class_name">
                             <div class="tutor">
                                 <span class="class_tuImg">
-                                    <img id="tutorImg" src="${tutorImg}" alt="no img">
+                                	${tutorImg}
                                 </span>
                             </div>
                             <div class="class_nickname">
@@ -688,8 +712,8 @@
                             </div>
                             <div class="star">
                             <c:choose>
-                            	<c:when test="${info_avgstar==0}">
-                            		<span class="badge badge-info">NEW</span>
+                            	<c:when test="${classInfo.info_avgstar=='0'}">
+                            		<span class="badge badge-info p-2">NEW</span>
                             	</c:when>
                             	<c:otherwise>
                             		<c:forEach var="i" begin="0" end="${classInfo.info_avgstar}">

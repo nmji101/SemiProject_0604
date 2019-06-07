@@ -46,7 +46,10 @@ public class TutorController extends HttpServlet {
 		if(!uploadPath.exists()) {
 			uploadPath.mkdir();
 		}
-		System.out.println(filePath2);
+//		System.out.println(rootPath);
+//		System.out.println(filePath2);
+		System.out.println(filePath2.substring(rootPath.length()));
+		String filePathtoImg = filePath2.substring(rootPath.length());
 		//      
 		//      String requestURI = request.getRequestURI();
 		//      String contextPath = request.getContextPath();
@@ -71,9 +74,15 @@ public class TutorController extends HttpServlet {
 			dto.setInfo_addr4(multi.getParameter("addr4"));
 			dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
 			dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
-			dto.setInfo_img1(multi.getFilesystemName("img"));
-			dto.setInfo_img2(multi.getFilesystemName("img2"));
-			dto.setInfo_img3(multi.getFilesystemName("img3"));
+			dto.setInfo_img1(filePathtoImg+"/"+multi.getFilesystemName("img"));
+			dto.setInfo_img2(filePathtoImg+"/"+multi.getFilesystemName("img2"));
+			if(multi.getFilesystemName("img2")==null) {
+				dto.setInfo_img2(multi.getFilesystemName("img2"));
+			}
+			dto.setInfo_img3(filePathtoImg+"/"+multi.getFilesystemName("img3"));
+			if(multi.getFilesystemName("img3")==null) {
+				dto.setInfo_img3(multi.getFilesystemName("img3"));
+			}
 			dto.setInfo_start(multi.getParameter("startdate"));
 			dto.setInfo_end(multi.getParameter("enddate"));
 
