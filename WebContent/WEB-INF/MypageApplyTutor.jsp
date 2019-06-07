@@ -163,6 +163,12 @@ h2{
 font-family: 'Gugi', cursive;
 	color: #ffba00
 }
+#tutor_apply_btn
+{
+	color: white;
+	width: 150px;
+	height: 50px;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -381,7 +387,8 @@ font-family: 'Gugi', cursive;
 								<button id="tutor_page_btn" class="btn btn-warning py-3" > 
 
 									<h5><strong>튜터 페이지</strong></h5>
-
+								
+								</button>
 
 							</div>
 						
@@ -409,7 +416,7 @@ font-family: 'Gugi', cursive;
 								<input name="id" type="hidden" value="${ dto.m_id }"> <input
 									name="nickname" type="hidden" value="${ dto.m_nickname }">
 
-								<input type="submit">
+								<input id="tutor_apply_btn" class="btn btn-info" type="submit" value="튜터 신청하기">
 
 							</form>
 
