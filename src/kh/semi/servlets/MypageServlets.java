@@ -71,7 +71,7 @@ public class MypageServlets extends HttpServlet
 				for(int i = 1 ; i <= list.size() ; i++)
 				{
 					String tutorId = list.get(i-1).getTutorId();
-					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+//					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
 				}
 				
 				int recordTotalCount = dcdao.selectDoingCount(m_id);

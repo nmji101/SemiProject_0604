@@ -26,15 +26,19 @@ public class MainController extends HttpServlet {
 			int count = dao.recordTotalCount();
 			request.setAttribute("count", count);
 			
-			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar", 1, 10);
-			int num1 = (int)(Math.random()*10+1);
-			int num2 = (int)(Math.random()*10+1);
-			while(num1 == num2) {
-				num2 = (int)(Math.random()*10+1);
+			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar", 1, 5);
+			int num1 = (int)(Math.random()*5+1);
+			int num2 = (int)(Math.random()*5+1);
+			while(true) {
+				if(num1 == num2) {
+				num2 = (int)(Math.random()*5+1);
+				}else {
+					break;
+				}
 			}
 			
-			int classId1 = popularList.get(num1).getInfo_classid();
-			int classId2 = popularList.get(num2).getInfo_classid();
+			int classId1 = popularList.get(num1-1).getInfo_classid();
+			int classId2 = popularList.get(num2-1).getInfo_classid();
 			ReviewDAO rdao = new ReviewDAO();
 			List<ReviewDTO> review1 = rdao.selectAll(1, 5, classId1);
 			List<ReviewDTO> review2 = rdao.selectAll(1, 5, classId2);
