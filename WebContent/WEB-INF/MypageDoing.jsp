@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-
+<link
+	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <style>
 
 /*         header	 */
@@ -138,10 +140,10 @@ div {
 	text-align: center;
 }
 
-#contents_div  img {
+ .my-auto>img { 
 	width: 100%;
 	height: 100%;
-}
+ } 
 
 .class_btn_div {
 	text-align: center;
@@ -156,7 +158,7 @@ div {
 }
 
 #ing_class_btn {
-	color: cornflowerblue;
+	color: white;
 	font-weight: bold;
 }
 
@@ -164,6 +166,22 @@ div {
 	width: 100%;
 	height: 100%;
 }
+
+h2 {
+	font-family: 'Gugi', cursive;
+	color: #ffba00
+}
+
+#noClass {
+	width:300px;
+	text-align: center;
+	color: #7e7666;
+	font-size: 20px;
+	height: 300px;
+	position: relative;
+	left:150px;
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -177,7 +195,7 @@ div {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">	
+<link rel="shortcut icon" href="favicon.ico">
 
 <script>
 	$(function()
@@ -412,7 +430,10 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
+									<h2>${ dto.m_nickname }
+										님, 환영합니다! <img
+											src="https://img.icons8.com/color/48/000000/smiling.png">
+									</h2>
 
 								</button>
 
@@ -441,9 +462,11 @@ div {
 							<div class="col-6 col-md-3 col-lg-12 my-1">
 
 								<button id="ing_class_btn" class="btn btn-warning py-3">
-									
-									<h5><strong>수강 중 클래스</strong></h5>
-								
+
+									<h5>
+										<strong>수강 중 클래스</strong>
+									</h5>
+
 								</button>
 
 							</div>
@@ -475,40 +498,47 @@ div {
 					</div>
 
 					<div id="contents_div" class="col-lg-9">
+						<c:choose>
+							<c:when test="${ listsize == 0}">
+								<div id="noClass">
+								<img src="doing.png">
+								</div>	
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="i" begin="1" end="${ listsize }" step="1">
 
-						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
+									<div class="row class_div my-3">
 
-							<div class="row class_div my-3">
+										<div class="col-12">
 
-								<div class="col-12">
+											<div class="row">
 
-									<div class="row">
+												<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
+												</div>
 
-										<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
-										</div>
+												<div class="class_text_div col-lg-7 my-auto">
 
-										<div class="class_text_div col-lg-7 my-auto">
+													<h4>${ list[i-1].title }</h4>
+													${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
-											<h4>${ list[i-1].title }</h4>
-											${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
+												</div>
 
-										</div>
+												<div class="class_btn_div col-lg-3 my-auto">
 
-										<div class="class_btn_div col-lg-3 my-auto">
+													<input class="btn btn-primary detail_class_btn"
+														name=${ list[i-1].classId } type="button" value="자세히">
 
-											<input class="btn btn-primary detail_class_btn"
-												name=${ list[i-1].classId } type="button" value="자세히">
+												</div>
+
+											</div>
 
 										</div>
 
 									</div>
 
-								</div>
-
-							</div>
-
-						</c:forEach>
-
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 
 				</div>
