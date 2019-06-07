@@ -471,7 +471,6 @@ public class MypageServlets extends HttpServlet
 		{
 			try
 			{
-				
 				ReviewDAO dao = new ReviewDAO();
 				
 				String time = request.getParameter("date");
@@ -483,18 +482,38 @@ public class MypageServlets extends HttpServlet
 				@SuppressWarnings("deprecation")
 				Date date = new Date(year, month-1, day);
 				
-				dao.insertReview(request.getParameter("c_id"),
-						request.getParameter("m_id"), 
-						request.getParameter("text"), 
-						request.getParameter("star"),
-						date
-						);
+				int c_id = Integer.parseInt(request.getParameter("c_id"));
+				String req_m_id = request.getParameter("m_id");
+				
+				if(m_id.equals(req_m_id))
+				{
+					if(!dao.overlapReviewCheck(c_id, req_m_id))
+					{
+						dao.insertReview(request.getParameter("c_id"),
+							request.getParameter("m_id"),
+							request.getParameter("text"), 
+							request.getParameter("star"),
+							date
+							);
+						
+						response.sendRedirect("close.html");
+					}
+					else
+					{
+						response.sendRedirect("error.html");
+					}
+				}
+				else
+				{
+					response.sendRedirect("error.html");
+				}
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
+				response.sendRedirect("error.html");
 			}
-			response.sendRedirect("close.html");
+			
 		}
 		else if(url.equals("tutor.mypage"))
 		{System.out.println("튜터페이지 접속");
