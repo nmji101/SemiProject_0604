@@ -195,6 +195,31 @@ h2 {
 <script>
 	$(function()
     {
+		$("#logo").on("click", function() {
+			location.href = "start.main";
+		})
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
+		$("#mypage_btn").on("click", function()
+        		{
+					if(${type=="admin"}){
+						location.href = "mypage.admin";
+					}else{
+						location.href = "doing.mypage?"+encodeURI("page=1");
+					}
+        		});
 		$("#logout_btn").on("click", function()
 		{
 			if(${loginType == "kakao"})
@@ -228,15 +253,6 @@ h2 {
 		    	location.href="naverLogout.login";
 		    }
 		})
-		$("#logout_btn").on("click", function()
-		{
-			location.href = "logout.login";
-		});
-		
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
-	    });
 	    
 	    $("#ing_class_btn").on("click", function()
 	    {
@@ -335,23 +351,16 @@ h2 {
 
 			<div class="col-12 col-lg-6">
 
-				<form id=search class="form-inline my-2 my-lg-0">
-
-					<div class="row justify-content-center">
-
-						<div id="searchbox_div" class="col-12">
-
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
 						</div>
-
-					</div>
-
-				</form>
+					</form>
 
 			</div>
 

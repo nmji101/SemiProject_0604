@@ -217,14 +217,6 @@ h2 {
 			//alert("검색어 : " + input)
 			$("#searchForm").submit();
 		});
-		if(${loginId == null }){
-			$("#toLogin").on("click",function(){
-				location.href = "Login.jsp";
-			});
-			$("#toSignup").on("click",function(){//회원가입
-				location.href = "SignUp.jsp";
-			});
-		}else{
 			$("#mypage_btn").on("click", function()
 	        		{
 						if(${type=="admin"}){
@@ -264,7 +256,7 @@ h2 {
 							location.href="naverLogout.login";
 						}
 	        		});
-		}
+		
 		
 	    
 	    $("#ing_class_btn").on("click", function()
@@ -358,23 +350,16 @@ h2 {
 
 			<div class="col-12 col-lg-6">
 
-				<form id=search class="form-inline my-2 my-lg-0">
-
-					<div class="row justify-content-center">
-
-						<div id="searchbox_div" class="col-12">
-
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
 						</div>
-
-					</div>
-
-				</form>
+					</form>
 
 			</div>
 
