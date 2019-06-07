@@ -29,7 +29,7 @@
 /* datepicker Style */
 .ui-datepicker { width: 270px; padding: 0; display: none; border: 0; margin-top: 10px; font-size: 15px;}
 .ui-widget.ui-widget-content { border: 0; border-radius: 3px; overflow: hidden; background: none; box-shadow: 0 0 8px rgba(0,0,0,0.3);}
-.ui-datepicker .ui-widget-header { position: relative; padding: 6px 0 36px 0; border: 0; background: #3f51b5; color: #fff; border-radius: 0; }
+.ui-datepicker .ui-widget-header { position: relative; padding: 6px 0 36px 0; border: 0; background: rgba(135, 206, 235, 0.52); color: #fff; border-radius: 0; }
 .ui-state-default:not(.ui-state-highlight){background:#fff !important; text-align:center !important;}
 .ui-state-highlight{text-align:center !important;}
 .ui-state-active{color:skyblue !important; border:1px solid skyblue !important;}
@@ -113,7 +113,7 @@
                 padding-top: 30px;
                 padding-left: 15%;
                 overflow: hidden;
-                background-color: yellow;
+                background-color: rgba(44, 31, 31, 0.1);
             }
             #contents>div{
                 float: left;
@@ -247,21 +247,28 @@
             }
             #purchaseBtn{
                 font-size: 15px;
-                background-color: rgba(77, 77, 226, 0.44);
+                background-color: rgba(135, 206, 235, 0.52);
                 border-style: none;
                 width: 100%;
                 transition-duration: 1s;
+                height:30px;
             }
             #purchaseBtn:hover{
-                background-color: rgba(77, 77, 226, 0.24);
+                background-color: rgba(43, 43, 227, 0.63);
             }
             #scdBtn{
-            	background-color: transparent;
+            	background-color: rgba(92, 92, 96, 0.13);
             	text-align : center;
             }
             #datepicker>div{
-            width:100%;
-            height:100%;
+           	 	width:100%;
+            	height:100%;
+            }
+            #selectScd{
+            	font-size : 17px;
+            }
+            #map_addr{
+            	text-align : center;
             }
         </style>
 		<!--         다음지도 api cdn -->
@@ -441,6 +448,7 @@
             }
             $("#scdBtn").hide();
             $("#select").hide();
+            $("#selectScd").hide();
 				
             	var selectedDate = "";
                 $(".calendar").on("click",function(){
@@ -497,12 +505,16 @@
                 	$("#selectInfo").prop("flag","true");
                 	$("#scdBtn").hide();
                 	$("#select").show();
+                	$("#selectScd").prop("class","d-flex");
+                	$("#selectScd").show();
                 	//플래그 true로
                 });
                 
                 $("#closeImg").on("click",function(){
                 	$("#selectInfo").prop("flag","false");
                 	$("#select").hide();
+                	$("#selectScd").prop("class","");
+                	$("#selectScd").hide();
                 });
                 $("#purchaseBtn").click(function(){ //구매하기버튼눌렀을때
                 	if($("#selectInfo").prop("flag")=="false"){
@@ -702,7 +714,7 @@
                     </div>
                     </div>
                     <div id="tutorinfo" class="class_detail">
-                        <h3>튜터정보(쪽지기능)</h3>
+                        <h3>튜터정보</h3>
                         <div>${classInfo.info_intro }</div>
                     </div>
                     <div id="introduction" class="class_detail">
@@ -713,6 +725,9 @@
                         <h3>위치(지도확대축소 드래그 추가가능)</h3>
                         <div>
                             <div id="map" style="width:100%;height:300px;"></div>
+                            <br>
+                            <div id="map_addr">수업장소  : ${classInfo.info_addr2 }</div>
+                            <br>
                         </div>
                     </div>
                     <div id="review" class="class_detail">
@@ -729,9 +744,7 @@
                             <span><b>옵션선택</b></span>
                             <span class="ml-auto calendar">달력에서 보기</span>
                         </div>
-                        <div class="d-flex">
-                            <span>일정</span><span class="ml-auto pr-2">V</span>
-                        </div>
+                   
                         <!--여기가 달력 추가될 위치-->
                         <div id="datepicker"></div>
                         <!--/달력 추가될 위치-->
@@ -742,6 +755,9 @@
                         		<div id="checkApplicable"></div>
                         	</div>
                         	</button>
+                        </div>
+                        <div id="selectScd">
+                            <span>선택 일정</span><span class="ml-auto pr-2">V</span>
                         </div>
                         <div id="select">
                         	<div>
