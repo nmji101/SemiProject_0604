@@ -40,7 +40,9 @@
 	margin-top: 10px;
 	font-size: 15px;
 }
-
+#datepicker *{
+	text-align: center;
+}
 .ui-widget.ui-widget-content {
 	border: 0;
 	border-radius: 3px;
@@ -57,19 +59,17 @@
 	color: #fff;
 	border-radius: 0;
 }
-
-.ui-state-default:not (.ui-state-highlight ){
-	background: #fff !important;
-	text-align: center !important;
+.ui-state-default:not(.ui-state-highlight):not(.ui-state-active){
+	background-color: #fff !important;
 }
-
 .ui-state-highlight {
 	text-align: center !important;
 }
-
 .ui-state-active {
-	color: skyblue !important;
-	border: 1px solid skyblue !important;
+	color: rgb(0, 157, 255) !important;
+	border: 1px solid rgba(135, 206, 250, 0.28) !important;
+	font-weight: bold;
+	background-color:rgba(135, 206, 250, 0.28) !important;
 }
 
 #schedule * {
@@ -814,7 +814,7 @@ div {
 										<span class="badge badge-info p-2">NEW</span>
 									</c:when>
 									<c:otherwise>
-										<c:forEach var="i" begin="0" end="${classInfo.info_avgstar}">
+										<c:forEach var="i" begin="1" end="${classInfo.info_avgstar}">
 											<img src="Content/Images/star.jfif">
 										</c:forEach>
 									</c:otherwise>

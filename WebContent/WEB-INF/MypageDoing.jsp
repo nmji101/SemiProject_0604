@@ -327,11 +327,11 @@ h2 {
 	   	
 	   	if("${ currentPage }" % 5 == 0)
 		{
-			$($(".navi_btn")[4]).css("color", "red");
+			$($(".navi_btn")[4]).css("color", "#ffba00");
 		}
 		else
 		{
-			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "red");
+			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "#ffba00");
 		}
     });
     
@@ -473,21 +473,21 @@ h2 {
 
 							<div class="col-6 col-md-3 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn-warning py-3">수강
+								<button id="done_class_btn" class="btn btn-outline-warning py-3">수강
 									한 클래스</button>
 
 							</div>
 
 							<div class="col-6 col-md-3 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn-warning py-3">개인
+								<button id="person_info_btn" class="btn btn-outline-warning py-3">개인
 									정보 수정</button>
 
 							</div>
 
 							<div class="col-6 col-md-3 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn-warning py-3">
+								<button id="tutor_page_btn" class="btn btn-outline-warning py-3">
 
 									튜터 페이지</button>
 
