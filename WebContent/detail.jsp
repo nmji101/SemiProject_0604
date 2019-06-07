@@ -346,7 +346,7 @@
                 var mainWidth = $("#mainContent").css("width");
                 $(window).scroll(function() {
                     if($(this).scrollTop() > he1+he2){
-                        $("#classNavi").css({ "position": "fixed", "top": "0px" ,"width":mainWidth});
+                        $("#classNavi").css({ "position": "fixed", "top": "0px" ,"width":mainWidth , "z-index" : "2"});
                     }else{
                         $("#classNavi").css({ "position": "relative"});
                     }
@@ -544,8 +544,17 @@
                 	
                 	$(purchaseForm).submit();
                 });
-  
                 
+                var addr = "${classInfo.info_addr2}";
+                var addrRegex = /(.+?) (.+?) .*/g;
+                var addrResult = addrRegex.exec(addr);
+                if(addrResult!=null){
+                	addr = addrResult[1];
+                    if(addrResult[1]=="서울"){
+                    	addr = addrResult[2];
+                    }
+                }
+                $("#simpleAddr").text(addr);
             });
         </script>
     </head>
@@ -695,7 +704,7 @@
                                         <div>
                                             <img src="Content/Images/map-location.png">
                                         </div>
-                                        위치
+                                       	<span id="simpleAddr"></span>
                                     </li>
                                     <li>
                                         <div>

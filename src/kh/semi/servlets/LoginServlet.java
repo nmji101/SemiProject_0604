@@ -35,11 +35,12 @@ public class LoginServlet extends HttpServlet
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
 		System.out.println(url);
 		System.out.println(request.getRealPath("/"));
-		try {
-			//new MemberDAO().getInsert(dto);
-		}catch(Exception e) {
-			
-		}
+//		try {
+//	         new MemberDAO().insertAdmin();
+//	         System.out.println("admin등록");
+//	         }catch(Exception e) {
+//	            
+//	         }
 		if(url.equals("kakao.login"))
 		{
 			String info = request.getParameter("json").substring(1, request.getParameter("json").length() - 1);

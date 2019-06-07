@@ -36,14 +36,14 @@ public class TutorController extends HttpServlet {
 
 
 		String rootPath = request.getServletContext().getRealPath("/");
-		String filePath = rootPath + "files" ; //files�뒗 蹂� ���옣�냼�씠硫� �엫�떆���옣�냼媛� �븘�땲�떎
+		String filePath = rootPath + "files" ; 
 		String filePath2 = filePath + "/"+time;
 		File uploadPath1 = new File(filePath);
 		if(!uploadPath1.exists()) {
 			uploadPath1.mkdir();
 		}
 		File uploadPath = new File(filePath2);
-		if(!uploadPath.exists()) {//�빐�떦 �뤃�뜑媛� 議댁옱�븯吏� �븡�뒗�떎硫� mkdir濡� 留뚮뱾�뼱�씪
+		if(!uploadPath.exists()) {
 			uploadPath.mkdir();
 		}
 		System.out.println(filePath2);

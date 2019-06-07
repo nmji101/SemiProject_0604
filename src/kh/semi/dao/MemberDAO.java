@@ -106,7 +106,7 @@ public class MemberDAO
 
 	public int getInsert(MemberDTO dto)throws Exception{ // 회원가입
 		String sql = "insert into member(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_phone,m_type,m_photo) "
-				+ "values(?,?,?,?,?,?,?,'normal','<img src=\"\" alt=\"이미지가 없습니다\">')";
+				+ "values(?,?,?,?,?,?,?,'normal','<img src=\"Content/Images/m_photo_1.jpg\" alt=\"이미지가 없습니다\">')";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstet = con.prepareStatement(sql);
@@ -118,6 +118,25 @@ public class MemberDAO
 			pstet.setString(5,dto.getM_agerange());
 			pstet.setString(6,dto.getM_monthday());
 			pstet.setString(7,dto.getM_phone());
+			int result = pstet.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	/**
+	 * 관리자계정 등록 메소드
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertAdmin()throws Exception{ 
+		String sql = "insert into member(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_phone,m_type,m_photo) "
+				+ "values('admin',?,'admin','F','20','0101',null,'admin','<img src=\"\" alt=\"이미지가 없습니다\">')";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstet = con.prepareStatement(sql);
+				){
+			pstet.setString(1, this.toSha256("admin"));
+			
 			int result = pstet.executeUpdate();
 			con.commit();
 			return result;
