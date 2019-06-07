@@ -262,7 +262,7 @@ div {
 			var classDate = $(this).siblings(".class_date").val();
 			var classId = $(this).siblings(".class_id").val();
             
-            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle, "", popOption);
+            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&nickname=${dto.m_nickname}", "", popOption);
 	    });
 	    
 	    $(document).on("click", ".detail_class_btn", function()

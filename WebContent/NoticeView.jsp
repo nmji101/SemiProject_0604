@@ -94,11 +94,6 @@ div {
 	box-sizing: border-box;
 }
 
-#profile_div_row, #profile_div {
-	text-align: center;
-	justify-content: center;
-}
-
 #header_row, #profile_row, #contents_row {
 	justify-content: center;
 }
@@ -120,12 +115,6 @@ div {
 	width: 100%;
 }
 
-#profile_img_div img {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-}
-
 .class_div {
 	justify-content: center;
 }
@@ -136,11 +125,6 @@ div {
 
 .class_text_div {
 	text-align: center;
-}
-
-#contents_div  img {
-	width: 100%;
-	height: 100%;
 }
 
 .class_btn_div {
@@ -154,15 +138,21 @@ div {
 #navi_div {
 	text-align: center;
 }
-
-#ing_class_btn {
-	color: cornflowerblue;
-	font-weight: bold;
+#notice_row > div
+{
+	border-left: 1px solid #ffba00;
+	border-right: 1px solid #ffba00;
 }
-
-#ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
-	width: 100%;
-	height: 100%;
+#notice_row
+{
+	border: 1px solid #ffba00;
+	background-color: #ffba00;
+	color: white;
+}
+#notice_div
+{
+	border-top: 1px solid #ffba00;
+	border-bottom: 1px solid #ffba00;
 }
 </style>
 
@@ -220,39 +210,7 @@ div {
 	    {
 		    location.href = "query.query?query=" + $("#search_text").val();
 	    });
-	    
-	    $("#ing_class_btn").on("click", function()
-	    {
-		    location.href = "doing.mypage?page=1";
-	    });
-	    
-	    $("#done_class_btn").on("click", function()
-	    {
-		    location.href = "done.mypage?page=1";
-	    });
-	    
-	    $("#person_info_btn").on("click", function()
-	    {
-		    location.href = "person.mypage?page=1";
-	    });
-	    
-	    $("#tutor_page_btn").on("click", function()
-		{
-			location.href = "tutor.mypage";
-		});	    
-
-	    $("#profile_img_btn").on("click", function()
-	    {
-		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
-		    
-		    open("changeImg.mypage", "", popOption);
-	    });
-	    
-	    $("#profile_nickname_btn").on("click", function()
-	    {
-		    location.href = "person.mypage";
-	    });
-	    
+	      
 	    // 이 위로는 공통 함수
 	    
 	    $(document).on("click", ".detail_class_btn", function()
@@ -274,13 +232,13 @@ div {
 	   	});
 	   	
 	   	
-	   	if("${ currentPage }" % 5 == 0)
+	   	if("${ currentPage }" % 10 == 0)
 		{
-			$($(".navi_btn")[4]).css("color", "red");
+			$($(".navi_btn")[9]).css("color", "red");
 		}
 		else
 		{
-			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "red");
+			$($(".navi_btn")["${ currentPage % 10 - 1 }"]).css("color", "red");
 		}
     });
     
@@ -364,33 +322,76 @@ div {
 				<div class="row">
 
 					<div id="contents_div" class="col-lg-12">
-
-						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
-
-							<div class="row class_div my-3">
+						
+						<div class="row my-3">
 
 								<div class="col-12">
 
-									<div class="row">
+									<div id="notice_row" class="row">
 
-										<div class="class_img_div col-lg-2 my-auto">
+										<div class="notice_seq_div col-lg-1 my-auto">
+											
+											글 번호
+										
+										</div>
+
+										<div class="notice_text_div col-lg-5 my-auto">
+
+											글 제목
+
+										</div>
+
+										<div class="notice_writer_div col-lg-3 my-auto">
+											
+											글 작성자
+
+										</div>
+										
+										<div class="notice_time_div col-lg-3 my-auto">
+										
+											글 작성 시간
+										
+										</div>
+										
+									</div>
+
+								</div>
+
+							</div>
+						
+						
+						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
+
+							<div class="row my-3">
+
+								<div class="col-12">
+
+									<div id="notice_div" class="row">
+
+										<div class="col-lg-1 my-auto">
+											
 											${ list[i-1].no_seq }
+										
 										</div>
 
-										<div class="class_text_div col-lg-7 my-auto">
+										<div class="col-lg-5 my-auto">
 
-											<h4>${ list[i-1].no_title }</h4>
-											${ list[i-1].no_writer } <br> ${ list[i-1].no_time } <br>
-
-										</div>
-
-										<div class="class_btn_div col-lg-3 my-auto">
-
-											<input class="btn btn-primary detail_class_btn"
-												name=${ list[i-1].no_seq } type="button" value="자세히">
+											<a class="btn" href="detail.notice?seq=${ list[i-1].no_seq }">${ list[i-1].no_title }</a>
 
 										</div>
 
+										<div class="col-lg-3 my-auto">
+											
+											${ list[i-1].no_writer }
+
+										</div>
+										
+										<div class="col-lg-3 my-auto">
+										
+											${ list[i-1].no_time }
+										
+										</div>
+										
 									</div>
 
 								</div>
@@ -405,9 +406,7 @@ div {
 
 				<div id="navi_row" class="row my-3">
 
-					<div class="col-3"></div>
-
-					<div id="navi_div" class="col-9">
+					<div id="navi_div" class="col-12">
 
 						<c:if test="${ needPrev }">
 							<input id="prev_btn" type="button" class="btn btn-link" value="<">

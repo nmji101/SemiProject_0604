@@ -121,4 +121,59 @@ public class NoticeDAO
 			}
 		}
 	}
+	
+	public int updateTitleBySeq(String title, int seq) throws Exception
+	{
+		String sql = "UPDATE notice SET NO_TITLE = ? where NO_SEQ = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, title);
+			pstat.setInt(2, seq);
+
+			int result = pstat.executeUpdate();
+			con.commit();
+
+			return result;
+		}
+	}
+	public int updateContentsBySeq(String contents, int seq) throws Exception
+	{
+		String sql = "UPDATE notice SET NO_CONTENTS = ? where NO_SEQ = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, contents);
+			pstat.setInt(2, seq);
+
+			int result = pstat.executeUpdate();
+			con.commit();
+
+			return result;
+		}
+	}
+	
+	public int deleteBySeq(int seq) throws Exception
+	{
+		String sql = "DELETE FROM notice WHERE no_seq = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, seq);
+
+			int result = pstat.executeUpdate();
+			con.commit();
+
+			return result;
+		}
+	}
 }
