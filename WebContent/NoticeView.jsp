@@ -146,8 +146,14 @@ div {
 #notice_row
 {
 	border: 1px solid #ffba00;
+	background-color: #ffba00;
+	color: white;
 }
-
+#notice_div
+{
+	border-top: 1px solid #ffba00;
+	border-bottom: 1px solid #ffba00;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -317,7 +323,7 @@ div {
 
 					<div id="contents_div" class="col-lg-12">
 						
-						<div class="row notice_div my-3">
+						<div class="row my-3">
 
 								<div class="col-12">
 
@@ -356,11 +362,11 @@ div {
 						
 						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
 
-							<div class="row notice_div my-3">
+							<div class="row my-3">
 
 								<div class="col-12">
 
-									<div class="row">
+									<div id="notice_div" class="row">
 
 										<div class="col-lg-1 my-auto">
 											
