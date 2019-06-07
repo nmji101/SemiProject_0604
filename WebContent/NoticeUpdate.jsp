@@ -148,13 +148,13 @@ $(function()
 			
 			
 		    form.append(seq).append(title).append(contents);
-		    $("#contents_hidden").val("`"+text+"`");
+		    $("#contents_hidden").val(text);
 		    
 		    form.submit();
 		});
 	    
 	    $("#title_text").val("${ title }");
-		$(".note-editable").children("p").html(${ contents });
+		$(".note-editable").children("p").html(`${ contents }`);
   });
   
   onload = function()

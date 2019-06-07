@@ -284,8 +284,6 @@ div {
 	    var seq = $('<input type="hidden" value='+"${ dto.no_seq }"+' name="seq">');
 		var title = $('<input type="hidden" value="${ dto.no_title }" name="title">');
 		var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-	 	
-		
 		
 	    form.append(title).append(contents).append(seq);
 	    $("#contents_hidden").val(text);

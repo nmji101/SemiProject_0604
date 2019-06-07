@@ -54,6 +54,19 @@
             </style>
             <script>
                 $(function(){
+//                 	if(${ likeCheck0 == 'true'})
+//                 	{
+//                 		alert(0);
+//                 	}
+//                 	if(${ likeCheck1 == 'true'})
+//                 	{
+//                 		alert(1);
+//                 	}
+//                 	if(${ likeCheck2 == 'true'})
+//                 	{
+//                 		alert(2);
+//                 	}
+                	
                     $(".btnLike0").on("click", function(){
                         $.ajax({
                         	url:"like.review",
