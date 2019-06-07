@@ -290,4 +290,24 @@ public class ReviewDAO
 			}
 		}
 	}
+	public boolean overlapReviewCheck(int classid, String id) throws Exception
+	{
+		String sql = "select * from REVIEW where re_classid = ? and re_userid = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, classid);
+			pstat.setString(2, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
+	}
 }

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.semi.dao.PersonDAO;
 import kh.semi.dao.ReviewDAO;
 import kh.semi.dto.ReviewDTO;
 
@@ -51,6 +52,13 @@ public class FrontController_review extends HttpServlet {
 				int end = currentPage * recordCountPerPage;
 				int start = end - (recordCountPerPage-1);
 				List<ReviewDTO> list = dao.selectAll(start, end, classId);
+				
+				PersonDAO pado = new PersonDAO();
+				
+				for(int i = 1 ; i <= list.size() ; i++)
+				{
+					list.get(i-1).setRe_userId(pado.selectById(list.get(i-1).getRe_userId()).getM_nickname());
+				}
 				
 				for(int i = 1 ; i <= list.size() ; i++)
 				{

@@ -3,6 +3,7 @@ package kh.semi.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -147,6 +148,25 @@ public class MypageServlets extends HttpServlet
 
 				List<DoClassDTO> list = dcdao.selectDoneClass(m_id, currentPage);
 
+				ReviewDAO rdao = new ReviewDAO();
+				
+				List<String> strList = new ArrayList<String>();
+				
+				for(int i = 1 ; i <= list.size() ; i++)
+				{
+					int classId = list.get(i-1).getClassId();
+					if(rdao.overlapReviewCheck(classId, m_id))
+					{
+						strList.add("true");
+					}
+					else
+					{
+						strList.add("false");
+					}
+				}
+				
+				request.setAttribute("strList", strList);
+				
 				int recordTotalCount = dcdao.selectDoneCount(m_id);
 
 				int pageTotalCount;
@@ -372,7 +392,7 @@ public class MypageServlets extends HttpServlet
 		}
 		else if(url.equals("review.mypage"))
 		{
-			request.setAttribute("nickname", request.getParameter("nickname"));
+			request.setAttribute("m_id", request.getParameter("m_id"));
 			request.setAttribute("c_id", request.getParameter("c_id"));
 			request.setAttribute("date", request.getParameter("date"));
 			request.setAttribute("title", request.getParameter("title"));
@@ -396,7 +416,7 @@ public class MypageServlets extends HttpServlet
 				Date date = new Date(year, month-1, day);
 
 				dao.insertReview(request.getParameter("c_id"),
-						request.getParameter("nickname"), 
+						request.getParameter("m_id"), 
 						request.getParameter("text"), 
 						request.getParameter("star"),
 						date

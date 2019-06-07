@@ -280,7 +280,7 @@ h2 {
 			var classDate = $(this).siblings(".class_date").val();
 			var classId = $(this).siblings(".class_id").val();
             
-            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&nickname=${dto.m_nickname}", "", popOption);
+            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&m_id=${dto.m_id}", "", popOption);
 	    });
 	    
 	    $(document).on("click", ".detail_class_btn", function()
@@ -505,11 +505,14 @@ h2 {
 												</div>
 
 												<div class="class_btn_div col-lg-3 my-auto">
-
+													
 													<input class="btn btn-primary detail_class_btn mx-3"
 														name=${ list[i-1].classId } type="button" value="자세히">
-													<input class="btn btn-primary review_class_btn mx-3"
+													
+													<c:if test="${ strList[i-1] == 'false' }">
+														<input class="btn btn-primary review_class_btn mx-3"
 														name=${ list[i-1].classId } type="button" value="리뷰 작성">
+													</c:if>
 
 													<input class="class_title" type="hidden"
 														value="${ list[i-1].title }"> <input
