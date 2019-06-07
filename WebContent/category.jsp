@@ -168,7 +168,7 @@ div {
 	text-align: center;
 }
 .nav-item {
-	width: 33.3%;
+	width: 25%;
 	margin: auto;
 	padding: 20px;
 	font-size: 20px;
@@ -186,6 +186,11 @@ div {
 }
 .has-megamenu {
 	position: static;
+}
+
+.navbar>ul{
+	width:70%;
+	margin:auto;
 }
 
 .dropdown-menu li, a{
@@ -460,7 +465,11 @@ div {
 								</div>
 							</div>
 						</ul></li>
-
+						
+						
+					<li class="nav-item"><a class="nav-link active"
+						href="list.notice?page=1">공지사항</a></li>
+		
 				</ul>
 			</nav>
 		</div>
