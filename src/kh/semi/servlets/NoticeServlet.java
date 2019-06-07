@@ -104,7 +104,8 @@ public class NoticeServlet extends HttpServlet
 				
 				if(result > 0)
 				{
-					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
+//					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
+					response.sendRedirect("list.notice?page=1");
 				}
 				else
 				{
@@ -228,7 +229,8 @@ public class NoticeServlet extends HttpServlet
 				
 				if(result > 0)
 				{
-					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
+//					request.getRequestDispatcher("list.notice?page=1").forward(request, response);
+					response.sendRedirect("list.notice?page=1");
 				}
 				else
 				{
@@ -253,7 +255,7 @@ public class NoticeServlet extends HttpServlet
 				request.setAttribute("title", title);
 				request.setAttribute("contents", contents);
 				
-				request.getRequestDispatcher("NoticeUpdate.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/NoticeUpdate.jsp").forward(request, response);
 			}
 			catch(Exception e)
 			{
