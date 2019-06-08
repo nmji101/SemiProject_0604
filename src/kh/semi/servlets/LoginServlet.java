@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import kh.semi.dao.Mailsend;
 import kh.semi.dao.MemberDAO;
 import kh.semi.dto.MemberDTO;
 
@@ -113,6 +113,7 @@ public class LoginServlet extends HttpServlet
 				{
 					request.getSession().setAttribute("loginId", id);
 					request.getSession().setAttribute("loginType", "kakao");
+					request.getSession().setAttribute("snsLogin", "true");
 					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
 				}
 			}catch(Exception e)
@@ -454,6 +455,7 @@ public class LoginServlet extends HttpServlet
 							System.out.println("DB INSERT ERROR");
 						}
 					}
+					request.getSession().setAttribute("snsLogin", "true");
 					request.getSession().setAttribute("loginId", "N"+naverCode);
 					request.getSession().setAttribute("loginType", "Naver");
 					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
@@ -505,6 +507,18 @@ public class LoginServlet extends HttpServlet
 			response.sendRedirect("naverLogoutView.jsp");
 		}else if(url.equals("naverLogoutPop.login")) {
 			response.sendRedirect("https://nid.naver.com/nidlogin.logout?returl=http://www.naver.com");
+		}else if(url.equals("emailAuth.login")) {//이메일인증
+			String email = request.getParameter("email");
+			request.setAttribute("email", email);
+			request.getRequestDispatcher("emailAuthView.jsp").forward(request, response);
+		}else if(url.equals("sendAuthNum.login")) {
+			String email = request.getParameter("email");
+			String result = new Mailsend().sendPwToMail(email);
+			if(result=="fail") {
+				System.out.println("이메일발송오류");
+				response.sendRedirect("error.html");
+			}
+			writer.append(result);
 		}
 	}
 

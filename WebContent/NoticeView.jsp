@@ -184,7 +184,10 @@ div {
 .write{
 	margin-bottom:60px;
 }
-
+#btn_row
+{
+	text-align: right;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -445,7 +448,7 @@ div {
 
 					<div class="row">
 
-						<div class="col-12 write">
+						<div id="btn_row" class="col-12 write">
 
 							<a href="NoticeWrite.jsp" class="btn btn-info">글 쓰기</a>
 

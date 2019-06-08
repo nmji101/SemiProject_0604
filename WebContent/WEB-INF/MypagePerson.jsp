@@ -186,6 +186,23 @@ h2 {
 	font-family: 'Gugi', cursive;
 	color: #ffba00
 }
+
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 100px 0px 0px 0px;
+}
+
+#sns>img {
+	margin: 30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg {
+	margin-right: 50px;
+	text-align: right;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -304,13 +321,6 @@ h2 {
 	    });
 	    
 	    // 이 위로는 공통 함수
-	    
-	    $("#pw_btn").on("click", function()
-	    {
-		    var popOption = "width=450, height=450, resizable=no, scrollbars=no, status=no top=100, left=100;";
-		    
-		    open("changePw.mypage", "", popOption);
-	    });
 	    
 	    $("#submit_btn").on("click", function()
 	    {
@@ -502,8 +512,14 @@ h2 {
 
 							<div id="pw_btn_div" class="col-lg-9">
 
-								<input id="pw_btn" class="btn btn-info" type="button"
+								<c:if test="${ snsLogin == 'true' }">
+									<label> SNS 로그인 계정은 비밀번호 수정이 불가합니다. </label>
+								</c:if>
+								
+								<c:if test="${ snsLogin != 'true' }">
+									<input id="pw_btn" class="btn btn-info" type="button"
 									value="비밀번호 수정">
+								</c:if>
 
 							</div>
 
@@ -580,6 +596,32 @@ h2 {
 
 
 	</div>
-
+<div id=footer class="row">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+				<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+				<img src="https://img.icons8.com/ios/48/000000/twitter.png"> <img
+					src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+				<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+				(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br> © Ggooldanji. all rights
+				reserved.
+			</div>
+		</div>
 </body>
+<c:if test="${ snsLogin != 'true' }">
+
+	<script>
+	
+	$("#pw_btn").on("click", function()
+	{
+		var popOption = "width=450, height=450, resizable=no, scrollbars=no, status=no top=100, left=100;";
+	        		    
+		open("changePw.mypage", "", popOption);
+	});
+	
+	</script>
+
+</c:if>
 </html>
