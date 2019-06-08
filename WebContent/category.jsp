@@ -425,7 +425,7 @@ div {
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">테크
+											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
@@ -468,7 +468,7 @@ div {
 											<div class="dropdown-divider"></div>
 											<li>일산/파주</li>
 											<li>용인/분당</li>
-											<li>수원/용인</li>
+											<li>수원/성남</li>
 											<li>인천/부천</li>
 											<li>남양주/구리</li>
 											<li>안양/안산</li>
