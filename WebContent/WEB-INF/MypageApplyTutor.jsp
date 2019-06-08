@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-<link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <style>
 
 /*         header	 */
@@ -15,24 +17,27 @@
 }
 
 div {
-    width: 100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 	padding: 0px;
 }
+
 #header {
 	width: 100%;
 	margin-left: 1px !important;
 	margin-right: 1px !important;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
-    top: -20px !important;
+	top: -20px !important;
 	text-align: center;
 	justify-content: center;
 }
-#logo_div{
+
+#logo_div {
 	padding-left: 3px !important;
 }
-#container_div{
+
+#container_div {
 	/* 	padding-left: 0px !important; */
 	/*     padding-right: 0px !important; */
 	margin: 0px !important;
@@ -52,11 +57,12 @@ div {
 	border-radius: 10px;
 	padding: 10px;
 }
-#searchbox_div
-{
+
+#searchbox_div {
 	padding-left: 0px !important;
 	padding-right: 60px !important;
 }
+
 #logo {
 	position: relative;
 	bottom: 20px;
@@ -73,17 +79,18 @@ div {
 	color: white !important;
 	font-weight: bolder !important;
 }
+
 .headBtn:hover {
 	background-color: burlywood;
 	border: 1px solid burlywood;
 	color: white;
 }
-#login_btn_div
-{
+/*         header	 */
+#login_btn_div {
 	padding-left: 0px !important;
 	padding-right: 60px !important;
 }
-/*         header	 */
+
 #header_div {
 	border: 1px solid #FFC107;
 	box-sizing: border-box;
@@ -133,41 +140,59 @@ div {
 	text-align: center;
 }
 
-.class_img {
-	width: 100px;
-	height: 100px;
+.my-auto>img {
+	width: 100%;
+	height: 100%;
+}
+
+.class_btn_div {
+	text-align: center;
 }
 
 #navi_div {
 	text-align: center;
 }
 
-#update_btn_div {
-	text-align: center;
-}
-
-#update_btn {
-	width: 30%;
-}
-
 #tutor_page_btn {
 	color: white;
-	font-weight: bold;
+	font-weight: bold
 }
 
 #ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
 }
-h2{
-font-family: 'Gugi', cursive;
+
+h2 {
+	font-family: 'Gugi', cursive;
 	color: #ffba00
 }
-#tutor_apply_btn
-{
-	color: white;
-	width: 150px;
-	height: 50px;
+
+#noClass {
+	width:300px;
+	text-align: center;
+	color: #7e7666;
+	font-size: 20px;
+	height: 300px;
+	position: relative;
+	left:150px;
+}
+
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 100px 0px 0px 0px;
+}
+
+#sns>img {
+	margin: 30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg {
+	margin-right: 50px;
+	text-align: right;
 }
 </style>
 
@@ -181,11 +206,11 @@ font-family: 'Gugi', cursive;
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
-// alert("id : " + "${loginId}");
 	$(function()
-    {
+	{
 		$("#mypage_btn").on("click", function()
 	    		{
 						location.href = "doing.mypage?"+encodeURI("page=1");
@@ -275,40 +300,71 @@ font-family: 'Gugi', cursive;
 	    $("#tutorPage").on("click",function(){
 	    	location.href = "id.tutor";
 	    });	    
-    });
+  	});
     
     onload = function()
     {
 	    
     };
 </script>
+
+
 </head>
 <body>
-	<div id="container_div" class="container col-12 mt-3">
+
+	<div id="container_div" class="container col-12">
 
 		<!--           HEADER-->
 		<div id=header class=row>
+
 			<div id="logo_div" class="col-12 col-lg-3">
+
 				<a href="start.main"><img src="logo.png" id=logo></a>
+
 			</div>
+
 			<div class="col-12 col-lg-6">
-				<form id=search class="form-inline my-2 my-lg-0">
-					<div class="row justify-content-center">
-						<div id="searchbox_div" class="col-12">
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
+
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
 						</div>
-					</div>
-				</form>
+					</form>
+
 			</div>
+
 			<div id="login_btn_div" class="col-12 col-lg-3">
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+
+				<c:choose>
+
+					<c:when test="${loginId==null}">
+
+						<button id="toLogin" class="btn btn-warning headBtn" type="button">login</button>
+
+						<button id="toSignup" class="btn btn-warning headBtn"
+							type="button">signup</button>
+
+					</c:when>
+
+					<c:otherwise>
+
+						<button class="btn btn-warning headBtn" type="submit"
 							id=mypage_btn>mypage</button>
-						<button class="btn btn-warning my-2 my-sm-0 headBtn" type="submit"
+
+						<button class="btn btn-warning headBtn" type="submit"
 							id=logout_btn>logout</button>
+
+					</c:otherwise>
+
+				</c:choose>
+
 			</div>
+
 		</div>
 		<!--           HEADER-->
 
@@ -334,7 +390,10 @@ font-family: 'Gugi', cursive;
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h2>${ dto.m_nickname } 님, 환영합니다! <img src="https://img.icons8.com/color/48/000000/smiling.png"></h2>
+									<h2>${ dto.m_nickname }
+										님, 환영합니다! <img
+											src="https://img.icons8.com/color/48/000000/smiling.png">
+									</h2>
 
 								</button>
 
@@ -443,6 +502,18 @@ font-family: 'Gugi', cursive;
 
 
 	</div>
-
+<div id=footer class="row">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+				<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+				<img src="https://img.icons8.com/ios/48/000000/twitter.png"> <img
+					src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+				<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+				(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br> © Ggooldanji. all rights
+				reserved.
+			</div>
+		</div>
 </body>
 </html>
