@@ -23,21 +23,9 @@
         {
         	Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
         	window.opener.location.href = "https://developers.kakao.com/logout";
-        
-// 			setInterval(function()
-// 			{
-// 				console.log("실행");
-// 				if(Kakao.Auth.getAccessToken() == null)
-// 				{
-// 				    opener.close();
-// 				    self.close();
-// 				}
-// 			},500);
-
 
 			setInterval
 			(
-			 
 				Kakao.Auth.getStatus(function(statusObj)
 				{
 					console.log("실행");
@@ -46,7 +34,7 @@
 						opener.close();
 						self.close();
 					}
-				}         
+				})         
 			,500);
 			
         });
