@@ -251,4 +251,46 @@ public class MemberDAO
 			}
 		}
 	}
+	/**
+	 * phone 번호 중복 검사
+	 * @param phone
+	 * @return
+	 * @throws Exception
+	 */
+	public String isPhoneUseOk(String phone) throws Exception{
+		String sql = "select * from member where m_phone = ?";
+		ResultSet rs = null;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, phone);
+			rs = pstat.executeQuery();
+			return rs.next()+"";
+		}finally {
+			if(rs !=null) {
+				rs.close();
+			}
+		}	
+	}
+	public String selectIdByPhoneAndBirth(String phone,String birth) throws Exception{
+		String sql = "select m_id from member where m_phone = ? and m_monthday = ? ";
+		ResultSet rs = null;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, phone);
+			pstat.setString(2, birth);
+			rs = pstat.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+			return rs.next()+"";
+		}finally {
+			if(rs !=null) {
+				rs.close();
+			}
+		}	
+	}
 }

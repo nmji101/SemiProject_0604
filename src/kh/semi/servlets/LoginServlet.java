@@ -22,6 +22,7 @@ import com.google.gson.JsonParser;
 
 import kh.semi.dao.Mailsend;
 import kh.semi.dao.MemberDAO;
+import kh.semi.dao.PersonDAO;
 import kh.semi.dto.MemberDTO;
 
 @WebServlet("*.login")
@@ -463,40 +464,40 @@ public class LoginServlet extends HttpServlet
 
 
 
-//					//접근토큰삭제 -> 탈퇴할때? 없애기... 
-//					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
-//					deleteToken +="&client_id=" + clientId;
-//					deleteToken +="&client_secret=" +clientSecret;
-//					deleteToken +="&access_token=" + access_token;
-//					deleteToken +="&service_provider=NAVER";
-//					System.out.println("deleteToken : " + deleteToken);
-//
-//
-//					//String deleteToken = (String)request.getSession().getAttribute("delete");
-//					URL url3 = new URL(deleteToken);
-//					HttpURLConnection con3 = (HttpURLConnection)url3.openConnection();
-//					con3.setRequestMethod("GET");
-//					int responseCode2 = con3.getResponseCode();
-//					BufferedReader br2;
-//					if(responseCode2==200) { // 정상 호출
-//						br2 = new BufferedReader(new InputStreamReader(con3.getInputStream()));
-//					} else {  // 에러 발생
-//						br2 = new BufferedReader(new InputStreamReader(con3.getErrorStream()));
-//					}
-//					String inputLine2;
-//					StringBuffer res2 = new StringBuffer();
-//					while ((inputLine2 = br2.readLine()) != null) {
-//						res2.append(inputLine2);
-//					}
-//					br2.close();
-//					//request.getSession().removeAttribute("delete");
-//					System.out.println(res2);
-//					JsonParser parsing2 = new JsonParser();
-//					JsonObject jsonObj2 = parsing2.parse(res2.toString()).getAsJsonObject();
-//					JsonElement resultObj2 = jsonObj2.get("result");
-//					System.out.println(resultObj2.toString());
-//					//response.sendRedirect("index.io");	
-//					System.out.println("접근토큰 삭제완료");
+					//					//접근토큰삭제 -> 탈퇴할때? 없애기... 
+					//					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
+					//					deleteToken +="&client_id=" + clientId;
+					//					deleteToken +="&client_secret=" +clientSecret;
+					//					deleteToken +="&access_token=" + access_token;
+					//					deleteToken +="&service_provider=NAVER";
+					//					System.out.println("deleteToken : " + deleteToken);
+					//
+					//
+					//					//String deleteToken = (String)request.getSession().getAttribute("delete");
+					//					URL url3 = new URL(deleteToken);
+					//					HttpURLConnection con3 = (HttpURLConnection)url3.openConnection();
+					//					con3.setRequestMethod("GET");
+					//					int responseCode2 = con3.getResponseCode();
+					//					BufferedReader br2;
+					//					if(responseCode2==200) { // 정상 호출
+					//						br2 = new BufferedReader(new InputStreamReader(con3.getInputStream()));
+					//					} else {  // 에러 발생
+					//						br2 = new BufferedReader(new InputStreamReader(con3.getErrorStream()));
+					//					}
+					//					String inputLine2;
+					//					StringBuffer res2 = new StringBuffer();
+					//					while ((inputLine2 = br2.readLine()) != null) {
+					//						res2.append(inputLine2);
+					//					}
+					//					br2.close();
+					//					//request.getSession().removeAttribute("delete");
+					//					System.out.println(res2);
+					//					JsonParser parsing2 = new JsonParser();
+					//					JsonObject jsonObj2 = parsing2.parse(res2.toString()).getAsJsonObject();
+					//					JsonElement resultObj2 = jsonObj2.get("result");
+					//					System.out.println(resultObj2.toString());
+					//					//response.sendRedirect("index.io");	
+					//					System.out.println("접근토큰 삭제완료");
 
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -520,6 +521,38 @@ public class LoginServlet extends HttpServlet
 				response.sendRedirect("error.html");
 			}
 			writer.append(result);
+		}else if(url.equals("phoneCheck.login")) {
+			String phone = request.getParameter("phone");
+			try {
+				String result = new MemberDAO().isPhoneUseOk(phone);
+				writer.append(result);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}else if(url.equals("findId.login")) {
+			String birth = request.getParameter("birth");
+			String phone = request.getParameter("phone");
+			try {
+				String result = new MemberDAO().selectIdByPhoneAndBirth(phone,birth);
+				writer.append(result);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}else if(url.equals("changePw.login")) {
+			String pw = request.getParameter("pw");
+			String id = request.getParameter("id");
+			try {
+				PersonDAO dao = new PersonDAO();
+				String changedPW = dao.toSha256(pw);
+
+				int result = dao.updatePwById(changedPW, id);
+				writer.append(result+"");
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
 		}
 	}
 

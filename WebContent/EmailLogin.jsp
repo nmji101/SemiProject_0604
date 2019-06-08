@@ -18,7 +18,6 @@
 form>div{
 	background-color: #ffffff95;
 	 border-radius:5px;
-	
 }
 body {
 
@@ -157,7 +156,7 @@ main>div {
 			<div class="row pt-1 mt-2" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
-					<a href="#" style="color: #7a5634">아이디 비밀번호 찾기</a> <span>/</span> <a
+					<a href="findIdOrPw.jsp" style="color: #7a5634">아이디 비밀번호 찾기</a> <span>/</span> <a
 						href="SignUp.jsp" style="color: #7a5634">회원가입</a>
 				</div>
 				<div class="col-1"></div>

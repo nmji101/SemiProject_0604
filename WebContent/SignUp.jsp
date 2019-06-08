@@ -111,7 +111,7 @@ select {
 <script>
 	$(function() {
 		var today = new Date();
-		today.setDate(today.getYear() - 10); 
+		today.setFullYear(today.getFullYear() - 10); 
 
       $.datepicker
       .setDefaults({
@@ -133,13 +133,12 @@ select {
                    dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
                                '토요일' ],
                    minDate : "-100y",
-                   maxDate : today,
-                   yearRange : 'c-100:c+1'
-
+                   maxDate : today
+                   ,yearRange : 'c-100:c+1';
                    });
 
       $("#datepicker").datepicker();
-      $('#datepicker').datepicker('setDate', 'today');
+      $('#datepicker').datepicker('setDate', today);
 
       });
 </script>
@@ -225,7 +224,8 @@ select {
 
 
                 $("#pwtext2").on("focusout", function() { // 패스워드 랑 패스워드 확인 의 값이 같은지 구별
-                    var regex = /^[A-Za-z0-9]{6,12}$/g
+                	$("#pwcheckvar").val("");
+                    var regex = /^[A-Za-z0-9]{6,12}$/
                     var pw = $("#pwtext").val();
                     var pw2 = $("#pwtext2").val();
                     if (regex.exec(pw2) != null) {
@@ -249,12 +249,28 @@ select {
 
                 })
                 $("#phonetext").on("focusout", function() {// 핸드폰 형식이 맞는지 구별 regex
+                	$("#phonecheckvar").val("");
                     var phonetext = $("#phonetext").val();
                     var regex = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/g
                     if (regex.exec(phonetext) != null) {
-                        $("#phonecheckin").text("올바른 양식 입니다.");
-                        $("#phonecheckin").css("color", "blue");
-                        $("#phonecheckvar").val("올바른 양식 입니다.");
+                    	$.ajax({
+            				url : "phoneCheck.login",
+            				type : "post",
+            				data : {
+            					phone : phonetext
+            				}
+            			}).done(function(resp) {
+            				if(resp=="false"){
+            				$("#phonecheckin").text("사용가능한 핸드폰 번호입니다.");
+                            $("#phonecheckin").css("color", "blue");
+                            $("#phonecheckvar").val("올바른 양식 입니다.");
+            				}else{
+            					$("#phonecheckin").text("이미 사용중인 번호입니다.");
+                                $("#phonecheckin").css("color", "red");
+                                $("#phonetext").val("");
+                                $("#phonecheckvar").val("");
+            				}
+            			});
                     } else {
                         $("#phonecheckin").text("양식에 맞지 않습니다.");
                         $("#phonecheckin").css("color", "red");
@@ -264,6 +280,7 @@ select {
                 })
 
                 $("#pwtext").on("input", function() {// 패스워드 형식이 맞는지 구별 regex
+                	$("#pwcheckvar").val("");
                     var pwtext = $("#pwtext").val();
                     var regex = /^[A-Za-z0-9]{6,12}$/g
                     if (regex.exec(pwtext) != null) {
@@ -276,6 +293,7 @@ select {
                 })
 
                 $("#nicknametext").on("focusout", function() {// 닉네임 형식이 맞는지 구별 regex
+                	$("#nicknamecheckvar").val("");
                     var nicknametext = $("#nicknametext").val();
                     var regex = /^.{1,6}$/g
                     if (regex.exec(nicknametext) != null) {
@@ -288,22 +306,6 @@ select {
                         $("#nicknametext").val("");
                         $("#nicknamecheckvar").val("");
                     }
-                })
-                $("#delete").on("click", function() { // 취소 버튼 누를시 모든값 초기화 이벤트
-                    $("#idtext").val("");
-                    $("#pwtext").val("");
-                    $("#pwtext2").val("");
-                    $("#nicknametext").val("");
-                    $("#birthtext1").val("");
-                    $("#birthtext2").val("");
-                    $("#birthtext3").val("");
-                    $("#phonetext").val("");
-                    $("#idcheckin").text("");
-                    $("#pwcheckin").text("");
-                    $("#nicknamecheckin").text("");
-                    $("#birthcheckin").text("ex) 1997년 02월 03일");
-                    $("#birthcheckin").css("color", "black");
-                    $("#phonecheckin").text("");
                 })
                 /* $("#ok").on("click",function() {
         if(($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $("#pwcheckvar").val() == "사용가능 합니다.") && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && $("#phonecheckvar").val() == "올바른 양식 입니다.")){
@@ -348,8 +350,7 @@ select {
                         $("#idtext").focus();
                         return;
                     }
-                    if ((($("#idcheckvar").val() == "사용 가능한 아이디 입니다." 
-                          && $("#pwcheckvar").val() == "사용가능 합니다.")
+                    if ((($("#pwcheckvar").val() == "사용가능 합니다.")
                          && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." 
                              && ($("input:radio[name='gender']").is(":checked") == true)) && 
                          $("#phonecheckvar").val() == "올바른 양식 입니다.")) {
@@ -479,7 +480,7 @@ select {
 				<div class="col-1"></div>
 				<div class="col-8 text_label ">
 					<label for="" class="mt-2 mb-1 mr-4"><strong>생년월일</strong></label>
-					<input type="text" id="datepicker" name="birth">
+					<input type="text" id="datepicker" name="birth" readonly>
 					<div class="col-3"></div>
 				</div>
 			</div>
@@ -508,7 +509,7 @@ select {
 					<button type="button" class="btn btn-warning px-3 py-2" id="ok"
 						name="ok">가입하기</button>
 					<button type="button" class="btn btn-warning ml-4 px-3 py-2"
-						id="back_btn">취소</button>
+						id="back_btn">메인으로</button>
 
 				</div>
 				<div class="col-1"></div>
