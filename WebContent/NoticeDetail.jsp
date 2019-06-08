@@ -110,7 +110,8 @@ div {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <script>
         
 	$(function()
@@ -190,7 +191,7 @@ div {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 
 			</div>
 

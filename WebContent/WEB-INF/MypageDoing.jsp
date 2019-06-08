@@ -297,7 +297,7 @@ h2 {
 
 	    $("#profile_img_btn").on("click", function()
 	    {
-		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+	    	var popOption = "width=500, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
 		    
 		    open("changeImg.mypage", "", popOption);
 	    });
@@ -360,7 +360,7 @@ h2 {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 
 			</div>
 

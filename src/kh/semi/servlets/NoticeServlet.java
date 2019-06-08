@@ -41,6 +41,8 @@ public class NoticeServlet extends HttpServlet
 		
 		String id = (String)request.getSession().getAttribute("loginId");
 		
+		System.out.println(url);
+		
 		if(url.equals("upload.notice"))
 		{
 			String rootPath = this.getServletContext().getRealPath("/");
@@ -104,6 +106,15 @@ public class NoticeServlet extends HttpServlet
 					String writer = request.getParameter("writer");
 					String title = request.getParameter("title");
 					String contents = request.getParameter("contents");
+					
+					if(title == null)
+					{
+						title = "제목 없음";
+					}
+					if(contents == null)
+					{
+						contents = "내용 없음";
+					}
 					
 					writer = pdao.selectById(writer).getM_nickname();
 					
@@ -298,6 +309,15 @@ public class NoticeServlet extends HttpServlet
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
+				
+				if(title == null)
+				{
+					title = "제목 없음";
+				}
+				if(contents == null)
+				{
+					contents = "내용 없음";
+				}
 				
 				NoticeDAO dao = new NoticeDAO();
 				int result1 = dao.updateTitleBySeq(title, seq);
