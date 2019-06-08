@@ -447,16 +447,15 @@ div {
 										<li>서울</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li>강남</li>
-											<li>신촌/홍대</li>
-											<li>건대</li>
-											<li>잠실</li>
-											<li>종로</li>
+											<li>강남/서초</li>
+											<li>서대문/마포</li>
+											<li>송파/잠실</li>
+											<li>종로/성동</li>
 											<li>노원</li>
-											<li>사당</li>
-											<li>성북</li>
-											<li>신림</li>
-											<li>목동</li>
+											<li>동작</li>
+											<li>성북/동대문</li>
+											<li>관악/신림</li>
+											<li>영등포/양천</li>
 											<li>용산</li>
 										</div>
 									</ul>

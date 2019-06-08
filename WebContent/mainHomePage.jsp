@@ -42,11 +42,11 @@ div {
 	text-align: center;
 }
 
-.headBtn {
+.headBtn, .more {
 	color: white;
 }
 
-.headBtn:hover {
+.headBtn:hover, .more:hover {
 	background-color: burlywood;
 	border: 1px solid burlywood;
 	color: white;
@@ -71,10 +71,21 @@ div {
 	font-weight: bold;
 	font-size: 23px;
 	width: auto;
+	text-shadow: 0px 0px 5px grey;
+}
+
+#lookBtn:hover{
+	text-shadow: none;
+	transition-duration: 0.5s;
 }
 
 .display-4 {
 	font-family: 'Do Hyeon', sans-serif;
+	text-shadow: 0px 0px 7px white;
+}
+
+.lead{
+text-shadow: 0px 0px 5px white;
 }
 
 #navi {
@@ -113,9 +124,10 @@ div {
 
 #popular>h2 {
 	font-family: 'Nanum Pen Script', cursive;
+	font-style: italic;
 	font-size:50px;
 	text-align: left;
-	color: #EE8585;
+	color: #d66b8e;
 }
 
 .custom-select {
@@ -218,19 +230,30 @@ div {
 	font-size: 50px;
 }
 
-#card {
+#card, .none {
 	width: 100%;
 	margin: 30px auto;
 }
 
 .card{
 	border-radius: 20px;
-	height: 200px;
-	
+	height: 210px;
+	border: 1px dashed #ffeeba;
+	color : #856404;
 }
 .carousel-caption {
 	padding-bottom: 90px;
 	width: auto;
+}
+.review{
+	width: 100%;
+	height: 90px;
+	overflow : scroll;
+	margin-bottom:10px;	
+	background-color: #ffeeba;
+	border-radius: 20px;
+	text-align: left;
+	padding: 5px 20px;
 }
 
 .row {
@@ -359,6 +382,10 @@ $(function(){
 			})	
 	});
 	
+	$(".has-megamenu").on("click",function(){
+			$(this).css("transition-duration","2s");
+	})	
+	
 })
 
 
@@ -478,16 +505,15 @@ $(function(){
 										<li>서울</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li>강남</li>
-											<li>신촌/홍대</li>
-											<li>건대</li>
-											<li>잠실</li>
-											<li>종로</li>
+											<li>강남/서초</li>
+											<li>서대문/마포</li>
+											<li>송파/잠실</li>
+											<li>종로/성동</li>
 											<li>노원</li>
-											<li>사당</li>
-											<li>성북</li>
-											<li>신림</li>
-											<li>목동</li>
+											<li>동작</li>
+											<li>성북/동대문</li>
+											<li>관악/신림</li>
+											<li>영등포/양천</li>
 											<li>용산</li>
 										</div>
 									</ul>
@@ -563,19 +589,11 @@ $(function(){
 			<div class="row">
 				<div class="col-12" id=popular>
 					<h2>
-						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48"
-							height="48" viewBox="0 0 192 192" style="fill: #000000;">
-							<g xmlns="http://www.w3.org/2000/svg" font-family="none"
-								font-size="none" font-weight="none"
-								style="mix-blend-mode: normal" fill="none" fill-rule="nonzero"
-								stroke="none" stroke-dasharray="" stroke-dashoffset="0"
-								stroke-linecap="butt" stroke-linejoin="miter"
-								stroke-miterlimit="10" stroke-width="1" text-anchor="none">
-							<path fill="none" d="M 0 192 v -192 h 192 v 192 Z" />
-							<g fill="#ee8585">
-							<path
-								d="M 38 24 c -21.68 0 -38 16.0013 -38 37.2813 c 0 26.2403 28.5613 51.2787 39.2813 60.7187 l 21.9687 19.656 c 3.44 3.584 9.32 3.012 12 -1.172 l 1.12504 -2.0464 c -5.92 -8.752 -10.375 -18.9152 -10.375 -30.2032 c 0 -24.8 20.24 -44.2344 46 -44.2344 c 7.44 0 14.96 1.83752 22 5.43752 c 1.12 -0.56 2.2392 -1.11376 3.3592 -1.59376 c 0.4 -2.16 0.6408 -4.32248 0.6408 -6.56248 c 0 -21.28 -16.32 -37.2813 -38 -37.2813 c -13.12 0 -23.68 7.19688 -30 12.7969 c -6.32 -5.6 -16.88 -12.7969 -30 -12.7969 Z M 110 80 c -17.12 0 -30 12.1544 -30 28.2344 c 0 7.6 3.364 14.9712 7.844 21.5312 c 6.96 10.16 16.8832 18.3872 21.8432 22.5472 l 17.516 14.0152 c 2.808 2.24 6.7936 2.24 9.5936 0 l 17.516 -14.0152 c 8.08 -6.8 29.6872 -24.6384 29.6872 -44.0784 c 0 -16.08 -12.88 -28.2344 -30 -28.2344 c -9.36 0 -17.04 4.3928 -22 8.3128 c -1.04 -0.8 -2.2376 -1.5912 -3.4376 -2.3912 c -4.8 -3.2 -11.1224 -5.9216 -18.5624 -5.9216 Z" /></g></g></svg>
-						요즘 인기많은 클래스
+					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+width="48" height="48"
+viewBox="0 0 192 192"
+style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,192v-192h192v192z" fill="none"></path><g fill="#d66b8e"><g id="surface1"><path d="M45.72,23.04c-25.215,0 -45.72,20.505 -45.72,45.72c0,41.13 37.53,66.915 62.4,84c6.27,4.305 11.79,8.145 15.84,11.52l2.4,2.04l2.4,-2.04c2.565,-2.13 5.73,-4.485 9.24,-6.96c-13.125,-17.175 -29.685,-42.645 -20.4,-71.16c5.55,-17.07 21.3,-28.56 39.24,-28.56c4.35,0 8.685,0.69 12.84,2.04c8.565,2.79 15.9,8.325 21,15.6c4.305,-1.47 8.835,-2.28 13.44,-2.28c0.87,0 1.77,0.06 2.64,0.12c0.09,-1.44 0.24,-2.865 0.24,-4.32c0,-25.215 -20.505,-45.72 -45.72,-45.72c-13.425,0 -26.145,6.18 -34.92,16.68c-8.775,-10.5 -21.495,-16.68 -34.92,-16.68zM111.12,65.28c-14.61,0 -27.405,9.39 -31.92,23.28c-9.15,28.08 10.65,53.265 23.76,69.96c3.495,4.44 6.465,8.25 8.52,11.52l1.68,2.76l3,-1.2c3.585,-1.425 8.25,-2.79 13.68,-4.32c20.43,-5.76 51.33,-14.52 60.48,-42.6c5.73,-17.64 -3.975,-36.63 -21.6,-42.36c-8.94,-2.925 -18.9,-1.83 -27,2.76c-3.87,-8.565 -11.085,-15.165 -20.16,-18.12c-3.39,-1.095 -6.915,-1.68 -10.44,-1.68z"></path></g></g></g></svg>
+					요즘 인기많은 클래스
 					</h2>
 				</div>
 				<div id=card>
@@ -583,7 +601,7 @@ $(function(){
 						<div class="col-12 col-lg-6">
 							<div class="card mb-3" style="max-width: auto;">
 								<div class="row no-gutters">
-									<div class="col-md-4">
+									<div class="col-md-5">
 										<!-- 캐러셀 시작 -->
 										<div class="carousel slide" data-ride="carousel" id=main1>
 											<div class="carousel-inner">
@@ -623,17 +641,26 @@ $(function(){
 										</div>
 										<!-- 캐러셀 끝 -->
 									</div>
-									<div class="col-md-8">
+									<div class="col-md-7">
 										<div class="card-body">
 											<h5 class="card-title"> ${dto1.info_category} : ${dto1.info_title }</h5>
-											<p class="card-text">
+											
+											<div class="review">
+											<c:choose>
+											<c:when test="${size1 == 0}">
+											<p class=none>아직 등록된 후기가 없습니다.</p>
+											</c:when>
+											<c:otherwise>
 											<c:forEach items="${review1}" var="list">
-											<a href="#" class="list-group-item list-group-item-action list-group-item-warning">${list.re_review }</a>
+											<p>${list.re_review }</p>
+											<hr>
 											</c:forEach>
-											</p>
+											</c:otherwise>
+											</c:choose>
+											</div>
 											<p class="card-text">
 												<small class="text-muted">
-												<button type="button" class="btn btn-outline-info more">자세히 보기
+												<button type="button" class="btn btn-warning more">자세히 보기
 												<input type=hidden value=${dto1.info_classid }>
 												</button>
 												</small>
@@ -646,7 +673,7 @@ $(function(){
 						<div class="col-12 col-lg-6">
 							<div class="card mb-3" style="max-width: auto;">
 								<div class="row no-gutters">
-									<div class="col-md-4">
+									<div class="col-md-5">
 										<!-- 캐러셀 시작 -->
 										<div class="carousel slide" data-ride="carousel" id="main2">
 											<div class="carousel-inner">
@@ -686,17 +713,25 @@ $(function(){
 										</div>
 										<!-- 캐러셀 끝 -->
 									</div>
-									<div class="col-md-8">
+									<div class="col-md-7">
 										<div class="card-body">
 											<h5 class="card-title">${dto2.info_category} : ${dto2.info_title }</h5>
-											<p class="card-text">
+											<div class="review">
+											<c:choose>
+											<c:when test="${size2 == 0}">
+											<p class=none>아직 등록된 후기가 없습니다.</p>
+											</c:when>
+											<c:otherwise>
 											<c:forEach items="${review2}" var="list">
-												<a href="#" class="list-group-item list-group-item-action list-group-item-warning">${list.re_review }</a>
+											<p>${list.re_review }</p>
+											<hr>
 											</c:forEach>
-											</p>
+											</c:otherwise>
+											</c:choose>
+											</div>
 											<p class="card-text">
 												<small class="text-muted">
-												<button type="button" class="btn btn-outline-info more">자세히 보기<input type=hidden value=${dto2.info_classid }></button>
+												<button type="button" class="btn btn-warning more">자세히 보기<input type=hidden value=${dto2.info_classid }></button>
 												</small>
 											</p>
 										</div>

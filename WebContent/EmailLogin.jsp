@@ -96,7 +96,7 @@ main>div {
         	{
         		if(response == "Y")
         		{
-        			location.href = "mainHomePage.jsp";
+        			location.href = "start.main";
         		}
         		else if(response == "N")
         		{
