@@ -310,7 +310,7 @@ h2 {
 
 	    $("#profile_img_btn").on("click", function()
 	    {
-		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+	    	var popOption = "width=500, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
 		    
 		    open("changeImg.mypage", "", popOption);
 	    });
