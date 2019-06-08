@@ -194,6 +194,12 @@ h2 {
 	margin-right: 50px;
 	text-align: right;
 }
+#tutor_apply_btn
+{
+	color: white;
+	width: 150px;
+	height: 50px;
+}
 </style>
 
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -463,7 +469,7 @@ h2 {
 						<c:if test="${check==true}">
 
 
-							<span>현재 신청 대기중</span>
+							<span>현재 승인 대기중</span>
 
 						</c:if>
 
