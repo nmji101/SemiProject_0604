@@ -80,6 +80,11 @@ main>div {
 <script>
 	$(function()
     {
+		$(document).keyup(function(e) {
+    	    if ( e.keyCode == 13) {
+    	    	$("#login_btn").click();
+    	    }
+    	});
 		$("#login_btn").on("click", function()
 		{
 			$.ajax
@@ -96,7 +101,7 @@ main>div {
         	{
         		if(response == "Y")
         		{
-        			location.href = "mainHomePage.jsp";
+        			location.href = "start.main";
         		}
         		else if(response == "N")
         		{

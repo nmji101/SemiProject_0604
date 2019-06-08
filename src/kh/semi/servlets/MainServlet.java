@@ -43,13 +43,16 @@ public class MainServlet extends HttpServlet {
 			ReviewDAO rdao = new ReviewDAO();
 			List<ReviewDTO> review1 = rdao.selectAll(1, 5, classId1);
 			List<ReviewDTO> review2 = rdao.selectAll(1, 5, classId2);
-			
+			int size1 = review1.size();
+			int size2 = review2.size();
 			ClassInfoDAO cdao = new ClassInfoDAO();
 			ClassInfoDTO dto1 = cdao.selectInfoByClassId(classId1);
 			ClassInfoDTO dto2 = cdao.selectInfoByClassId(classId2);
 			
 			request.setAttribute("review1", review1);
 			request.setAttribute("review2", review2);
+			request.setAttribute("size1", size1);
+			request.setAttribute("size2", size2);
 			request.setAttribute("dto1", dto1);
 			request.setAttribute("dto2", dto2);
 			
