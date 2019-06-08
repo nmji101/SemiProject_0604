@@ -54,9 +54,11 @@ public class CategoryController extends HttpServlet {
 				String ssSelect = (String) request.getSession().getAttribute("ssSelect");
 				String category = request.getParameter("category");
 				String ssCategory = (String) request.getSession().getAttribute("ssCategory");
-				String addr = request.getParameter("addr");
-				String ssAddr = (String) request.getSession().getAttribute("ssAddr");
-
+				String addr1 = request.getParameter("addr1");
+				String addr2 = request.getParameter("addr2");
+				String ssAddr1 = (String) request.getSession().getAttribute("ssAddr1");
+				String ssAddr2 = (String) request.getSession().getAttribute("ssAddr2");
+				
 				if(select == null) {
 					select = ssSelect;
 				}
@@ -68,26 +70,29 @@ public class CategoryController extends HttpServlet {
 					category = ssCategory;
 				}	
 
-				if(addr == null) {
-					addr = ssAddr;
-				}else if(addr.equals("all")) {
-					addr = null;
-					request.getSession().removeAttribute("ssAddr");
+				if(addr1 == null) {
+					addr1 = ssAddr1;
+				}else if(addr1.equals("all")) {
+					addr1 = null;
+					addr2 = null;
+					request.getSession().removeAttribute("ssAddr1");
+					request.getSession().removeAttribute("ssAddr2");
 				}
 				
 				List<CategoryDTO> list = null;	
-				System.out.println("select:"+select+" category:"+category+" addr:"+addr+" ssAddr:" +ssAddr);
+				System.out.println("select:"+select+" category:"+category+" addr1:"+addr1+" ssAddr1:" +ssAddr1 
+						+" addr2:"+addr2+" ssAddr2:" +ssAddr2);
 
 
 				//1.추천 부분	
-				if(select == null && category.contentEquals("main") &&  addr == null) {
+				if(select == null && category.contentEquals("main") &&  addr1 == null) {
 					System.out.println("여기1");
 					request.getSession().setAttribute("ssSelect", select);
 					request.getSession().setAttribute("ssCategory", "main");
 					list = dao.getInfoBySelect(select, start, end);		
 				}
 				//1-1. 추천 부분 - 셀렉트있는 경우			
-				if (category.contentEquals("main") && addr == null) {
+				if (category.contentEquals("main") && addr1 == null) {
 					System.out.println("여기1-1");
 					request.getSession().setAttribute("ssSelect", select);
 					request.getSession().setAttribute("ssCategory", "main");
@@ -95,7 +100,7 @@ public class CategoryController extends HttpServlet {
 					recordTotalCount = dao.recordTotalCount();
 
 					//2. 카테고리 부분
-				}else if(addr == null){
+				}else if(addr1 == null){
 					System.out.println("여기2");
 					System.out.println("카테고리:"+category);
 					System.out.println("select:"+select);
@@ -122,11 +127,17 @@ public class CategoryController extends HttpServlet {
 				}else{	
 					System.out.println("여기3");
 					request.getSession().setAttribute("ssSelect", select);
-					request.getSession().setAttribute("ssAddr", addr);
-					System.out.println("addr:"+addr);
+					request.getSession().setAttribute("ssAddr1", addr1);
+					System.out.println("addr1:"+addr1);		
 					
-					list = dao.getInfoByLocation(select, addr, start, end);
-					recordTotalCount = dao.getTotalByMenu("info_addr2", addr);
+					
+					if(addr2 == null) {
+						list = dao.getInfoByLocation1(select, addr1, start, end);
+						recordTotalCount = dao.getTotalByMenu("info_addr2", addr1);
+					}else {
+						list = dao.getInfoByLocation2(select, addr1, addr2, start, end);
+						recordTotalCount = dao.getTotalByMenu2("info_addr2", addr1, "info_addr2", addr2);
+					}		
 				}
 
 				request.setAttribute("list", list);	

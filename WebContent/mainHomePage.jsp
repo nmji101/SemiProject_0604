@@ -341,9 +341,24 @@ $(function(){
 	}
 	
 	$(".locationMenu li").on("click",function(){
-		var addr = $(this).text();
-		location.href="info.category?addr="+addr+"&select=info_avgstar desc";
-	})
+		var tmp = $(this).text();
+		var addr1 = tmp.replace(/(.+)\/(.+)/g,"$1");
+		var addr2 = tmp.replace(/(.+)\/(.+)/g,"$2");
+		if(addr1 != addr2){
+			location.href="info.category?addr1="+addr1+"&addr2="+addr2+"&select=info_avgstar desc";
+		
+		}else{
+			location.href="info.category?addr1="+addr1+"&select=info_avgstar desc";
+		}
+	});
+	
+	$(".more").each(function (i, item) {
+			var id = $(item).children().val();
+			$(item).on("click",function(){
+				location.href="clickClass.classInfo?classId="+id;
+			})	
+	});
+	
 })
 
 
@@ -442,7 +457,7 @@ $(function(){
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">제테크
+											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
@@ -483,10 +498,11 @@ $(function(){
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>일산/파주</li>
-											<li>용인/분당/수원</li>
+											<li>용인/분당</li>
+											<li>수원/성남</li>
 											<li>인천/부천</li>
-											<li>남양주/구리/하남</li>
-											<li>안양/안산/광명</li>
+											<li>남양주/구리</li>
+											<li>안양/안산</li>
 										</div>
 									</ul>
 								</div>
@@ -525,7 +541,7 @@ $(function(){
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>강원 / 제주</li>
+										<li>강원/제주</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>강원</li>
@@ -612,11 +628,15 @@ $(function(){
 											<h5 class="card-title"> ${dto1.info_category} : ${dto1.info_title }</h5>
 											<p class="card-text">
 											<c:forEach items="${review1}" var="list">
-												${list.re_review }
+											<a href="#" class="list-group-item list-group-item-action list-group-item-warning">${list.re_review }</a>
 											</c:forEach>
 											</p>
 											<p class="card-text">
-												<small class="text-muted"><button type="button" class="btn btn-outline-info">자세히 보기</button></small>
+												<small class="text-muted">
+												<button type="button" class="btn btn-outline-info more">자세히 보기
+												<input type=hidden value=${dto1.info_classid }>
+												</button>
+												</small>
 											</p>
 										</div>
 									</div>
@@ -671,11 +691,13 @@ $(function(){
 											<h5 class="card-title">${dto2.info_category} : ${dto2.info_title }</h5>
 											<p class="card-text">
 											<c:forEach items="${review2}" var="list">
-												${list.re_review }
+												<a href="#" class="list-group-item list-group-item-action list-group-item-warning">${list.re_review }</a>
 											</c:forEach>
 											</p>
 											<p class="card-text">
-												<small class="text-muted"><button type="button" class="btn btn-outline-info">자세히 보기</button></small>
+												<small class="text-muted">
+												<button type="button" class="btn btn-outline-info more">자세히 보기<input type=hidden value=${dto2.info_classid }></button>
+												</small>
 											</p>
 										</div>
 									</div>

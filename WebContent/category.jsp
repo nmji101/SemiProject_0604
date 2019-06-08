@@ -105,8 +105,15 @@ $(function(){
 
 
 	$(".locationMenu li").on("click",function(){
-		var addr = $(this).text();
-		location.href="info.category?addr="+addr+"&select=info_avgstar desc";
+		var tmp = $(this).text();
+		var addr1 = tmp.replace(/(.+)\/(.+)/g,"$1");
+		var addr2 = tmp.replace(/(.+)\/(.+)/g,"$2");
+		if(addr1 != addr2){
+			location.href="info.category?addr1="+addr1+"&addr2="+addr2+"&select=info_avgstar desc";
+		
+		}else{
+			location.href="info.category?addr1="+addr1+"&select=info_avgstar desc";
+		}
 	});
 	
 	$(".price").each(function (i, item) {
@@ -114,8 +121,9 @@ $(function(){
 		var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/g,"$1,$2 원");
 		console.log(result);
 		$(item).parent().text(result);
-	});
+	})
 });
+
 </script>
 </head>
 <style>
@@ -417,7 +425,7 @@ div {
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">제테크
+											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
@@ -459,10 +467,11 @@ div {
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>일산/파주</li>
-											<li>용인/분당/수원</li>
+											<li>용인/분당</li>
+											<li>수원/성남</li>
 											<li>인천/부천</li>
-											<li>남양주/구리/하남</li>
-											<li>안양/안산/광명</li>
+											<li>남양주/구리</li>
+											<li>안양/안산</li>
 										</div>
 									</ul>
 								</div>
@@ -501,7 +510,7 @@ div {
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>강원 / 제주</li>
+										<li>강원/제주</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>강원</li>

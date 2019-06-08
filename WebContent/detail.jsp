@@ -397,7 +397,7 @@ div {
 <script>
             $(function(){
             	$("#logo").on("click", function() {
-            		location.href = "mainHomePage.jsp";
+            		location.href = "start.main";
             	});
             	$("#search_Btn").on("click",function(){
             		var input = $("#searchbox").val();
