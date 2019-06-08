@@ -191,7 +191,7 @@ div {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 
 			</div>
 
