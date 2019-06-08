@@ -2,12 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-					
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<!-- dddddddddd -->
 <title>클래스 등록페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -22,9 +21,12 @@
 .ui-datepicker-trigger {
 	cursor: pointer;
 }
+
+
 .hasDatepicker {
 	cursor: pointer;
 }
+
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -170,6 +172,10 @@ body {
 	
 	width: 150px;
 	height: 150px;
+<<<<<<< HEAD
+	background-size: contain;
+=======
+>>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 	float: left;
 }
 
@@ -194,6 +200,10 @@ body {
 	border: 1px solid black;
 	overflow-y: auto;
 	
+<<<<<<< HEAD
+	
+=======
+>>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 }
 
 #inputimg {
@@ -297,6 +307,11 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         background-image: url(로고.png);
         background-size: cover;
         height: 70px;
+
+      
+    }
+    #home{
+      cursor: pointer;
     }
     .tutorid{
     width:100%;
@@ -313,6 +328,15 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         height: 30px;
         text-align: center;
     }
+
+    .listtop{
+    background-color: antiquewhite;
+    }
+    .target { 
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+    }
+
+
 	#tutorImg>img{
 		width:150px;
 		height:150px;
@@ -323,25 +347,19 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 	
 $(function(){
 
+
 	$('#mytype li > a').on('click', function() {
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 	});
-    
-// 	$("#findaddr").on("click",function(){
-// 	$("#hope").text($("#sample4_roadAddress").val());	
-//        $('.dropdown-menu').hide();
-// 	})
+
+
     
 	$("#register").on("click", function() { //클래스완료 버튼 클릭시
-		if($("#sample4_postcode").val()==""){
-            alert('주소를 확인해주세요');
-            return false;
-    }
-	      
-		  var max = /^[0-9]{1,2}$/;
-	      var price = /^[0-9]{1,6}$/;
-	      
+		
+		var max = /^[0-9]{1,2}$/;
+	    var price = /^[0-9]{1,6}$/;
+
 	  	var String =$("input[name=startdate]").val();
 		var Strings = $("input[name=enddate]").val();
 		var regex = /..-..$/;
@@ -359,30 +377,11 @@ $(function(){
 		var last2 = lastreg.exec(String2s);
 // 		document.write(last1[0]);
 // 		document.write(last2[0]);
-		
 
-	      
-	      if(!max.test($('#max').val())){
-	         alert("인원을 확인해주세요 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
-	         return false;
-	      }
-	      if(!price.test($('#price').val())){
-		         alert("가격을 확인해주세요 \n\r 100만원 이상의 금액은 관리자에게 문의주세요");
-		      return false;
-	      }  
-	      if(result2[0] > result2s[0] ){
-	    	  alert("'월'을 다시 입력해주세요");
-	    	  return false;
-	      }else  if(last1[0] > last2[0] ){
-	    	  alert(" '일'을 다시 입력해주세요");
-	    	  return false;
-	      }
-	      
-		
-		
-		else{
-		$("input[name=tutorid]").val($("#tutor").html());
-		$("input[name=intro]").val($("#imtutor").html());
+
+
+		$("input[name=tutorid]").val($("#tutor").text());
+		$("input[name=intro]").val($("#imtutor").text());
 		$("input[name=down]").val($('#mystatus2').text());
 		$("input[name=addr1]").val();
 		$("input[name=addr2]").val();
@@ -394,8 +393,65 @@ $(function(){
 		$("input[name=enddate]").val();
 		$("input[name=explain]").val($('#cont').text());
 		$("input[name=inputtitle]").val($('#title').text());
-		$("form").submit();
-	}
+
+
+
+		//alert($("input[name=intro]").val());
+		  if($("input[name=intro]").val()==""){
+	            alert('튜터소개가 없습니다');
+	            return false;
+	      }
+		  if($("input[name=intro]").val().length>100){
+	    	  alert('튜터소개는 100자까지 가능합니다');
+	    	  return false;
+	      }
+		  if($("input[name=down]").val()=="카테고리"){
+            alert('카테고리를 등록해주세요');
+            return false;
+          }
+		 
+	      if(!max.test($('#max').val())){
+	         alert("인원을 확인해주세요 \n\r 100명 이상의 인원은 관리자에게 문의주세요");
+	         return false;
+	      }
+	      if(!price.test($('#price').val())){
+		         alert("가격을 확인해주세요 \n\r 100만원 이상의 금액은 관리자에게 문의주세요");
+		      return false;
+	      }  
+
+	      if($("#sample4_postcode").val()==""){
+	            alert('주소를 입력해주세요');
+	           return false;
+	      }
+	      if($("input[name=inputtitle]").val()==""){
+	            alert('제목이 없습니다');
+	            return false;
+	      }
+
+	      if($('#title').text().length>25){
+	    	  alert('제목은 25자까지 가능합니다');
+	    	  return false;
+	      }
+	      if(result2[0] > result2s[0] ){
+	    	  alert("'월'을 다시 입력해주세요");
+	    	  return false;
+	      }else  if(last1[0] > last2[0] ){
+	    	  alert(" '일'을 다시 입력해주세요");
+	    	  return false;
+	      }
+
+	      if($("input[name=explain]").val()==""){
+	            alert('class 소개가 없습니다');
+	            return false;
+	      }
+	    
+	      if($('#cont').text().length>100){
+	    	  alert('내용은 100자까지 가능합니다');
+	    	  return false;
+	      }
+		
+	      else	$("form").submit();
+	
 	});
 	
  	$("#back").on('click', function(){
@@ -405,33 +461,24 @@ $(function(){
  		location.href="mainHomePage.jsp";
  	})
 	
-// 	$(".list").hide();
-// 	$(".openlist").on("click", function(){
-// 		$(".list").toggle();
-// 		$.ajax({
-// 			url:"openlist.list",
-// 			type:"post"
-// 		});
-// 	})
-	
-// 	$(".list2").hide();
-// 	$(".openlist2").on("click", function(){
-// 		$(".list2").toggle();
-// 	})
-	
 
-		
+	
 });
+
+
 			
 </script>
     
 <body>
-	<form action="tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
+
+	<form action="tutor.tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
 		<div class="container">
 			<div class="row">
 				<!-- 헤더부분 -->
-				<div class="col-12 col-lg-3">
-					<img src="logo.png" id=logo>
+				<div class="col-12 col-lg-3" >
+					<img src="logo.png" id=home>
+<!-- 					<button type="button" class="btn btn-warning" id=home>홈으로 가기</button> -->
+
 				</div>
 				<div class="top col-lg-12">
 					<div class="head welcome">
@@ -439,6 +486,7 @@ $(function(){
 							<span class="badge welcome badge-warning">튜터 페이지입니다</span>
 						</h4>
 					</div>
+
 					<div class=send>
 						<img src="쪽지.png" alt="">
 					</div>
@@ -446,19 +494,20 @@ $(function(){
 				<br>
 				<div class="array col-lg-12">
 					<div id="tutorImg" class="img head">${dto.m_photo }</div>
+
 					<!--튜터 본인 사진-->
 					<div id=id class=" m-0 p-0 col-5  array border-warning" >
 				    <input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
 					</div>
 					<!--ID-->
-					<span class="badge  m-0 p-1 badge-warning">튜터 소개글(필수)</span>
-					<div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"	contentEditable="true">
-						</div>
+
+					<span class="badge  m-0 p-1 badge-warning">튜터 소개글(필수,최대 100자)</span>
+					<div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"contentEditable="true"></div>
+
 					<input type="hidden" name="intro">
 				</div>
 			</div><!-- row end tag -->
 			<br>
-			
 			<!-- 헤더부분 끝 -->
 
 			<div class=row>
@@ -553,7 +602,9 @@ $(function(){
 						<br>
 
 					
-						<div ><h3><span class="badge m-0 p-1 badge-warning">제목입력</span></h3>
+
+						<div ><h3><span class="badge m-0 p-1 badge-warning">제목입력(최대25자)</span></h3>
+
 						<div contentEditable="true" class="mains p-0 m-0 col-12 border-warning " id=title></div>
 							<input type="hidden" name="inputtitle">
 						</div>
@@ -612,7 +663,9 @@ $(function(){
 
 						<div class="array col-12 p-0 m-0">
 							<!-- 내용입력-->
-							<h3><span class="badge m-0 p-1 badge-warning">내용입력</span></h3>
+
+							<h3><span class="badge m-0 p-1 badge-warning">내용입력(최대100자)</span></h3>
+
 							<div contentEditable="true" class="main  p-0 m-0 col-12 border-warning " id=cont ></div>
 							<input type="hidden" name="explain"><!-- Class 내용 등록-->	
 						</div><!-- 내용입력 끝--><br>
@@ -631,43 +684,51 @@ $(function(){
 					</div>
 				</div>
 			</div>
-				
-			
 			<!-- 컨텐츠 부분 끝-->
 			<br>
 
 			<div class=row>
 				<div id=myclass class="col-lg-12 col-md-12 col-sm-12">
-<!--
-					<h4>
-						<span class="badge welcome badge-warning btn">MY CLASS 모아보기</span>
-					</h4>
---> 				<button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
 
-					<div class="list col-lg-12 col-md-12 col-sm-12 border-warning">
+				<button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
+
+					<div class="list col-lg-12 col-md-12 col-sm-12 border-warning p-0">
+					<div class="array col-12 m-0 p-0 listtop">
+					<div class="head col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">번호</div>
+					<div class="head  col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">분류</div>
+					<div class="head  col-lg-4 col-md-5 col-sm-6 m-0 p-0 ">제목</div>
+					<div class="head  col-lg-3 col-md-2 col-sm-4 m-0 p-0">등록일</div>
+<!-- 					<div class="head  col-lg-1 col-md-2 col-sm-4 m-0 p-0">수정</div> -->
+<!-- 					<div class="head  col-lg-1 col-md-2 col-sm-4 m-0 p-0">삭제</div> -->
+					</div>
 					
-					<div class="head col-lg-3 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">분류</div>
-					<div class="head col-lg-4 col-md-5 col-sm-6 m-0 p-0 ">제목</div>
-					<div class="head col-lg-5 col-md-2 col-sm-4 m-0 p-0">등록일</div>
-					
-					<div class=" col-lg-12 m-0 p-0 " >
+					<div class="array col-12 m-0 p-0 " >
 					<c:forEach var="tmp" items="${page}">
 				
-					<div class="head col-lg-3 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">
+					<div class="head  col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">
+					${tmp.info_classid }
+					</div>
+					
+					<div class="head col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">
 					${tmp.info_category}
 					</div>
-				
-					<div class="head col-lg-4 col-md-5 col-sm-6 m-0 p-0 ">
-					<a href = "click.ForTutor?seq=${tmp.info_title}">
+					
+					<div class="head col-lg-4 col-md-5 col-sm-6 m-0 p-0 target">
+					<a href = "click.tutor">
+<%-- 					?info_classid=${tmp.info_classid} --%>
 					${tmp.info_title}
 					</a>
 					</div>
-				
-					<div class="head col-lg-5 col-md-2 col-sm-4 m-0 p-0">
+					
+					<div class="head col-lg-3 col-md-2 col-sm-4 m-0 p-0">
 					${tmp.info_date}
 					</div>
+					
 					</c:forEach>
 				    </div>
+<!-- 					<button type="button" class="btn btn-warning col-lg-1 col-md-2 col-sm-4 m-0 p-0" class="edit_my_class">수정</button> -->
+<!-- 					<button type="button" class="btn btn-warning col-lg-1 col-md-2 col-sm-4 m-0 p-0" class="del_my_class">삭제</button> -->
+					
 							
 					
 					</div>
@@ -687,14 +748,17 @@ $(function(){
 					<br>
 				</div>
 			</div>
+
+			
+			
 		
 <br>
 <button type="button" class="btn btn-warning" id=back>뒤로가기</button>
-<button type="button" class="btn btn-warning" id=home>홈으로 가기</button>
+
 		</div>	
 		
 	
-		</form>
+	</form>	
 </body>
 
 

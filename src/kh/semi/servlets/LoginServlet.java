@@ -115,7 +115,7 @@ public class LoginServlet extends HttpServlet
 					request.getSession().setAttribute("loginId", id);
 					request.getSession().setAttribute("loginType", "kakao");
 					request.getSession().setAttribute("snsLogin", "true");
-					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+					request.getRequestDispatcher("start.main").forward(request, response);
 				}
 			}catch(Exception e)
 			{
@@ -164,7 +164,7 @@ public class LoginServlet extends HttpServlet
 			//			}
 
 			request.getSession().invalidate();
-			response.sendRedirect("mainHomePage.jsp");
+			response.sendRedirect("start.main");
 		}else if(url.equals("idcheck.login"))
 		{
 			MemberDAO dao;
@@ -459,7 +459,7 @@ public class LoginServlet extends HttpServlet
 					request.getSession().setAttribute("snsLogin", "true");
 					request.getSession().setAttribute("loginId", "N"+naverCode);
 					request.getSession().setAttribute("loginType", "Naver");
-					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+					request.getRequestDispatcher("start.main").forward(request, response);
 
 
 

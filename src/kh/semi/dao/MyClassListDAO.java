@@ -11,6 +11,7 @@ import kh.semi.dto.ClassInfoDTO;
 import kh.semi.dto.MyClassListDTO;
 
 public class MyClassListDAO {
+
 	MyClassListDTO mydto = new MyClassListDTO();
 	ClassInfoDTO dto = new ClassInfoDTO();
 	
@@ -38,9 +39,11 @@ public class MyClassListDAO {
 			while(rs.next()) {//DB에서 목록 다 끌어야하니까 while
 				String info_category = rs.getString("info_category");
 				String info_title = rs.getString("info_title");
-				String info_explain = rs.getString("info_explain");
+
+				int info_classid = rs.getInt("info_classid");
 				String info_date = rs.getString("info_date");
-				MyClassListDTO listdto = new MyClassListDTO(info_category,info_title,info_explain,info_date);
+				MyClassListDTO listdto = new MyClassListDTO(info_category,info_title,info_date,info_classid);
+
 				page.add(listdto);
 			}
 			return page;
