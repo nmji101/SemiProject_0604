@@ -641,7 +641,7 @@ public class MypageServlets extends HttpServlet
 					
 					if(result > 0)
 					{
-						request.getRequestDispatcher("tutor.mypage").forward(request, response);
+						response.sendRedirect("tutor.mypage");
 					}
 					else
 					{
