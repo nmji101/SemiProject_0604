@@ -50,14 +50,13 @@
         };
     </script>
 
-
 </head>
 <body>
 	<form action="img.mypage" method="post" enctype="multipart/form-data">
 
 		<div class="box">
 
-			<input id="input_file" class="btn my-3" name="item" type="file"><br>
+			<input id="input_file" class="btn-info my-3" name="item" type="file" aria-describedby="inputGroupFileAddon01"><br>
 			<input class="btn btn-warning" type="submit" value="수정">
 
 		</div>
