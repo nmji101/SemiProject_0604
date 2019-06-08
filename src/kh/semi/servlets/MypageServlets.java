@@ -256,14 +256,57 @@ public class MypageServlets extends HttpServlet
 				{
 					PersonDAO dao = new PersonDAO();
 					
-					String m_nickname = request.getParameter("nickname").replace("<script>", "asdasdasdasdasdasd");
+					String m_nickname = request.getParameter("nickname").replaceAll("<script>", "asdasdasdasdasdasd");
+					m_nickname = m_nickname.replaceAll(" ", "");
 					
 					if(m_nickname != null)
 					{
-						if((1 <= m_nickname.length()) || (m_nickname.length() <= 6))
+						if((1 <= m_nickname.length()) && (m_nickname.length() <= 6))
 						{
 							System.out.println("닉네임 통과");
-							int result1 = dao.updateNicknameById(m_nickname, m_id);
+							
+							String[] attention = request.getParameterValues("attention");
+							String collection = "";
+							if(attention != null)
+							{
+								for(int i = 1 ; i <= attention.length ; i++)
+								{
+									if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
+									{
+										collection = "[ ";
+										
+										for(int j = 1 ; j <= attention.length ; j++)
+										{
+											if(j == attention.length)
+											{
+												collection = collection + "\"" + attention[j-1] + "\"";
+											}
+											else
+											{
+												collection = collection + "\"" + attention[j-1] + "\"" + ", ";
+											}
+										}
+										
+										collection = collection + " ]";
+									}
+									else
+									{
+										System.out.println("관심사에 이상한 값이 들어있다.");
+										response.sendRedirect("error.html");
+									}
+								}
+								System.out.println("관심사 통과");
+								dao.updateNicknameById(m_nickname, m_id);
+								dao.updateAttentionById(collection, m_id);
+								response.sendRedirect("person.mypage");
+							}
+							else
+							{
+								System.out.println("관심사 통과");
+								dao.updateNicknameById(m_nickname, m_id);
+								dao.updateAttentionById(collection, m_id);
+								response.sendRedirect("person.mypage");
+							}
 						}
 						else
 						{
@@ -276,49 +319,12 @@ public class MypageServlets extends HttpServlet
 						System.out.println("닉네임이 Null");
 						response.sendRedirect("error.html");
 					}
-					
-					String[] attention = request.getParameterValues("attention");
-					String collection = "";
-					if(attention != null)
-					{
-						for(int i = 1 ; i <= attention.length ; i++)
-						{
-							if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
-							{
-								collection = "[ ";
-								
-								for(int j = 1 ; j <= attention.length ; j++)
-								{
-									if(j == attention.length)
-									{
-										collection = collection + "\"" + attention[j-1] + "\"";
-									}
-									else
-									{
-										collection = collection + "\"" + attention[j-1] + "\"" + ", ";
-									}
-								}
-								
-								collection = collection + " ]";
-							}
-							else
-							{
-								System.out.println("관심사에 이상한 값이 들어있다.");
-								response.sendRedirect("error.html");
-							}
-						}
-						System.out.println("관심사 통과");
-						dao.updateAttentionById(collection, m_id);
-					}
-					response.sendRedirect("person.mypage");
 				}
 				catch(Exception e)
 				{
 					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
-				
-//				response.sendRedirect("person.mypage");
 			}
 			else if(url.equals("changePw.mypage"))
 			{
