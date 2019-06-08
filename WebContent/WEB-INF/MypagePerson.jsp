@@ -554,18 +554,18 @@ h2 {
 
                                 <div id="age_select_div" class="col-lg-9">
 
-                                    <select class="form-control">
+                                    <select class="form-control" name="agerange">
                                       
-                                      <option value="null">선택하지 않음</option>
-                                      <option value="10">10대</option>
-                                      <option value="20">20대</option>
-                                      <option value="30">30대</option>
-                                      <option value="40">40대</option>
-                                      <option value="50">50대</option>
-                                      <option value="60">60대</option>
-                                      <option value="70">70대</option>
-                                      <option value="80">80대</option>
-                                      <option value="90">90대</option>
+                                      <option id="age_option_0" value="0">선택하지 않음</option>
+                                      <option id="age_option_10" value="10">10대</option>
+                                      <option id="age_option_20" value="20">20대</option>
+                                      <option id="age_option_30" value="30">30대</option>
+                                      <option id="age_option_40" value="40">40대</option>
+                                      <option id="age_option_50" value="50">50대</option>
+                                      <option id="age_option_60" value="60">60대</option>
+                                      <option id="age_option_70" value="70">70대</option>
+                                      <option id="age_option_80" value="80">80대</option>
+                                      <option id="age_option_90" value="90">90대</option>
                                                         
                                     </select>
 
@@ -587,19 +587,19 @@ h2 {
                                         
                                         <div class="col-lg-4">
                                             
-                                            <input class="form-check-input" name="gender" type="radio" value=""><span>선택하지 않음</span>
+                                            <input class="form-check-input" name="gender" type="radio" value="N"><span>선택하지 않음</span>
                                         
                                         </div>
                                         
                                         <div class="col-lg-4">
                                             
-                                            <input class="form-check-input" name="gender" type="radio" value="M"><span>남성</span>
+                                            <input id="male_btn" class="form-check-input" name="gender" type="radio" value="M"><span>남성</span>
                                         
                                         </div>
                                         
                                         <div class="col-lg-4">
                                             
-                                            <input class="form-check-input" name="gender" type="radio" value="F"><span>여성</span>
+                                            <input id="female_btn" class="form-check-input" name="gender" type="radio" value="F"><span>여성</span>
                                        
                                         </div>
                                         
@@ -691,4 +691,120 @@ h2 {
 	</script>
 
 </c:if>
+<c:choose>
+
+	<c:when test="${ dto.m_agerange == '10' }">
+		
+		<script>
+		
+			$("#age_option_10").prop("selected", "true");
+		
+		</script>
+		
+	</c:when>
+
+	<c:when test="${ dto.m_agerange == '20' }">
+	
+		<script>
+		
+			$("#age_option_20").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '30' }">
+	
+		<script>
+		
+			$("#age_option_30").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '40' }">
+	
+		<script>
+		
+			$("#age_option_40").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '50' }">
+	
+		<script>
+		
+			$("#age_option_50").prop("selected", "true");
+		
+		</script>
+		
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '60' }">
+	
+		<script>
+		
+			$("#age_option_60").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '70' }">
+	
+		<script>
+		
+			$("#age_option_70").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '80' }">
+	
+		<script>
+		
+			$("#age_option_80").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_agerange == '90' }">
+	
+		<script>
+		
+			$("#age_option_90").prop("selected", "true");
+		
+		</script>
+	
+	</c:when>
+	
+</c:choose>
+<c:choose>
+
+	<c:when test="${ dto.m_gender == 'M' }">
+	
+		<script>
+		
+			$("#male_btn").prop("checked", "true");
+		
+		</script>
+	
+	</c:when>
+	
+	<c:when test="${ dto.m_gender == 'F' }">
+	
+		<script>
+		
+			$("#female_btn").prop("checked", "true");
+		
+		</script>
+	
+	</c:when>
+	
+</c:choose>
 </html>

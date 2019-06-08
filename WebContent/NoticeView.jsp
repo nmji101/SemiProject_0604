@@ -385,7 +385,7 @@ div {
 
 									<div class="notice_writer_div col-lg-3 my-auto">글 작성자</div>
 
-									<div class="notice_time_div col-lg-3 my-auto">글 작성 시간</div>
+									<div class="notice_time_div col-lg-3 my-auto">글 작성 날짜</div>
 
 								</div>
 
@@ -450,7 +450,7 @@ div {
 
 						<div id="btn_row" class="col-12 write">
 
-							<a href="NoticeWrite.jsp" class="btn btn-info">글 쓰기</a>
+							<a href="writePage.notice" class="btn btn-info">글 쓰기</a>
 
 						</div>
 
