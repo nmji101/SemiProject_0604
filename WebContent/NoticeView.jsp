@@ -404,9 +404,9 @@ div {
 
 										<div class="col-lg-1 my-auto">${ list[i-1].no_seq }</div>
 
-										<div class="col-lg-5 my-auto">
+										<div id="title_div" class="col-lg-5 my-auto">
 
-											<a class="btn" href="detail.notice?seq=${ list[i-1].no_seq }">${ list[i-1].no_title }</a>
+											<a class="btn btn-link" href="detail.notice?seq=${ list[i-1].no_seq }">${ list[i-1].no_title }</a>
 
 										</div>
 

@@ -537,7 +537,7 @@ h2 {
 
 								<div class="col-lg-9 my-auto">
 
-									<input class="form-control" type="text" name="nickname"
+									<input class="form-control" type="text" name="nickname" maxlength="6"
 										value="${ dto.m_nickname }">
 
 								</div>

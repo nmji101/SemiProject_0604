@@ -50,516 +50,554 @@ public class MypageServlets extends HttpServlet
 			System.out.println("세션에 아이디 없음");
 			response.sendRedirect("Login.jsp");
 		}
-		
-		System.out.println(url);
-		if(url.equals("doing.mypage"))
+		else
 		{
-			try
+			System.out.println(url);
+			if(url.equals("doing.mypage"))
 			{
-				PersonDAO dao = new PersonDAO();
-				PersonDTO dto = dao.selectById(m_id);
-				
-				request.setAttribute("dto", dto);
-				
-				DoClassDAO dcdao = new DoClassDAO();
-				
-				int currentPage;
-				currentPage = Integer.parseInt(request.getParameter("page"));
+				try
+				{
+					PersonDAO dao = new PersonDAO();
+					PersonDTO dto = dao.selectById(m_id);
+					
+					request.setAttribute("dto", dto);
+					
+					DoClassDAO dcdao = new DoClassDAO();
+					
+					int currentPage;
+					currentPage = Integer.parseInt(request.getParameter("page"));
 
-				List<DoClassDTO> list = dcdao.selectDoingClass(m_id, currentPage);
-				
-				for(int i = 1 ; i <= list.size() ; i++)
-				{
-					String tutorId = list.get(i-1).getTutorId();
-//					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
-				}
-				
-				int recordTotalCount = dcdao.selectDoingCount(m_id);
-				
-				int pageTotalCount;
-				
-				boolean needPrev = true;
-				boolean needNext = true;
-				
-				if( recordTotalCount % recordCountPerPage == 0)
-				{
-					pageTotalCount = recordTotalCount / recordCountPerPage;
-				}
-				else
-				{
-					pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-				}
-
-				if(currentPage < 1)
-				{
-					currentPage = 1;
-				}
-				else if(currentPage > pageTotalCount)
-				{
-					currentPage = pageTotalCount;
-				}
-				
-				int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
-				int endNavi = startNavi + naviCountPerPage - 1;
-				if(endNavi > pageTotalCount)
-				{
-					endNavi = pageTotalCount;
-				}
-				
-				if(startNavi == 1)
-				{
-					needPrev = false;
-				}
-				if(endNavi == pageTotalCount)
-				{
-					needNext = false;
-				}
-				
-				request.setAttribute("list", list);
-				request.setAttribute("listsize", list.size());
-				
-				request.setAttribute("currentPage", currentPage);
-				request.setAttribute("needPrev", needPrev);
-				request.setAttribute("needNext", needNext);
-				request.setAttribute("startNavi", startNavi);
-				request.setAttribute("endNavi", endNavi);
-			
-				request.getRequestDispatcher("/WEB-INF/MypageDoing.jsp?page="+currentPage).forward(request, response);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		else if(url.equals("done.mypage"))
-		{
-			
-			try
-			{
-				PersonDAO dao = new PersonDAO();
-				PersonDTO dto = dao.selectById(m_id);
-				
-				request.setAttribute("dto", dto);
-				
-				DoClassDAO dcdao = new DoClassDAO();
-				
-				int currentPage;
-				
-
-				currentPage = Integer.parseInt(request.getParameter("page"));
-
-				
-				List<DoClassDTO> list = dcdao.selectDoneClass(m_id, currentPage);
-
-				for(int i = 1 ; i <= list.size() ; i++)
-				{
-					String tutorId = list.get(i-1).getTutorId();
-					list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
-				}
-				
-				ReviewDAO rdao = new ReviewDAO();
-				
-				List<String> strList = new ArrayList<String>();
-				
-				for(int i = 1 ; i <= list.size() ; i++)
-				{
-					int classId = list.get(i-1).getClassId();
-					if(rdao.overlapReviewCheck(classId, m_id))
+					List<DoClassDTO> list = dcdao.selectDoingClass(m_id, currentPage);
+					
+					for(int i = 1 ; i <= list.size() ; i++)
 					{
-						strList.add("true");
+						String tutorId = list.get(i-1).getTutorId();
+//						list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+					}
+					
+					int recordTotalCount = dcdao.selectDoingCount(m_id);
+					
+					int pageTotalCount;
+					
+					boolean needPrev = true;
+					boolean needNext = true;
+					
+					if( recordTotalCount % recordCountPerPage == 0)
+					{
+						pageTotalCount = recordTotalCount / recordCountPerPage;
 					}
 					else
 					{
-						strList.add("false");
+						pageTotalCount = recordTotalCount / recordCountPerPage + 1;
 					}
-				}
-				
-				request.setAttribute("strList", strList);
-				
-				int recordTotalCount = dcdao.selectDoneCount(m_id);
-				
-				int pageTotalCount;
-				
-				boolean needPrev = true;
-				boolean needNext = true;
-				
-				if( recordTotalCount % recordCountPerPage == 0)
-				{
-					pageTotalCount = recordTotalCount / recordCountPerPage;
-				}
-				else
-				{
-					pageTotalCount = recordTotalCount / recordCountPerPage + 1;
-				}
 
-				if(currentPage < 1)
-				{
-					currentPage = 1;
-				}
-				else if(currentPage > pageTotalCount)
-				{
-					currentPage = pageTotalCount;
-				}
-				
-				int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
-				int endNavi = startNavi + naviCountPerPage - 1;
-				if(endNavi > pageTotalCount)
-				{
-					endNavi = pageTotalCount;
-				}
-				
-				if(startNavi == 1)
-				{
-					needPrev = false;
-				}
-				if(endNavi == pageTotalCount)
-				{
-					needNext = false;
-				}
-				
-				request.setAttribute("list", list);
-				request.setAttribute("listsize", list.size());
-				
-				request.setAttribute("currentPage", currentPage);
-				request.setAttribute("needPrev", needPrev);
-				request.setAttribute("needNext", needNext);
-				request.setAttribute("startNavi", startNavi);
-				request.setAttribute("endNavi", endNavi);
-			
-				request.getRequestDispatcher("/WEB-INF/MypageDone.jsp?page="+currentPage).forward(request, response);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		}
-		else if(url.equals("person.mypage"))
-		{
-			try
-			{
-				PersonDAO dao = new PersonDAO();
-				PersonDTO dto = dao.selectById(m_id);
-				request.setAttribute("dto", dto);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-			request.getRequestDispatcher("/WEB-INF/MypagePerson.jsp").forward(request, response);
-		
-		}
-		else if(url.equals("update.mypage"))
-		{
-			try
-			{
-				PersonDAO dao = new PersonDAO();
-				
-				String m_nickname = request.getParameter("nickname").replace("<script>", "asdasdasdasdasdasd");
-				
-				if(m_nickname != null)
-				{
-					if((1 <= m_nickname.length()) || (m_nickname.length() <= 6))
+					if(currentPage < 1)
 					{
-						System.out.println("닉네임 통과");
-						int result1 = dao.updateNicknameById(m_nickname, m_id);
+						currentPage = 1;
 					}
-					else
+					else if(currentPage > pageTotalCount)
 					{
-						System.out.println("닉네임이 길이가 1 ~ 6 이 아님");
-						response.sendRedirect("error.html");
+						currentPage = pageTotalCount;
 					}
-				}
-				else
-				{
-					System.out.println("닉네임이 Null");
-					response.sendRedirect("error.html");
-				}
-				
-				String[] attention = request.getParameterValues("attention");
-				String collection = "";
-				if(attention != null)
-				{
-					for(int i = 1 ; i <= attention.length ; i++)
+					
+					int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+					int endNavi = startNavi + naviCountPerPage - 1;
+					if(endNavi > pageTotalCount)
 					{
-						if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
+						endNavi = pageTotalCount;
+					}
+					
+					if(startNavi == 1)
+					{
+						needPrev = false;
+					}
+					if(endNavi == pageTotalCount)
+					{
+						needNext = false;
+					}
+					
+					request.setAttribute("list", list);
+					request.setAttribute("listsize", list.size());
+					
+					request.setAttribute("currentPage", currentPage);
+					request.setAttribute("needPrev", needPrev);
+					request.setAttribute("needNext", needNext);
+					request.setAttribute("startNavi", startNavi);
+					request.setAttribute("endNavi", endNavi);
+				
+					request.getRequestDispatcher("/WEB-INF/MypageDoing.jsp?page="+currentPage).forward(request, response);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else if(url.equals("done.mypage"))
+			{
+				
+				try
+				{
+					PersonDAO dao = new PersonDAO();
+					PersonDTO dto = dao.selectById(m_id);
+					
+					request.setAttribute("dto", dto);
+					
+					DoClassDAO dcdao = new DoClassDAO();
+					
+					int currentPage;
+					
+
+					currentPage = Integer.parseInt(request.getParameter("page"));
+
+					
+					List<DoClassDTO> list = dcdao.selectDoneClass(m_id, currentPage);
+
+					for(int i = 1 ; i <= list.size() ; i++)
+					{
+						String tutorId = list.get(i-1).getTutorId();
+						list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+					}
+					
+					ReviewDAO rdao = new ReviewDAO();
+					
+					List<String> strList = new ArrayList<String>();
+					
+					for(int i = 1 ; i <= list.size() ; i++)
+					{
+						int classId = list.get(i-1).getClassId();
+						if(rdao.overlapReviewCheck(classId, m_id))
 						{
-							collection = "[ ";
-							
-							for(int j = 1 ; j <= attention.length ; j++)
-							{
-								if(j == attention.length)
-								{
-									collection = collection + "\"" + attention[j-1] + "\"";
-								}
-								else
-								{
-									collection = collection + "\"" + attention[j-1] + "\"" + ", ";
-								}
-							}
-							
-							collection = collection + " ]";
+							strList.add("true");
 						}
 						else
 						{
-							System.out.println("관심사에 이상한 값이 들어있다.");
+							strList.add("false");
+						}
+					}
+					
+					request.setAttribute("strList", strList);
+					
+					int recordTotalCount = dcdao.selectDoneCount(m_id);
+					
+					int pageTotalCount;
+					
+					boolean needPrev = true;
+					boolean needNext = true;
+					
+					if( recordTotalCount % recordCountPerPage == 0)
+					{
+						pageTotalCount = recordTotalCount / recordCountPerPage;
+					}
+					else
+					{
+						pageTotalCount = recordTotalCount / recordCountPerPage + 1;
+					}
+
+					if(currentPage < 1)
+					{
+						currentPage = 1;
+					}
+					else if(currentPage > pageTotalCount)
+					{
+						currentPage = pageTotalCount;
+					}
+					
+					int startNavi = (currentPage - 1) / naviCountPerPage * naviCountPerPage + 1;
+					int endNavi = startNavi + naviCountPerPage - 1;
+					if(endNavi > pageTotalCount)
+					{
+						endNavi = pageTotalCount;
+					}
+					
+					if(startNavi == 1)
+					{
+						needPrev = false;
+					}
+					if(endNavi == pageTotalCount)
+					{
+						needNext = false;
+					}
+					
+					request.setAttribute("list", list);
+					request.setAttribute("listsize", list.size());
+					
+					request.setAttribute("currentPage", currentPage);
+					request.setAttribute("needPrev", needPrev);
+					request.setAttribute("needNext", needNext);
+					request.setAttribute("startNavi", startNavi);
+					request.setAttribute("endNavi", endNavi);
+				
+					request.getRequestDispatcher("/WEB-INF/MypageDone.jsp?page="+currentPage).forward(request, response);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+			}
+			else if(url.equals("person.mypage"))
+			{
+				try
+				{
+					PersonDAO dao = new PersonDAO();
+					PersonDTO dto = dao.selectById(m_id);
+					request.setAttribute("dto", dto);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+				
+				request.getRequestDispatcher("/WEB-INF/MypagePerson.jsp").forward(request, response);
+			
+			}
+			else if(url.equals("update.mypage"))
+			{
+				try
+				{
+					PersonDAO dao = new PersonDAO();
+					
+					String m_nickname = request.getParameter("nickname").replaceAll("<script>", "asdasdasdasdasdasd");
+					m_nickname = m_nickname.replaceAll(" ", "");
+					
+					if(m_nickname != null)
+					{
+						if((1 <= m_nickname.length()) && (m_nickname.length() <= 6))
+						{
+							System.out.println("닉네임 통과");
+							
+							String[] attention = request.getParameterValues("attention");
+							String collection = "";
+							if(attention != null)
+							{
+								for(int i = 1 ; i <= attention.length ; i++)
+								{
+									if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
+									{
+										collection = "[ ";
+										
+										for(int j = 1 ; j <= attention.length ; j++)
+										{
+											if(j == attention.length)
+											{
+												collection = collection + "\"" + attention[j-1] + "\"";
+											}
+											else
+											{
+												collection = collection + "\"" + attention[j-1] + "\"" + ", ";
+											}
+										}
+										
+										collection = collection + " ]";
+									}
+									else
+									{
+										System.out.println("관심사에 이상한 값이 들어있다.");
+										response.sendRedirect("error.html");
+									}
+								}
+								System.out.println("관심사 통과");
+								dao.updateNicknameById(m_nickname, m_id);
+								dao.updateAttentionById(collection, m_id);
+								response.sendRedirect("person.mypage");
+							}
+							else
+							{
+								System.out.println("관심사 통과");
+								dao.updateNicknameById(m_nickname, m_id);
+								dao.updateAttentionById(collection, m_id);
+								response.sendRedirect("person.mypage");
+							}
+						}
+						else
+						{
+							System.out.println("닉네임이 길이가 1 ~ 6 이 아님");
 							response.sendRedirect("error.html");
 						}
 					}
-					System.out.println("관심사 통과");
-					dao.updateAttentionById(collection, m_id);
-				}
-				response.sendRedirect("person.mypage");
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-				response.sendRedirect("error.html");
-			}
-			
-//			response.sendRedirect("person.mypage");
-		}
-		else if(url.equals("changePw.mypage"))
-		{
-			request.getRequestDispatcher("/WEB-INF/MypageChangePW.jsp").forward(request, response);
-		}
-		else if(url.equals("pw.mypage"))
-		{
-			try
-			{
-				String pw = request.getParameter("pw").replace("<script>", "asdasdasdasdasdasd");
-				String pwc = request.getParameter("pwc").replace("<script>", "asdasdasdasdasdasd");
-				
-				System.out.println(pw);
-				System.out.println(pwc);
-				
-				if(((6 <= pw.length()) && (pw.length() <= 12)) && ((6 <= pwc.length()) && (pwc.length() <= 12)))
-				{
-					System.out.println("길이 통과");
-					if(pw.equals(pwc))
+					else
 					{
-						System.out.println("문자 일치 통과");
-						Pattern p = Pattern.compile("[a-z|A-Z|0-9]", Pattern.CASE_INSENSITIVE);
-						Matcher m = p.matcher(pw);
-						boolean check = m.find();
-						
-						if(!check)
+						System.out.println("닉네임이 Null");
+						response.sendRedirect("error.html");
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+			}
+			else if(url.equals("changePw.mypage"))
+			{
+				request.getRequestDispatcher("/WEB-INF/MypageChangePW.jsp").forward(request, response);
+			}
+			else if(url.equals("pw.mypage"))
+			{
+				try
+				{
+					String pw = request.getParameter("pw").replace("<script>", "asdasdasdasdasdasd");
+					String pwc = request.getParameter("pwc").replace("<script>", "asdasdasdasdasdasd");
+					
+					System.out.println(pw);
+					System.out.println(pwc);
+					
+					if(((6 <= pw.length()) && (pw.length() <= 12)) && ((6 <= pwc.length()) && (pwc.length() <= 12)))
+					{
+						System.out.println("길이 통과");
+						if(pw.equals(pwc))
 						{
-							System.out.println("정규식 통과");
-							try
+							System.out.println("문자 일치 통과");
+							Pattern p = Pattern.compile("[a-z|A-Z|0-9]", Pattern.CASE_INSENSITIVE);
+							Matcher m = p.matcher(pw);
+							boolean check = m.find();
+							
+							if(!check)
 							{
-								PersonDAO dao = new PersonDAO();
-								String changedPW = dao.toSha256(pw);
-								
-								dao.updatePwById(changedPW, m_id);
-								response.sendRedirect("close.html");
+								System.out.println("정규식 통과");
+								try
+								{
+									PersonDAO dao = new PersonDAO();
+									String changedPW = dao.toSha256(pw);
+									
+									dao.updatePwById(changedPW, m_id);
+									response.sendRedirect("close.html");
+								}
+								catch(Exception e)
+								{
+									e.printStackTrace();
+									response.sendRedirect("error.html");
+								}
 							}
-							catch(Exception e)
+							else
 							{
-								e.printStackTrace();
+								System.out.println("정규식 ERRRRRRROR");
 								response.sendRedirect("error.html");
 							}
 						}
 						else
 						{
-							System.out.println("정규식 ERRRRRRROR");
+							System.out.println("문자 일치 ERRRRRRROR");
 							response.sendRedirect("error.html");
 						}
 					}
 					else
 					{
-						System.out.println("문자 일치 ERRRRRRROR");
+						System.out.println("길이 ERRRRRRROR");
 						response.sendRedirect("error.html");
 					}
 				}
-				else
+				catch(Exception e)
 				{
-					System.out.println("길이 ERRRRRRROR");
+					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
 			}
-			catch(Exception e)
+			else if(url.equals("changeImg.mypage"))
 			{
-				e.printStackTrace();
-				response.sendRedirect("error.html");
+				request.getRequestDispatcher("/WEB-INF/MypageChangeImg.jsp").forward(request, response);
 			}
-		}
-		else if(url.equals("changeImg.mypage"))
-		{
-			request.getRequestDispatcher("/WEB-INF/MypageChangeImg.jsp").forward(request, response);
-		}
-		else if(url.equals("img.mypage"))
-		{
-			String rootPath = this.getServletContext().getRealPath("/");
-			String filePath = rootPath + "files";
-			System.out.println(filePath);
-			
-			File uploadPath = new File(filePath);
-			if(!uploadPath.exists())
+			else if(url.equals("img.mypage"))
 			{
-				uploadPath.mkdir();
-			}
-			
-			DiskFileItemFactory diskFactory = new DiskFileItemFactory();
-			diskFactory.setRepository(new File(rootPath + "WEB-INF/temp"));
-			
-			ServletFileUpload sfu = new ServletFileUpload(diskFactory);
-			sfu.setFileSizeMax(10 * 1024 * 1024);
-			
-			try
-			{
-				FileItem fi = sfu.parseRequest(request).get(0);
-				PersonDAO dao = new PersonDAO();	
+				String rootPath = this.getServletContext().getRealPath("/");
+				String filePath = rootPath + "files";
+				System.out.println(filePath);
 				
-				String src = dao.selectImgById(m_id);
-				src = src.substring(10,src.length());
-				src = src.substring(0,src.length()-1);
-				
-				File delFile = new File(rootPath + src);
-				if(delFile.exists())
+				File uploadPath = new File(filePath);
+				if(!uploadPath.exists())
 				{
-					delFile.delete();
+					uploadPath.mkdir();
 				}
+				
+				DiskFileItemFactory diskFactory = new DiskFileItemFactory();
+				diskFactory.setRepository(new File(rootPath + "WEB-INF/temp"));
+				
+				ServletFileUpload sfu = new ServletFileUpload(diskFactory);
+				sfu.setFileSizeMax(10 * 1024 * 1024);
+				
+				try
+				{
+					FileItem fi = sfu.parseRequest(request).get(0);
+					PersonDAO dao = new PersonDAO();	
 					
-				if(fi.getSize() == 0)
-				{
-					response.sendRedirect("error.html");
-				}
-				else
-				{
-					while(true)
+					String src = dao.selectImgById(m_id);
+					src = src.substring(10,src.length());
+					src = src.substring(0,src.length()-1);
+					
+					File delFile = new File(rootPath + src);
+					if(delFile.exists())
 					{
-						try
-						{
-							String tmpName = System.currentTimeMillis() + "_" + fi.getName();
-							fi.write(new File(filePath + "/" + tmpName));
-							
-							String file = "<img src=\"/files/"+tmpName+"\">";
-							dao.updateImgById(file,m_id);
-							
-							break;
-						}
-						catch(org.apache.commons.io.FileExistsException e)
-						{
-							System.out.println("파일 이름 재설정");
-						}
-						catch(Exception e)
-						{
-							e.printStackTrace();
-						}
+						delFile.delete();
 					}
+						
+					if(fi.getSize() == 0)
+					{
+						response.sendRedirect("error.html");
+					}
+					else
+					{
+						while(true)
+						{
+							try
+							{
+								String tmpName = System.currentTimeMillis() + "_" + fi.getName();
+								fi.write(new File(filePath + "/" + tmpName));
+								
+								String file = "<img src=\"/files/"+tmpName+"\">";
+								dao.updateImgById(file,m_id);
+								
+								break;
+							}
+							catch(org.apache.commons.io.FileExistsException e)
+							{
+								System.out.println("파일 이름 재설정");
+							}
+							catch(Exception e)
+							{
+								e.printStackTrace();
+							}
+						}
+						response.sendRedirect("close.html");
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
 					response.sendRedirect("close.html");
 				}
+				
 			}
-			catch(Exception e)
+			else if(url.equals("review.mypage"))
 			{
-				e.printStackTrace();
-				response.sendRedirect("close.html");
+				request.setAttribute("m_id", request.getParameter("m_id"));
+				request.setAttribute("c_id", request.getParameter("c_id"));
+				request.setAttribute("date", request.getParameter("date"));
+				request.setAttribute("title", request.getParameter("title"));
+				
+				request.getRequestDispatcher("/WEB-INF/MypageWriteReview.jsp").forward(request, response);
 			}
-			
-		}
-		else if(url.equals("review.mypage"))
-		{
-			request.setAttribute("m_id", request.getParameter("m_id"));
-			request.setAttribute("c_id", request.getParameter("c_id"));
-			request.setAttribute("date", request.getParameter("date"));
-			request.setAttribute("title", request.getParameter("title"));
-			
-			request.getRequestDispatcher("/WEB-INF/MypageWriteReview.jsp").forward(request, response);
-		}
-		else if(url.equals("writeReview.mypage"))
-		{
-			try
+			else if(url.equals("writeReview.mypage"))
 			{
-				
-				ReviewDAO dao = new ReviewDAO();
-				
-				String time = request.getParameter("date");
-				
-				int year = Integer.parseInt(time.substring(2,4));
-				int month = Integer.parseInt(time.substring(5,7));
-				int day = Integer.parseInt(time.substring(8,10));
-				
-				@SuppressWarnings("deprecation")
-				Date date = new Date(year, month-1, day);
-				
-				dao.insertReview(request.getParameter("c_id"),
-						request.getParameter("m_id"), 
-						request.getParameter("text"), 
-						request.getParameter("star"),
-						date
-						);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			response.sendRedirect("close.html");
-		}
-		else if(url.equals("tutor.mypage"))
-		{System.out.println("튜터페이지 접속");
-			try
-			{
-				PersonDAO pdao = new PersonDAO();
-				PersonDTO pdto = pdao.selectById(m_id);
-				MyClassListDTO mydto = new MyClassListDTO();
-				MyClassListDAO mydao = new MyClassListDAO();
-				MemberDAO mdao = new MemberDAO();
-				request.setAttribute("dto", pdto);
-				
-				
-				if(pdto.getM_type().equals("tutor"))
+				try
 				{
-					request.setAttribute("check", "tutor");
+					ReviewDAO dao = new ReviewDAO();
+					DoClassDAO dcdao = new DoClassDAO();
+					
+					String time = request.getParameter("date");
+					
+					int year = Integer.parseInt(time.substring(2,4));
+					int month = Integer.parseInt(time.substring(5,7));
+					int day = Integer.parseInt(time.substring(8,10));
+					
+					@SuppressWarnings("deprecation")
+					Date date = new Date(year, month-1, day);
+					
+					int c_id = Integer.parseInt(request.getParameter("c_id"));
+					String req_m_id = request.getParameter("m_id");
+					
+					if(dcdao.existCheck(req_m_id, c_id))
+					{
+						if(m_id.equals(req_m_id))
+						{
+							if(!dao.overlapReviewCheck(c_id, req_m_id))
+							{
+								dao.insertReview(request.getParameter("c_id"),
+									request.getParameter("m_id"),
+									request.getParameter("text"), 
+									request.getParameter("star"),
+									date
+									);
+								
+								response.sendRedirect("close.html");
+							}
+							else
+							{
+								System.out.println(" 이미 리뷰를 작성함 ");
+								response.sendRedirect("error.html");
+							}
+						}
+						else
+						{
+							System.out.println("아이디가 이상하다.");
+							response.sendRedirect("error.html");
+						}
+					}
+					else
+					{
+						System.out.println("classdoing에 없다");
+						response.sendRedirect("error.html");
+					}
 				}
-				else
+				catch(Exception e)
 				{
-					UpgradeDAO udao = new UpgradeDAO();
-					Boolean check = udao.selectById(pdto.getM_id());
-					request.setAttribute("check", ""+check);
-				}
-				String id = (String) request.getSession().getAttribute("loginId");
-				List<MyClassListDTO>  page = mydao.selectByPage(id);
-				request.setAttribute("page",page);
-				
-				
-			String visitorid = (String) request.getSession().getAttribute("loginId");
-			if(mdao.selectTypeById(visitorid).equals("tutor")){
-				request.getRequestDispatcher("ForTutor.jsp").forward(request, response);
-			}else{
-				request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
-			}
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-//			request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
-//			
-//			request.getRequestDispatcher("ForTutor.jsp").forward(request, response);
-		}
-		else if(url.equals("apply.mypage"))
-		{
-			try
-			{
-				String id = request.getParameter("id");
-				String nickname = request.getParameter("nickname");
-				
-				UpgradeDAO dao = new UpgradeDAO();
-				int result = dao.insertNew(id, nickname);
-				
-				if(result > 0)
-				{
-					request.getRequestDispatcher("tutor.mypage").forward(request, response);
-				}
-				else
-				{
+					e.printStackTrace();
 					response.sendRedirect("error.html");
 				}
+				
 			}
-			catch(Exception e)
+			else if(url.equals("tutor.mypage"))
+			{System.out.println("튜터페이지 접속");
+				try
+				{
+					PersonDAO pdao = new PersonDAO();
+					PersonDTO pdto = pdao.selectById(m_id);
+					MyClassListDTO mydto = new MyClassListDTO();
+					MyClassListDAO mydao = new MyClassListDAO();
+					MemberDAO mdao = new MemberDAO();
+					request.setAttribute("dto", pdto);
+					
+					
+					if(pdto.getM_type().equals("tutor"))
+					{
+						request.setAttribute("check", "tutor");
+					}
+					else
+					{
+						UpgradeDAO udao = new UpgradeDAO();
+						Boolean check = udao.selectById(pdto.getM_id());
+						request.setAttribute("check", ""+check);
+					}
+					String id = (String) request.getSession().getAttribute("loginId");
+					List<MyClassListDTO>  page = mydao.selectByPage(id);
+					request.setAttribute("page",page);
+					
+					
+				String visitorid = (String) request.getSession().getAttribute("loginId");
+				if(mdao.selectTypeById(visitorid).equals("tutor")){
+					request.getRequestDispatcher("ForTutor.jsp").forward(request, response);
+				}else{
+					request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
+				}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
+//				request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
+//				
+//				request.getRequestDispatcher("ForTutor.jsp").forward(request, response);
+			}
+			else if(url.equals("apply.mypage"))
 			{
-				e.printStackTrace();
+				try
+				{
+					String id = request.getParameter("id");
+					String nickname = request.getParameter("nickname");
+					
+					UpgradeDAO dao = new UpgradeDAO();
+					int result = dao.insertNew(id, nickname);
+					
+					if(result > 0)
+					{
+						request.getRequestDispatcher("tutor.mypage").forward(request, response);
+					}
+					else
+					{
+						response.sendRedirect("error.html");
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}
