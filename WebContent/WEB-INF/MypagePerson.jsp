@@ -587,7 +587,7 @@ h2 {
                                         
                                         <div class="col-lg-4">
                                             
-                                            <input class="form-check-input" name="gender" type="radio" value="N"><span>선택하지 않음</span>
+                                            <input class="form-check-input" name="gender" type="radio" value="N" checked><span>선택하지 않음</span>
                                         
                                         </div>
                                         

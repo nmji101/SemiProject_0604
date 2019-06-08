@@ -3,6 +3,7 @@ package kh.semi.servlets;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -640,7 +641,7 @@ public class MypageServlets extends HttpServlet
 					
 					if(result > 0)
 					{
-						request.getRequestDispatcher("tutor.mypage").forward(request, response);
+						response.sendRedirect("tutor.mypage");
 					}
 					else
 					{
