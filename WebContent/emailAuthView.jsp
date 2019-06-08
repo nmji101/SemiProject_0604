@@ -20,10 +20,20 @@
 	$(function() {
 		var authStr = "yet";
 		var result = "false";
+		var email_send_count = 0;
 		var count = 0;
 		$("#auth_num_btn").on("click", function() {
 			result = "false";
 			count = 0;
+			if(email_send_count==2){
+				alert("이메일발송은 세번까지만 가능합니다.");
+			}
+			if(email_send_count==3){
+				alert("이메일발송버튼을 세번이상 누르셨습니다. 메인화면으로 돌아갑니다.");
+				opener.document.getElementById("logo").click();
+				close();
+			}
+			email_send_count++;
 			$.ajax({
 				url : "sendAuthNum.login",
 				type : "post",
