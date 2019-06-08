@@ -19,7 +19,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
 * {
-
+	
 }
 
 body {
@@ -92,6 +92,14 @@ select {
 	cursor: pointer;
 }
 
+#email {
+	margin: 0px;
+	padding : 0px;
+}
+
+#email>.btn {
+	margin: 0px;
+}
 </style>
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
@@ -134,180 +142,166 @@ select {
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
 <script>
-	$(
-        function() {
-        $("#logo").on("click", function() {
-                      location.href = "start.main";
-                      })
-        $("#idtext")
-        .on(
-            "focusout",
-            function() {// ajax 가입된 아이디가 있는지 체크 이벤트
-            $("#email").prop("flag","false");
-            $
-            .ajax({
-                  url : "idcheck.login",
-                  type : "post",
-                  data : {
-                  id : $("#idtext").val()
-                  }
-                  })
-            .done(
-                function(resp) {
-                console.log(resp);
-                console
-                .log(JSON
-                     .stringify(resp));
-                var idtext = $(
-                    "#idtext")
-                .val();
-                var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/g
-                if (regex.exec(idtext) != null) {
-                if (resp == "1") {
-                $("#idcheckin")
-                .text(
-                    "이미 가입된 아이디 입니다.");
-                $("#idcheckin")
-                .css(
-                    "color",
-                    "red");
-                $("#idcheckvar")
-                .val("");
-                } else if (resp == 0) {
-                $("#idcheckin")
-                .text(
-                    "사용 가능한 아이디 입니다.");
-                $("#idcheckin")
-                .css(
-                    "color",
-                    "green");
-                $("#idcheckvar")
-                .val(
-                    "사용 가능한 아이디 입니다.");
-                } else if (resp == 3) {
-                $("#idcheckin")
-                .text(
-                    "아이디를 입력해 주세요.");
-                $("#idcheckin")
-                .css(
-                    "color",
-                    "red");
-                $("#idcheckvar")
-                .val("");
-                }
-                } else {
-                $("#idcheckin")
-                .text(
-                    "올바른 형식으로 입력하세요.");
-                $("#idcheckin")
-                .css(
-                    "color",
-                    "red");
-                $("#idcheckvar")
-                .val("");
-                }
-                })
+    $(function() {
+    		$("#emailAuth_btn").hide();
+       		$("#email_auth_badge").hide();
+       		
+            $("#logo").on("click", function() {
+                location.href = "start.main";
             })
-        $("#pwtext2").on("focusout", function() { // 패스워드 랑 패스워드 확인 의 값이 같은지 구별
-                         var regex = /^[A-Za-z0-9]{6,12}$/g
-                         var pw = $("#pwtext").val();
-                         var pw2 = $("#pwtext2").val();
-                         if (regex.exec(pw2) != null) {
-                         if (pw == pw2) {
-                         $("#pwcheckin").text("사용가능 합니다.");
-                         $("#pwcheckin").css("color", "green");
-                         $("#pwcheckvar").val("사용가능 합니다.");
-                         } else {
-                         $("#pwcheckin").text("비밀번호가 일치하지 않습니다.");
-                         $("#pwcheckin").css("color", "red");
-                         $("#pwcheckin").css("font-size", "15px");
-                         $("#pwtext2").val("");
-                         $("#pwcheckvar").val("");
-                         }
-                         } else {
-                         $("#pwcheckin").text("사용불가능 합니다.");
-                         $("#pwcheckin").css("color", "red");
-                         $("#pwtext2").val("");
-                         $("#pwcheckvar").val("");
-                         }
+            $("#idtext").on("focusout",function() {
+            	if($("#emailAuth_btn").attr("flag")=="true"){//이메일 인증완료
+            		$("#emailAuth_btn").attr("flag","false");
+            		$("#id_Dupli_Btn").attr("flag","false");           		
+                    $("#id_Dupli_Btn").toggle();
+                    $("#email_auth_badge").toggle();
+            	}else if($("#id_Dupli_Btn").attr("flag")=="true"){//id 중복체크 완료
+            		$("#id_Dupli_Btn").attr("flag","false");
+            		$("#emailAuth_btn").toggle();
+                    $("#id_Dupli_Btn").toggle();  
+            	}
+            	$("#idcheckin").text("");
+            	
+            });
+            $("#idtext").on("input",function() {
+            	if($("#emailAuth_btn").attr("flag")=="true"){//이메일 인증완료
+            		$("#emailAuth_btn").attr("flag","false");
+            		$("#id_Dupli_Btn").attr("flag","false");           		
+                    $("#id_Dupli_Btn").toggle();
+                    $("#email_auth_badge").toggle();
+            	}else if($("#id_Dupli_Btn").attr("flag")=="true"){//id 중복체크 완료
+            		$("#id_Dupli_Btn").attr("flag","false");
+            		$("#emailAuth_btn").toggle();
+                    $("#id_Dupli_Btn").toggle();
+            	}
+            	$("#idcheckin").text("");
+            });
+                //id중복확인
+                //id email인증받기
 
-                         })
+                //id중복확인 눌렀을때,
+                $("#id_Dupli_Btn").on("click",function(){
+                    $.ajax({
+                        url : "idcheck.login",
+                        type : "post",
+                        data : {id : $("#idtext").val()}
+                    }).done(function(resp) {
+                        var idtext = $("#idtext").val();
+                        var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/g
+                        if (regex.exec(idtext) != null) {
+                            if (resp == "1") {
+                                $("#idcheckin").text("이미 가입된 아이디 입니다.");
+                                $("#idcheckin").css("color","red");
+                                $("#idcheckvar").val("");
+                            }else if (resp == 0) {
+                                $("#idcheckin").text("사용 가능한 아이디 입니다.이메일인증을 진행해주세요.");
+                                $("#idcheckin").css("color","green");
+                                $("#idcheckvar").val("사용 가능한 아이디 입니다.");
+                                $("#id_Dupli_Btn").attr("flag","true");
+                                $("#emailAuth_btn").toggle();
+                                $("#id_Dupli_Btn").toggle();
+                            } else if (resp == 3) {
+                                $("#idcheckin").text("아이디를 입력해 주세요.");
+                                $("#idcheckin").css("color","red");
+                                $("#idcheckvar").val("");
+                            }
+                        
+                        }else {
+                            $("#idcheckin").text("올바른 형식으로 입력하세요.");
+                            $("#idcheckin").css("color","red");
+                            $("#idcheckvar").val("");
+                        }
+                    });
+                });
+                $("#emailAuth_btn").on("click",function() {//이메일 인증
+                    var email = $("#idtext").val();
+                    window.open("emailAuth.login?email=" + email, "",
+                                "width=500px,height=500px");
+            });
 
-        /*       $("#idtext").on("input",function()
-        {// 아이디 이메일 형식이 맞는지 구별 regex
-        var idtext =  $("#idtext").val();
-        var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/g
-        if(regex.exec(idtext) != null)
-        {
-        $("#idcheckin").text("올바른 양식 입니다.");
-        $("#idcheckin").css("color","blue");
-        }
-        else
-        {
-        $("#idcheckin").text("양식이 올바르지  않습니다.");
-        $("#idcheckin").css("color","red");
-        }
-        })
-        */
 
-        $("#phonetext").on("focusout", function() {// 핸드폰 형식이 맞는지 구별 regex
-                           var phonetext = $("#phonetext").val();
-                           var regex = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/g
-                           if (regex.exec(phonetext) != null) {
-                           $("#phonecheckin").text("올바른 양식 입니다.");
-                           $("#phonecheckin").css("color", "blue");
-                           $("#phonecheckvar").val("올바른 양식 입니다.");
-                           } else {
-                           $("#phonecheckin").text("양식에 맞지 않습니다.");
-                           $("#phonecheckin").css("color", "red");
-                           $("#phonetext").val("");
-                           $("#phonecheckvar").val("");
-                           }
-                           })
+                $("#pwtext2").on("focusout", function() { // 패스워드 랑 패스워드 확인 의 값이 같은지 구별
+                    var regex = /^[A-Za-z0-9]{6,12}$/g
+                    var pw = $("#pwtext").val();
+                    var pw2 = $("#pwtext2").val();
+                    if (regex.exec(pw2) != null) {
+                        if (pw == pw2) {
+                            $("#pwcheckin").text("사용가능 합니다.");
+                            $("#pwcheckin").css("color", "green");
+                            $("#pwcheckvar").val("사용가능 합니다.");
+                        } else {
+                            $("#pwcheckin").text("비밀번호가 일치하지 않습니다.");
+                            $("#pwcheckin").css("color", "red");
+                            $("#pwcheckin").css("font-size", "15px");
+                            $("#pwtext2").val("");
+                            $("#pwcheckvar").val("");
+                        }
+                    } else {
+                        $("#pwcheckin").text("사용불가능 합니다.");
+                        $("#pwcheckin").css("color", "red");
+                        $("#pwtext2").val("");
+                        $("#pwcheckvar").val("");
+                    }
 
-        $("#pwtext").on("input", function() {// 패스워드 형식이 맞는지 구별 regex
-                        var pwtext = $("#pwtext").val();
-                        var regex = /^[A-Za-z0-9]{6,12}$/g
-                        if (regex.exec(pwtext) != null) {
+                })
+                $("#phonetext").on("focusout", function() {// 핸드폰 형식이 맞는지 구별 regex
+                    var phonetext = $("#phonetext").val();
+                    var regex = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/g
+                    if (regex.exec(phonetext) != null) {
+                        $("#phonecheckin").text("올바른 양식 입니다.");
+                        $("#phonecheckin").css("color", "blue");
+                        $("#phonecheckvar").val("올바른 양식 입니다.");
+                    } else {
+                        $("#phonecheckin").text("양식에 맞지 않습니다.");
+                        $("#phonecheckin").css("color", "red");
+                        $("#phonetext").val("");
+                        $("#phonecheckvar").val("");
+                    }
+                })
+
+                $("#pwtext").on("input", function() {// 패스워드 형식이 맞는지 구별 regex
+                    var pwtext = $("#pwtext").val();
+                    var regex = /^[A-Za-z0-9]{6,12}$/g
+                    if (regex.exec(pwtext) != null) {
                         $("#pwcheckin").text("올바른 양식 입니다.");
                         $("#pwcheckin").css("color", "blue");
-                        } else {
+                    } else {
                         $("#pwcheckin").text("양식에 맞지 않습니다.");
                         $("#pwcheckin").css("color", "red");
-                        }
-                        })
+                    }
+                })
 
-        $("#nicknametext").on("focusout", function() {// 닉네임 형식이 맞는지 구별 regex
-                              var nicknametext = $("#nicknametext").val();
-                              var regex = /^.{1,6}$/g
-                              if (regex.exec(nicknametext) != null) {
-                              $("#nicknamecheckin").text("올바른 양식 입니다.");
-                              $("#nicknamecheckin").css("color", "blue");
-                              $("#nicknamecheckvar").val("올바른 양식 입니다.");
-                              } else {
-                              $("#nicknamecheckin").text("양식에 맞지 않습니다.");
-                              $("#nicknamecheckin").css("color", "red");
-                              $("#nicknametext").val("");
-                              $("#nicknamecheckvar").val("");
-                              }
-                              })
-        $("#delete").on("click", function() { // 취소 버튼 누를시 모든값 초기화 이벤트
-                        $("#idtext").val("");
-                        $("#pwtext").val("");
-                        $("#pwtext2").val("");
+                $("#nicknametext").on("focusout", function() {// 닉네임 형식이 맞는지 구별 regex
+                    var nicknametext = $("#nicknametext").val();
+                    var regex = /^.{1,6}$/g
+                    if (regex.exec(nicknametext) != null) {
+                        $("#nicknamecheckin").text("올바른 양식 입니다.");
+                        $("#nicknamecheckin").css("color", "blue");
+                        $("#nicknamecheckvar").val("올바른 양식 입니다.");
+                    } else {
+                        $("#nicknamecheckin").text("양식에 맞지 않습니다.");
+                        $("#nicknamecheckin").css("color", "red");
                         $("#nicknametext").val("");
-                        $("#birthtext1").val("");
-                        $("#birthtext2").val("");
-                        $("#birthtext3").val("");
-                        $("#phonetext").val("");
-                        $("#idcheckin").text("");
-                        $("#pwcheckin").text("");
-                        $("#nicknamecheckin").text("");
-                        $("#birthcheckin").text("ex) 1997년 02월 03일");
-                        $("#birthcheckin").css("color", "black");
-                        $("#phonecheckin").text("");
-                        })
-        /* $("#ok").on("click",function() {
+                        $("#nicknamecheckvar").val("");
+                    }
+                })
+                $("#delete").on("click", function() { // 취소 버튼 누를시 모든값 초기화 이벤트
+                    $("#idtext").val("");
+                    $("#pwtext").val("");
+                    $("#pwtext2").val("");
+                    $("#nicknametext").val("");
+                    $("#birthtext1").val("");
+                    $("#birthtext2").val("");
+                    $("#birthtext3").val("");
+                    $("#phonetext").val("");
+                    $("#idcheckin").text("");
+                    $("#pwcheckin").text("");
+                    $("#nicknamecheckin").text("");
+                    $("#birthcheckin").text("ex) 1997년 02월 03일");
+                    $("#birthcheckin").css("color", "black");
+                    $("#phonecheckin").text("");
+                })
+                /* $("#ok").on("click",function() {
         if(($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $("#pwcheckvar").val() == "사용가능 합니다.") && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && $("#phonecheckvar").val() == "올바른 양식 입니다.")){
         if(!$("input[name=gender]")){
         alert($("input[name=gender]").val());
@@ -324,7 +318,7 @@ select {
         return false;
         }
         })*/
-        /* submit(function(){
+                /* submit(function(){
         if($("#idtext").val() == ""){
         alert("값을 입력해 주세요.");
         return false;
@@ -335,43 +329,35 @@ select {
 
         }else if()
         }) */
-        $("#ok")
-        .on(
-            "click",
-            function() {
-            if ((($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $(
-                "#pwcheckvar").val() == "사용가능 합니다.")
-                 && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && ($(
-                     "input:radio[name='gender']")
-                                                                       .is(":checked") == true)) && $(
-                                                                           "#phonecheckvar").val() == "올바른 양식 입니다.")) {
+                $("#ok").on("click",function() {
+                    if($("#id_Dupli_Btn").attr("flag")=="false"){
+                        alert("id중복확인을 해주세요.");
+                        $("#idtext").focus();
+                        return;
+                    }else if($("#emailAuth_btn").attr("flag")=="false"){ //email인증
+                        alert("email인증을 해주세요.");
+                        $("#idtext").focus();
+                        return;
+                    }
+                    if ((($("#idcheckvar").val() == "사용 가능한 아이디 입니다." 
+                          && $("#pwcheckvar").val() == "사용가능 합니다.")
+                         && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." 
+                             && ($("input:radio[name='gender']").is(":checked") == true)) && 
+                         $("#phonecheckvar").val() == "올바른 양식 입니다.")) {
+                        $("#login").submit();
+                    } else {
+                        alert("값을 입력해주세요.");
+                        return false;
+                    }
+                });
 
-            $("#login").submit();
-            } else {
-            alert("값을 입력해주세요.");
-            return false;
-            }
+                $("#back_btn").on("click", function() {
+                    var back = confirm("메인화면으로 돌아갑니다.");
+                    if (back) {
+                        location.href = "start.main";
+                    }
+                });
             });
-
-        $("#back_btn").on("click", function() {
-                          var back = confirm("메인화면으로 돌아갑니다.");
-                          if (back) {
-                          location.href = "start.main";
-                          }
-                          });
-        $("#emailAuth_btn").on(
-            "click",
-            function() {//이메일 인증
-            if ($("#idcheckvar").val() != "사용 가능한 아이디 입니다.") {
-            alert("사용가능한 이메일형식을 맞춰 정확히 입력해주세요.");
-            $("#idcheckvar").focus();
-            return;
-            }
-            var email = $("#idtext").val();
-            window.open("emailAuth.login?email=" + email, "",
-                        "width=500px,height=500px");
-            })
-        })
 </script>
 </head>
 <body>
@@ -387,12 +373,12 @@ select {
 			</div>
 			<div class="row" id="main">
 				<div class="col-1"></div>
-				<div class="col-8 text_label">
+				<div class="col-10 text_label">
 					<label for="" class="mt-3 mb-1 mr-3"><strong>아이디</strong></label> <span
 						id="idcheckin"></span> <input type="hidden" id="idcheckvar"
 						name="idcheck">
 				</div>
-				<div class="col-3"></div>
+				<div class="col-1"></div>
 			</div>
 			<div class="row" id="main">
 				<div class="col-1"></div>
@@ -402,9 +388,14 @@ select {
 						required onkeyup="noSpaceForm(this);"
 						onchange="noSpaceForm(this);">
 				</div>
-				<div id="email" class="col-3" flag="false">
-					<input id="emailAuth_btn" class="btn btn-warning" type="button"
-						value="이메일인증">
+				<div id="email" class="col-3">
+					<input id="id_Dupli_Btn" flag="false" class="btn btn-warning"
+						type="button" value="중복확인"> <input id="emailAuth_btn"
+						flag="false" class="btn btn-warning" type="button" value="이메일인증">
+					<h5>
+						<span id="email_auth_badge" class="badge badge-info mt-2 mr-2">아이디
+							인증성공!</span>
+					</h5>
 				</div>
 			</div>
 			<div class="row" id="main">
@@ -488,8 +479,8 @@ select {
 				<div class="col-1"></div>
 				<div class="col-8 text_label">
 					<label for="" class="mt-2 mb-1 mr-3"><strong>휴대폰</strong></label><span
-						id="phonecheckin" required></span><input type="hidden"
-						id="phonecheckvar" name="phonecheck">
+						id="phonecheckin"></span><input type="hidden" id="phonecheckvar"
+						name="phonecheck">
 				</div>
 				<div class="col-3"></div>
 			</div>
@@ -506,7 +497,7 @@ select {
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
 					<button type="button" class="btn btn-warning px-3 py-2" id="ok"
-						name="ok">확인</button>
+						name="ok">가입하기</button>
 					<button type="button" class="btn btn-warning ml-4 px-3 py-2"
 						id="back_btn">취소</button>
 
