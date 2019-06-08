@@ -229,13 +229,16 @@ h2 {
 			$("#searchForm").submit();
 		});
 		$("#mypage_btn").on("click", function()
-        		{
-					if(${type=="admin"}){
-						location.href = "mypage.admin";
-					}else{
-						location.href = "doing.mypage?"+encodeURI("page=1");
-					}
-        		});
+        {
+			if(${type=="admin"})
+			{
+				location.href = "mypage.admin";
+			}
+			else
+			{
+				location.href = "doing.mypage?"+encodeURI("page=1");
+			}
+        });
 		$("#logout_btn").on("click", function()
 		{
 			if(${loginType == "kakao"})
