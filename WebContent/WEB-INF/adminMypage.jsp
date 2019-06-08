@@ -23,7 +23,6 @@
                 text-align: center;
                 padding: 0px;
             }
-
             #header {
                 width: 100%;
                 margin-left: 1px !important;
@@ -214,20 +213,23 @@
             $(function()
               {
 
-                $("#search_Btn").on("click",function(){
-                    var input = $("#searchbox").val();
-                    var regex = /^ {1,}$/g;
-                    var result = regex.exec(input);
-                    if(input==""){
-                        alert("검색어를 입력해주세요.");
-                        return;
-                    }else if(result!=null){
-                        alert("검색할 단어를 입력해주세요.");
-                        return;
-                    }
-                    //alert("검색어 : " + input)
-                    $("#searchForm").submit();
-                });
+            	$("#logo").on("click", function() {
+            		location.href = "start.main";
+            	})
+            	$("#search_Btn").on("click",function(){
+            		var input = $("#searchbox").val();
+            		var regex = /^ {1,}$/g;
+            		var result = regex.exec(input);
+            		if(input==""){
+            			alert("검색어를 입력해주세요.");
+            			return;
+            		}else if(result!=null){
+            			alert("검색할 단어를 입력해주세요.");
+            			return;
+            		}
+            		//alert("검색어 : " + input)
+            		$("#searchForm").submit();
+            	});
                     $("#mypage_btn").on("click", function()
                                         {
                         if(${type=="admin"}){
@@ -347,23 +349,16 @@
 
                 <div class="col-12 col-lg-6">
 
-                    <form id=search class="form-inline my-2 my-lg-0">
-
-                        <div class="row justify-content-center">
-
-                            <div id="searchbox_div" class="col-12">
-
-                                <input type="search" placeholder="취미를 검색해 보세요!"
-                                       aria-label="Search" id=searchbox>
-
-                                <button class="btn btn-warning my-2 my-sm-0 headBtn"
-                                        type="submit">Search</button>
-
-                            </div>
-
-                        </div>
-
-                    </form>
+                    <form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
+						</div>
+					</form>
 
                 </div>
 

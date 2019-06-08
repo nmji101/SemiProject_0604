@@ -18,7 +18,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 	$(function() {
-		var authStr = "";
+		var authStr = "yet";
 		var result = "false";
 		var count = 0;
 		$("#auth_num_btn").on("click", function() {
@@ -31,12 +31,17 @@
 					email : "${email}"
 				}
 			}).done(function(resp) {
-				alert("확인용! 발표시에는 삭제하기 " + resp);
+				alert("이메일이 발송되었습니다. 인증번호를 입력해주세요.");
+				//alert("확인용! 발표시에는 삭제하기 " + resp);
 				authStr = resp;
 			})
 		});
 
 		$("#auth_btn").on("click", function() {
+			if(authStr == "yet"){
+				alert("이메일인증버튼을 눌러주세요.");
+				return;
+			}
 			var inputAuthNum = $("#input_auth").val();
 			if (authStr == inputAuthNum) {
 				alert("인증성공");
