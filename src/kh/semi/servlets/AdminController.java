@@ -50,6 +50,7 @@ public class AdminController extends HttpServlet {
 					}
 					request.setAttribute("beginPage", beginPage);
 					request.setAttribute("endPage", endPage);
+					System.out.println(beginPage + " : " + endPage);
 				}
 
 				//3. 로그인한 관리자 정보 보내주기.
@@ -105,7 +106,13 @@ public class AdminController extends HttpServlet {
 			}else if(cmd.equals("/searchTutor.admin")) {
 				String way = request.getParameter("way");
 				String search = request.getParameter("search");
-				int currentPage=1;
+				String currentPageStr = request.getParameter("currentPage");
+				int currentPage = 0;
+				if(currentPageStr==null) {
+					currentPage=1;
+				}else {
+					currentPage = Integer.parseInt(currentPageStr);
+				}
 				//쿼리날려서 해당하는 전체 list 
 				List<UpgradeDTO> list = u_dao.selectBySearch(way, search);
 				//그 list중 띄워줄 list만 얻기
@@ -134,7 +141,15 @@ public class AdminController extends HttpServlet {
 				PersonDTO p_dto = p_dao.selectById(loginId);
 				request.setAttribute("dto", p_dto);
 				request.setAttribute("search", search);
-
+				request.setAttribute("way", way);
+				String wayWord = "";
+				if(way.equals("up_id")) {
+					wayWord = "아이디";
+				}else {
+					wayWord = "닉네임";
+				}
+				request.setAttribute("wayWord", wayWord);
+				
 				request.getRequestDispatcher("WEB-INF/adminSearchMypage.jsp").forward(request, response);
 			}
 		}catch(Exception e) {
