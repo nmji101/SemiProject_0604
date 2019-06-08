@@ -543,6 +543,73 @@ h2 {
 								</div>
 
 							</div>
+							
+							<div class="row my-2">
+
+                                <div class="col-lg-3 my-auto">
+
+                                    <h5>연령대</h5>
+
+                                </div>
+
+                                <div id="age_select_div" class="col-lg-9">
+
+                                    <select class="form-control">
+                                      
+                                      <option value="null">선택하지 않음</option>
+                                      <option value="10">10대</option>
+                                      <option value="20">20대</option>
+                                      <option value="30">30대</option>
+                                      <option value="40">40대</option>
+                                      <option value="50">50대</option>
+                                      <option value="60">60대</option>
+                                      <option value="70">70대</option>
+                                      <option value="80">80대</option>
+                                      <option value="90">90대</option>
+                                                        
+                                    </select>
+
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row my-2">
+                            
+                                <div class="col-lg-3 my-auto">
+
+                                    <h5>성별</h5>
+
+                                </div>
+
+                                <div id="id_label_div" class="col-lg-9 my-auto">
+
+                                    <div class="row">
+                                        
+                                        <div class="col-lg-4">
+                                            
+                                            <input class="form-check-input" name="gender" type="radio" value=""><span>선택하지 않음</span>
+                                        
+                                        </div>
+                                        
+                                        <div class="col-lg-4">
+                                            
+                                            <input class="form-check-input" name="gender" type="radio" value="M"><span>남성</span>
+                                        
+                                        </div>
+                                        
+                                        <div class="col-lg-4">
+                                            
+                                            <input class="form-check-input" name="gender" type="radio" value="F"><span>여성</span>
+                                       
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+
+                                </div>
+                            
+                            </div>
 
 							<div class="row my-2">
 
