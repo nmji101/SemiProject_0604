@@ -109,11 +109,11 @@ public class NoticeServlet extends HttpServlet
 					
 					if(title == null)
 					{
-						title = "제목 오류";
+						title = "제목 없음";
 					}
 					if(contents == null)
 					{
-						contents = "본문 오류";
+						contents = "내용 없음";
 					}
 					
 					writer = pdao.selectById(writer).getM_nickname();
@@ -312,11 +312,11 @@ public class NoticeServlet extends HttpServlet
 				
 				if(title == null)
 				{
-					title = "제목 오류";
+					title = "제목 없음";
 				}
 				if(contents == null)
 				{
-					contents = "본문 오류";
+					contents = "내용 없음";
 				}
 				
 				NoticeDAO dao = new NoticeDAO();
