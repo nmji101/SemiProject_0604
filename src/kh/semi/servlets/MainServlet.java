@@ -18,7 +18,7 @@ import kh.semi.dto.ClassInfoDTO;
 import kh.semi.dto.ReviewDTO;
 
 @WebServlet("/start.main")
-public class MainController extends HttpServlet {
+public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryDAO dao = new CategoryDAO();
@@ -27,7 +27,7 @@ public class MainController extends HttpServlet {
 			request.setAttribute("count", count);
 			//new MemberDAO().insertAdmin();
 			
-			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar", 1, 5);
+			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar desc", 1, 5);
 			int num1 = (int)(Math.random()*5+1);
 			int num2 = (int)(Math.random()*5+1);
 			while(true) {

@@ -99,7 +99,7 @@ public class CategoryDAO {
    }
 
 
-   public List<CategoryDTO> getInfoByLocation(String select, String addr, int start, int end) throws Exception {
+   public List<CategoryDTO> getInfoByLocation1(String select, String addr, int start, int end) throws Exception {
       String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+select+") as rown, classinfo.* "
             + "from classinfo where info_addr2 like ?)  where rown between ? and ?";
       Connection con = this.getConnection();   
@@ -134,6 +134,44 @@ public class CategoryDAO {
       con.close();
       return list;
    }
+   
+   public List<CategoryDTO> getInfoByLocation2(String select, String addr1, String addr2, int start, int end) throws Exception {
+	      String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+select+") as rown, classinfo.* "
+	            + "from classinfo where info_addr2 like ? or info_addr2 like ?)  where rown between ? and ?";
+	      Connection con = this.getConnection();   
+	      PreparedStatement pstat = con.prepareStatement(sql);
+	      pstat.setString(1, "%"+addr1+"%");
+	      pstat.setString(2, "%"+addr2+"%");
+	      pstat.setInt(3, start);
+	      pstat.setInt(4, end);
+	      ResultSet rs = pstat.executeQuery();
+	      List<CategoryDTO> list = new ArrayList<>();
+	      while(rs.next()) {
+	         CategoryDTO dto = new CategoryDTO();
+	         dto.setInfo_title(rs.getString("info_title"));
+	         dto.setInfo_addr2(rs.getString("info_addr2"));
+	         dto.setInfo_avgstar(rs.getString("info_avgstar"));
+	         dto.setInfo_price(rs.getInt("info_price"));
+	         dto.setInfo_img1(rs.getString("info_img1"));
+	         dto.setInfo_img2(rs.getString("info_img2"));
+	         dto.setInfo_img3(rs.getString("info_img3"));
+
+	         int classid = rs.getInt("info_classid");
+	         dto.setInfo_classid(classid);
+	         //�� �����ο� set
+	         int count = this.getTotalForCategory(classid);
+	         dto.setTotalcount(count);
+	         //Ʃ������ set
+	         String[] tutor = this.getTutorInfoForCategory(classid);
+	         dto.setM_nickname(tutor[0]);
+	         dto.setM_photo(tutor[1]);
+
+	         list.add(dto);
+	      }
+	      con.close();
+	      return list;
+	   }
+
 
    public int getTotalForCategory(int classId) throws Exception {
       String sql = "select count(*) from ClassDoing where do_classId=?";
@@ -193,6 +231,21 @@ public class CategoryDAO {
       return result;
    }
 
+   public int getTotalByMenu2(String coloumn1, String value1, String coloumn2, String value2) throws Exception {
+	      String sql = "select count(*) from classinfo where "+ coloumn1 +" like ? or " + coloumn2 + " like ?";
+	      Connection con = this.getConnection();   
+	      PreparedStatement pstat = con.prepareStatement(sql);
+	      pstat.setString(1, "%"+value1+"%");
+	      pstat.setString(2, "%"+value2+"%");   
+	      ResultSet rs = pstat.executeQuery();
+	      int result = 0;
+	      while(rs.next()) {
+	         result = rs.getInt(1);
+	      }
+	      con.close();
+	      return result;
+	   }
+   
    public static int recordCountPerPage = 6; 
    public static int pageTotalCount = 0;
    public static int startNavi = 0;
