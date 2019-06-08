@@ -256,10 +256,20 @@ div {
 	        		});
 		}
 		
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
-	    });
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
 	      
 	    // 이 위로는 공통 함수
 	    
@@ -309,29 +319,22 @@ div {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="start.main"><img src="logo.png" id=logo></a>
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
 
 			</div>
 
 			<div class="col-12 col-lg-6">
 
-				<form id=search class="form-inline my-2 my-lg-0">
-
-					<div class="row justify-content-center">
-
-						<div id="searchbox_div" class="col-12">
-
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
 						</div>
-
-					</div>
-
-				</form>
+					</form>
 
 			</div>
 
