@@ -131,6 +131,10 @@ public class NoticeServlet extends HttpServlet
 				response.sendRedirect("error.html");
 			}
 		}
+		else if(url.equals("writePage.notice"))
+		{
+			request.getRequestDispatcher("/WEB-INF/NoticeWrite.jsp").forward(request, response);
+		}
 		else if(url.equals("list.notice"))
 		{
 			try
