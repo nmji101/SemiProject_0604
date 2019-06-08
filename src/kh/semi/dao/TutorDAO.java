@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-<<<<<<< HEAD
 import java.sql.ResultSet;
-=======
->>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 
 import kh.semi.dto.ClassInfoDTO;
 import kh.semi.dto.UfileDTO;
@@ -24,7 +21,7 @@ public class TutorDAO {
 		return DriverManager.getConnection(url,user,pw);
 	}
 	
-<<<<<<< HEAD
+
 	public ClassInfoDTO content(int num) throws Exception{ //게시글 보기
 		String sql = "select * from classinfo where info_classid=?";
 		try(
@@ -70,8 +67,6 @@ public class TutorDAO {
 			return result;
 		}
 	}
-=======
->>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 	
 	   public int test(ClassInfoDTO dto)    throws Exception{ 
 		      //                                                                  1,2,3,4,5,6,7,8,9, 10,11

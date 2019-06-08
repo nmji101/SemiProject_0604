@@ -9,11 +9,8 @@
 </head>
 <body>
 <script>
-<<<<<<< HEAD
+
 alert('Class가 등록되었습니다 \n메인페이지로 이동합니다');
-=======
-alert('Class가 등록되었습니다');
->>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 location.href="mainHomePage.jsp";
 </script>
 </body>
