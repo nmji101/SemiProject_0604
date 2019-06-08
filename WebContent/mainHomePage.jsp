@@ -434,14 +434,14 @@ $(function(){
 			<hr class="my-4">
 			<p></p>
 			<a class="btn btn-outline-light btn-lg"
-				href="info.category?category=main&addr=all&select=info_avgstar desc"
+				href="info.category?category=main&addr1=all&select=info_avgstar desc"
 				role="button" id="lookBtn">클래스 보러가기</a>
 		</div>
 		<div id=navi>
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
+						href="info.category?category=main&addr1=all&select=info_avgstar desc">추천</a></li>
 					<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
@@ -453,7 +453,7 @@ $(function(){
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=design&select=info_avgstar desc&addr=all">
+											href="info.category?category=design&select=info_avgstar desc&addr1=all">
 												디자인 <input type=hidden value="design" class=cate>
 										</a></li>
 
@@ -462,7 +462,7 @@ $(function(){
 								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=it&select=info_avgstar desc&addr=all"
+											href="info.category?category=it&select=info_avgstar desc&addr1=all"
 											class=cateA> IT </a> <input type=hidden value="it" class=cate></li>
 
 									</ul>
@@ -470,21 +470,21 @@ $(function(){
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=lang&select=info_avgstar desc&addr=all">언어
+											href="info.category?category=lang&select=info_avgstar desc&addr1=all">언어
 										</a> <input type=hidden value="lang" class=cate></li>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=life&select=info_avgstar desc&addr=all">라이프
+											href="info.category?category=life&select=info_avgstar desc&addr1=all">라이프
 												스타일 </a> <input type=hidden value="life" class=cate></li>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
+											href="info.category?category=money&select=info_avgstar desc&addr1=all">재테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
