@@ -554,9 +554,9 @@ h2 {
 
                                 <div id="age_select_div" class="col-lg-9">
 
-                                    <select class="form-control">
+                                    <select class="form-control" name="agerange">
                                       
-                                      <option value="null">선택하지 않음</option>
+                                      <option value="0">선택하지 않음</option>
                                       <option value="10">10대</option>
                                       <option value="20">20대</option>
                                       <option value="30">30대</option>
@@ -587,7 +587,7 @@ h2 {
                                         
                                         <div class="col-lg-4">
                                             
-                                            <input class="form-check-input" name="gender" type="radio" value=""><span>선택하지 않음</span>
+                                            <input class="form-check-input" name="gender" type="radio" value="N"><span>선택하지 않음</span>
                                         
                                         </div>
                                         

@@ -56,7 +56,7 @@ public class PersonDAO
 					{
 						attention = "[ \"없음\" ]";
 					}
-					dto = new PersonDTO(rs.getString("m_id"), rs.getString("m_nickname"), rs.getString("m_photo"), rs.getString("m_type"), attention);
+					dto = new PersonDTO(rs.getString("m_id"), rs.getString("m_nickname"), rs.getString("m_gender"), rs.getString("m_agerange"), rs.getString("m_monthday"), rs.getString("m_photo"), rs.getString("m_type"), attention);
 				}
 				return dto;
 			}
@@ -115,6 +115,42 @@ public class PersonDAO
 		)
 		{
 			pstat.setString(1, m_attention);
+			pstat.setString(2, m_id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			
+			return result;
+		}
+	}
+	
+	public int updateAgerangeById(String m_agerange ,String m_id) throws Exception
+	{
+		String sql = "UPDATE MEMBER SET m_agerange = ? WHERE M_ID = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_agerange);
+			pstat.setString(2, m_id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			
+			return result;
+		}
+	}
+	
+	public int updateGenderById(String m_gender ,String m_id) throws Exception
+	{
+		String sql = "UPDATE MEMBER SET m_gender = ? WHERE M_ID = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_gender);
 			pstat.setString(2, m_id);
 			int result = pstat.executeUpdate();
 			con.commit();

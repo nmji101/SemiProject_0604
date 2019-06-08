@@ -72,7 +72,7 @@ public class MypageServlets extends HttpServlet
 					for(int i = 1 ; i <= list.size() ; i++)
 					{
 						String tutorId = list.get(i-1).getTutorId();
-//						list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
+						list.get(i-1).setTutorId(dao.selectById(tutorId).getM_nickname());
 					}
 					
 					int recordTotalCount = dcdao.selectDoingCount(m_id);
@@ -145,13 +145,9 @@ public class MypageServlets extends HttpServlet
 					DoClassDAO dcdao = new DoClassDAO();
 					
 					int currentPage;
-					
-
 					currentPage = Integer.parseInt(request.getParameter("page"));
-
 					
 					List<DoClassDTO> list = dcdao.selectDoneClass(m_id, currentPage);
-
 					for(int i = 1 ; i <= list.size() ; i++)
 					{
 						String tutorId = list.get(i-1).getTutorId();
@@ -256,57 +252,114 @@ public class MypageServlets extends HttpServlet
 				{
 					PersonDAO dao = new PersonDAO();
 					
-					String m_nickname = request.getParameter("nickname").replaceAll("<script>", "asdasdasdasdasdasd");
-					m_nickname = m_nickname.replaceAll(" ", "");
-					
-					if(m_nickname != null)
+					//연령대 설정
+					try
 					{
-						if((1 <= m_nickname.length()) && (m_nickname.length() <= 6))
+						String ageRange = request.getParameter("agerange");
+						int intAge = Integer.parseInt(ageRange);
+						
+						if(intAge % 10 == 0)
 						{
-							System.out.println("닉네임 통과");
-							
-							String[] attention = request.getParameterValues("attention");
-							String collection = "";
-							if(attention != null)
+							if((10 <= intAge) && (intAge <= 90))
 							{
-								for(int i = 1 ; i <= attention.length ; i++)
-								{
-									if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
-									{
-										collection = "[ ";
-										
-										for(int j = 1 ; j <= attention.length ; j++)
-										{
-											if(j == attention.length)
-											{
-												collection = collection + "\"" + attention[j-1] + "\"";
-											}
-											else
-											{
-												collection = collection + "\"" + attention[j-1] + "\"" + ", ";
-											}
-										}
-										
-										collection = collection + " ]";
-									}
-									else
-									{
-										System.out.println("관심사에 이상한 값이 들어있다.");
-										response.sendRedirect("error.html");
-									}
-								}
-								System.out.println("관심사 통과");
-								dao.updateNicknameById(m_nickname, m_id);
-								dao.updateAttentionById(collection, m_id);
-								response.sendRedirect("person.mypage");
+								System.out.println("연령대 통과");
+								dao.updateAgerangeById(""+intAge, m_id);
 							}
 							else
 							{
-								System.out.println("관심사 통과");
-								dao.updateNicknameById(m_nickname, m_id);
-								dao.updateAttentionById(collection, m_id);
-								response.sendRedirect("person.mypage");
+								System.out.println("연령대가 10 ~ 90 이 아니다.");
+								dao.updateAgerangeById("기타", m_id);
 							}
+						}
+						else
+						{
+							System.out.println("연령대 숫자가 10으로 나눠지지 않는다.");
+							dao.updateAgerangeById("기타", m_id);
+						}
+					}
+					catch (Exception e) 
+					{
+						System.out.println("연령대 기타");
+						dao.updateAgerangeById("기타", m_id);
+					}
+					
+					
+					//성별 설정 부분
+					try
+					{
+						String gender = request.getParameter("gender");
+						if((gender.equals("M")) || (gender.equals("F")))
+						{
+							System.out.println("성별 통과");
+							dao.updateGenderById(gender, m_id);
+						}	
+						else
+						{
+							System.out.println("성별 없음");
+							dao.updateGenderById("없음", m_id);
+						}
+					}
+					catch (Exception e) 
+					{
+						System.out.println("성별 없음");
+						dao.updateGenderById("없음", m_id);
+					}
+					
+					
+					//관심사 설정 부분
+					try
+					{
+						String[] attention = request.getParameterValues("attention");
+						String collection = "";
+						
+						for(int i = 1 ; i <= attention.length ; i++)
+						{
+							if(((attention[i-1].equals("at1") || attention[i-1].equals("at2")) || (attention[i-1].equals("at3") || attention[i-1].equals("at4"))) || attention[i-1].equals("at5"))
+							{
+								collection = "[ ";
+								
+								for(int j = 1 ; j <= attention.length ; j++)
+								{
+									if(j == attention.length)
+									{
+										collection = collection + "\"" + attention[j-1] + "\"";
+									}
+									else
+									{
+										collection = collection + "\"" + attention[j-1] + "\"" + ", ";
+									}
+								}
+								
+								collection = collection + " ]";
+							}
+							else
+							{
+								System.out.println("관심사에 이상한 값이 들어있다.");
+								collection = "";
+								break;
+							}
+						}
+						System.out.println("관심사 통과");
+						dao.updateAttentionById(collection, m_id);
+					}
+					catch (Exception e) 
+					{
+						System.out.println("관심사 없음");
+						dao.updateAttentionById("", m_id);
+					}
+					
+					
+					//닉네임 설정 부분
+					try
+					{
+						String m_nickname = request.getParameter("nickname").replaceAll("<script>", "asdasdasdasdasdasd");
+						m_nickname = m_nickname.replaceAll(" ", "");
+						
+						if((1 <= m_nickname.length()) && (m_nickname.length() <= 6))
+						{
+							System.out.println("닉네임 통과");
+							dao.updateNicknameById(m_nickname, m_id);
+							response.sendRedirect("person.mypage");
 						}
 						else
 						{
@@ -314,7 +367,7 @@ public class MypageServlets extends HttpServlet
 							response.sendRedirect("error.html");
 						}
 					}
-					else
+					catch(Exception e)
 					{
 						System.out.println("닉네임이 Null");
 						response.sendRedirect("error.html");
