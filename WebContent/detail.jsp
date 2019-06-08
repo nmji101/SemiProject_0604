@@ -221,7 +221,6 @@ div {
 /*            요약정보*/
 #sumary {
 	/*                임시 : 내용채워지는대로 자동으로 높이 생기도록하기*/
-	height: 250px;
 	overflow: hidden;
 	/*                margin-top: 30px;*/
 	margin: 0px 70px;
@@ -251,12 +250,14 @@ div {
 
 .class_title {
 	float: left;
-	height: 200px;
-	width: 330px;
+	width: 100%;
 	overflow: hidden;
-	margin-left: 20px;
+	padding-left:40px;
+	padding-top:10px;
 }
-
+.tutor{
+	text-align: center;
+}
 .title>* {
 	font-size: 20px;
 }
@@ -272,18 +273,25 @@ div {
 	list-style: none;
 	width: 33.3%;
 	text-align: center;
+	font-size : 15px;
 }
 
 .info {
 	overflow: hidden;
+	margin-top : 10px;
+	border-top: 1px solid rgba(0, 0, 0, 0.28);
 }
 
 .info>ul {
 	overflow: hidden;
-	margin: 3px 0px;
+	margin-top: 13px;
 	padding: 0px;
-	border-top: 1px solid rgba(183, 38, 38, 0.51);
-	border-bottom: 1px solid rgba(183, 38, 38, 0.51);
+}
+.info img{
+	width : 40px;
+}
+.info div{
+	margin-bottom : 5px;
 }
 
 /*            /요약정보*/
@@ -801,18 +809,18 @@ div {
 				</div>
 				<div id="sumary" class="class_detail">
 					<!--                        요약부분-->
-					<div id="sumary_wrapper">
-						<div class="class_name">
+					<div id="sumary_wrapper row">
+						<div class="class_name col-lg-4 col-md-4 col-sm-12 col-12">
 							<div class="tutor">
 								<span class="class_tuImg"> ${tutorImg} </span>
 							</div>
 							<div class="class_nickname">${tutorNickname}</div>
 						</div>
-						<div class="class_title">
-							<div class="title">
-								<h5>${classInfo.info_title}</h5>
+						<div class="class_title col-lg-8 col-md-8 col-sm-12 col-12 row">
+							<div class="title col-12">
+								<h4><strong>${classInfo.info_title}</strong></h4>
 							</div>
-							<div class="star">
+							<div class="star col-12">
 								<c:choose>
 									<c:when test="${classInfo.info_avgstar=='0'}">
 										<span class="badge badge-info p-2">NEW</span>
@@ -824,22 +832,29 @@ div {
 									</c:otherwise>
 								</c:choose>
 							</div>
-							<div class="info">
+							<div class="info col-12">
 								<ul>
 									<li>
 										<div>
-											<img src="Content/Images/map-location.png">
-										</div> <span id="simpleAddr"></span>
+											<img src="Content/Images/map-location.png" >
+										</div> 
+										<div id="simpleAddr"></div>
 									</li>
 									<li>
 										<div>
 											<img src="Content/Images/south-korean-won.png">
-										</div> ${classInfo.info_price }원
+										</div> 
+										<div>
+										${classInfo.info_price }원
+										</div>
 									</li>
 									<li>
 										<div>
 											<img src="Content/Images/group.png">
-										</div> ${classInfo.info_maxperson }명
+										</div> 
+										<div>
+										${classInfo.info_maxperson }명
+										</div>
 									</li>
 								</ul>
 							</div>
