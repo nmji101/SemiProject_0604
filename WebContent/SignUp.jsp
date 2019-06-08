@@ -110,6 +110,9 @@ select {
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	$(function() {
+		var today = new Date();
+		today.setDate(today.getYear() - 10); 
+
       $.datepicker
       .setDefaults({
                    dateFormat : 'yy-mm-dd',
@@ -130,6 +133,7 @@ select {
                    dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
                                '토요일' ],
                    minDate : "-100y",
+                   maxDate : today,
                    yearRange : 'c-100:c+1'
 
                    });
@@ -329,6 +333,11 @@ select {
 
         }else if()
         }) */
+       			$(document).keyup(function(e) {
+            	    if ( e.keyCode == 13) {
+            	    	$("#ok").click();
+            	    }
+            	});
                 $("#ok").on("click",function() {
                     if($("#id_Dupli_Btn").attr("flag")=="false"){
                         alert("id중복확인을 해주세요.");
