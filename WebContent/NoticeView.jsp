@@ -5,11 +5,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/png" sizes="32x32"
-	href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
 	rel="stylesheet">
+<meta charset="UTF-8">
 <title>공지사항</title>
 
 <style>
