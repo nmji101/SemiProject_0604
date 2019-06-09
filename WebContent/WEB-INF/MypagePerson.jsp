@@ -186,7 +186,10 @@ h2 {
 	font-family: 'Gugi', cursive;
 	color: #ffba00
 }
-
+#leave_btn_div
+{
+	text-align: left;
+}
 #footer {
 	height: 300px;
 	width: 100%;
@@ -300,7 +303,18 @@ h2 {
 		    location.href = "person.mypage";
 	    });
 	    
-	    // 이 위로는 공통 함수
+		$("#leave_site_btn").on("click", function()
+		{
+			var pw = prompt('비밀번호를 입력하세요');
+			if((pw != null) && (pw.length >= 6))
+			{
+				location.href = "leave.mypage?id=${dto.m_id}&pw="+pw;
+			}
+			else
+			{
+				alert("취소");
+			}
+		});    
 	    
 	    $("#submit_btn").on("click", function()
 	    {
@@ -622,6 +636,22 @@ h2 {
 
 									</div>
 
+								</div>
+
+							</div>
+							
+							<div class="row my-2">
+
+								<div class="col-lg-3 my-auto">
+
+									<h5>회원 탈퇴</h5>
+
+								</div>
+
+								<div id="leave_btn_div" class="col-lg-9">
+									
+									<input type="button" id="leave_site_btn" class="btn btn-info" value="회원 탈퇴하기">
+									
 								</div>
 
 							</div>

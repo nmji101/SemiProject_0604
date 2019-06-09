@@ -195,6 +195,24 @@ public class PersonDAO
 		}
 	}
 	
+	public int deleteById(String id, String pw) throws Exception
+	{
+		String sql = "DELETE FROM MEMBER WHERE m_id = ? and m_password = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, id);
+			pstat.setString(2, pw);
+			int result = pstat.executeUpdate();
+			con.commit();
+				
+			return result;
+		}
+	}
+	
 	public String toSha256(String str)
 	{
 		String SHA = ""; 

@@ -662,6 +662,41 @@ public class MypageServlets extends HttpServlet
 					response.sendRedirect("error.html");
 				}
 			}
+			else if(url.equals("leave.mypage"))
+			{
+				try
+				{
+					String id = request.getParameter("id");
+					String pw = request.getParameter("pw");
+					if(id.equals(m_id))
+					{
+						
+							PersonDAO dao = new PersonDAO();
+							int result = dao.deleteById(id, dao.toSha256(pw));
+							
+							if(result > 0)
+							{
+								System.out.println("회원 탈퇴 완료");
+								response.sendRedirect("start.main");
+							}
+							else
+							{
+								System.out.println("DB 삭제 중 오류");
+								response.sendRedirect("error.html");
+							}
+					}
+					else
+					{
+						System.out.println("세션의 아이디와 req로 넘어온 아이디가 다르다");
+						response.sendRedirect("error.html");
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+			}
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
