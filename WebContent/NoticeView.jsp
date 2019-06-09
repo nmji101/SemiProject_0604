@@ -40,8 +40,6 @@ div {
 }
 
 #container_div {
-	/* 	padding-left: 0px !important; */
-	/*     padding-right: 0px !important; */
 	margin: 0px !important;
 }
 
@@ -87,11 +85,13 @@ div {
 	border: 1px solid burlywood;
 	color: white;
 }
-/*         header	 */
 #login_btn_div {
 	padding-left: 0px !important;
 	padding-right: 60px !important;
 }
+
+/*         header	 */
+
 
 #header_div {
 	border: 1px solid #FFC107;

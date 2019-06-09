@@ -37,6 +37,7 @@ div {
 
 #logo_div {
 	padding-left: 3px !important;
+	padding-right: 17px !important;
 }
 
 #container_div {
@@ -87,21 +88,33 @@ div {
 	border: 1px solid burlywood;
 	color: white;
 }
+#login_btn_div {
+	padding-left: 0px !important;
+	padding-right: 73px !important;
+}
 	
-	#btn_div
-	{
-		text-align: right;
-	}
-	#header_row > div
-	{
+#btn_div
+{
+	text-align: right;
+}
+#header_row > div
+{
 		text-align: center;
 		border: 1px solid #ffba00;
-	}
+}
 .header_row
 {
 	justify-content: center;
 }
+#container_div
+{
+	padding-right: 25px;
 	
+}
+#search_div
+{
+	padding-right: 18px;
+}
 </style>
     
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -185,7 +198,7 @@ div {
 <body>
 
 
-	<div class="container col-12">
+	<div id="container_div" class="container col-12">
 	
 		<div id=header class=row>
 
@@ -195,25 +208,17 @@ div {
 
 			</div>
 
-			<div class="col-12 col-lg-6">
+			<div id="search_div" class="col-12 col-lg-6">
 
-				<form id=search class="form-inline my-2 my-lg-0">
-
-					<div class="row justify-content-center">
-
-						<div id="searchbox_div" class="col-12">
-
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn mr-1" type="button">Search</button>
+							</div>
 						</div>
-
-					</div>
-
-				</form>
+					</form>
 
 			</div>
 
