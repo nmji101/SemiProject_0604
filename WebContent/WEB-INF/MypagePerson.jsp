@@ -693,95 +693,27 @@ h2 {
 </c:if>
 <c:choose>
 
-	<c:when test="${ dto.m_agerange == '10' }">
-		
-		<script>
-		
-			$("#age_option_10").prop("selected", "true");
-		
-		</script>
-		
+	<c:when test="${ dto.m_agerange  == '기타' }">
+	
 	</c:when>
 
-	<c:when test="${ dto.m_agerange == '20' }">
-	
-		<script>
+	<c:otherwise>
 		
-			$("#age_option_20").prop("selected", "true");
+		<c:choose>
 		
-		</script>
+			<c:when test="${ dto.m_agerange % 10 == 0 }">
 	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '30' }">
-	
-		<script>
+				<script>
+					
+					$("#age_option_${dto.m_agerange}").prop("selected", "true");
+					
+				</script>
+				
+			</c:when>
 		
-			$("#age_option_30").prop("selected", "true");
+		</c:choose>
 		
-		</script>
-	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '40' }">
-	
-		<script>
-		
-			$("#age_option_40").prop("selected", "true");
-		
-		</script>
-	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '50' }">
-	
-		<script>
-		
-			$("#age_option_50").prop("selected", "true");
-		
-		</script>
-		
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '60' }">
-	
-		<script>
-		
-			$("#age_option_60").prop("selected", "true");
-		
-		</script>
-	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '70' }">
-	
-		<script>
-		
-			$("#age_option_70").prop("selected", "true");
-		
-		</script>
-	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '80' }">
-	
-		<script>
-		
-			$("#age_option_80").prop("selected", "true");
-		
-		</script>
-	
-	</c:when>
-	
-	<c:when test="${ dto.m_agerange == '90' }">
-	
-		<script>
-		
-			$("#age_option_90").prop("selected", "true");
-		
-		</script>
-	
-	</c:when>
+	</c:otherwise>
 	
 </c:choose>
 <c:choose>
