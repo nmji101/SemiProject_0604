@@ -39,32 +39,34 @@ img {
 
     
 <script>
-$(function()
-  {
-	    $("#summernote").summernote
-	    ({
-	        height : 400,
-	        
-	        minHeight : null,
-	        
-	        maxHeight : null,
-	        
-	        focus : true,
-	        
-	        lang : 'ko-KR',
-	        
-	        callbacks :
-	        {
-		        onImageUpload : function(files, editor, welEditable)
-		        {
-			        for(var i = files.length - 1 ; i >= 0 ; i--)
-			        {
-				        sendFile(files[i], this);
-			        }
-		        }
-	        }
-	    });
+	$(function()
+	{
+		//summerNote 기본 설정
+		$("#summernote").summernote
+		({
+			height : 400,
+		        
+			minHeight : null,
+		        
+			maxHeight : null,
+		        
+			focus : true,
+		        
+			lang : 'ko-KR',
+		        
+			callbacks :
+			{
+				onImageUpload : function(files, editor, welEditable)
+				{
+					for(var i = files.length - 1 ; i >= 0 ; i--)
+					{
+						sendFile(files[i], this);
+					}
+				}
+			}
+		});
 	    
+	    //summerNote에 이미지 업로드 시 바로 보일 수 있게 해주는 AJAX
 	    function sendFile(file, editor)
 	    {
 		    var data = new FormData();
@@ -97,40 +99,8 @@ $(function()
 		    });
 		    
 	    }
-	    
-	    function sendFile(file, editor)
-	    {
-		    var data = new FormData();
-		    
-		    data.append('file', file);
-		    
-		    $.ajax(
-		    {
-		        data : data,
-		        
-		        type : "POST",
-		        
-		        url : 'upload.notice',
-		        
-		        cache : false,
-		        
-		        contentType : false,
-		        
-		        enctype : 'multipart/form-data',
-		        
-		        processData : false
-		    
-		    }).done(function(data)
-		    {
-			    $(editor).summernote('editor.insertImage', "files/" + data);
-			    
-		    }).fail(function(data)
-		    {
-			    alert("error");
-		    });
-		    
-	    }
-	  
+	  	
+	    //글 작성 완료  버튼 누를 시 form 생성 후 POST 방식으로 보낸다.
 	    $('#regNotice').on("click", function(e)
 	    {
 	    	var form = $('<form></form>');
@@ -142,11 +112,11 @@ $(function()
 	    	
 		    if((text != "<br>") && ($("#title_text").val() != ""))
 		    {
-		    	var seq = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
+		    	var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
 		    	var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
 		    	var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
 		               			 	
-		   		form.append(seq).append(title).append(contents);
+		   		form.append(writer).append(title).append(contents);
 		    	$("#contents_hidden").val(text);
 		               			    
 		    	form.submit();
