@@ -25,8 +25,15 @@ public class MainServlet extends HttpServlet {
 		try {
 			int count = dao.recordTotalCount();
 			request.setAttribute("count", count);
-			//new MemberDAO().insertAdmin();
 			
+			List<ReviewDTO> review1 = null;
+			List<ReviewDTO> review2 = null;
+			int size1 = 0;
+			int size2 = 0;
+			ClassInfoDTO dto1 = null;
+			ClassInfoDTO dto2 = null;
+			
+			if(count>=5) {
 			List<CategoryDTO> popularList = dao.getInfoBySelect("info_avgstar desc", 1, 5);
 			int num1 = (int)(Math.random()*5+1);
 			int num2 = (int)(Math.random()*5+1);
@@ -41,13 +48,14 @@ public class MainServlet extends HttpServlet {
 			int classId1 = popularList.get(num1-1).getInfo_classid();
 			int classId2 = popularList.get(num2-1).getInfo_classid();
 			ReviewDAO rdao = new ReviewDAO();
-			List<ReviewDTO> review1 = rdao.selectAll(1, 5, classId1);
-			List<ReviewDTO> review2 = rdao.selectAll(1, 5, classId2);
-			int size1 = review1.size();
-			int size2 = review2.size();
+			review1 = rdao.selectAll(1, 5, classId1);
+			review2 = rdao.selectAll(1, 5, classId2);
+			size1 = review1.size();
+			size2 = review2.size();
 			ClassInfoDAO cdao = new ClassInfoDAO();
-			ClassInfoDTO dto1 = cdao.selectInfoByClassId(classId1);
-			ClassInfoDTO dto2 = cdao.selectInfoByClassId(classId2);
+			dto1 = cdao.selectInfoByClassId(classId1);
+			dto2 = cdao.selectInfoByClassId(classId2);
+			}
 			
 			request.setAttribute("review1", review1);
 			request.setAttribute("review2", review2);
@@ -55,8 +63,8 @@ public class MainServlet extends HttpServlet {
 			request.setAttribute("size2", size2);
 			request.setAttribute("dto1", dto1);
 			request.setAttribute("dto2", dto2);
-			
 			request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
