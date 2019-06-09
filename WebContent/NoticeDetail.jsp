@@ -5,27 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link
-	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme&display=swap"
-	rel="stylesheet">
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>Insert title here</title>
     
 <style>
-	
-	* {
+* {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
-div {
-	width: 100%;
-	text-align: center;
-	padding: 0px;
-}
-
 #header {
 	width: 100%;
+	
 	margin-left: 1px !important;
 	margin-right: 1px !important;
 	padding-left: 0px !important;
@@ -34,11 +23,9 @@ div {
 	text-align: center;
 	justify-content: center;
 }
-
 #logo_div {
 	padding-left: 3px !important;
 }
-
 #container_div {
 	/* 	padding-left: 0px !important; */
 	/*     padding-right: 0px !important; */
@@ -76,32 +63,32 @@ div {
 	width: 100%;
 	padding: 64px 32px;
 }
-
 .headBtn {
-	color: white !important;
-	font-weight: bolder !important;
+    color: white !important;
 }
-
-.headBtn:hover {
-	background-color: burlywood;
-	border: 1px solid burlywood;
-	color: white;
-}
-	
+	#count1{
+		border-radius: 2px;
+		padding-top: 2.7%;
+		padding-left: 3.3%;
+	}
+	#textmain{
+		border-radius: 5px;
+		border: 1px solid #ffba00;
+	}
+	#count2{
+		border-radius: 2px;
+		padding-top: 2.7%;
+		padding-left: 3.8%;
+	}
 	#btn_div
 	{
 		text-align: right;
+		
 	}
 	#header_row > div
 	{
-		text-align: center;
 		border: 1px solid #ffba00;
 	}
-.header_row
-{
-	justify-content: center;
-}
-	
 </style>
     
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
@@ -110,88 +97,87 @@ div {
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+    
 <script>
-        
-	$(function()
-	{
-		
-		$("#back_btn").on("click", function()
-		{
-			location.href = "list.notice?page=1";
-		});
-		
-		if(${loginId == null }){
-			$("#toLogin").on("click",function(){
-				location.href = "Login.jsp";
-			});
-			$("#toSignup").on("click",function(){//회원가입
-				location.href = "SignUp.jsp";
-			});
-		}else{
-			$("#mypage_btn").on("click", function()
-	        		{
-						if(${type=="admin"}){
-							location.href = "mypage.admin";
-						}else{
-							location.href = "doing.mypage?"+encodeURI("page=1");
-						}
-	        		});
-	        		$("#logout_btn").on("click", function()
-	        		{
-	        			if(${loginType == "kakao"})
-						{
-	        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
-	        				
-							var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
-							window.open("exit.html","",popOption)
 
-							Kakao.Auth.logout
-							(
-								function(data)
-								{
-									if(data)
-									{	
-										location.href="logout.login";
-									}
-									else
-									{
-										location.href="error.html";
-									}
-							    }
-							);
-						}
-						else if(${loginType == "normal"})
-						{
-							location.href="logout.login";
-						}else{
-							location.href="naverLogout.login";
-						}
-	        		});
-		}
-		        
-	});
-        
-	onload = function()
+
+$(function()
+{
+	
+	$("#back_btn").on("click", function()
 	{
-		
-		
-              
-	};
+		location.href = "list.notice?page=1";
+	});
+	
+	if(${loginId == null }){
+		$("#toLogin").on("click",function(){
+			location.href = "Login.jsp";
+		});
+		$("#toSignup").on("click",function(){//회원가입
+			location.href = "SignUp.jsp";
+		});
+	}else{
+		$("#mypage_btn").on("click", function()
+        		{
+					if(${type=="admin"}){
+						location.href = "mypage.admin";
+					}else{
+						location.href = "doing.mypage?"+encodeURI("page=1");
+					}
+        		});
+        		$("#logout_btn").on("click", function()
+        		{
+        			if(${loginType == "kakao"})
+					{
+        				Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+        				
+						var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+						window.open("exit.html","",popOption)
+
+						Kakao.Auth.logout
+						(
+							function(data)
+							{
+								if(data)
+								{	
+									location.href="logout.login";
+								}
+								else
+								{
+									location.href="error.html";
+								}
+						    }
+						);
+					}
+					else if(${loginType == "normal"})
+					{
+						location.href="logout.login";
+					}else{
+						location.href="naverLogout.login";
+					}
+        		});
+	}
+	        
+});
+    
+onload = function()
+{
+	
+	
+          
+};
         
 </script>
 </head>
 <body>
+	<div id="container_div" class="container col-12">
 
-
-	<div class="container col-12">
-	
-		<div id=header class=row>
+		<!--           HEADER-->
+		<div id=header class="row mt-2 mb- -5">
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="start.main"><img src="logo.png" id=logo></a>
+				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
 
 			</div>
 
@@ -245,60 +231,48 @@ div {
 			</div>
 
 		</div>
+<!-- <--------------- -------------------> 
+	<div class="container">
 	
-		<div id="header_row" class="row my-5 justify-content-center">
+		<div id="header_row" class="row my- -5">
 		
-			<div class="col-10">
-			
-				<div class="row">
+			<div class="col-1" id="count1">
 				
-					<div class="col-1">
+				${ dto.no_seq }
 				
-						${ dto.no_seq }
-						
-					</div>
-					
-					<div class="col-6">
-						
-						${ dto.no_title }
-						
-					</div>
-					
-					<div class="col-3">
-						
-						${ dto.no_writer }
-						
-					</div>
-					
-					<div class="col-2">
-						
-						${ dto.no_time }
-						
-					</div>
-				
-				</div>
-			
 			</div>
 			
+			<div class="col-8 p-3">
+				
+				&nbsp&nbsp&nbsp&nbsp&nbsp<b>공지 </b><span>&nbsp&nbsp&nbsp</span><b>${ dto.no_title }</b><br>
+				&nbsp&nbsp&nbsp&nbsp&nbsp${ dto.no_time }
+				
+			</div>
+			
+			<div class="col-3" id="count2">
+				
+				${ dto.no_writer }
+				
+			</div>
 		</div>
 		
 		
-		<div class="row my-5 py-5 justify-content-center">
+		<div class="row my-5 py-5" id="textmain">
 		
-			<div class="col-10">
+			<div class="col-12">
 				
 				<c:set var="contents" value="${ dto.no_contents }"/>
-<%-- 				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p> --%>
-				<p id="html" class="my-5">${contents}</p>
+				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p>
+			
 			</div>
 		
 		</div>
 		
 		
 		
-			<div class="row justify-content-center">
+			<div class="row">
 			
-				<div id="btn_div" class="col-10">
+				<div id="btn_div" class="col-12">
 					<c:if test="${ type == 'admin' }">
 						<input id="update_btn" class="btn btn-info" type="button" value="수정">
 						<input id="delete_btn" class="btn btn-info" type="button" value="삭제">
@@ -334,6 +308,8 @@ div {
 	    var seq = $('<input type="hidden" value='+"${ dto.no_seq }"+' name="seq">');
 		var title = $('<input type="hidden" value="${ dto.no_title }" name="title">');
 		var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
+	 	
+		
 		
 	    form.append(title).append(contents).append(seq);
 	    $("#contents_hidden").val(text);

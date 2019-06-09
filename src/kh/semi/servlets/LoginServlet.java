@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -207,12 +209,55 @@ public class LoginServlet extends HttpServlet
 
 				String id = request.getParameter("id");// 아이디
 				String pw = request.getParameter("pw");// 패스워드
+				String pw2 = request.getParameter("pw2");//패스워드 확인
 				String nickname = request.getParameter("nickname");// 닉네임
 				String gender = request.getParameter("gender");// 성별
+				String phone = request.getParameter("phone");//핸드폰
 				String birth = request.getParameter("birth");// 날짜 1900-05-07
-
+				
+				String resultid = "";
+				String resultpw = "";
+				String resultpw2 = "";
+				String resultphone = "";
+				String resultnickname = "";
+				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
+				Matcher idMatcher = idPattern.matcher(pw2);
+				if(idMatcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultid = idMatcher.group(); 
+					System.out.println(resultid);
+				}
+				
+				
+				Pattern pwPattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 regex
+				Matcher pwMatcher = pwPattern.matcher(pw);
+				if(pwMatcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultpw = pwMatcher.group(); 
+					System.out.println(resultpw);
+				}
+				
+				Pattern pw2Pattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 확인 regex
+				Matcher pw2Matcher = pw2Pattern.matcher(pw2);
+				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultpw2 = pw2Matcher.group(); 
+					System.out.println(resultpw2);
+				}
+				
+				Pattern phonePattern = Pattern.compile("(^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$)"); // 핸드폰 regex
+				Matcher phoneMacher = phonePattern.matcher(phone);
+				if(phoneMacher.find()){
+					resultphone = phoneMacher.group();
+					System.out.println(resultphone);
+				}
+				
+				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
+				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
+				if(nicknameMatcher.find()){
+					resultnickname = nicknameMatcher.group(); 
+					System.out.println(resultnickname);
+				}
+				
 				String year = dao.getMyLoginYear(birth);// 날짜에서 년도 ex)1900 가져오기
-				int a = Integer.parseInt(year);
+				int resultyear = Integer.parseInt(year);
 
 				String ageRange = dao.getMyLoginAgeRange(year);// 년도 뒷자리 ex) 00
 				int intagerange = Integer.parseInt(ageRange);// 년도 뒷자리 int 형으로 바꾸기
@@ -221,10 +266,11 @@ public class LoginServlet extends HttpServlet
 				String day = dao.getMyLoginYearDay(month_day);// 일 ex)07
 				String monthday = month + day; // 월일 ex)0507
 
-				String phone = request.getParameter("phone");
+				
 				String resultage = "";
 				String result = "";
-				if(a < 2000)
+				
+				if(resultyear < 2000)
 				{ // 1900 년대생이면
 					if(10 <= intagerange && intagerange < 20)
 					{
@@ -267,12 +313,30 @@ public class LoginServlet extends HttpServlet
 
 				try
 				{
+					if
+					(
+	            			
+	   						(idcheck == "사용 가능한 아이디 입니다.") && (pwcheck == "사용가능 합니다.") 
+	            			&&
+	            			(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
+	            			&& 
+	            			(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
+	            			&& 
+	            			(resultid != null) && (resultpw != null) 
+	            			&& (resultpw2 != null) && (resultnickname != null) 
+	            			&& (resultphone != null)
+	            	 )
+					{
 					if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
 					{
 						System.out.println("성공");
 						result = "성공";
 					}else
 					{
+						System.out.println("실패");
+						result = "실패";
+					}
+					}else {
 						System.out.println("실패");
 						result = "실패";
 					}

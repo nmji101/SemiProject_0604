@@ -18,7 +18,6 @@
 * {
 	font-family: 'Noto Sans KR', sans-serif;
 }
-
 div {
 	width: 100%;
 	text-align: center;
@@ -409,7 +408,7 @@ div {
 
 										<div id="title_div" class="col-lg-5 my-auto">
 
-											<a class="btn btn-link" href="detail.notice?seq=${ list[i-1].no_seq }">${ list[i-1].no_title }</a>
+											<a class="btn btn-link" style="color:black" href="detail.notice?seq=${ list[i-1].no_seq }">${ list[i-1].no_title }</a>
 
 										</div>
 
