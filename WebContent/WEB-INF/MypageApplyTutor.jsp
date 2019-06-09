@@ -91,66 +91,23 @@ div {
 	padding-right: 60px !important;
 }
 
-#header_div {
-	border: 1px solid #FFC107;
-	box-sizing: border-box;
-}
-
 #profile_div_row, #profile_div {
 	text-align: center;
 	justify-content: center;
 }
 
-#header_row, #profile_row, #contents_row {
+#profile_row, #contents_row {
 	justify-content: center;
 }
 
-#logo_div, #event_div, #profile_img_div {
+#logo_div, #profile_img_div {
 	text-align: center;
-}
-
-#logo_img, #event_img {
-	width: 200px;
-	height: 100px;
-}
-
-#search_div {
-	text-align: center;
-}
-
-#search_text {
-	width: 100%;
 }
 
 #profile_img_div img {
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
-}
-
-.class_div {
-	justify-content: center;
-}
-
-.class_img_div {
-	text-align: center;
-}
-
-.class_text_div {
-	text-align: center;
-}
-
-.my-auto>img {
-	width: 100%;
-	height: 100%;
-}
-
-.class_btn_div {
-	text-align: center;
-}
-
-#navi_div {
-	text-align: center;
 }
 
 #tutor_page_btn {
@@ -166,16 +123,6 @@ div {
 h2 {
 	font-family: 'Gugi', cursive;
 	color: #ffba00
-}
-
-#noClass {
-	width:300px;
-	text-align: center;
-	color: #7e7666;
-	font-size: 20px;
-	height: 300px;
-	position: relative;
-	left:150px;
 }
 
 #footer {
@@ -218,9 +165,9 @@ h2 {
 	$(function()
 	{
 		$("#mypage_btn").on("click", function()
-	    		{
-						location.href = "doing.mypage?"+encodeURI("page=1");
-	    		});
+	    {
+			location.href = "doing.mypage?"+encodeURI("page=1");
+	    });
 		$("#logout_btn").on("click", function()
 		{
 			if(${loginType == "kakao"})
@@ -254,9 +201,6 @@ h2 {
 				location.href="naverLogout.login";
 			}
 		});
-		$("#logo").on("click", function() {
-			location.href = "start.main";
-		})
 		$("#search_Btn").on("click",function(){
 			var input = $("#searchbox").val();
 			var regex = /^ {1,}$/g;
@@ -270,25 +214,6 @@ h2 {
 			}
 			//alert("검색어 : " + input)
 			$("#searchForm").submit();
-		});
-	    $("#ing_class_btn").on("click", function()
-	    {
-		    location.href = "doing.mypage?page=1";
-	    });
-	    
-	    $("#done_class_btn").on("click", function()
-	    {
-		    location.href = "done.mypage?page=1";
-	    });
-	    
-	    $("#person_info_btn").on("click", function()
-	    {
-		    location.href = "person.mypage?page=1";
-	    });
-	    
-	    $("#tutor_page_btn").on("click", function()
-		{
-			location.href = "tutor.mypage?page=1";
 		});
 	    
 	    $("#profile_img_btn").on("click", function()
@@ -386,8 +311,8 @@ h2 {
 
 							<div id="profile_img_div" class="col-lg-4">
 
-								<button id="profile_img_btn" class="btn">${ dto.m_photo }
-
+								<button id="profile_img_btn" class="btn">
+									${ dto.m_photo }
 								</button>
 
 							</div>
@@ -396,9 +321,9 @@ h2 {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h2>${ dto.m_nickname }
-										님, 환영합니다! <img
-											src="https://img.icons8.com/color/48/000000/smiling.png">
+									<h2>
+										${ dto.m_nickname } 님, 환영합니다! 
+										<img src="https://img.icons8.com/color/48/000000/smiling.png">
 									</h2>
 
 								</button>
@@ -427,38 +352,43 @@ h2 {
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn-outline-warning py-3">
-									수강 중 클래스</button>
+								<a href="doing.mypage?page=1">
+									<button id="ing_class_btn" class="btn btn-outline-warning py-3">
+										수강 중 클래스
+									</button>
+								</a>
 
 							</div>
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="done_class_btn" class="btn btn-outline-warning py-3">수강
-									한 클래스</button>
+								<a href="done.mypage?page=1">
+									<button id="done_class_btn" class="btn btn-outline-warning py-3">
+										수강 한 클래스
+									</button>
+								</a>
 
 							</div>
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn-outline-warning py-3">개인
-									정보 수정</button>
+								<a href="person.mypage?page=1">
+									<button id="person_info_btn" class="btn btn-outline-warning py-3">
+										개인 정보 수정
+									</button>								
+								</a>
 
 							</div>
-							
-						
 
 							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn-warning py-3" > 
-
-									<h5><strong>튜터 페이지</strong></h5>
-								
-								</button>
+								<a href="tutor.mypage?page=1">
+									<button id="tutor_page_btn" class="btn btn-warning py-3" > 
+										<h5><strong>튜터 페이지</strong></h5>
+									</button>
+								</a>
 
 							</div>
-						
-							
 
 						</div>
 
@@ -468,14 +398,12 @@ h2 {
 
 						<c:if test="${check==true}">
 
-
 							<span>현재 승인 대기중</span>
 
 						</c:if>
 
 
 						<c:if test="${check==false}">
-
 
 							<form id="apply_form" action="apply.mypage" method="post">
 
@@ -489,7 +417,6 @@ h2 {
 						</c:if>
 
 						<c:if test="${check=='tutor'}">
-
 
 							<script>
  								location.href = "ForTutor.jsp";

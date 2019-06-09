@@ -636,21 +636,30 @@ public class MypageServlets extends HttpServlet
 					String id = request.getParameter("id");
 					String nickname = request.getParameter("nickname");
 					
-					UpgradeDAO dao = new UpgradeDAO();
-					int result = dao.insertNew(id, nickname);
-					
-					if(result > 0)
+					if(id.equals(m_id))
 					{
-						response.sendRedirect("tutor.mypage");
+						UpgradeDAO dao = new UpgradeDAO();
+						int result = dao.insertNew(id, nickname);
+						
+						if(result > 0)
+						{
+							response.sendRedirect("tutor.mypage");
+						}
+						else
+						{
+							response.sendRedirect("error.html");
+						}
 					}
 					else
 					{
+						System.out.println("request 로 넘어온 id 값이 현재 로그인한 id 와 다르다.");
 						response.sendRedirect("error.html");
 					}
 				}
 				catch(Exception e)
 				{
 					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
 			}
 		}
