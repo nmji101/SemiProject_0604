@@ -287,26 +287,6 @@ h2 {
 				location.href="naverLogout.login";
 			}
 		})
-	    
-	    $("#ing_class_btn").on("click", function()
-	    {
-		    location.href = "doing.mypage?page=1";
-	    });
-	    
-	    $("#done_class_btn").on("click", function()
-	    {
-		    location.href = "done.mypage?page=1";
-	    });
-	    
-	    $("#person_info_btn").on("click", function()
-	    {
-		    location.href = "person.mypage?page=1";
-	    });
-
-	    $("#tutor_page_btn").on("click", function()
-		{
-			location.href = "tutor.mypage";
-		});
 
 	    $("#profile_img_btn").on("click", function()
 	    {
@@ -445,37 +425,43 @@ h2 {
 
 						<div class="row">
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn-outline-warning py-3">
-									수강 중 클래스</button>
-
-							</div>
-
-							<div class="col-6 col-md-3 col-lg-12 my-1">
-
-								<button id="done_class_btn" class="btn btn-outline-warning py-3">수강
-									한 클래스</button>
+								<a href="doing.mypage?page=1">
+									<button id="ing_class_btn" class="btn btn-outline-warning py-3">
+										수강 중 클래스
+									</button>
+								</a>
 
 							</div>
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn-warning py-3">
-
-									<h5>
-										<strong>개인 정보 수정</strong>
-									</h5>
-
-								</button>
+								<a href="done.mypage?page=1">
+									<button id="done_class_btn" class="btn btn-outline-warning py-3">
+										수강 한 클래스
+									</button>
+								</a>
 
 							</div>
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn-outline-warning py-3">
+								<a href="person.mypage?page=1">
+									<button id="person_info_btn" class="btn btn-warning py-3">
+										<h5><strong>개인 정보 수정</strong></h5>
+									</button>								
+								</a>
 
-									튜터 페이지</button>
+							</div>
+
+							<div class="col-6 col-md-4 col-lg-12 my-1">
+
+								<a href="tutor.mypage?page=1">
+									<button id="tutor_page_btn" class="btn btn-outline-warning py-3" > 
+										튜터 페이지
+									</button>
+								</a>
 
 							</div>
 
