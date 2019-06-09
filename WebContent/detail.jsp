@@ -870,7 +870,7 @@ div {
 					<div>${classInfo.info_explain }</div>
 				</div>
 				<div id="place" class="class_detail">
-					<h3>위치(지도확대축소 드래그 추가가능)</h3>
+					<h3>위치</h3>
 					<div>
 						<div id="map" style="width: 100%; height: 300px;"></div>
 						<br>

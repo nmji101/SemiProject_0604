@@ -110,8 +110,6 @@ select {
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	$(function() {
-		var today = new Date();
-		today.setFullYear(today.getFullYear() - 10); 
 
       $.datepicker
       .setDefaults({
@@ -132,13 +130,13 @@ select {
                    dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
                    dayNames : [ '일요일', '월요일', '화요일', '수요일', '목요일', '금요일',
                                '토요일' ],
-                   minDate : "-100y",
-                   maxDate : today
-                   ,yearRange : 'c-100:c+1';
+                   minDate : "-100Y"
+                   //,maxDate : "-10Y"
+                   ,yearRange : '-100:-10'
                    });
 
       $("#datepicker").datepicker();
-      $('#datepicker').datepicker('setDate', today);
+      //$('#datepicker').datepicker('setDate', new Date());
 
       });
 </script>
