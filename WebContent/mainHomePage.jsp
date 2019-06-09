@@ -587,6 +587,8 @@ $(function(){
 
 		<div id=content>
 			<div class="row">
+			<c:choose>
+				<c:when test="${dto1!=null || dto2!=null}">
 				<div class="col-12" id=popular>
 					<h2>
 					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -741,6 +743,8 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
 						</div>
 					</div>
 				</div>
+				</c:when>
+				</c:choose>
 			</div>
 
 
