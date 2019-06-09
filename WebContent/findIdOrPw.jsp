@@ -113,11 +113,7 @@ body {
 				}
 			}).done(function(resp) {
 				alert(resp);
-				if(resp=="0"){
-					$("#part2_pw").toggle();
-					$("#findResult").text("해당 ID가 없습니다.");
-					$("#part3_id").toggle();
-				}else{
+				if(resp=="1"){				
 					Idemail = email;
 					$("#email").attr("readonly","true");
 					var email = $("#email").val();
@@ -142,6 +138,10 @@ body {
 						alert("확인용! 발표시에는 삭제하기 " + resp);
 						authStr = resp;
 					})
+				}else{
+					$("#part2_pw").toggle();
+					$("#findResult").text("해당 ID가 없습니다.");
+					$("#part3_id").toggle();
 				}
 			});
 		});
