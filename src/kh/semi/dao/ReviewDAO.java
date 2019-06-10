@@ -118,7 +118,8 @@ public class ReviewDAO
 			return result;
 		}
 	}
-	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId){
+
+	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId) {
 
 		int naviCountPerPage = 5;
 
@@ -248,25 +249,33 @@ public class ReviewDAO
 	public int aveStar(int classId)throws Exception{
 		// 선택한 클래스에 작성된 리뷰에서 뽑은 별점들
 		String sql = "select re_star from review where re_classId = ?";
-		Connection con = this.getConnection();
-		PreparedStatement pstat = con.prepareStatement(sql);
-		pstat.setInt(1, classId);
-		ResultSet rs = pstat.executeQuery();
-		
-		List<ReviewDTO> starList = new ArrayList<>();
-		int sum = 0;
-		while(rs.next()) {
-			String re_star = rs.getString("RE_STAR");
-			ReviewDTO dto = new ReviewDTO(re_star);
-			starList.add(dto);
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, classId);
+			ResultSet rs = pstat.executeQuery();
+			
+			List<ReviewDTO> starList = new ArrayList<>();
+			int sum = 0;
+			while(rs.next()) {
+				String re_star = rs.getString("RE_STAR");
+				ReviewDTO dto = new ReviewDTO(re_star);
+				starList.add(dto);
+			}
+			  for(int i = 0; i < starList.size(); i++) { 
+				  int star = Integer.parseInt(starList.get(i).getStar());
+				  sum =sum + star; 
+			  }
+			  if(sum==0) {
+				  return 0;
+			  }else {
+					int aveStar =  sum / starList.size();
+					return aveStar;
+			  }
 		}
-		  for(int i = 0; i < starList.size(); i++) { 
-			  int star = Integer.parseInt(starList.get(i).getStar());
-			  sum =sum + star; 
-		  }
-		int aveStar =  sum / starList.size();
-		return aveStar;
 	}
+
 	
 	public boolean overlapCheck(int seq, String id) throws Exception
 	{
