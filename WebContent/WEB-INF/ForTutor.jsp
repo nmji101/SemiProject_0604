@@ -334,6 +334,11 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
       width:150px;
       height:150px;
    }
+   #imtutor
+   {
+   	width: 100%;
+   	height: 100%;
+   }
 </style>
     
 <script>
@@ -379,7 +384,7 @@ $(function(){
 
 
       $("input[name=tutorid]").val($("#tutor").text());
-      $("input[name=intro]").val($("#imtutor").html());
+      $("input[name=intro]").val($("#imtutor").val());
       $("input[name=down]").val($('#mystatus2').text());
       $("input[name=addr1]").val();
       $("input[name=addr2]").val();
@@ -505,9 +510,13 @@ $(function(){
                <!--ID-->
 
                <span class="badge  m-0 p-1 badge-warning">튜터 소개글(필수/최대 100자)</span>
-               <div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"contentEditable="true"></div>
-
-               <input type="hidden" name="intro">
+<!--                <div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"contentEditable="true"></div> -->
+				
+				<div class="intro m-0 p-0 col-5 array border-warning">
+					<textarea id="imtutor" rows="4" cols="25" maxlength="100"></textarea>
+				</div>
+				
+               <input type="hidden" name="intro" maxlength="100">
             </div>
          </div><!-- row end tag -->
          <br>
