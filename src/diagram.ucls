@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="kh.semi.servlets.CategoryController" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/CategoryController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="732" x="5164" y="2489"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="kh.semi.servlets.TutorController" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/TutorController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="253" width="400" x="2392" y="509"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="kh.semi.servlets.MainServlet" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/MainServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="732" x="3100" y="2473"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="kh.semi.servlets.FrontController_classInfo" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/FrontController_classInfo.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="281" width="464" x="1564" y="2305"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="kh.semi.servlets.MypageServlets" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/MypageServlets.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="464" x="1556" y="1461"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="kh.semi.servlets.LoginServlet" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/LoginServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="299" width="464" x="1564" y="1057"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="kh.semi.servlets.AdminController" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="732" x="3696" y="1641"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="kh.semi.servlets.FileController" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/FileController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="305" width="552" x="432" y="461"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="kh.semi.servlets.NoticeServlet" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/NoticeServlet.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="464" x="1560" y="1869"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="kh.semi.servlets.FrontController_review" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/servlets/FrontController_review.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="281" width="732" x="3660" y="1173"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="kh.semi.dao.MyClassListDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/MyClassListDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="415" x="2385" y="999"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="kh.semi.dao.PersonDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/PersonDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="399" width="481" x="2960" y="1466"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="kh.semi.dao.NoticeDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/NoticeDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="323" width="486" x="2374" y="1959"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="kh.semi.dao.MailAuth" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/MailAuth.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="734" x="4267" y="782"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="kh.semi.dao.CategoryDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/CategoryDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="569" width="786" x="4090" y="2378"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="kh.semi.dao.ClassDoingDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/ClassDoingDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="331" width="504" x="2356" y="2366"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="kh.semi.dao.MemberDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/MemberDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="569" width="490" x="468" y="1298"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="kh.semi.dao.ReviewDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/ReviewDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="515" width="702" x="4582" y="1254"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="kh.semi.dao.DoClassDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/DoClassDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="291" width="480" x="2956" y="1122"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="kh.semi.dao.UfileDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/UfileDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="335" width="472" x="1549" y="211"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="kh.semi.dao.ClassInfoDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/ClassInfoDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="492" x="2364" y="2802"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="kh.semi.dao.Mailsend" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/Mailsend.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="281" width="606" x="3508" y="778"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="kh.semi.dao.TutorDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/TutorDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="389" width="461" x="1561" y="594"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="kh.semi.dao.UpgradeDAO" project="SemiProject_0604-master" 
+    file="/SemiProject_0604-master/src/kh/semi/dao/UpgradeDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="381" width="473" x="2958" y="678"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="25">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <association id="30">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="31" name="udao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="33">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="39">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="40">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="45">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="46">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="47">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="48">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="22"/>  
+  </dependency>  
+  <dependency id="49">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="51">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <dependency id="52">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="53">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="54">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="58">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="23"/>  
+  </dependency>  
+  <dependency id="59">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="60">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="20"/>  
+  </dependency>  
+  <dependency id="61">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="14"/>  
+  </dependency>  
+  <dependency id="62">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="64">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="66">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </dependency>  
+  <dependency id="67">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="68">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="19"/>  
+  </dependency>  
+  <dependency id="69">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="70">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="15"/>  
+  </dependency>  
+  <dependency id="71">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="72">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="73">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="74">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="79">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="24"/>  
+  </dependency>  
+  <dependency id="80">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="21"/>  
+  </dependency>  
+  <dependency id="81">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

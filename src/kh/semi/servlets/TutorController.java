@@ -28,6 +28,7 @@ public class TutorController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length());
+		System.out.println(request.getRemoteAddr()+"님 접속:"+command);
 		try {
 			TutorDAO dao = new TutorDAO();
 			ClassInfoDTO dto = new ClassInfoDTO();
