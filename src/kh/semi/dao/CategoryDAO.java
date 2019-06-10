@@ -101,10 +101,10 @@ public class CategoryDAO {
 
    public List<CategoryDTO> getInfoByLocation1(String select, String addr, int start, int end) throws Exception {
       String sql = "select row_number() over(order by "+ select +") as rown, info_classid, info_title, info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 from (select row_number() over(order by "+select+") as rown, classinfo.* "
-            + "from classinfo where info_addr2 like ?)  where rown between ? and ?";
+            + "from classinfo where REGEXP_LIKE(info_addr2, ? ))  where rown between ? and ?";
       Connection con = this.getConnection();   
       PreparedStatement pstat = con.prepareStatement(sql);
-      pstat.setString(1, "%"+addr+"%");
+      pstat.setString(1, addr);
       pstat.setInt(2, start);
       pstat.setInt(3, end);
       ResultSet rs = pstat.executeQuery();
@@ -218,10 +218,10 @@ public class CategoryDAO {
    }
 
    public int getTotalByMenu(String coloumn, String value) throws Exception {
-      String sql = "select count(*) from classinfo where "+ coloumn +" like ?";
+      String sql = "select count(*) from classinfo where REGEXP_LIKE("+ coloumn +" , ? )";
       Connection con = this.getConnection();   
       PreparedStatement pstat = con.prepareStatement(sql);
-      pstat.setString(1, "%"+value+"%");   
+      pstat.setString(1, value);   
       ResultSet rs = pstat.executeQuery();
       int result = 0;
       while(rs.next()) {

@@ -109,8 +109,7 @@ $(function(){
 		var addr1 = tmp.replace(/(.+)\/(.+)/g,"$1");
 		var addr2 = tmp.replace(/(.+)\/(.+)/g,"$2");
 		if(addr1 != addr2){
-			location.href="info.category?addr1="+addr1+"&addr2="+addr2+"&select=info_avgstar desc";
-		
+			location.href="info.category?addr1="+addr1+"&addr2="+addr2+"&select=info_avgstar desc";	
 		}else{
 			location.href="info.category?addr1="+addr1+"&select=info_avgstar desc";
 		}
@@ -455,7 +454,8 @@ div {
 											<li>동작</li>
 											<li>성북/동대문</li>
 											<li>관악/신림</li>
-											<li>영등포/양천</li>
+											<li>영등포/구로</li>
+											<li>강서/양천</li>
 											<li>용산</li>
 										</div>
 									</ul>
@@ -476,7 +476,7 @@ div {
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>충청</li>
+										<li>충청도</li>
 
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
@@ -487,7 +487,7 @@ div {
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>경상</li>
+										<li>경상도</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>대구</li>
@@ -499,7 +499,7 @@ div {
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>전라</li>
+										<li>전라도</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>광주</li>
