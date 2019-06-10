@@ -318,22 +318,19 @@ public class LoginServlet extends HttpServlet
 						resultage = "기타";
 					}
 				}
-				
-				dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone));
 				try
 				{
 					if
 					(
-	            			
-	   						(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
-	            			&&
-	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null))
-	            			&& 
-	            			(phonecheck.equals("올바른 양식 입니다."))  && (pw.equals(pw2)) 
-	            			&& 
-	            			(!resultid.equals("")) && (!resultpw.equals("")) 
-	            			&& (!resultpw2.equals("")) && (!resultnickname.equals("")) 
-	            			&& (!resultphone.equals(""))
+	   					(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
+	            		&&
+	            		(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null))
+	            		&& 
+	            		(phonecheck.equals("올바른 양식 입니다."))  && (pw.equals(pw2)) 
+	            		&& 
+	            		(!resultid.equals("")) && (!resultpw.equals("")) 
+	            		&& (!resultpw2.equals("")) && (!resultnickname.equals("")) 
+	            		&& (!resultphone.equals(""))
 	            	 )
 					{
 						if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
