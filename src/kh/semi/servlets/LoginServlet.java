@@ -89,10 +89,10 @@ public class LoginServlet extends HttpServlet
 						gender = account.get("gender").toString();
 						gender = gender.substring(1, gender.length() - 1);
 
-						if(gender.equals("male"))
+						if((gender.equals("male")) || (gender.equals("M")))
 						{
 							gender = "M";
-						}else if(gender.equals("female"))
+						}else if((gender.equals("female")) || (gender.equals("F")))
 						{
 							gender = "F";
 						}
