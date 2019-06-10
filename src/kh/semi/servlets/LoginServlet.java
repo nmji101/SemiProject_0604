@@ -312,7 +312,7 @@ public class LoginServlet extends HttpServlet
 					}
 				}
 				
-				dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone));
+//				dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone));
 				try
 				{
 					if
