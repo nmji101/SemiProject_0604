@@ -689,6 +689,12 @@ div {
                 $("#simpleAddr").text(addr);
                 
                 $(".class_tuImg").children("img").prop("id","tutorImg");
+                $(".price").each(function(i,item){
+                	var price = $(item).text();
+                    //alert(price);
+                    var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/,"$1,$2 원");
+                    $(item).text(result);
+                })
             });
         </script>
 </head>
@@ -781,142 +787,6 @@ div {
                             	background-size:cover;
                             	background-position:center;
                             	background-image:url('${classInfo.info_img3 }');">
-<%-- <<<<<<< HEAD
-                            	</div>
-                                </div>
-                            </c:if>
-                        </div>
-                        <c:if test="${classInfo.info_img2 !=null}">
-                            <a class="carousel-control-prev" href="#myCarousel1" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#myCarousel1" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
-                        </c:if>
-                    </div>
-                    <!--                캐러셀 이미지 끝-->
-                    <div id="classNavi">
-                        <ul id="clickNavi">
-                            <!--                           href에다가 해당위치 id넣어주기-->
-                            <li><a href="#sumary">요약</a></li>
-                            <li><a href="#tutorinfo">튜터정보</a></li>
-                            <li><a href="#introduction">수업소개</a></li>
-                            <li><a href="#place">위치</a></li>
-                            <li><a href="#review">후기</a></li>
-                        </ul>
-                    </div>
-                    <div id="sumary" class="class_detail">
-                        <!--                        요약부분-->
-                        <div id="sumary_wrapper">
-                        <div class="class_name">
-                            <div class="tutor">
-                                <span class="class_tuImg">
-                                    <img id="tutorImg" src="${tutorImg}" alt="no img">
-                                </span>
-                            </div>
-                            <div class="class_nickname">
-                                ${tutorNickname}
-                            </div>
-                        </div>
-                        <div class="class_title">
-                            <div class="title">
-                                <h5>${classInfo.info_title}</h5>
-                            </div>
-                            <div class="star">
-                                <a id="starImg" class="starImg" href="#">
-                                    <!--                                 별점에 따라..몇개로할건지..... -->
-                                    <c:forEach var="i" begin="0" end="${classInfo.info_avgstar">
-<!--                                     	<img src="Content/Images/star.jfif"> -->
-                                    </c:forEach>
-                                </a>
-                            </div>
-                            <div class="info">
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <img src="Content/Images/map-location.png">
-                                        </div>
-                                        위치
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="Content/Images/south-korean-won.png">
-                                        </div>
-                                        ${classInfo.info_price }원
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="Content/Images/group.png">
-                                        </div>
-                                        ${classInfo.info_maxperson }명
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div id="tutorinfo" class="class_detail">
-                        <h3>튜터정보(쪽지기능)</h3>
-                        <div>${classInfo.info_intro }</div>
-                    </div>
-                    <div id="introduction" class="class_detail">
-                        <h3>수업소개</h3>
-                        <div>${classInfo.info_explain }</div>
-                    </div>
-                    <div id="place" class="class_detail">
-                        <h3>위치(지도확대축소 드래그 추가가능)</h3>
-                        <div>
-                            <div id="map" style="width:100%;height:300px;"></div>
-                        </div>
-                    </div>
-                    <div id="review" class="class_detail">
-                        <h3>후기</h3>
-                        <div>
-                        	<iframe src="http://localhost:8081/index.review?classId=${classInfo.info_classid}" id="the_iframe" onload="calcHeight();" name="WrittenPublic" title="게시판뷰" frameborder="0" scrolling="no" style="overflow-x:hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
-                        </div>
-                    </div>
-                    <!--                    여기까지 mainContent   -->
-                </div>
-                <div id="sideContent">
-                    <div id="sideFixed">
-                        <div id="sideTop" class="d-flex">
-                            <span><b>옵션선택</b></span>
-                            <span class="ml-auto calendar">달력에서 보기</span>
-                        </div>
-                        <div class="d-flex">
-                            <span>일정</span><span class="ml-auto pr-2">V</span>
-                        </div>
-                        <!--여기가 달력 추가될 위치-->
-                        <div id="datepicker"></div>
-                        <!--/달력 추가될 위치-->
-                        <div id="schedule">
-                        	<button type="button" id="scdBtn">
-                        	<div id="scdWrapper">
-                        		<div id="checkDate"></div>
-                        		<div id="checkApplicable"></div>
-                        	</div>
-                        	</button>
-                        </div>
-                        <div id="select">
-                        	<div>
-                        		<div id="selectInfo" class="d-flex" flag="false">
-                        			<span id="selectDate"></span><img class="ml-auto" id="closeImg" src="Content/Images/close.png">
-                        		</div>
-                        		<div>참가비 (1인)</div>
-                        		<div id="selectPrice">${classInfo.info_price }원</div>
-                        	</div>
-                        </div>
-                        <div id="purchase"><input id="purchaseBtn" type="button" value="구매하기"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" 		    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 		    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-    </body> --%>
-=======
 								</div>
 							</div>
 						</c:if>
@@ -980,9 +850,7 @@ div {
 										<div>
 											<img src="Content/Images/south-korean-won.png">
 										</div> 
-										<div>
-										${classInfo.info_price }원
-										</div>
+										<div class="price">${classInfo.info_price }</div>
 									</li>
 									<li>
 										<div>
@@ -1053,7 +921,7 @@ div {
 									src="Content/Images/close.png">
 							</div>
 							<div>참가비 (1인)</div>
-							<div id="selectPrice">${classInfo.info_price }원</div>
+							<div id="selectPrice" class="price">${classInfo.info_price }</div>
 						</div>
 					</div>
 					<div id="purchase">

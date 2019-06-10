@@ -28,6 +28,7 @@ public class FileController extends HttpServlet {
 		String reqUri = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqUri.substring(ctxPath.length());
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 		try {
 			UfileDAO udao = new UfileDAO();
 			TutorDAO dao = new TutorDAO();

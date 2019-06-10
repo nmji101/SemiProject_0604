@@ -120,7 +120,15 @@ $(function(){
 		var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/g,"$1,$2 원");
 		console.log(result);
 		$(item).parent().text(result);
-	})
+	});
+	$(".naviBtn").each(function(i,item){
+		var currentBtn = $(item).val();
+    	var currentPage = "${currentPage}";
+    	if(currentBtn==currentPage){
+    		$(item).css("color","#ffba00");
+    	}
+	});
+	
 });
 
 </script>
@@ -204,6 +212,9 @@ div {
 	float:right;
 	border-radius: 50px;
 
+}
+.carousel-item>img:hover{
+	opacity: 0.5;
 }
 #starBox{
 	float: left;
@@ -615,13 +626,25 @@ div {
 					</c:forEach>
 				</div>
 				<div id=naviBox class="row justify-content-center">
+				<c:choose>
+				<c:when test="${searchResult==null}">
 					<c:forEach var="i" begin="0" end="${size-1}">
 						<form action="info.category" method="post" class=btnForm>
 							<input type=submit value="${navi[i] }" class="naviBtn"
 								name="nowPage">
 						</form>
 					</c:forEach>
-		
+					</c:when>
+					<c:otherwise>
+					<c:forEach var="i" begin="0" end="${size-1}">
+						<form action="search.category" method="post" class=btnForm>
+						<input type="hidden" name="search" value="${searchResult }">
+							<input type=submit value="${navi[i] }" class="naviBtn"
+								name="nowPage">
+						</form>
+					</c:forEach>
+					</c:otherwise>
+				</c:choose>
 				</div>
 			</c:when>
 			<c:when test="${searchResult != null}">

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -174,6 +175,7 @@ body {
    height: 150px;
    float: left;
 }
+
 .img2 {
    width: 200px;
    height: 200px;
@@ -724,7 +726,6 @@ $(function(){
                
                <div class="head col-lg-1 col-md-1 col-sm-1 m-0 p-0">
                <button type="button" class="btn btn-danger btn-sm del_class">
-               < 
                삭제
                </button>
             </div>

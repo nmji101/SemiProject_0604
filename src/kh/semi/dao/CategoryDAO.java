@@ -255,6 +255,8 @@ public class CategoryDAO {
    public static int pageTotalCount = 0;
    public static int startNavi = 0;
    public static int endNavi = 0;
+   public static int searchStartNavi = 0;
+   public static int searchEndNavi = 0;
    public List<String> getNavi(int currentPage, int recordTotalCount) throws Exception {
       System.out.println("레코드토탈카운트:"+recordTotalCount);
       int naviCountPerPage = 3;   

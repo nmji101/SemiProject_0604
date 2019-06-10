@@ -23,7 +23,7 @@ public class AdminController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String cmd = uri.substring(ctx.length());
-		System.out.println(cmd);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 
 
 		try {
@@ -57,6 +57,7 @@ public class AdminController extends HttpServlet {
 				PersonDAO p_dao = new PersonDAO();
 				String loginId = (String)request.getSession().getAttribute("loginId");
 				PersonDTO p_dto = p_dao.selectById(loginId);
+				request.setAttribute("currentPage", currentPage);
 				request.setAttribute("dto", p_dto);
 
 				request.getRequestDispatcher("WEB-INF/adminMypage.jsp").forward(request, response);
@@ -100,7 +101,7 @@ public class AdminController extends HttpServlet {
 				String loginId = (String)request.getSession().getAttribute("loginId");
 				PersonDTO p_dto = p_dao.selectById(loginId);
 				request.setAttribute("dto", p_dto);
-
+				request.setAttribute("currentPage", currentPage);
 				request.getRequestDispatcher("WEB-INF/adminMypage.jsp").forward(request, response);
 
 			}else if(cmd.equals("/searchTutor.admin")) {
@@ -149,7 +150,7 @@ public class AdminController extends HttpServlet {
 					wayWord = "닉네임";
 				}
 				request.setAttribute("wayWord", wayWord);
-				
+				request.setAttribute("currentPage", currentPage);
 				request.getRequestDispatcher("WEB-INF/adminSearchMypage.jsp").forward(request, response);
 			}
 		}catch(Exception e) {

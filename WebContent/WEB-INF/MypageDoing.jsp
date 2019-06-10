@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Mypage</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
@@ -77,7 +77,6 @@ div {
 
 .headBtn {
 	color: white !important;
-	font-weight: bolder !important;
 }
 
 .headBtn:hover {
@@ -396,7 +395,6 @@ h2 {
 
 							<div id="profile_img_div" class="col-lg-4">
 								<button id="profile_img_btn" class="btn">${ dto.m_photo }
-									<img src="Content/Images/m_photo_1.jpg" alt="이미지가 없습니다">
 								</button>
 
 							</div>

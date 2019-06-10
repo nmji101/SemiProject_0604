@@ -296,11 +296,11 @@ div {
 	   	
 	   	if("${ currentPage }" % 10 == 0)
 		{
-			$($(".navi_btn")[9]).css("color", "red");
+			$($(".navi_btn")[9]).css("color", "#ffba00");
 		}
 		else
 		{
-			$($(".navi_btn")["${ currentPage % 10 - 1 }"]).css("color", "red");
+			$($(".navi_btn")["${ currentPage % 10 - 1 }"]).css("color", "#ffba00");
 		}
     });
     

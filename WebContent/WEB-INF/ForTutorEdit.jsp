@@ -391,8 +391,8 @@ $(function(){
       $("input[name=cash]").val();
       $("input[name=startdate]").val();
       $("input[name=enddate]").val();
-      $("input[name=explain]").val($('#cont').text());
-      $("input[name=inputtitle]").val($('#title').text());
+      $("input[name=explain]").val($('#cont').html());
+      $("input[name=inputtitle]").val($('#title').val());
 
 
 
@@ -445,12 +445,22 @@ $(function(){
         
          else   {
         	 alert('수정되었습니다 \n메인으로 돌아갑니다');
-        	 alert( $("input[name=info_classid]").val());
+        	 //alert( $("input[name=info_classid]").val());
         	 $("form").submit();
          }
    
    });
-   
+   $("#title").on("input",function(){
+	   var titleInput = $(this).val();
+	   var titleRegex = /^.{26,}$/;
+	   var titleRegexResult = titleRegex.exec(titleInput);
+	   if(titleRegexResult!=null){
+		   alert("제목은 25자 글자이내로 적어주세요.");
+		   titleInput = titleInput.substr(0,25);
+		   $(this).val(titleInput);
+		   $(this).focus();
+	   }
+   });   
     $("#back").on('click', function(){
        history.go(-1);
     })
@@ -567,7 +577,7 @@ $(function(){
 
                   <div ><h3><span class="badge m-0 p-1 badge-warning">제목입력(최대25자)</span></h3>
 
-                  <div contentEditable="true" class="mains p-0 m-0 col-12 border-warning " id=title>${dto.info_title }</div>
+                  <input type="text" class="mains p-0 m-0 col-12 border-warning " id="title" value="${dto.info_title }">
                      <input type="hidden" name="inputtitle">
                   </div>
                   

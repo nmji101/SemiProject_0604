@@ -20,6 +20,7 @@ public class GoogleController extends HttpServlet {
 		String URI = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String command = URI.substring(ctx.length());
+		System.out.println(request.getRemoteAddr()+"님 접속:"+command);
 		try {
 			GoogleDTO dto = new GoogleDTO();
 			GoogleDAO dao = new GoogleDAO();

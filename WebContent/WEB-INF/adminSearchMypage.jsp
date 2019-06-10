@@ -249,7 +249,7 @@ h2 {
 
 
                 $("#logo").on("click", function() {
-                    location.href = "mainHomePage.jsp";
+                    location.href = "start.main";
                 })
                 $("#search_Btn").on("click",function(){
                     var input = $("#searchbox").val();
@@ -353,6 +353,13 @@ h2 {
                     }
                     $("#currentPage").val(page);
                     $("#clickSearchPage").submit();
+                });
+                $(".navi_page_btn").each(function(i,item){
+                	var currentBtn = $(item).text();
+                	var currentPage = "${currentPage}";
+                	if(currentBtn==currentPage){
+                		$(item).css("color","#ffba00");
+                	}
                 });
                 
                 $("#tutor_search_Btn").on("click",function(){//검색버튼 눌렀을때

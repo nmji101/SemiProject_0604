@@ -25,7 +25,7 @@ public class FrontController_review extends HttpServlet {
 		String cmd = reqUri.substring(cxtpath.length());
 		PrintWriter pw = response.getWriter();
 		ReviewDTO dto = new ReviewDTO();
-
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 		if(cmd.contentEquals("/index.review")) {
 			System.out.println("/index.review");
 			

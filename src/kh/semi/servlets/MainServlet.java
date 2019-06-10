@@ -21,6 +21,8 @@ import kh.semi.dto.ReviewDTO;
 public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+url);
 		try {
 			CategoryDAO dao = new CategoryDAO();
 			int count = dao.recordTotalCount();
@@ -56,7 +58,6 @@ public class MainServlet extends HttpServlet {
 			dto1 = cdao.selectInfoByClassId(classId1);
 			dto2 = cdao.selectInfoByClassId(classId2);
 			}
-			
 			request.setAttribute("review1", review1);
 			request.setAttribute("review2", review2);
 			request.setAttribute("size1", size1);

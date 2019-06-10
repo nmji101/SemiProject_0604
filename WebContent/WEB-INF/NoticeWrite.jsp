@@ -113,11 +113,12 @@ img {
 		    if((text != "<br>") && ($("#title_text").val() != ""))
 		    {
 		    	var writer = $('<input type="hidden" value='+"${ loginId }"+' name="writer">');
-		    	var title = $('<input type="hidden" value='+$("#title_text").val()+' name="title">');
+		    	var title = $('<input type="hidden" name="title">');
 		    	var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
-		               			 	
+		    	
 		   		form.append(writer).append(title).append(contents);
 		    	$("#contents_hidden").val(text);
+		    	title.val($("#title_text").val());
 		               			    
 		    	form.submit();
 		    }

@@ -8,7 +8,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<title>Document</title>
+<title>Mypage</title>
 
 <style>
 
@@ -78,7 +78,6 @@ div {
 
 .headBtn {
 	color: white !important;
-	font-weight: bolder !important;
 }
 
 .headBtn:hover {
