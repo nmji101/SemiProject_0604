@@ -25,7 +25,6 @@ div {
 	text-align: center;
 	padding: 0px;
 }
-
 #header {
 	width: 100%;
 	margin-left: 1px !important;
@@ -262,7 +261,7 @@ h2 {
             	$("#tutorList_btn").on("click",function(){
                 	location.href ="mypage.admin";
                 });
-                    $("#mypage_btn").on("click", function()
+                    $("#mypage_btn").on("click", function(){
                             location.href = "mypage.admin";
                     });
                     $("#logout_btn").on("click", function()

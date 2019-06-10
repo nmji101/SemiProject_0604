@@ -4,17 +4,25 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import kh.semi.dto.ClassDoingDTO;
 
 public class ClassDoingDAO {
-	private Connection getConnection() throws Exception{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "semi";
-		String password = "semi";
-
-		return DriverManager.getConnection(url, user, password);
+	private DataSource ds;
+	
+	public ClassDoingDAO() throws Exception
+	{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env");
+		this.ds = (DataSource)compenv.lookup("jdbc");
+	}
+	
+	public Connection getConnection() throws Exception
+	{
+		return ds.getConnection();
 	}
 	
 	public int insertClassDoing(ClassDoingDTO dto) throws Exception{

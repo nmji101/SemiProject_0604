@@ -5,13 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 </head>
 <body>
-<script>
 
-alert('Class가 등록되었습니다 \n메인페이지로 이동합니다');
-location.href="start.main";
-</script>
+등록된 후기가 없습니다. 후기를 작성해주세요. 
+
 </body>
 </html>

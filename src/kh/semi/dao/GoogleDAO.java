@@ -7,17 +7,27 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import kh.semi.dto.GoogleDTO;
 import kh.semi.dto.GoogleDTO2;
 
 public class GoogleDAO {
 
-	public Connection getConnection() throws Exception{
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String id = "semi";
-		String pw = "semi";
-		return DriverManager.getConnection(url,id,pw);
+private DataSource ds;
+	
+	public GoogleDAO() throws Exception
+	{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env");
+		this.ds = (DataSource)compenv.lookup("jdbc");
+	}
+	
+	public Connection getConnection() throws Exception
+	{
+		return ds.getConnection();
 	}
 	
 	public int insert(String age, int visit) throws Exception{

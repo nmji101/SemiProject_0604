@@ -529,7 +529,6 @@ div {
 		</div>
 	</div>
 	<div id=content>
-
 		<c:choose>
 			<c:when test="${size != 0}">
 				<select class="custom-select">

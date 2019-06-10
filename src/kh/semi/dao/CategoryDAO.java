@@ -7,22 +7,27 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import kh.semi.dto.CategoryDTO;
 
 public class CategoryDAO {
 
-   public Connection getConnection() throws Exception {
-      try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-      } catch (Exception e) {
-         e.printStackTrace();
-         System.exit(0);
-      }
-      String url = "jdbc:oracle:thin:@localhost:1521:xe"; //맥북 : 49161
-      String user = "semi";
-      String password = "semi";
-      return DriverManager.getConnection(url, user, password);
-   }
+	private DataSource ds;
+	
+	public CategoryDAO() throws Exception
+	{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env");
+		this.ds = (DataSource)compenv.lookup("jdbc");
+	}
+	
+	public Connection getConnection() throws Exception
+	{
+		return ds.getConnection();
+	}
 
 
    public List<CategoryDTO> getInfoBySelect(String select, int start, int end) throws Exception {

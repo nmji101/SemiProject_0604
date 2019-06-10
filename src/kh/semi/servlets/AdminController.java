@@ -25,9 +25,9 @@ public class AdminController extends HttpServlet {
 		String cmd = uri.substring(ctx.length());
 		System.out.println(cmd);
 
-		UpgradeDAO u_dao = new UpgradeDAO();
 
 		try {
+			UpgradeDAO u_dao = new UpgradeDAO();
 			if(cmd.equals("/mypage.admin")) { //메인-> 마이페이지 클릭해서 들어온경우 1페이지 띄워주기
 				//1. 튜터등록 목록 보내줘야함. 
 				int currentPage = 1;

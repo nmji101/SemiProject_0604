@@ -111,7 +111,12 @@ select {
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script>
 	$(function() {
-
+// 		var today = new Date();
+// 		today = today.setFullYear(today.getFullYear() - 10);
+// 		var m = today.getMonth(), d = today.getDate(), y = today.getFullYear();
+// 		var defaultDay = y+"-"+(m+1)+"-"+d;
+// 		alert(defaultDay);
+		
       $.datepicker
       .setDefaults({
                    dateFormat : 'yy-mm-dd',
@@ -134,6 +139,7 @@ select {
                    minDate : "-100Y"
                    //,maxDate : "-10Y"
                    ,yearRange : '-100:-10'
+                   //,defaultDate: tenYearago
                    });
 
       $("#datepicker").datepicker();
@@ -144,9 +150,9 @@ select {
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
 <script>
-    $(function() {
-    		$("#emailAuth_btn").hide();
-       		$("#email_auth_badge").hide();
+      $(function() {
+    	   $("#emailAuth_btn").hide();
+       		 $("#email_auth_badge").hide();
        		
             $("#logo").on("click", function() {
                 location.href = "start.main";
@@ -305,7 +311,7 @@ select {
                         $("#nicknametext").val("");
                         $("#nicknamecheckvar").val("");
                     }
-                })
+                })  
                 /* $("#ok").on("click",function() {
         if(($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $("#pwcheckvar").val() == "사용가능 합니다.") && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && $("#phonecheckvar").val() == "올바른 양식 입니다.")){
         if(!$("input[name=gender]")){
@@ -334,7 +340,7 @@ select {
 
         }else if()
         }) */
-       			$(document).keyup(function(e) {
+       			  $(document).keyup(function(e) {
             	    if ( e.keyCode == 13) {
             	    	$("#ok").click();
             	    }
@@ -366,7 +372,8 @@ select {
                         location.href = "start.main";
                     }
                 });
-            });
+            }); 
+
 </script>
 </head>
 <body>
@@ -483,7 +490,6 @@ select {
 					<div class="col-3"></div>
 				</div>
 			</div>
-
 			<div class="row" id="main">
 				<div class="col-1"></div>
 				<div class="col-8 text_label">

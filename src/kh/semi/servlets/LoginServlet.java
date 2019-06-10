@@ -89,10 +89,10 @@ public class LoginServlet extends HttpServlet
 						gender = account.get("gender").toString();
 						gender = gender.substring(1, gender.length() - 1);
 
-						if(gender.equals("male"))
+						if((gender.equals("male")) || (gender.equals("M")))
 						{
 							gender = "M";
-						}else if(gender.equals("female"))
+						}else if((gender.equals("female")) || (gender.equals("F")))
 						{
 							gender = "F";
 						}
@@ -203,10 +203,11 @@ public class LoginServlet extends HttpServlet
 			try
 			{
 				MemberDAO dao = new MemberDAO();
-				String idcheck = request.getParameter("idcheckvar");
-				String pwcheck = request.getParameter("pwcheckvar");
-				String nicknamecheck = request.getParameter("nicknamecheckvar");
-				String phonecheck = request.getParameter("phonecheckvar");
+				String idcheck = request.getParameter("idcheck");
+				String pwcheck = request.getParameter("pwcheck");
+				String nicknamecheck = request.getParameter("nicknamecheck");
+				String phonecheck = request.getParameter("phonecheck");
+				
 				System.out.println(idcheck);
 				System.out.println(pwcheck);
 				System.out.println(nicknamecheck);
@@ -223,6 +224,7 @@ public class LoginServlet extends HttpServlet
 				String resultid = "";
 				String resultpw = "";
 				String resultpw2 = "";
+				String resultgender = "";
 				String resultphone = "";
 				String resultnickname = "";
 				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
@@ -247,13 +249,20 @@ public class LoginServlet extends HttpServlet
 					System.out.println(resultpw2);
 				}
 
+				
+				Pattern genderPattern = Pattern.compile("(^[(M)(F)]$)"); // 비밀번호 확인 regex
+				Matcher genderMatcher = genderPattern.matcher(gender);
+				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultgender = genderMatcher.group(); 
+					System.out.println(resultgender);
+				}
 				Pattern phonePattern = Pattern.compile("(^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$)"); // 핸드폰 regex
 				Matcher phoneMacher = phonePattern.matcher(phone);
 				if(phoneMacher.find()){
 					resultphone = phoneMacher.group();
 					System.out.println(resultphone);
 				}
-
+				
 				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
 				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
 				if(nicknameMatcher.find()){
@@ -315,34 +324,35 @@ public class LoginServlet extends HttpServlet
 						resultage = "기타";
 					}
 				}
-
 				try
 				{
 					if
 					(
 
-							(pwcheck == "사용가능 합니다.") 
-							&&
-							(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
-							&& 
-							(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
-							&& 
-							(resultid != null) && (resultpw != null) 
-							&& (resultpw2 != null) && (resultnickname != null) 
-							&& (resultphone != null)
-							)
+	   						(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
+	            			&&
+	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null)) && (!gender.equals(""))
+	            			&& 
+	            			(phonecheck.equals("올바른 양식 입니다."))  && (pw.equals(pw2)) 
+	            			&& 
+	            			(!resultid.equals("")) && (!resultpw.equals("")) 
+	            			&& (!resultpw2.equals("")) && (!resultnickname.equals("")) 
+	            			&& (!resultphone.equals(""))
+	            	 )
 					{
 						if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
 						{
-							System.out.println("입력성공");
+							System.out.println("성공");
 							result = "성공";
-						}else
+						}
+						else
 						{
-							System.out.println("입력실패");
+							System.out.println("실패");
 							result = "실패";
 						}
-					}else {
-						System.out.println("check실패");
+					}
+					else {
+						System.out.println("실패");
 						result = "실패";
 					}
 				}catch(Exception e)

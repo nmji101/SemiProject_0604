@@ -7,15 +7,25 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import kh.semi.dto.UfileDTO;
 
 public class UfileDAO {
-	private Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "semi";
-		String pw = "semi";
-		return DriverManager.getConnection(url,user,pw);
+	private DataSource ds;
+	
+	public UfileDAO() throws Exception
+	{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env");
+		this.ds = (DataSource)compenv.lookup("jdbc");
+	}
+	
+	public Connection getConnection() throws Exception
+	{
+		return ds.getConnection();
 	}
 	public int insert(UfileDTO dto) throws Exception {
 		String sql = "insert into ufile values(ufile_seq.nextval,?,?,?,?)";

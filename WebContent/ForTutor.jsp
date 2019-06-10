@@ -381,7 +381,7 @@ $(function(){
 
 
 		$("input[name=tutorid]").val($("#tutor").text());
-		$("input[name=intro]").val($("#imtutor").text());
+		$("input[name=intro]").val($("#imtutor").html());
 		$("input[name=down]").val($('#mystatus2').text());
 		$("input[name=addr1]").val();
 		$("input[name=addr2]").val();
@@ -391,7 +391,7 @@ $(function(){
 		$("input[name=cash]").val();
 		$("input[name=startdate]").val();
 		$("input[name=enddate]").val();
-		$("input[name=explain]").val($('#cont').text());
+		$("input[name=explain]").val($('#cont').html());
 		$("input[name=inputtitle]").val($('#title').text());
 
 

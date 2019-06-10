@@ -6,6 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import kh.semi.dto.ClassInfoDTO;
 import kh.semi.dto.UfileDTO;
 
@@ -13,12 +17,18 @@ public class TutorDAO {
 	ClassInfoDTO dto = new ClassInfoDTO();
 	UfileDAO udao = new UfileDAO();
 	UfileDTO udto = new UfileDTO();
-	private Connection getConnection() throws Exception {
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String user = "semi";
-		String pw = "semi";
-		return DriverManager.getConnection(url,user,pw);
+	private DataSource ds;
+	
+	public TutorDAO() throws Exception
+	{
+		Context ctx = new InitialContext();
+		Context compenv = (Context)ctx.lookup("java:/comp/env");
+		this.ds = (DataSource)compenv.lookup("jdbc");
+	}
+	
+	public Connection getConnection() throws Exception
+	{
+		return ds.getConnection();
 	}
 	
 

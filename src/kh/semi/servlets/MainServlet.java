@@ -21,8 +21,8 @@ import kh.semi.dto.ReviewDTO;
 public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryDAO dao = new CategoryDAO();
 		try {
+			CategoryDAO dao = new CategoryDAO();
 			int count = dao.recordTotalCount();
 			request.setAttribute("count", count);
 			

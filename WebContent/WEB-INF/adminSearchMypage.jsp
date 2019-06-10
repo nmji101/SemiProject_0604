@@ -267,16 +267,9 @@ h2 {
                 });
                 $("#tutorList_btn").on("click",function(){
                 	location.href ="mypage.admin";
+                	
                 });
-                if(${loginId == null }){
-                    $("#toLogin").on("click",function(){
-                        location.href = "Login.jsp";
-                    });
-                    $("#toSignup").on("click",function(){//회원가입
-                        location.href = "SignUp.jsp";
-                    });
-                }else{
-                    $("#mypage_btn").on("click", function()
+                    $("#mypage_btn").on("click", function(){
                             location.href = "mypage.admin";
                     });
                     $("#logout_btn").on("click", function()
@@ -310,7 +303,6 @@ h2 {
                             location.href="naverLogout.login";
                         }
                     });
-                }
 
                 $(".lineContent").each(function(i,item){
 					$(item).on("click",function(){
