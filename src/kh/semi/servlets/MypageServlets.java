@@ -697,6 +697,44 @@ public class MypageServlets extends HttpServlet
 					response.sendRedirect("error.html");
 				}
 			}
+			else if(url.equals("kakaoleave.mypage"))
+			{
+				try
+				{
+					String id = request.getParameter("id");
+					String type = (String)request.getSession().getAttribute("loginType");
+					
+					System.out.println(id);
+					System.out.println(type);
+					
+//					if(id.equals(m_id))
+//					{
+//						PersonDAO dao = new PersonDAO();
+//						int result = dao.deleteKaKao(id);
+//							
+//						if(result > 0)
+//						{
+//							System.out.println("회원 탈퇴 완료");
+//							response.sendRedirect("start.main");
+//						}
+//						else
+//						{
+//							System.out.println("DB 삭제 중 오류");
+//							response.sendRedirect("error.html");
+//						}
+//					}
+//					else
+//					{
+//						System.out.println("세션의 아이디와 req로 넘어온 아이디가 다르다");
+//						response.sendRedirect("error.html");
+//					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+			}
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

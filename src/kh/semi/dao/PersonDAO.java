@@ -212,6 +212,22 @@ public class PersonDAO
 			return result;
 		}
 	}
+	public int deleteKakao(String id) throws Exception
+	{
+		String sql = "DELETE FROM MEMBER WHERE m_id = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, id);
+			int result = pstat.executeUpdate();
+			con.commit();
+				
+			return result;
+		}
+	}
 	
 	public String toSha256(String str)
 	{
