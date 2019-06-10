@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import kh.semi.dao.Mailsend;
 import kh.semi.dao.MemberDAO;
+import kh.semi.dao.PersonDAO;
 import kh.semi.dto.MemberDTO;
 
 @WebServlet("*.login")
@@ -35,6 +40,12 @@ public class LoginServlet extends HttpServlet
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
 		System.out.println(url);
 		System.out.println(request.getRealPath("/"));
+		//		try {
+		//	         new MemberDAO().insertAdmin();
+		//	         System.out.println("admin등록");
+		//	         }catch(Exception e) {
+		//	            
+		//	         }
 		if(url.equals("kakao.login"))
 		{
 			String info = request.getParameter("json").substring(1, request.getParameter("json").length() - 1);
@@ -97,7 +108,7 @@ public class LoginServlet extends HttpServlet
 					{
 						request.getSession().setAttribute("loginId", id);
 						request.getSession().setAttribute("loginType", "kakao");
-						request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+						request.getRequestDispatcher("start.jsp").forward(request, response);
 					}else
 					{
 						System.out.println("DB INSERT ERROR");
@@ -106,7 +117,8 @@ public class LoginServlet extends HttpServlet
 				{
 					request.getSession().setAttribute("loginId", id);
 					request.getSession().setAttribute("loginType", "kakao");
-					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
+					request.getSession().setAttribute("snsLogin", "true");
+					request.getRequestDispatcher("start.main").forward(request, response);
 				}
 			}catch(Exception e)
 			{
@@ -155,7 +167,7 @@ public class LoginServlet extends HttpServlet
 			//			}
 
 			request.getSession().invalidate();
-			response.sendRedirect("mainHomePage.jsp");
+			response.sendRedirect("start.main");
 		}else if(url.equals("idcheck.login"))
 		{
 			MemberDAO dao;
@@ -197,12 +209,55 @@ public class LoginServlet extends HttpServlet
 
 				String id = request.getParameter("id");// 아이디
 				String pw = request.getParameter("pw");// 패스워드
+				String pw2 = request.getParameter("pw2");//패스워드 확인
 				String nickname = request.getParameter("nickname");// 닉네임
 				String gender = request.getParameter("gender");// 성별
+				String phone = request.getParameter("phone");//핸드폰
 				String birth = request.getParameter("birth");// 날짜 1900-05-07
-
+				
+				String resultid = "";
+				String resultpw = "";
+				String resultpw2 = "";
+				String resultphone = "";
+				String resultnickname = "";
+				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
+				Matcher idMatcher = idPattern.matcher(pw2);
+				if(idMatcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultid = idMatcher.group(); 
+					System.out.println(resultid);
+				}
+				
+				
+				Pattern pwPattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 regex
+				Matcher pwMatcher = pwPattern.matcher(pw);
+				if(pwMatcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultpw = pwMatcher.group(); 
+					System.out.println(resultpw);
+				}
+				
+				Pattern pw2Pattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 확인 regex
+				Matcher pw2Matcher = pw2Pattern.matcher(pw2);
+				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultpw2 = pw2Matcher.group(); 
+					System.out.println(resultpw2);
+				}
+				
+				Pattern phonePattern = Pattern.compile("(^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$)"); // 핸드폰 regex
+				Matcher phoneMacher = phonePattern.matcher(phone);
+				if(phoneMacher.find()){
+					resultphone = phoneMacher.group();
+					System.out.println(resultphone);
+				}
+				
+				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
+				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
+				if(nicknameMatcher.find()){
+					resultnickname = nicknameMatcher.group(); 
+					System.out.println(resultnickname);
+				}
+				
 				String year = dao.getMyLoginYear(birth);// 날짜에서 년도 ex)1900 가져오기
-				int a = Integer.parseInt(year);
+				int resultyear = Integer.parseInt(year);
 
 				String ageRange = dao.getMyLoginAgeRange(year);// 년도 뒷자리 ex) 00
 				int intagerange = Integer.parseInt(ageRange);// 년도 뒷자리 int 형으로 바꾸기
@@ -211,10 +266,11 @@ public class LoginServlet extends HttpServlet
 				String day = dao.getMyLoginYearDay(month_day);// 일 ex)07
 				String monthday = month + day; // 월일 ex)0507
 
-				String phone = request.getParameter("phone");
+				
 				String resultage = "";
 				String result = "";
-				if(a < 2000)
+				
+				if(resultyear < 2000)
 				{ // 1900 년대생이면
 					if(10 <= intagerange && intagerange < 20)
 					{
@@ -257,12 +313,30 @@ public class LoginServlet extends HttpServlet
 
 				try
 				{
+					if
+					(
+	            			
+	   						(idcheck == "사용 가능한 아이디 입니다.") && (pwcheck == "사용가능 합니다.") 
+	            			&&
+	            			(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
+	            			&& 
+	            			(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
+	            			&& 
+	            			(resultid != null) && (resultpw != null) 
+	            			&& (resultpw2 != null) && (resultnickname != null) 
+	            			&& (resultphone != null)
+	            	 )
+					{
 					if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
 					{
 						System.out.println("성공");
 						result = "성공";
 					}else
 					{
+						System.out.println("실패");
+						result = "실패";
+					}
+					}else {
 						System.out.println("실패");
 						result = "실패";
 					}
@@ -279,7 +353,7 @@ public class LoginServlet extends HttpServlet
 				response.sendRedirect("error.html");
 			}
 		}else if(url.equals("naverLogin.login")) { //네이버로그인
-			String clientId = "gB29fVbvRSeR2nP3nDLJ";//애플리케이션 클라이언트 아이디값";
+			String clientId = "8kD62F_deR9smlz8qRkR";//애플리케이션 클라이언트 아이디값";
 			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");///callback 주소
 			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
 			// 상태 토큰으로 사용할 랜덤 문자열 생성
@@ -293,8 +367,8 @@ public class LoginServlet extends HttpServlet
 			apiURL += "&state=" + state;
 			response.sendRedirect(apiURL);
 		}else if(url.equals("naverLoginResult.login")) {
-			String clientId = "gB29fVbvRSeR2nP3nDLJ";//애플리케이션 클라이언트 아이디값";
-			String clientSecret = "Zdr7BUcINY";//애플리케이션 클라이언트 시크릿값";
+			String clientId = "8kD62F_deR9smlz8qRkR";//애플리케이션 클라이언트 아이디값";
+			String clientSecret = "aCVcnGAU_D";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
 			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");
@@ -385,11 +459,12 @@ public class LoginServlet extends HttpServlet
 					//age
 					String birthday = null;
 					if(resObj.get("birthday")!=null) {
-						birthday = resObj.get("birthday").getAsString();
+						birthday = resObj.get("birthday").getAsString().replace("-", "");
 					}
 					String agerange = null;
 					if(resObj.get("age")!=null) {
-						agerange = resObj.get("age").getAsString();
+						agerange = resObj.get("age").getAsString().substring(0, 2);
+						System.out.println(agerange);
 					}
 					String gender = null;
 					if(resObj.get("gender")!=null) {
@@ -428,9 +503,6 @@ public class LoginServlet extends HttpServlet
 					//https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id={클라이언트 아이디}
 					//&client_secret={클라이언트 시크릿}&access_token={접근 토큰}&service_provider=NAVER
 
-
-
-
 					//request.getSession().setAttribute("delete", deleteToken);
 					//https://nid.naver.com/oauth2.0/token?grant_type=delete
 					//&client_id=jyvqXeaVOVmV&client_secret=527300A0_COq1_XV33cf&access_token=c8ceMEJisO4Se7uGCEYKK1p52L93bHXLnaoETis9YzjfnorlQwEisqemfpKHUq2gY&service_provider=NAVER
@@ -449,31 +521,32 @@ public class LoginServlet extends HttpServlet
 							System.out.println("DB INSERT ERROR");
 						}
 					}
+					request.getSession().setAttribute("snsLogin", "true");
 					request.getSession().setAttribute("loginId", "N"+naverCode);
 					request.getSession().setAttribute("loginType", "Naver");
-					request.getRequestDispatcher("mainHomePage.jsp").forward(request, response);
-					
+					response.sendRedirect("start.main");
 
 
-					//접근토큰삭제 -> 탈퇴할때? 없애기... 
-//					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
-//					deleteToken +="&client_id=" + clientId;
-//					deleteToken +="&client_secret=" +clientSecret;
-//					deleteToken +="&access_token=" + access_token;
-//					deleteToken +="&service_provider=NAVER";
-//					System.out.println("deleteToken : " + deleteToken);
 
-
-					//String deleteToken = (String)request.getSession().getAttribute("delete");
-					//					URL url2 = new URL(deleteToken);
-					//					HttpURLConnection con2 = (HttpURLConnection)url2.openConnection();
-					//					con2.setRequestMethod("GET");
-					//					int responseCode2 = con2.getResponseCode();
+					//					//접근토큰삭제 -> 탈퇴할때? 없애기... 
+					//					String deleteToken = "https://nid.naver.com/oauth2.0/token?grant_type=delete";
+					//					deleteToken +="&client_id=" + clientId;
+					//					deleteToken +="&client_secret=" +clientSecret;
+					//					deleteToken +="&access_token=" + access_token;
+					//					deleteToken +="&service_provider=NAVER";
+					//					System.out.println("deleteToken : " + deleteToken);
+					//
+					//
+					//					//String deleteToken = (String)request.getSession().getAttribute("delete");
+					//					URL url3 = new URL(deleteToken);
+					//					HttpURLConnection con3 = (HttpURLConnection)url3.openConnection();
+					//					con3.setRequestMethod("GET");
+					//					int responseCode2 = con3.getResponseCode();
 					//					BufferedReader br2;
 					//					if(responseCode2==200) { // 정상 호출
-					//						br2 = new BufferedReader(new InputStreamReader(con2.getInputStream()));
+					//						br2 = new BufferedReader(new InputStreamReader(con3.getInputStream()));
 					//					} else {  // 에러 발생
-					//						br2 = new BufferedReader(new InputStreamReader(con2.getErrorStream()));
+					//						br2 = new BufferedReader(new InputStreamReader(con3.getErrorStream()));
 					//					}
 					//					String inputLine2;
 					//					StringBuffer res2 = new StringBuffer();
@@ -500,6 +573,50 @@ public class LoginServlet extends HttpServlet
 			response.sendRedirect("naverLogoutView.jsp");
 		}else if(url.equals("naverLogoutPop.login")) {
 			response.sendRedirect("https://nid.naver.com/nidlogin.logout?returl=http://www.naver.com");
+		}else if(url.equals("emailAuth.login")) {//이메일인증
+			String email = request.getParameter("email");
+			request.setAttribute("email", email);
+			request.getRequestDispatcher("emailAuthView.jsp").forward(request, response);
+		}else if(url.equals("sendAuthNum.login")) {
+			String email = request.getParameter("email");
+			String result = new Mailsend().sendPwToMail(email);
+			if(result=="fail") {
+				System.out.println("이메일발송오류");
+				response.sendRedirect("error.html");
+			}
+			writer.append(result);
+		}else if(url.equals("phoneCheck.login")) {
+			String phone = request.getParameter("phone");
+			try {
+				String result = new MemberDAO().isPhoneUseOk(phone);
+				writer.append(result);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}else if(url.equals("findId.login")) {
+			String birth = request.getParameter("birth");
+			String phone = request.getParameter("phone");
+			try {
+				String result = new MemberDAO().selectIdByPhoneAndBirth(phone,birth);
+				writer.append(result);
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
+		}else if(url.equals("changePw.login")) {
+			String pw = request.getParameter("pw");
+			String id = request.getParameter("id");
+			try {
+				PersonDAO dao = new PersonDAO();
+				String changedPW = dao.toSha256(pw);
+
+				int result = dao.updatePwById(changedPW, id);
+				writer.append(result+"");
+			}catch(Exception e) {
+				e.printStackTrace();
+				response.sendRedirect("error.html");
+			}
 		}
 	}
 

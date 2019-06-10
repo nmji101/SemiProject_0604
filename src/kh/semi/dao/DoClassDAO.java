@@ -3,6 +3,7 @@ package kh.semi.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -163,6 +164,31 @@ public class DoClassDAO
 				{
 					return 0;
 				}
+			}
+		}
+	}
+	
+	public boolean existCheck(String m_id, int c_id) throws Exception
+	{
+		String sql = "select count(*) from CLASSINFO i,CLASSDOING d \r\n" + 
+						"where (i.info_classid = d.do_classid)\r\n" + 
+						"and (d.do_userid = ?) \r\n" + 
+						"AND (d.DO_CLASSID = ?)\r\n" + 
+						"AND ( TRUNC(SYSDATE) <= d.DO_DATE)";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_id);
+			pstat.setInt(2, c_id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
 			}
 		}
 	}

@@ -146,7 +146,7 @@ public class ClassInfoDTO {
 	public void setInfo_click(int info_click) {
 		this.info_click = info_click;
 	}
-	public ClassInfoDTO(int info_classid_seq, String info_tutorid, String info_category, String info_title, String info_explain,
+	public ClassInfoDTO(int info_classid, String info_tutorid, String info_category, String info_title, String info_explain,
 			String info_intro, String info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
 			int info_price, String info_img1, String info_img2, String info_img3, String info_start, String info_end,
 			String info_date, String info_avgstar, int info_click) {

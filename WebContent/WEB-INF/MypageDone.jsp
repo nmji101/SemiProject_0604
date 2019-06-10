@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Document</title>
-
+<link
+	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
+	rel="stylesheet">
 <style>
 
 /*         header	 */
@@ -138,7 +140,7 @@ div {
 	text-align: center;
 }
 
-#contents_div  img {
+.my-auto>img {
 	width: 100%;
 	height: 100%;
 }
@@ -152,13 +154,45 @@ div {
 }
 
 #done_class_btn {
-	color: cornflowerblue;
-	font-weight: bold;
+	color: white;
+	font-weight: bold
 }
 
 #ing_class_btn, #done_class_btn, #person_info_btn, #tutor_page_btn {
 	width: 100%;
 	height: 100%;
+}
+
+h2 {
+	font-family: 'Gugi', cursive;
+	color: #ffba00
+}
+
+#noClass {
+	width:300px;
+	text-align: center;
+	color: #7e7666;
+	font-size: 20px;
+	height: 300px;
+	position: relative;
+	left:150px;
+}
+
+#footer {
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 100px 0px 0px 0px;
+}
+
+#sns>img {
+	margin: 30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg {
+	margin-right: 50px;
+	text-align: right;
 }
 </style>
 
@@ -173,10 +207,38 @@ div {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 	$(function()
     {
+		$("#logo").on("click", function() {
+			location.href = "start.main";
+		})
+		$("#search_Btn").on("click",function(){
+			var input = $("#searchbox").val();
+			var regex = /^ {1,}$/g;
+			var result = regex.exec(input);
+			if(input==""){
+				alert("검색어를 입력해주세요.");
+				return;
+			}else if(result!=null){
+				alert("검색할 단어를 입력해주세요.");
+				return;
+			}
+			//alert("검색어 : " + input)
+			$("#searchForm").submit();
+		});
+		$("#mypage_btn").on("click", function()
+        {
+			if(${type=="admin"})
+			{
+				location.href = "mypage.admin";
+			}
+			else
+			{
+				location.href = "doing.mypage?"+encodeURI("page=1");
+			}
+        });
 		$("#logout_btn").on("click", function()
 		{
 			if(${loginType == "kakao"})
@@ -210,40 +272,10 @@ div {
 		    	location.href="naverLogout.login";
 		    }
 		})
-		$("#logout_btn").on("click", function()
-		{
-			location.href = "logout.login";
-		});
-		
-	    $("#search_btn").on("click", function()
-	    {
-		    location.href = "query.query?query=" + $("#search_text").val();
-	    });
-	    
-	    $("#ing_class_btn").on("click", function()
-	    {
-		    location.href = "doing.mypage?page=1";
-	    });
-	    
-	    $("#done_class_btn").on("click", function()
-	    {
-		    location.href = "done.mypage?page=1";
-	    });
-	    
-	    $("#person_info_btn").on("click", function()
-	    {
-		    location.href = "person.mypage?page=1";
-	    });
-
-	    
-	    $("#tutor_page_btn").on("click", function()
-		{
-			location.href = "tutor.mypage";
-	    });	    
 
 	    $("#profile_img_btn").on("click", function()
 	    {
-		    var popOption = "width=450, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+	    	var popOption = "width=500, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
 		    
 		    open("changeImg.mypage", "", popOption);
 	    });
@@ -262,12 +294,12 @@ div {
 			var classDate = $(this).siblings(".class_date").val();
 			var classId = $(this).siblings(".class_id").val();
             
-            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle, "", popOption);
+            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&m_id=${dto.m_id}", "", popOption);
 	    });
 	    
 	    $(document).on("click", ".detail_class_btn", function()
 	    {
-	       location.href = "detail.page?id=" + $(this).attr("name");
+	       location.href = "clickClass.classInfo?classId=" + $(this).attr("name");
 	    });
 	           	    
 	    $(document).on("click", ".navi_btn", function()
@@ -285,11 +317,11 @@ div {
 	    
 	    if("${ currentPage }" % 5 == 0)
 		{
-			$($(".navi_btn")[4]).css("color", "red");
+			$($(".navi_btn")[4]).css("color", "#ffba00");
 		}
 		else
 		{
-			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "red");
+			$($(".navi_btn")["${ currentPage %5 - 1 }"]).css("color", "#ffba00");
 		}
 	    
     });
@@ -311,29 +343,22 @@ div {
 
 			<div id="logo_div" class="col-12 col-lg-3">
 
-				<a href="mainHomePage.jsp"><img src="logo.png" id=logo></a>
+				<a href="start.main"><img src="logo.png" id=logo></a>
 
 			</div>
 
 			<div class="col-12 col-lg-6">
 
-				<form id=search class="form-inline my-2 my-lg-0">
-
-					<div class="row justify-content-center">
-
-						<div id="searchbox_div" class="col-12">
-
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn"
+									class="btn btn-warning my-2 my-sm-0 headBtn" type="button">Search</button>
+							</div>
 						</div>
-
-					</div>
-
-				</form>
+					</form>
 
 			</div>
 
@@ -373,7 +398,7 @@ div {
 
 				<div id="profile_div_row" class="row">
 
-					<div class="col-lg-6">
+					<div class="col-lg-9">
 
 						<div id="profile_div" class="row">
 
@@ -389,7 +414,10 @@ div {
 
 								<button id="profile_nickname_btn" class="btn">
 
-									<h3>${ dto.m_nickname } 님 환영합니다.</h3>
+									<h2>${ dto.m_nickname }
+										님, 환영합니다! <img
+											src="https://img.icons8.com/color/48/000000/smiling.png">
+									</h2>
 
 								</button>
 
@@ -415,84 +443,110 @@ div {
 
 						<div class="row">
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="ing_class_btn" class="btn btn-warning py-3">
-									수강 중 클래스</button>
-
-							</div>
-
-							<div class="col-6 col-md-3 col-lg-12 my-1">
-
-								<button id="done_class_btn" class="btn btn-warning py-3">
-
-									<h5><strong>수강 한 클래스</strong></h5>
-
-								</button>
+								<a href="doing.mypage?page=1">
+									<button id="ing_class_btn" class="btn btn-outline-warning py-3">
+										수강 중 클래스
+									</button>
+								</a>
 
 							</div>
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="person_info_btn" class="btn btn-warning py-3">개인
-									정보 수정</button>
+								<a href="done.mypage?page=1">
+									<button id="done_class_btn" class="btn btn-warning py-3">
+										<h5><strong>수강 한 클래스</strong></h5>
+									</button>
+								</a>
+
+							</div>
+
+							<div class="col-6 col-md-4 col-lg-12 my-1">
+
+								<a href="person.mypage?page=1">
+									<button id="person_info_btn" class="btn btn-outline-warning py-3">
+										개인 정보 수정
+									</button>								
+								</a>
 
 							</div>
 
-							<div class="col-6 col-md-3 col-lg-12 my-1">
+							<div class="col-6 col-md-4 col-lg-12 my-1">
 
-								<button id="tutor_page_btn" class="btn btn-warning py-3">
-
-									튜터 페이지</button>
+								<a href="tutor.mypage?page=1">
+									<button id="tutor_page_btn" class="btn btn-outline-warning py-3" > 
+										튜터 페이지
+									</button>
+								</a>
 
 							</div>
+
 						</div>
 
 					</div>
 
 					<div id="contents_div" class="col-lg-9">
+						<c:choose>
+							<c:when test="${ listsize == 0}">
+								<div id="noClass">
+									<img src="done.png">
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="i" begin="1" end="${ listsize }" step="1">
 
-						<c:forEach var="i" begin="1" end="${ listsize }" step="1">
+									<div class="row class_div my-3">
 
-							<div class="row class_div my-3">
+										<div class="col-12">
 
-								<div class="col-12">
+											<div class="row">
 
-									<div class="row">
 
-										<div class="class_img_div col-lg-2 my-auto">${ list[i-1].img }
+
+
+										<div class="class_img_div col-lg-2 my-auto">
+											<img src="${ list[i-1].img }">
 										</div>
 
-										<div class="class_text_div col-lg-7 my-auto">
+												<div class="class_text_div col-lg-7 my-auto">
 
-											<h4>${ list[i-1].title }</h4>
-											${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
-										</div>
+													<h4>${ list[i-1].title }</h4>
+													${ list[i-1].tutorId } <br> ${ list[i-1].date } <br>
 
-										<div class="class_btn_div col-lg-3 my-auto">
+												</div>
 
-											<input class="btn btn-primary detail_class_btn mx-3"
-												name=${ list[i-1].classId } type="button" value="자세히">
-											<input class="btn btn-primary review_class_btn mx-3"
-												name=${ list[i-1].classId } type="button" value="리뷰 작성">
+												<div class="class_btn_div col-lg-3 my-auto">
+													
+													<input class="btn btn-info detail_class_btn mx-3"
+														name=${ list[i-1].classId } type="button" value="자세히">
+													
+													<c:if test="${ strList[i-1] == 'false' }">
+														<input class="btn btn-info review_class_btn mx-3"
+														name=${ list[i-1].classId } type="button" value="리뷰 작성">
+													</c:if>
 
-											<input class="class_title" type="hidden"
-												value="${ list[i-1].title }"> <input
-												class="class_date" type="hidden" value="${ list[i-1].date }">
-											<input class="class_id" type="hidden"
-												value="${ list[i-1].classId }">
+													<input class="class_title" type="hidden"
+														value="${ list[i-1].title }"> <input
+														class="class_date" type="hidden"
+														value="${ list[i-1].date }"> <input
+														class="class_id" type="hidden"
+														value="${ list[i-1].classId }">
+
+												</div>
+
+											</div>
 
 										</div>
 
 									</div>
 
-								</div>
-
-							</div>
-
-						</c:forEach>
-
+								</c:forEach>
+								</c:otherwise>
+								</c:choose>
+								
 					</div>
 
 
@@ -526,6 +580,18 @@ div {
 
 
 	</div>
-
+<div id=footer class="row">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+				<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+				<img src="https://img.icons8.com/ios/48/000000/twitter.png"> <img
+					src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+				<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+				(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br> © Ggooldanji. all rights
+				reserved.
+			</div>
+		</div>
 </body>
 </html>

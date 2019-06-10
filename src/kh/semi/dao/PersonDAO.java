@@ -56,7 +56,7 @@ public class PersonDAO
 					{
 						attention = "[ \"없음\" ]";
 					}
-					dto = new PersonDTO(rs.getString("m_id"), rs.getString("m_nickname"), rs.getString("m_photo"), rs.getString("m_type"), attention);
+					dto = new PersonDTO(rs.getString("m_id"), rs.getString("m_nickname"), rs.getString("m_gender"), rs.getString("m_agerange"), rs.getString("m_monthday"), rs.getString("m_photo"), rs.getString("m_type"), attention);
 				}
 				return dto;
 			}
@@ -123,6 +123,42 @@ public class PersonDAO
 		}
 	}
 	
+	public int updateAgerangeById(String m_agerange ,String m_id) throws Exception
+	{
+		String sql = "UPDATE MEMBER SET m_agerange = ? WHERE M_ID = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_agerange);
+			pstat.setString(2, m_id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			
+			return result;
+		}
+	}
+	
+	public int updateGenderById(String m_gender ,String m_id) throws Exception
+	{
+		String sql = "UPDATE MEMBER SET m_gender = ? WHERE M_ID = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_gender);
+			pstat.setString(2, m_id);
+			int result = pstat.executeUpdate();
+			con.commit();
+			
+			return result;
+		}
+	}
+	
 	public int updatePwById(String m_pw ,String m_id) throws Exception
 	{
 		String sql = "UPDATE MEMBER SET M_PASSWORD = ? WHERE M_ID = ?";
@@ -155,6 +191,24 @@ public class PersonDAO
 			int result = pstat.executeUpdate();
 			con.commit();
 			
+			return result;
+		}
+	}
+	
+	public int deleteById(String id, String pw) throws Exception
+	{
+		String sql = "DELETE FROM MEMBER WHERE m_id = ? and m_password = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, id);
+			pstat.setString(2, pw);
+			int result = pstat.executeUpdate();
+			con.commit();
+				
 			return result;
 		}
 	}

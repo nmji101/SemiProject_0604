@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import kh.semi.dto.ClassInfoDTO;
 import kh.semi.dto.UfileDTO;
@@ -20,6 +21,52 @@ public class TutorDAO {
 		return DriverManager.getConnection(url,user,pw);
 	}
 	
+
+	public ClassInfoDTO content(int num) throws Exception{ //게시글 보기
+		String sql = "select * from classinfo where info_classid=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, num);
+			ResultSet rs = pstat.executeQuery();
+			if(rs.next()) {
+				dto.setInfo_classid(rs.getInt("info_classid"));
+				dto.setInfo_tutorid(rs.getString("info_tutorid"));
+				dto.setInfo_category(rs.getString("info_category"));
+				dto.setInfo_title(rs.getString("info_title"));
+				dto.setInfo_explain(rs.getString("info_explain"));
+				dto.setInfo_intro(rs.getString("info_intro"));
+				dto.setInfo_addr1(rs.getString("info_addr1"));
+				dto.setInfo_addr2(rs.getString("info_addr2"));
+				dto.setInfo_addr3(rs.getString("info_addr3"));
+				dto.setInfo_addr4(rs.getString("info_addr4"));
+				dto.setInfo_maxperson(rs.getInt("info_maxperson"));
+				dto.setInfo_price(rs.getInt("info_price"));
+				dto.setInfo_img1(rs.getString("info_img1"));
+				dto.setInfo_img2(rs.getString("info_img2"));
+				dto.setInfo_img3(rs.getString("info_img3"));
+				dto.setInfo_start(rs.getString("info_start"));
+				dto.setInfo_end(rs.getString("info_end"));
+				dto.setInfo_date(rs.getString("info_date"));
+	}return dto;
+		}
+	}
+
+	
+	
+	public int delete(int info_classid) throws Exception{//게시글 삭제하기
+		String sql = "delete from classinfo where info_classid=?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, info_classid);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
 	
 	   public int test(ClassInfoDTO dto)    throws Exception{ 
 		      //                                                                  1,2,3,4,5,6,7,8,9, 10,11

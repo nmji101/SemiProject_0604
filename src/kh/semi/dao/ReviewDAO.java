@@ -31,7 +31,7 @@ public class ReviewDAO
 
 	public int insertReview(String c_id, String m_id, String contents, String star, Date date) throws Exception
 	{
-		String sql = "insert into REVIEW values(re_seq_seq.nextval, ?, ?, ?, ?, ?, default, default, default)";
+		String sql = "insert into REVIEW values(re_seq_seq.nextval, ?, ?, ?, ?, ?, default, default)";
 		try
 		(
 				Connection con = this.getConnection();
@@ -118,6 +118,7 @@ public class ReviewDAO
 			return result;
 		}
 	}
+
 	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId) {
 
 		int naviCountPerPage = 5;
@@ -266,5 +267,47 @@ public class ReviewDAO
 		  }
 		int aveStar =  sum / starList.size();
 		return aveStar;
+	}
+
+	
+	public boolean overlapCheck(int seq, String id) throws Exception
+	{
+		String sql = "select * from likes where l_seq = ? and l_userid = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, seq);
+			pstat.setString(2, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
+	}
+	public boolean overlapReviewCheck(int classid, String id) throws Exception
+	{
+		String sql = "select * from REVIEW where re_classid = ? and re_userid = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, classid);
+			pstat.setString(2, id);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
 	}
 }

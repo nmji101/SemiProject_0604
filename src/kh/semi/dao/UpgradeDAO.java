@@ -23,7 +23,7 @@ public class UpgradeDAO {
 		return DriverManager.getConnection(url, user, password);
 	}
 
-	
+
 	/**
 	 * 튜터요청리스트에 insert
 	 * @return int 1 success 0 error
@@ -34,9 +34,9 @@ public class UpgradeDAO {
 		String sql = "insert into upgrade values(up_seq_seq.nextval, ?, ?, default)";
 		try
 		(
-			Connection con = this.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);
-		)
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				)
 		{
 			pstat.setString(1, id);
 			pstat.setString(2, nickname);
@@ -47,29 +47,29 @@ public class UpgradeDAO {
 			return result;
 		}
 	}
-	
+
 	public boolean selectById(String id) throws Exception
 	{
 		String sql = "select * from upgrade where up_id = ?";
 		try
 		(
-			Connection con = this.getConnection();
-			PreparedStatement pstat = con.prepareStatement(sql);
-		)
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				)
 		{
 			pstat.setString(1, id);
 			try
 			(
-				ResultSet rs = pstat.executeQuery();
-			)
+					ResultSet rs = pstat.executeQuery();
+					)
 			{
 				return rs.next();
 			}
 		}
 	}
 
-	
-	
+
+
 
 	/**
 	 * 튜터요청리스트에 있는 목록 불러오기
@@ -136,6 +136,20 @@ public class UpgradeDAO {
 			}
 			return list;
 		}
+	}
+	public List<UpgradeDTO> searchListByPage(List<UpgradeDTO> listParam , int currentPage) throws Exception{		
+		int recordCountPerPage= AdminNaviStatics.recordCountPerPage;
+		if(listParam.isEmpty()) {
+			return null;//**체크필요
+		}
+		int[] beginToEnd = this.getRecordPerPageBeginEnd(currentPage);
+		int begin = beginToEnd[0];
+		int end = beginToEnd[1];
+
+		if(listParam.size()<currentPage*recordCountPerPage) {
+			end = listParam.size();
+		}
+		return listParam.subList(begin-1, end);
 	}
 
 	/**
@@ -229,7 +243,7 @@ public class UpgradeDAO {
 			return result;
 		}
 	}
-	
+
 	public int updateTypeToTutorById(String[] idList)throws Exception{
 		String sql = "update member set m_type = 'tutor' where m_id = ?";
 		for(int i =0; i<idList.length-1; i++) {
@@ -238,7 +252,7 @@ public class UpgradeDAO {
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
-				
+
 				){
 			for(int i=0; i<idList.length;i++) {
 				pstat.setString(i+1, idList[i]);
@@ -246,6 +260,39 @@ public class UpgradeDAO {
 			int result = pstat.executeUpdate();
 			con.commit();
 			return result;
+		}
+	}
+
+	/**
+	 * tutor 검색했을때
+	 * @param wayParam / up_id , up_nickname
+	 * @param searchParam
+	 * @return
+	 * @throws Exception
+	 */
+	public List<UpgradeDTO> selectBySearch(String wayParam , String searchParam)throws Exception{
+		String sql = "select * from upgrade where "+wayParam+" like ? ";
+		ResultSet rs = null;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+
+				){
+			pstat.setString(1, "%"+searchParam+"%");
+			rs = pstat.executeQuery();
+			List<UpgradeDTO> list = new ArrayList<>();
+			while(rs.next()) {
+				int up_seq = rs.getInt("up_seq");
+				String up_id = rs.getString("up_id");
+				String up_nickname = rs.getString("up_nickname");
+				Date up_applydate = rs.getDate("up_applydate");
+				list.add(new UpgradeDTO(up_seq,up_id,up_nickname,up_applydate));
+			}
+			return list;
+		}finally {
+			if(rs!=null) {
+				rs.close();
+			}
 		}
 	}
 

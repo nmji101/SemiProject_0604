@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <style>
 #div {
-	margin-top: 12%;
+	margin-top: 13%;
 	overflow: hidden;
 	text-align: center;
 	width: 400px;
@@ -16,7 +17,7 @@
 }
 form>div{
 	background-color: #ffffff95;
-	
+	 border-radius:5px;
 }
 body {
 
@@ -37,7 +38,7 @@ body {
 
 logo {
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 
 #log {
@@ -45,7 +46,9 @@ logo {
 	width: 100%;
 	height: 100%;
 }
-
+img{
+	height: auto;
+}
 .form-control {
 	float: left;
 	width: 100%;
@@ -66,7 +69,7 @@ main>div {
 </style>
 <script src="https://code.jquery.com/jquery-3.4.0.min.js">
 	
-<!-- </script> -->
+</script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -76,6 +79,11 @@ main>div {
 <script>
 	$(function()
     {
+		$(document).keyup(function(e) {
+    	    if ( e.keyCode == 13) {
+    	    	$("#login_btn").click();
+    	    }
+    	});
 		$("#login_btn").on("click", function()
 		{
 			$.ajax
@@ -92,7 +100,7 @@ main>div {
         	{
         		if(response == "Y")
         		{
-        			location.href = "mainHomePage.jsp";
+        			location.href = "start.main";
         		}
         		else if(response == "N")
         		{
@@ -120,11 +128,9 @@ main>div {
 	<form action="Login.insert" method="post">
 		<div class="container col-md-6" id="div">
 			<div class="row" id="header">
-				<header class="col-log-2 col-md-2 col-sm-2"> </header>
-				                     <logo class="col-log-8 col-md-8 col-sm-8 pt-4"> 
-				                         <img src="logo.png" alt="" id="log"> 
+				                     <logo class="col-log-12 col-md-12 col-sm-12 pt-5"> 
+				                         <img src="꿀단지2.png" alt="" id="log"> 
 				                    </logo> 
-				<header class="col-log-2 col-md-2 col-sm-2"> </header>
 			</div>
 			<div class="row pt-4" id="main">
 				<div class="col-1"></div>
@@ -150,8 +156,8 @@ main>div {
 			<div class="row pt-1 mt-2" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
-					<a href="#">아이디 비밀번호 찾기</a> <span>/</span> <a
-						href="SignUp.jsp">회원가입</a>
+					<a href="findIdOrPw.jsp" style="color: #7a5634">아이디 비밀번호 찾기</a> <span>/</span> <a
+						href="SignUp.jsp" style="color: #7a5634">회원가입</a>
 				</div>
 				<div class="col-1"></div>
 			</div>

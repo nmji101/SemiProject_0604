@@ -50,8 +50,9 @@ public class AdminController extends HttpServlet {
 					}
 					request.setAttribute("beginPage", beginPage);
 					request.setAttribute("endPage", endPage);
+					System.out.println(beginPage + " : " + endPage);
 				}
-				
+
 				//3. 로그인한 관리자 정보 보내주기.
 				PersonDAO p_dao = new PersonDAO();
 				String loginId = (String)request.getSession().getAttribute("loginId");
@@ -79,11 +80,11 @@ public class AdminController extends HttpServlet {
 				if(upgradeList.size()!=0) {
 					request.setAttribute("upgradeList", upgradeList);
 				}
-				
+
 				List<UpgradeDTO> allList = u_dao.selectAllupgradeList();
 				List<String> naviList = u_dao.getNavi(currentPage, allList.size());
 				request.setAttribute("navi", naviList);
-				
+
 				String beginPage = naviList.get(0);
 				if(naviList.get(0).equals("<이전")) {
 					beginPage = naviList.get(1);
@@ -101,10 +102,59 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("dto", p_dto);
 
 				request.getRequestDispatcher("WEB-INF/adminMypage.jsp").forward(request, response);
+
+			}else if(cmd.equals("/searchTutor.admin")) {
+				String way = request.getParameter("way");
+				String search = request.getParameter("search");
+				String currentPageStr = request.getParameter("currentPage");
+				int currentPage = 0;
+				if(currentPageStr==null) {
+					currentPage=1;
+				}else {
+					currentPage = Integer.parseInt(currentPageStr);
+				}
+				//쿼리날려서 해당하는 전체 list 
+				List<UpgradeDTO> list = u_dao.selectBySearch(way, search);
+				//그 list중 띄워줄 list만 얻기
+				List<UpgradeDTO> upgradeList = u_dao.searchListByPage(list, currentPage);
+				if(upgradeList!=null) {
+					request.setAttribute("upgradeList", upgradeList);
+				}
+				//navi얻기 
+				List<String> naviList = u_dao.getNavi(currentPage, list.size());
+				request.setAttribute("navi", naviList);
+				if(naviList.size()!=0) {
+					String beginPage = naviList.get(0);
+					if(naviList.get(0).equals("<이전")) {
+						beginPage = naviList.get(1);
+					}
+					String endPage = naviList.get(naviList.size()-1);
+					if(naviList.get(naviList.size()-1).equals("다음>")) {
+						endPage = naviList.get(naviList.size()-2);
+					}
+					request.setAttribute("beginPage", beginPage);
+					request.setAttribute("endPage", endPage);
+				}
+
+				PersonDAO p_dao = new PersonDAO();
+				String loginId = (String)request.getSession().getAttribute("loginId");
+				PersonDTO p_dto = p_dao.selectById(loginId);
+				request.setAttribute("dto", p_dto);
+				request.setAttribute("search", search);
+				request.setAttribute("way", way);
+				String wayWord = "";
+				if(way.equals("up_id")) {
+					wayWord = "아이디";
+				}else {
+					wayWord = "닉네임";
+				}
+				request.setAttribute("wayWord", wayWord);
 				
+				request.getRequestDispatcher("WEB-INF/adminSearchMypage.jsp").forward(request, response);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("error.html");
 		}
 	}
 

@@ -51,7 +51,7 @@ public class MemberDAO
 	public int kakaoSignUp(MemberDTO dto) throws Exception
 	{
 		String sql = "INSERT INTO MEMBER(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_type,m_photo) " + 
-				"VALUES (?,?,?,?,?,?,'normal','<img src=\"\" alt=\"이미지가 없습니다\">')";
+				"VALUES (?,?,?,?,?,?,'normal','<img src=\"Content/Images/m_photo_1.jpg\" alt=\"이미지가 없습니다\">')";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
@@ -106,7 +106,7 @@ public class MemberDAO
 
 	public int getInsert(MemberDTO dto)throws Exception{ // 회원가입
 		String sql = "insert into member(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_phone,m_type,m_photo) "
-				+ "values(?,?,?,?,?,?,?,'normal','<img src=\"\" alt=\"이미지가 없습니다\">')";
+				+ "values(?,?,?,?,?,?,?,'normal','<img src=\"Content/Images/m_photo_1.jpg\" alt=\"이미지가 없습니다\">')";
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstet = con.prepareStatement(sql);
@@ -118,6 +118,25 @@ public class MemberDAO
 			pstet.setString(5,dto.getM_agerange());
 			pstet.setString(6,dto.getM_monthday());
 			pstet.setString(7,dto.getM_phone());
+			int result = pstet.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+	/**
+	 * 관리자계정 등록 메소드
+	 * @return
+	 * @throws Exception
+	 */
+	public int insertAdmin()throws Exception{ 
+		String sql = "insert into member(m_id,m_password,m_nickname,m_gender,m_agerange,m_monthday,m_phone,m_type,m_photo) "
+				+ "values('admin',?,'admin','F','20','0101',null,'admin','<img src=\"\" alt=\"이미지가 없습니다\">')";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstet = con.prepareStatement(sql);
+				){
+			pstet.setString(1, this.toSha256("admin"));
+			
 			int result = pstet.executeUpdate();
 			con.commit();
 			return result;
@@ -212,7 +231,7 @@ public class MemberDAO
 	}
 
 	public String[] getTutorImg(String tutorId) throws Exception{
-		String sql = "select m_nickname, m_phone from member where m_id = ?";
+		String sql = "select m_nickname, m_photo from member where m_id = ?";
 		ResultSet rs = null;
 		try(
 				Connection con = this.getConnection();
@@ -231,5 +250,47 @@ public class MemberDAO
 				rs.close();
 			}
 		}
+	}
+	/**
+	 * phone 번호 중복 검사
+	 * @param phone
+	 * @return
+	 * @throws Exception
+	 */
+	public String isPhoneUseOk(String phone) throws Exception{
+		String sql = "select * from member where m_phone = ?";
+		ResultSet rs = null;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, phone);
+			rs = pstat.executeQuery();
+			return rs.next()+"";
+		}finally {
+			if(rs !=null) {
+				rs.close();
+			}
+		}	
+	}
+	public String selectIdByPhoneAndBirth(String phone,String birth) throws Exception{
+		String sql = "select m_id from member where m_phone = ? and m_monthday = ? ";
+		ResultSet rs = null;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setString(1, phone);
+			pstat.setString(2, birth);
+			rs = pstat.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+			return rs.next()+"";
+		}finally {
+			if(rs !=null) {
+				rs.close();
+			}
+		}	
 	}
 }

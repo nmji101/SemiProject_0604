@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <style>
 body {
 
@@ -122,7 +122,8 @@ body {
 			location.href = "SignUp.jsp";
 		});
 		$("#toMain_btn").on("click", function() {
-			location.href = "mainHomePage.jsp";
+
+			location.href = "start.main";
 		});
 
 	});

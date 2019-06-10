@@ -6,7 +6,8 @@ public class PersonDTO
     private String m_password;
     private String m_nickname;
     private String m_gender;
-    private String m_birth;
+    private String m_agerange;
+    private String m_monthday;
     private String m_phone;
     private String m_photo;
     private String m_type;
@@ -26,9 +27,24 @@ public class PersonDTO
 		this.m_type = m_type;
 		this.m_attention = m_attention;
 	}
+	
+	public PersonDTO(
+		String m_id, String m_nickname, String m_gender, String m_agerange, String m_monthday, String m_photo, String m_type, String m_attention
+	)
+	{
+		super();
+		this.m_id = m_id;
+		this.m_nickname = m_nickname;
+		this.m_gender = m_gender;
+		this.m_agerange = m_agerange;
+		this.m_monthday = m_monthday;
+		this.m_photo = m_photo;
+		this.m_type = m_type;
+		this.m_attention = m_attention;
+	}
 
 	public PersonDTO(
-		String m_id, String m_password, String m_nickname, String m_gender, String m_birth, String m_phone, String m_photo, String m_type, String m_attention
+		String m_id, String m_password, String m_nickname, String m_gender, String m_monthday, String m_phone, String m_photo, String m_type, String m_attention
 	)
 	{
 		super();
@@ -36,7 +52,7 @@ public class PersonDTO
 		this.m_password = m_password;
 		this.m_nickname = m_nickname;
 		this.m_gender = m_gender;
-		this.m_birth = m_birth;
+		this.m_monthday = m_monthday;
 		this.m_phone = m_phone;
 		this.m_photo = m_photo;
 		this.m_type = m_type;
@@ -83,14 +99,24 @@ public class PersonDTO
 		this.m_gender = m_gender;
 	}
 
-	public String getM_birth()
+	public String getM_agerange()
 	{
-		return m_birth;
+		return m_agerange;
 	}
 
-	public void setM_birth(String m_birth)
+	public void setM_agerange(String m_agerange)
 	{
-		this.m_birth = m_birth;
+		this.m_agerange = m_agerange;
+	}
+
+	public String getM_monthday()
+	{
+		return m_monthday;
+	}
+
+	public void setM_monthday(String m_monthday)
+	{
+		this.m_monthday = m_monthday;
 	}
 
 	public String getM_phone()

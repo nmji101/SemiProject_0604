@@ -17,11 +17,25 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <script>
 $(function(){
 	$("#logo").on("click", function() {
-		location.href = "mainHomePage.jsp";
+		location.href = "start.main";
+	});
+	$("#search_Btn").on("click",function(){
+		var input = $("#searchbox").val();
+		var regex = /^ {1,}$/g;
+		var result = regex.exec(input);
+		if(input==""){
+			alert("검색어를 입력해주세요.");
+			return;
+		}else if(result!=null){
+			alert("검색할 단어를 입력해주세요.");
+			return;
+		}
+		//alert("검색어 : " + input)
+		$("#searchForm").submit();
 	});
 	if(${loginId == null}){
 		$("#toLogin").on("click",function(){
@@ -38,7 +52,7 @@ $(function(){
 					}else{
 						location.href = "doing.mypage?"+encodeURI("page=1");
 					}
-	    		})
+	    		});
 	    		$("#logout_btn").on("click", function()
 	    		{
 	    			if(${loginType == "kakao"})
@@ -67,8 +81,49 @@ $(function(){
 						location.href="logout.login";
 					}
 	    		})
-	}
+	};
+	$(".custom-select").on("click",function(){
+		var select = $(this).val();
+		console.log(select);
+		if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
+			location.href="info.category?select="+select;
+		}
+		
+	});
+	
+	$(".classCard").on("click",function(){
+		var classId = $(this).children(".classId").val();
+		location.href="clickClass.classInfo?classId="+classId;
+	});		
+	
+
+	$(".tmp").each(function(i,item){
+		var tmp = $(item).val();
+		var result = tmp.replace(/[0-9]/g,"");
+		$(item).parent().html(result);
+	});
+
+
+	$(".locationMenu li").on("click",function(){
+		var tmp = $(this).text();
+		var addr1 = tmp.replace(/(.+)\/(.+)/g,"$1");
+		var addr2 = tmp.replace(/(.+)\/(.+)/g,"$2");
+		if(addr1 != addr2){
+			location.href="info.category?addr1="+addr1+"&addr2="+addr2+"&select=info_avgstar desc";
+		
+		}else{
+			location.href="info.category?addr1="+addr1+"&select=info_avgstar desc";
+		}
+	});
+	
+	$(".price").each(function (i, item) {
+		var price = $(item).val();
+		var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/g,"$1,$2 원");
+		console.log(result);
+		$(item).parent().text(result);
+	})
 });
+
 </script>
 </head>
 <style>
@@ -128,6 +183,7 @@ div {
 	padding: 0;
 	border: 0px;
 	margin: auto;
+	transition-duration: 1s;
 }
 #soon {
 	text-align: center;
@@ -142,6 +198,13 @@ div {
 }
 .card-body{
 	text-align: left;
+}
+.card-body>img{
+	height: 80px;
+	width: 80px;
+	float:right;
+	border-radius: 50px;
+
 }
 #starBox{
 	float: left;
@@ -159,7 +222,7 @@ div {
 	text-align: center;
 }
 .nav-item {
-	width: 33.3%;
+	width: 25%;
 	margin: auto;
 	padding: 20px;
 	font-size: 20px;
@@ -177,6 +240,11 @@ div {
 }
 .has-megamenu {
 	position: static;
+}
+
+.navbar>ul{
+	width:70%;
+	margin:auto;
 }
 
 .dropdown-menu li, a{
@@ -254,11 +322,22 @@ div {
 	color: #ffb100;
 }
 #footer {
-	height: 150px;
-	margin: auto;
+	height: 300px;
+	width: 100%;
+	background-color: #f2f0e1;
+	margin: 0px;
 }
 #sns>img {
 	width: 50px;
+}
+#sns>img{
+	margin:30px 20px;
+	cursor: pointer;
+}
+
+#footerMsg{
+	margin-right:50px;
+	text-align: right;
 }
 </style>
 <body>
@@ -269,14 +348,14 @@ div {
 				<img src="logo.png" id=logo>
 			</div>
 			<div class="col-12 col-lg-6" id=search>
-				<form class="form-inline my-2 my-lg-0">
-					<div class="row justify-content-center">
-						<div class="col-12">
-							<input type="search" placeholder="취미를 검색해 보세요!"
-								aria-label="Search" id=searchbox>
-							<button class="btn btn-warning my-2 my-sm-0 headBtn"
-								type="submit">Search</button>
-						</div>
+				<form id="searchForm" action="search.category" class="my-2 my-lg-0">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<input type="search" placeholder="취미를 검색해 보세요!"
+									aria-label="Search" id="searchbox" name="search">
+								<button id="search_Btn" class="btn btn-warning my-2 my-sm-0 headBtn"
+									type="button">Search</button>
+							</div>
 					</div>
 				</form>
 			</div>
@@ -302,18 +381,20 @@ div {
 			<nav class="navbar navbar-expand navbar-light">
 				<ul class="nav justify-content-center">
 					<li class="nav-item"><a class="nav-link active"
-						href="info.category?category=main&addr=all&select=info_avgstar desc">추천</a></li>
-					<li class="nav-item dropdown has-megamenu"><a href="#"
+						href="info.category?category=main&addr1=all&select=info_avgstar desc">추천</a></li>
+				
+				<li class="nav-item dropdown has-megamenu"><a href="#"
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
 						d="navbarDropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">카테고리</a>
 
 						<ul class="dropdown-menu multi-column columns-6">
 							<div class="row category">
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=design&select=info_avgstar desc&addr=all">
+											href="info.category?category=design&select=info_avgstar desc&addr1=all">
 												디자인 <input type=hidden value="design" class=cate>
 										</a></li>
 
@@ -322,32 +403,33 @@ div {
 								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=it&select=info_avgstar desc&addr=all"
-											class=cateA>IT </a> <input type=hidden value="it" class=cate></li>
+											href="info.category?category=it&select=info_avgstar desc&addr1=all"
+											class=cateA> IT </a> <input type=hidden value="it" class=cate></li>
 
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=lang&select=info_avgstar desc&addr=all">언어
+											href="info.category?category=lang&select=info_avgstar desc&addr1=all">언어
 										</a> <input type=hidden value="lang" class=cate></li>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=life&select=info_avgstar desc&addr=all">라이프
+											href="info.category?category=life&select=info_avgstar desc&addr1=all">라이프
 												스타일 </a> <input type=hidden value="life" class=cate></li>
 									</ul>
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 CategoryMenu">
 									<ul class="multi-column-dropdown">
 										<li><a
-											href="info.category?category=money&select=info_avgstar desc&addr=all">재테크
+											href="info.category?category=money&select=info_avgstar desc&addr1=all">재테크
 										</a> <input type=hidden value="beauty" class=cate></li>
 									</ul>
 								</div>
+								<div class="d-none d-lg-block col-lg-1 CategoryMenu"></div>
 							</div>
 						</ul></li>
 
@@ -365,16 +447,15 @@ div {
 										<li>서울</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
-											<li>강남</li>
-											<li>신촌/홍대</li>
-											<li>건대</li>
-											<li>잠실</li>
-											<li>종로</li>
+											<li>강남/서초</li>
+											<li>서대문/마포</li>
+											<li>송파/잠실</li>
+											<li>종로/성동</li>
 											<li>노원</li>
-											<li>사당</li>
-											<li>성북</li>
-											<li>신림</li>
-											<li>목동</li>
+											<li>동작</li>
+											<li>성북/동대문</li>
+											<li>관악/신림</li>
+											<li>영등포/양천</li>
 											<li>용산</li>
 										</div>
 									</ul>
@@ -385,10 +466,11 @@ div {
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>일산/파주</li>
-											<li>용인/분당/수원</li>
+											<li>용인/분당</li>
+											<li>수원/성남</li>
 											<li>인천/부천</li>
-											<li>남양주/구리/하남</li>
-											<li>안양/안산/광명</li>
+											<li>남양주/구리</li>
+											<li>안양/안산</li>
 										</div>
 									</ul>
 								</div>
@@ -427,7 +509,7 @@ div {
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>강원 / 제주</li>
+										<li>강원/제주</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>강원</li>
@@ -437,7 +519,11 @@ div {
 								</div>
 							</div>
 						</ul></li>
-
+						
+						
+					<li class="nav-item"><a class="nav-link active"
+						href="list.notice?page=1">공지사항</a></li>
+		
 				</ul>
 			</nav>
 		</div>
@@ -445,14 +531,7 @@ div {
 	<div id=content>
 
 		<c:choose>
-			<c:when test="${size == 0}">
-				<div id=soon>
-					<img src="커밍순.png"><br> 현재 클래스 준비 중입니다.<br> 튜터가 되어
-					첫번째 클래스를 오픈해주세요!
-				</div>
-			</c:when>
-			<c:otherwise>
-
+			<c:when test="${size != 0}">
 				<select class="custom-select">
 					<option selected>분류</option>
 					<option value="info_avgstar desc">추천순</option>
@@ -478,17 +557,28 @@ div {
 								<div class="carousel slide" data-ride="carousel">
 									<div class="carousel-inner">
 										<div class="carousel-item active">
-											<img src="임시1.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img1 }" class="d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										
+										<c:choose>
+										<c:when test="${list.info_img2 != null }">
 										<div class="carousel-item">
-											<img src="임시2.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img2 }" class="d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										</c:when>		
+										</c:choose>
+										
+										<c:choose>
+										<c:when test="${list.info_img3 != null }">
 										<div class="carousel-item">
-											<img src="임시3.png" class="d-block w-100" alt="..."
+											<img src="${list.info_img3 }" class=d-block w-100" alt="이미지가 없습니다."
 												width="200px" height="200px">
 										</div>
+										</c:when>		
+										</c:choose>
+										
 									</div>
 									<a class="carousel-control-prev" href="#carousel" role="button"
 										data-slide="prev"> <span
@@ -502,10 +592,9 @@ div {
 								</div>
 								<!-- 캐러셀 끝 -->
 								<div class="card-body">
-									<img src=${list.m_photo } width="80px" height="80px"
-										alt="이미지.png" class=face>
+									${list.m_photo }
 									<span id=starBox> <c:choose>
-											<c:when test="${list.info_avgstar == '0'}">
+											<c:when test="${list.info_avgstar =='0'}">
 												<span class="badge badge-pill badge-info">New</span>
 											</c:when>
 										</c:choose> <c:forEach begin="1" end="${list.info_avgstar}">
@@ -516,7 +605,7 @@ div {
 										<b>${list.info_title }</b>
 									</p>
 									<p>
-										<span>${list.info_price }원</span> | <span>${list.m_nickname }</span>
+										<span><input type="hidden" value=${list.info_price } class=price></span> | <span>${list.m_nickname }</span>
 									</p>
 									<p class=addr2>
 										<input type="hidden" value="${list.info_addr2 }" class=tmp>
@@ -533,53 +622,36 @@ div {
 								name="nowPage">
 						</form>
 					</c:forEach>
+		
 				</div>
-	</div>
-	</c:otherwise>
+			</c:when>
+			<c:when test="${searchResult != null}">
+				<div id=soon>
+					<img src="커밍순.png"><br> 
+					검색어 : ${searchResult}<br>
+					<b>검색결과가 없습니다.</b><br>
+				</div>
+			</c:when>
+			<c:when test="${searchResult == null}">
+				<div id=soon>
+					<img src="커밍순.png"><br> 현재 클래스 준비 중입니다.
+					<br> 튜터가 되어 첫번째 클래스를 오픈해주세요!
+				</div>
+			</c:when>
 	</c:choose>
-
-	<div id=footer class="row">
-		<div class="col-12 col-md-8"></div>
-		<div class="col-12 col-md-4" id=sns>
-			<img src="블로그.png"> <img src="인스타그램.png"> <img
-				src="트위터.png"> <img src="페이스북.png">
-		</div>
 	</div>
-
-	<script>
-			
-			$(".custom-select").on("click",function(){
-				var select = $(this).val();
-				console.log(select);
-				if(select == 'info_price' || select == 'info_classid desc' || select == 'info_avgstar desc'){
-					location.href="info.category?select="+select;
-				}
-				
-			})
-			
-			$("#logo").on("click",function(){
-				location.href="index.jsp";
-			})
-			
-			$(".classCard").on("click",function(){
-				var classId = $(this).children(".classId").val();
-				location.href="clickClass.classInfo?classId="+classId;
-			})			
-			
-			
-			var tmp = $(".tmp").val();
-			
-			if(tmp!=null){
-				var result = tmp.replace(/[0-9]/g,"");
-			$(".addr2").html(result);
-			}
-			
-			$(".locationMenu li").on("click",function(){
-				var addr = $(this).text();
-				alert(addr);
-				location.href="info.category?addr="+addr+"&select=info_avgstar desc";
-			})
-			
-		</script>
+	<div id=footer class="row">
+			<div class="col-12 col-md-8"></div>
+			<div class="col-12 col-md-4" id=sns>
+		<img src="https://img.icons8.com/ios/48/000000/facebook.png">
+		<img src="https://img.icons8.com/ios/48/000000/twitter.png">
+		<img src="https://img.icons8.com/ios/48/000000/instagram-new.png">
+		<img src="https://img.icons8.com/ios/48/000000/github.png">
+			</div>
+			<div id=footerMsg>
+			(주)꿀단지 | 서울특별시 중구 남대문로 120 대일빌딩 3층<br>
+			© Ggooldanji. all rights reserved.	
+			</div>
+	</div>
 </body>
 </html>
