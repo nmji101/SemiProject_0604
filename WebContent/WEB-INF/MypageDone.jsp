@@ -525,7 +525,7 @@ h2 {
 													
 													<c:if test="${ strList[i-1] == 'false' }">
 														<input class="btn btn-info review_class_btn mx-3"
-														name=${ list[i-1].classId } type="button" value="리뷰 작성">
+														name=${ list[i-1].classId } type="button" value="후기 작성">
 													</c:if>
 
 													<input class="class_title" type="hidden"
