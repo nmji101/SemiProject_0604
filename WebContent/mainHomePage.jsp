@@ -514,7 +514,8 @@ $(function(){
 											<li>동작</li>
 											<li>성북/동대문</li>
 											<li>관악/신림</li>
-											<li>영등포/양천</li>
+											<li>영등포/구로</li>
+											<li>강서/양천</li>
 											<li>용산</li>
 										</div>
 									</ul>
@@ -535,7 +536,7 @@ $(function(){
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>충청</li>
+										<li>충청도</li>
 
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
@@ -546,7 +547,7 @@ $(function(){
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>경상</li>
+										<li>경상도</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>대구</li>
@@ -558,7 +559,7 @@ $(function(){
 								</div>
 								<div class="col-12 col-md-4 col-lg-2 locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>전라</li>
+										<li>전라도</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>광주</li>
