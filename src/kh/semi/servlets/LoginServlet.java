@@ -330,7 +330,6 @@ public class LoginServlet extends HttpServlet
 				{
 					if
 					(
-	            			
 	   						(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
 	            			&&
 	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null)) && (!gender.equals(""))

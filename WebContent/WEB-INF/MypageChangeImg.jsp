@@ -87,7 +87,7 @@
 			
 				<div class="col-10">
 				
-					<input type="file" class="custom-file-input" id="input_file" name="filename">
+					<input type="file" class="custom-file-input" id="input_file" name="filename" accept="image/gif, image/jpeg, image/png">
 					<label class="custom-file-label" for="customFile">Choose file</label>
 					
 				</div>
