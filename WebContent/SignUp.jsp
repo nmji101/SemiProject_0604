@@ -143,8 +143,8 @@ select {
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
 <script>
-    $(function() {
-    		$("#emailAuth_btn").hide();
+     $(function() {
+    	$("#emailAuth_btn").hide();
        		$("#email_auth_badge").hide();
        		
             $("#logo").on("click", function() {
@@ -304,7 +304,7 @@ select {
                         $("#nicknametext").val("");
                         $("#nicknamecheckvar").val("");
                     }
-                })
+                }) 
                 /* $("#ok").on("click",function() {
         if(($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $("#pwcheckvar").val() == "사용가능 합니다.") && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && $("#phonecheckvar").val() == "올바른 양식 입니다.")){
         if(!$("input[name=gender]")){
@@ -333,7 +333,7 @@ select {
 
         }else if()
         }) */
-       			$(document).keyup(function(e) {
+       			 $(document).keyup(function(e) {
             	    if ( e.keyCode == 13) {
             	    	$("#ok").click();
             	    }
@@ -365,7 +365,7 @@ select {
                         location.href = "start.main";
                     }
                 });
-            });
+            }); 
 </script>
 </head>
 <body>

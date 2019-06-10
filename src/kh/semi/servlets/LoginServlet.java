@@ -203,11 +203,18 @@ public class LoginServlet extends HttpServlet
 			try
 			{
 				MemberDAO dao = new MemberDAO();
-				String idcheck = request.getParameter("idcheckvar");
-				String pwcheck = request.getParameter("pwcheckvar");
-				String nicknamecheck = request.getParameter("nicknamecheckvar");
-				String phonecheck = request.getParameter("phonecheckvar");
-
+				String idcheck = request.getParameter("idcheck");
+				String pwcheck = request.getParameter("pwcheck");
+				String nicknamecheck = request.getParameter("nicknamecheck");
+				String phonecheck = request.getParameter("phonecheck");
+				
+				System.out.println(idcheck);
+				System.out.println(pwcheck);
+				System.out.println(nicknamecheck);
+				System.out.println(phonecheck);
+				
+				
+				
 				String id = request.getParameter("id");// 아이디
 				String pw = request.getParameter("pw");// 패스워드
 				String pw2 = request.getParameter("pw2");//패스워드 확인
@@ -215,14 +222,14 @@ public class LoginServlet extends HttpServlet
 				String gender = request.getParameter("gender");// 성별
 				String phone = request.getParameter("phone");//핸드폰
 				String birth = request.getParameter("birth");// 날짜 1900-05-07
-				
+				System.out.println(gender);
 				String resultid = "";
 				String resultpw = "";
 				String resultpw2 = "";
 				String resultphone = "";
 				String resultnickname = "";
 				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
-				Matcher idMatcher = idPattern.matcher(pw2);
+				Matcher idMatcher = idPattern.matcher(id);
 				if(idMatcher.find()){ // find가 group보다 선행되어야 합니다.
 					resultid = idMatcher.group(); 
 					System.out.println(resultid);
@@ -317,15 +324,15 @@ public class LoginServlet extends HttpServlet
 					if
 					(
 	            			
-	   						(idcheck == "사용 가능한 아이디 입니다.") && (pwcheck == "사용가능 합니다.") 
+	   						(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
 	            			&&
-	            			(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
+	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null))
 	            			&& 
-	            			(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
+	            			(phonecheck.equals("올바른 양식 입니다."))  && (pw.equals(pw2)) 
 	            			&& 
-	            			(resultid != null) && (resultpw != null) 
-	            			&& (resultpw2 != null) && (resultnickname != null) 
-	            			&& (resultphone != null)
+	            			(!resultid.equals("")) && (!resultpw.equals("")) 
+	            			&& (!resultpw2.equals("")) && (!resultnickname.equals("")) 
+	            			&& (!resultphone.equals(""))
 	            	 )
 					{
 					if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
