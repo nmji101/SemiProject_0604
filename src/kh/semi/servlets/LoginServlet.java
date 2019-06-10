@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet
 						request.getSession().setAttribute("loginId", id);
 						request.getSession().setAttribute("loginType", "kakao");
 						request.getSession().setAttribute("snsLogin", "true");
-						request.getRequestDispatcher("start.jsp").forward(request, response);
+						request.getRequestDispatcher("start.main").forward(request, response);
 					}else
 					{
 						System.out.println("DB INSERT ERROR");
@@ -222,10 +222,11 @@ public class LoginServlet extends HttpServlet
 				String gender = request.getParameter("gender");// 성별
 				String phone = request.getParameter("phone");//핸드폰
 				String birth = request.getParameter("birth");// 날짜 1900-05-07
-				System.out.println(gender);
+
 				String resultid = "";
 				String resultpw = "";
 				String resultpw2 = "";
+				String resultgender = "";
 				String resultphone = "";
 				String resultnickname = "";
 				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
@@ -248,6 +249,13 @@ public class LoginServlet extends HttpServlet
 				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
 					resultpw2 = pw2Matcher.group(); 
 					System.out.println(resultpw2);
+				}
+				
+				Pattern genderPattern = Pattern.compile("(^[(M)(F)]$)"); // 비밀번호 확인 regex
+				Matcher genderMatcher = genderPattern.matcher(gender);
+				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
+					resultgender = genderMatcher.group(); 
+					System.out.println(resultgender);
 				}
 				
 				Pattern phonePattern = Pattern.compile("(^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$)"); // 핸드폰 regex
@@ -318,16 +326,13 @@ public class LoginServlet extends HttpServlet
 						resultage = "기타";
 					}
 				}
-				
-				dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone));
 				try
 				{
 					if
 					(
-	            			
 	   						(idcheck.equals("사용 가능한 아이디 입니다.")) && (pwcheck.equals("사용가능 합니다.")) 
 	            			&&
-	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null))
+	            			(nicknamecheck.equals("올바른 양식 입니다.")) && (!gender.equals(null)) && (!gender.equals(""))
 	            			&& 
 	            			(phonecheck.equals("올바른 양식 입니다."))  && (pw.equals(pw2)) 
 	            			&& 

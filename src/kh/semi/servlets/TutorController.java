@@ -95,8 +95,10 @@ public class TutorController extends HttpServlet {
 			}
 		} 
 		
+
 		if(command.equals("/del.tutor")) {//--------------------------삭제
 			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+
 			System.out.println("왔다감");
 			System.out.println(multi.getParameter("info_classid"));
 			System.out.println("1");
@@ -114,6 +116,43 @@ public class TutorController extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+		}
+		
+		if(command.equals("/click.tutor")) {//클래스 제목클릭
+			int info_classid = Integer.parseInt(request.getParameter("info_classid"));
+			try {
+				dto=dao.content(info_classid);
+				request.setAttribute("dto",dto);
+				request.getRequestDispatcher("ForTutorEdit.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(command.equals("/edit.tutor")) {//클래스 수정버튼 클릭
+			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+			Enumeration files = multi.getFileNames();
+			System.out.println(multi.getParameter("info_classid"));
+			//System.out.println("수정버튼 클릭함");
+			int info_classid = Integer.parseInt(multi.getParameter("info_classid"));
+			try {
+				dto.setInfo_category(multi.getParameter("down"));
+				dto.setInfo_title(multi.getParameter("inputtitle"));
+				dto.setInfo_explain(multi.getParameter("explain"));
+				dto.setInfo_addr1(multi.getParameter("addr1"));
+				dto.setInfo_addr2(multi.getParameter("addr2"));
+				dto.setInfo_addr3(multi.getParameter("addr3"));
+				dto.setInfo_addr4(multi.getParameter("addr4"));
+				dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
+				dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
+				dto.setInfo_start(multi.getParameter("startdate"));
+				dto.setInfo_end(multi.getParameter("enddate"));
+				//System.out.println((multi.getParameter("down")));
+				int result =dao.update(info_classid, dto);
+				
+				request.getRequestDispatcher("start.main").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(command.equals("/click.tutor")) {//클래스 제목클릭

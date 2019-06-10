@@ -350,10 +350,10 @@ $(function(){
    });
 
    
- 	$(".del_class").on("click", function() {
- 		alert('삭제되었습니다. \n메인으로 이동합니다');
- 		 location.href="del.tutor?info_classid=${tmp.info_classid}";//삭제할 때 seq번호 같이 넘기기
- 	});
+//  	$(".del_class").on("click", function() {
+//  		alert('삭제되었습니다. \n메인으로 이동합니다');
+//  		 location.href="del.tutor?info_classid=${tmp.info_classid}";//삭제할 때 seq번호 같이 넘기기
+//  	});
 
     
    $("#register").on("click", function() { //클래스완료 버튼 클릭시
@@ -722,6 +722,7 @@ $(function(){
                
                <div class="head col-lg-1 col-md-1 col-sm-1 m-0 p-0">
                <button type="button" class="btn btn-danger btn-sm del_class">
+               < 
                삭제
                </button>
             </div>
