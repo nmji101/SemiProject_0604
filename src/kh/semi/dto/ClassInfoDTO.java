@@ -171,6 +171,26 @@ public class ClassInfoDTO {
 		this.info_avgstar = info_avgstar;
 		this.info_click = info_click;
 	}
+	
+	public ClassInfoDTO(String info_category, String info_title, String info_explain,
+			String info_addr1, String info_addr2, String info_addr3, String info_addr4, int info_maxperson,
+			int info_price,String info_start, String info_end	) {
+
+		this.info_category = info_category;
+		this.info_title = info_title;
+		this.info_explain = info_explain;
+		
+		this.info_addr1 = info_addr1;
+		this.info_addr2 = info_addr2;
+		this.info_addr3 = info_addr3;
+		this.info_addr4 = info_addr4;
+		this.info_maxperson = info_maxperson;
+		this.info_price = info_price;
+	
+		this.info_start = info_start;
+		this.info_end = info_end;
+		
+	}
 	public ClassInfoDTO() {
 		super();
 	}
