@@ -121,6 +121,7 @@ $(function(){
 		console.log(result);
 		$(item).parent().text(result);
 	})
+	
 });
 
 </script>
@@ -204,6 +205,9 @@ div {
 	float:right;
 	border-radius: 50px;
 
+}
+.carousel-item>img:hover{
+	opacity: 0.5;
 }
 #starBox{
 	float: left;
