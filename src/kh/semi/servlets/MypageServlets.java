@@ -677,6 +677,7 @@ public class MypageServlets extends HttpServlet
 							if(result > 0)
 							{
 								System.out.println("회원 탈퇴 완료");
+								request.getSession().invalidate();
 								response.sendRedirect("start.main");
 							}
 							else
@@ -707,27 +708,28 @@ public class MypageServlets extends HttpServlet
 					System.out.println(id);
 					System.out.println(type);
 					
-//					if(id.equals(m_id))
-//					{
-//						PersonDAO dao = new PersonDAO();
-//						int result = dao.deleteKaKao(id);
-//							
-//						if(result > 0)
-//						{
-//							System.out.println("회원 탈퇴 완료");
-//							response.sendRedirect("start.main");
-//						}
-//						else
-//						{
-//							System.out.println("DB 삭제 중 오류");
-//							response.sendRedirect("error.html");
-//						}
-//					}
-//					else
-//					{
-//						System.out.println("세션의 아이디와 req로 넘어온 아이디가 다르다");
-//						response.sendRedirect("error.html");
-//					}
+					if(id.equals(m_id))
+					{
+						PersonDAO dao = new PersonDAO();
+						int result = dao.deleteKakao(id);
+							
+						if(result > 0)
+						{
+							System.out.println("회원 탈퇴 완료");
+							request.getSession().invalidate();
+							response.sendRedirect("start.main");
+						}
+						else
+						{
+							System.out.println("DB 삭제 중 오류");
+							response.sendRedirect("error.html");
+						}
+					}
+					else
+					{
+						System.out.println("세션의 아이디와 req로 넘어온 아이디가 다르다");
+						response.sendRedirect("error.html");
+					}
 				}
 				catch(Exception e)
 				{
