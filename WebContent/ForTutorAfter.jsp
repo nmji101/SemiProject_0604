@@ -11,7 +11,7 @@
 <script>
 
 alert('Class가 등록되었습니다 \n메인페이지로 이동합니다');
-location.href="mainHomePage.jsp";
+location.href="start.main";
 </script>
 </body>
 </html>

@@ -397,7 +397,7 @@ h2 {
 							<div id="profile_img_div" class="col-lg-4">
 
 								<button id="profile_img_btn" class="btn">${ dto.m_photo }
-
+									<img src="Content/Images/m_photo_1.jpg" alt="이미지가 없습니다">
 								</button>
 
 							</div>

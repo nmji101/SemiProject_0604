@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <!-- dddddddddd -->
-<title>클래스 등록페이지</title>
+<title>클래스 수정페이지</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -200,6 +200,10 @@ body {
    border: 1px solid black;
    overflow-y: auto;
    
+<<<<<<< HEAD
+   
+=======
+>>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 }
 
 #inputimg {
@@ -317,7 +321,7 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
     }
     
     .red{
-        background-color: red;
+        background: red;
     }
     .makeclass{
         width: 100%;
@@ -349,14 +353,11 @@ $(function(){
    $('#mystatus2').text($(this).text());
    });
 
-   
- 	$(".del_class").on("click", function() {
- 		alert('삭제되었습니다. \n메인으로 이동합니다');
- 		 location.href="del.tutor?info_classid=${tmp.info_classid}";//삭제할 때 seq번호 같이 넘기기
- 	});
 
     
    $("#register").on("click", function() { //클래스완료 버튼 클릭시
+	   
+	
       
       var max = /^[0-9]{1,2}$/;
        var price = /^[0-9]{1,6}$/;
@@ -380,10 +381,8 @@ $(function(){
 //       document.write(last2[0]);
 
 
-
-      $("input[name=tutorid]").val($("#tutor").html());
-      $("input[name=intro]").val($("#imtutor").html());
-      $("input[name=down]").val($('#mystatus2').html());
+ 	  $("input[name=info_classid]").val();
+      $("input[name=down]").val($('#mystatus2').text());
       $("input[name=addr1]").val();
       $("input[name=addr2]").val();
       $("input[name=addr3]").val();
@@ -392,20 +391,13 @@ $(function(){
       $("input[name=cash]").val();
       $("input[name=startdate]").val();
       $("input[name=enddate]").val();
-      $("input[name=explain]").val($('#cont').html());
-      $("input[name=inputtitle]").val($('#title').html());
+      $("input[name=explain]").val($('#cont').text());
+      $("input[name=inputtitle]").val($('#title').text());
 
 
 
       //alert($("input[name=intro]").val());
-        if($("input[name=intro]").val()==""){
-               alert('튜터소개가 없습니다');
-               return false;
-         }
-        if($("input[name=intro]").val().length>100){
-            alert('튜터소개는 100자까지 가능합니다');
-            return false;
-         }
+  
         if($("input[name=down]").val()=="카테고리"){
             alert('카테고리를 등록해주세요');
             return false;
@@ -450,8 +442,12 @@ $(function(){
             alert('내용은 100자까지 가능합니다');
             return false;
          }
-      
-         else   $("form").submit();
+        
+         else   {
+        	 alert('수정되었습니다 \n메인으로 돌아갑니다');
+        	 alert( $("input[name=info_classid]").val());
+        	 $("form").submit();
+         }
    
    });
    
@@ -462,7 +458,6 @@ $(function(){
        location.href="start.main";
     })
    
-    
 
    
 });
@@ -473,55 +468,23 @@ $(function(){
     
 <body>
 
-   <form action="tutor.tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
+   <form action="edit.tutor" method="post"  enctype="multipart/form-data" accept-charset="utf-8" >
       <div class="container">
-         <div class="row">
-            <!-- 헤더부분 -->
-            <div class="col-12 col-lg-3" >
-               <img src="logo.png" id=home>
-<!--                <button type="button" class="btn btn-warning" id=home>홈으로 가기</button> -->
-
-            </div>
-            <div class="top col-lg-12">
-               <div class="head welcome">
-                  <h4>
-                     <span class="badge welcome badge-warning">튜터 페이지입니다</span>
-                  </h4>
-               </div>
-            </div>
-            <br>
-            <div class="array col-lg-12">
-               <div id="tutorImg" class="img head">${dto.m_photo }
-               <img src="Content/Images/m_photo_1.jpg" alt="이미지가 없습니다"></div>
-
-               <!--튜터 본인 사진-->
-               <div id=id class=" m-0 p-0 col-5  array border-warning" >
-                <input  type="hidden"  name=tutorid ><label id=tutor class=tutorid>${ loginId }</label>
-               </div>
-               <!--ID-->
-
-               <span class="badge  m-0 p-1 badge-warning">튜터 소개글(필수/최대 100자)</span>
-               <div class="intro m-0 p-0 col-5 array border-warning" id="imtutor"contentEditable="true"></div>
-
-               <input type="hidden" name="intro">
-            </div>
-         </div><!-- row end tag -->
-         <br>
-         <!-- 헤더부분 끝 -->
-
-         <div class=row>
+         
+ <div class=row>
             <!-- 컨텐츠 부분-->
             <div class=" col-lg-12 col-md-12 col-sm-12 p-0 m-0"id="collapseExample">
                <div    class="card m-3 col-lg-12 col-md-12 col-sm-12 card-body array border-warning">
             
-                    <h4><span class="badge makeclass badge-warning">Class 만들기</span></h4>
+                    <h4><span class="badge makeclass badge-warning">Class 수정하기 (글번호 : ${dto.info_classid })</span></h4>
+                   <input type="hidden" name="info_classid" value="${dto.info_classid }">
                   <!--Class등록 Show부분-->
                   <div class="pt-2 ">   
                      
                      <div class="mr-3   p-0 head col-3 btn-group">
                         <button type="button" id="mystatus2"class="btn btn-warning p-1 dropdown-toggle"
                            data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">카테고리</button>
+                           aria-expanded="false">${dto.info_category }</button>
                         <ul id="mytype" class="dropdown-menu" role="menu"
                            aria-labelledby="searchType">
                            <li><a class="dropdown-item" href="#">디자인</a></li>
@@ -533,10 +496,10 @@ $(function(){
                         <input type="hidden" name="down">
                      </div>         
                      <div class="mr-3   p-0 cash col-3 head cash form-group">
-                        <input type="text" class="inputcash form-control" placeholder="희망인원" name=max id=max>
+                        <input type="text" class="inputcash form-control" placeholder="희망인원" name=max id=max  value=${dto.info_maxperson }>
                      </div>
                      <div class="mr-3   p-0 cash col-3 head cash form-group">
-                        <input type="text" class="inputcash form-control"   placeholder="희망금액" name=cash id=price>
+                        <input type="text" class="inputcash form-control"   placeholder="희망금액" name=cash id=price value=${dto.info_price }>
                      </div>
                      <div class="head mr-3   p-0  head col-3 btn-group">
                         <button type="button" onclick="sample4_execDaumPostcode()"
@@ -591,10 +554,14 @@ $(function(){
                                        }).open();
                               }
                            </script>
-                           <input type="text" id="sample4_postcode"class="searchaddr inputcash zipcode text" placeholder="우편번호"name=addr1 readonly > 
-                           <input type="text" id="sample4_roadAddress" class="inputcash searchaddr road text"   placeholder="도로명주소" name=addr2 readonly> 
-                           <input type="text" id="sample4_jibunAddress" class="inputcash searchaddr road text" placeholder="지번주소" name=addr3 readonly> 
-                           <input type="text"id="sample4_detailAddress" class="inputcash searchaddr text"placeholder="상세주소 입력하기" name=addr4>
+                           <input value=${dto.info_addr1 } 
+                           type="text" id="sample4_postcode"class="searchaddr inputcash zipcode text" placeholder="우편번호"name=addr1 readonly > 
+                           <input value=${dto.info_addr2 }  
+                           type="text" id="sample4_roadAddress" class="inputcash searchaddr road text"   placeholder="도로명주소" name=addr2 readonly> 
+                           <input value=${dto.info_addr3 }  
+                           type="text" id="sample4_jibunAddress" class="inputcash searchaddr road text" placeholder="지번주소" name=addr3 readonly> 
+                           <input value=${dto.info_addr4 }  
+                           type="text"id="sample4_detailAddress" class="inputcash searchaddr text"placeholder="상세주소 입력하기" name=addr4>
 <!--                       <input type="button"  class="btn addr" value="주소저장" id=findaddr> -->
                      </div>
                   </div>
@@ -604,7 +571,7 @@ $(function(){
 
                   <div ><h3><span class="badge m-0 p-1 badge-warning">제목입력(최대25자)</span></h3>
 
-                  <div contentEditable="true" class="mains p-0 m-0 col-12 border-warning " id=title></div>
+                  <div contentEditable="true" class="mains p-0 m-0 col-12 border-warning " id=title>${dto.info_title }</div>
                      <input type="hidden" name="inputtitle">
                   </div>
                   
@@ -619,10 +586,10 @@ $(function(){
                      </div>
                      <div class="head pt-1 m-0 pick col-10">
                         <div class="head p-0 m-0 col-lg-6 col-md-6 col-sm-6">
-                           시작: <input type="text" id="datepicker" name=startdate>
+                           시작: <input type="text" id="datepicker" name=startdate value=${dto.info_start } >
                         </div>
                         <div class="head p-0 m-0 col-lg-6 col-md-6 col-sm-6">
-                           종료: <input type="text" id="datepicker2" name=enddate>
+                           종료: <input type="text" id="datepicker2" name=enddate value=${dto.info_end }>
                         </div>
                         <script>
                            $(function() {
@@ -663,96 +630,29 @@ $(function(){
                   <div class="array col-12 p-0 m-0">
                      <!-- 내용입력-->
 
-                     <h3><span class="badge m-0 p-1 badge-warning">내용입력(최대100자/이미지 등록 후 수정 불가)</span></h3>
+                     <h3><span class="badge m-0 p-1 badge-warning">내용입력(최대100자)</span></h3>
 
-                     <div contentEditable="true" class="main  p-0 m-0 col-12 border-warning " id=cont ></div>
+                     <div contentEditable="true" class="main  p-0 m-0 col-12 border-warning " id=cont >${dto.info_explain }</div>
                      <input type="hidden" name="explain"><!-- Class 내용 등록-->   
                   </div><!-- 내용입력 끝--><br>
                   <!--  업로드 버튼 -->
                   
-                     <div class="input_wrap">
-                     <input type="file" value="" name="img"><br>
-                           <input type="file" value="" name="img2"><br>
-                           <input type="file" value="" name="img3">
-                       </div><br>
+<!--                      <div class="input_wrap"> -->
+<!--                      <input type="file" value="" name="img"><br> -->
+<!--                            <input type="file" value="" name="img2"><br> -->
+<!--                            <input type="file" value="" name="img3"> -->
+<!--                        </div><br> -->
                   <div class="head btm m-0 p-0 col-12">
-                     <button type="button" id="register" class="btn btn-warning">Class 등록하기</button>
+                     <button type="button" id="register" class="btn btn-warning">Class 수정하기</button>
                   </div>
                
                   <!--Class등록 Show부분 끝-->
                </div>
             </div>
          </div>
-         <!-- 컨텐츠 부분 끝-->
-         <br>
-
-         <div class=row>
-            <div id=myclass class="col-lg-12 col-md-12 col-sm-12 m-0 p-0">
-            <button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
-               <div class="list col-lg-12 col-md-12 col-sm-12 border-warning p-0">
-               <div class="array col-12 m-0 p-0 listtop">
-               <div class="head col-lg-1 col-md-1 col-sm-1 d-none d-sm-block m-0 p-0">번호</div>
-               <div class="head  col-lg-2 col-md-2 col-sm-2 d-none d-sm-block m-0 p-0">분류</div>
-               <div class="head  col-lg-4 col-md-4 col-sm-4 m-0 p-0 ">제목</div>
-               <div class="head  col-lg-4 col-md-4 col-sm-4 m-0 p-0">등록일</div>
-               <div class="head  col-lg-1 col-md-1 col-sm-1 m-0 p-0">삭제</div>
-               </div>
-               
-               <div class="array col-12 m-0 p-0 " >
-               <c:forEach var="tmp" items="${page}">
-               <div class="row m-0 p-0">
-            
-               <div class="head  col-lg-1 col-md-1 col-sm-1 d-none d-sm-block m-0 p-0">
-               ${tmp.info_classid }
-               </div>
-               
-               <div class="head col-lg-2 col-md-2 col-sm-2 d-none d-sm-block m-0 p-0">
-               ${tmp.info_category}
-               </div>
-               
-               <div class="head col-lg-4 col-md-4 col-sm-4 m-0 p-0 target">
-               <a href = "click.tutor?info_classid=${tmp.info_classid}">
-               ${tmp.info_title}
-               </a>
-               </div>
-               
-               <div class="head col-lg-4 col-md-4 col-sm-4 m-0 p-0">
-               ${tmp.info_date}
-               </div>
-               
-               <div class="head col-lg-1 col-md-1 col-sm-1 m-0 p-0">
-               <button type="button" class="btn btn-danger btn-sm del_class">
-               삭제
-               </button>
-            </div>
-            </div>   
-               </c:forEach>
-                </div>
-<!--                <button type="button" class="btn btn-warning col-lg-1 col-md-2 col-sm-4 m-0 p-0" class="edit_my_class">수정</button> -->
-<!--               <button type="button" class="btn btn-warning col-lg-1col-md-2 col-sm-4 m-0 p-0" class="del_my_class">삭제</button> -->
-               </div>
-               <br>
-            </div>
-         </div>
-
-<!--             <div class=row> -->
-<!--             <div id=myclass class="col-lg-12 col-md-12 col-sm-12"> -->
-<!--             <button type="button" class="btn btn-warning openlist2">MY CLASS 후기</button> -->
-<!--                <div class="list2 col-lg-12 col-md-12 col-sm-12 border-warning"> -->
-<!--                <div class="head col-lg-2 col-md-1 col-sm-2 d-none d-sm-block m-0 p-0">분류</div> -->
-<!--                <div class="head col-lg-2 col-md-5 col-sm-6 m-0 p-0 ">제목</div> -->
-<!--                <div class="head col-lg-6 col-md-1 d-none d-md-block view m-0 p-0">설명</div> -->
-<!--                <div class="head col-lg-2 col-md-2 col-sm-4 m-0 p-0">등록일</div> -->
-<!--                </div> -->
-<!--                <br> -->
-<!--             </div> -->
-<!--          </div> -->
-
-         
-         
       
-<br>
-<button type="button" class="btn btn-warning" id=back>뒤로가기</button>
+<!-- <br> -->
+<!-- <button type="button" class="btn btn-warning" id=back>뒤로가기</button> -->
 
       </div>   
       
