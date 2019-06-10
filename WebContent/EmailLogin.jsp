@@ -42,12 +42,7 @@ logo {
 }
 
 #log {
-	float: left;
-	width: 100%;
-	height: 100%;
-}
-img{
-	height: auto;
+	width:300px;
 }
 .form-control {
 	float: left;
