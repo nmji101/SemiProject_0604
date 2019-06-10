@@ -101,7 +101,10 @@ div {
 #header_row, #profile_row, #contents_row {
 	justify-content: center;
 }
-
+#contents_row
+{
+	min-height: 600px;
+}
 #logo_div, #event_div, #profile_img_div {
 	text-align: center;
 }

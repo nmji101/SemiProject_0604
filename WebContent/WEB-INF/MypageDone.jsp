@@ -294,7 +294,7 @@ h2 {
 			var classDate = $(this).siblings(".class_date").val();
 			var classId = $(this).siblings(".class_id").val();
             
-            open("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&m_id=${dto.m_id}", "", popOption);
+            open(encodeURI("review.mypage?c_id="+classId+"&date="+classDate+"&title="+classTitle+"&m_id=${dto.m_id}"), "", popOption);
 	    });
 	    
 	    $(document).on("click", ".detail_class_btn", function()

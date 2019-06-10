@@ -32,9 +32,10 @@ public class FrontController_review extends HttpServlet {
 			try {
 				
 				ReviewDAO dao = new ReviewDAO();
-				
+
 				String id = (String)request.getSession().getAttribute("loginId");
 				
+
 				int classId =Integer.parseInt(request.getParameter("classId"));
 				System.out.println("classId :" + classId);
 				
@@ -51,6 +52,7 @@ public class FrontController_review extends HttpServlet {
 
 				int end = currentPage * recordCountPerPage;
 				int start = end - (recordCountPerPage-1);
+
 				List<ReviewDTO> list = dao.selectAll(start, end, classId);
 				
 				PersonDAO pado = new PersonDAO();
@@ -69,10 +71,10 @@ public class FrontController_review extends HttpServlet {
 //					}
 //				}
 				
-				/*
-				 * int aveStar = dao.aveStar(classId); // 평균 별점 dao.updateAveStar(aveStar,
-				 * classId);// 평균 별점 업데이트
-				 */				
+				
+				  int aveStar = dao.aveStar(classId); // 평균 별점 
+				  dao.updateAveStar(aveStar, classId);// 평균 별점 업데이트
+				 			
 				request.setAttribute("list", list);
 
 				int recordTotalCount = dao.boardCount(classId);
@@ -86,13 +88,16 @@ public class FrontController_review extends HttpServlet {
 			}
 
 		}else if(cmd.contentEquals("/like.review")) {
+
 			System.out.println("추천");
+
 			String loginId = (String)request.getSession().getAttribute("loginId");
 			String r_seq = request.getParameter("re_seq");
 			if(loginId != null) {
 				System.out.println(loginId);
 				String seq = r_seq.substring(15, 16);
 				int re_seq = Integer.parseInt(seq);
+
 				try 
 				{
 					ReviewDAO dao = new ReviewDAO();

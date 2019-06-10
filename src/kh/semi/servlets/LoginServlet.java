@@ -318,7 +318,8 @@ public class LoginServlet extends HttpServlet
 						resultage = "기타";
 					}
 				}
-
+				
+//				dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone));
 				try
 				{
 					if
@@ -335,16 +336,18 @@ public class LoginServlet extends HttpServlet
 	            			&& (!resultphone.equals(""))
 	            	 )
 					{
-					if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
-					{
-						System.out.println("성공");
-						result = "성공";
-					}else
-					{
-						System.out.println("실패");
-						result = "실패";
+						if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
+						{
+							System.out.println("성공");
+							result = "성공";
+						}
+						else
+						{
+							System.out.println("실패");
+							result = "실패";
+						}
 					}
-					}else {
+					else {
 						System.out.println("실패");
 						result = "실패";
 					}
