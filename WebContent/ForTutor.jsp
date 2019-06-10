@@ -174,7 +174,6 @@ body {
    height: 150px;
    float: left;
 }
-
 .img2 {
    width: 200px;
    height: 200px;
