@@ -248,7 +248,8 @@ text-shadow: 0px 0px 5px white;
 .review{
 	width: 100%;
 	height: 90px;
-	overflow : scroll;
+	overflow-x : none;
+	overflow-y : auto;
 	margin-bottom:10px;	
 	background-color: #ffeeba;
 	border-radius: 20px;
