@@ -100,9 +100,9 @@ public class TutorController extends HttpServlet {
 			MultipartRequest multi = new MultipartRequest(request, filePath2, 20 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 
 			System.out.println("왔다감");
-			System.out.println(multi.getParameter("info_classid"));
+			System.out.println(request.getParameter("info_classid"));
 			System.out.println("1");
-			int info_classid = Integer.parseInt(multi.getParameter("info_classid"));
+			int info_classid = Integer.parseInt(request.getParameter("info_classid"));
 			System.out.println("2");
 			System.out.println(info_classid);
 			try {

@@ -395,14 +395,8 @@ h2 {
 						<div id="profile_div" class="row">
 
 							<div id="profile_img_div" class="col-lg-4">
-
-<<<<<<< HEAD
 								<button id="profile_img_btn" class="btn">${ dto.m_photo }
 									<img src="Content/Images/m_photo_1.jpg" alt="이미지가 없습니다">
-=======
-								<button id="profile_img_btn" class="btn">
-									${ dto.m_photo }
->>>>>>> 6a339421e58829686c432781663ddc083bb102e8
 								</button>
 
 							</div>

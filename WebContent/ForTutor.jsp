@@ -350,10 +350,10 @@ $(function(){
    });
 
    
-//  	$(".del_class").on("click", function() {
-//  		alert('삭제되었습니다. \n메인으로 이동합니다');
-//  		 location.href="del.tutor?info_classid=${tmp.info_classid}";//삭제할 때 seq번호 같이 넘기기
-//  	});
+  	$(".del_class").on("click", function() {
+  		alert('Class 삭제는 관리자에게 문의주세요');
+  		// location.href="del.tutor?info_classid=${tmp.info_classid}";//삭제할 때 seq번호 같이 넘기기
+  	});
 
     
    $("#register").on("click", function() { //클래스완료 버튼 클릭시
@@ -676,7 +676,8 @@ $(function(){
                            <input type="file" value="" name="img3">
                        </div><br>
                   <div class="head btm m-0 p-0 col-12">
-                     <button type="button" id="register" class="btn btn-warning">Class 등록하기</button>
+                   <button type="button" id="register" class="btn btn-warning">Class 등록하기</button>
+						
                   </div>
                
                   <!--Class등록 Show부분 끝-->
@@ -688,7 +689,10 @@ $(function(){
 
          <div class=row>
             <div id=myclass class="col-lg-12 col-md-12 col-sm-12 ">
-            <button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
+<!--             <button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button> -->
+            <h3>
+                           <span class="badge m-0 p-1 badge-warning">MY Class 모아보기</span>
+                        </h3>
                <div class="list col-lg-12 col-md-12 col-sm-12 border-warning p-0">
                <div class="array col-12 m-0 p-0 listtop">
                <div class="head col-lg-1 col-md-1 col-sm-1 d-none d-sm-block m-0 p-0">번호</div>
@@ -721,8 +725,7 @@ $(function(){
                </div>
                
                <div class="head col-lg-1 col-md-1 col-sm-1 m-0 p-0">
-               <button type="button" class="btn btn-danger btn-sm del_class">
-               < 
+               <button type="button" class="btn btn-danger btn-sm del_class m-0 p-1">
                삭제
                </button>
             </div>
