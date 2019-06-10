@@ -554,14 +554,10 @@ $(function(){
                                        }).open();
                               }
                            </script>
-                           <input value=${dto.info_addr1 } 
-                           type="text" id="sample4_postcode"class="searchaddr inputcash zipcode text" placeholder="우편번호"name=addr1 readonly > 
-                           <input value=${dto.info_addr2 }  
-                           type="text" id="sample4_roadAddress" class="inputcash searchaddr road text"   placeholder="도로명주소" name=addr2 readonly> 
-                           <input value=${dto.info_addr3 }  
-                           type="text" id="sample4_jibunAddress" class="inputcash searchaddr road text" placeholder="지번주소" name=addr3 readonly> 
-                           <input value=${dto.info_addr4 }  
-                           type="text"id="sample4_detailAddress" class="inputcash searchaddr text"placeholder="상세주소 입력하기" name=addr4>
+                           <input  type="text" id="sample4_postcode"class="searchaddr inputcash zipcode text" placeholder="우편번호"name=addr1   value=${dto.info_addr1 } readonly > 
+                           <input  type="text" id="sample4_roadAddress" class="inputcash searchaddr road text"   placeholder="도로명주소" name=addr2  value=${dto.info_addr2 } readonly> 
+                           <input  type="text" id="sample4_jibunAddress" class="inputcash searchaddr road text" placeholder="지번주소" name=addr3  value=${dto.info_addr3 }   readonly> 
+                           <input   type="text"id="sample4_detailAddress" class="inputcash searchaddr text"placeholder="상세주소 입력하기" name=addr4 value=${dto.info_addr4 } >
 <!--                       <input type="button"  class="btn addr" value="주소저장" id=findaddr> -->
                      </div>
                   </div>
