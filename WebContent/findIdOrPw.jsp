@@ -30,15 +30,16 @@ body {
 }
 
 #wrapper {
+	margin-top: 13%;
 	background-color: #ffffff95;
-	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
 	overflow: hidden;
 	text-align: center;
 	width: 400px;
-	height: 480px;
+	height: 500px;
 	border-radius: 10px;
 	position: relative;
-	top: 50px;
 }
 
 #wrapper>div {
@@ -50,7 +51,6 @@ body {
 }
 
 #img {
-	background-color: transparent;
 	width: 300px;
 }
 
@@ -78,11 +78,15 @@ body {
 		});
 		//-----2단계
 		$("#findId_btn").on("click", function() {
+			var birth = $("#findId_birth").val();
+			var phone = $("#findId_phone").val();
+			if(birth==""||phone==""){
+				alert("값을 입력해주세요.");
+				return;
+			}
 			$("#part2_id").toggle();
 			$("#findResult").text("해당정보의 ID를 검색중입니다.");
 			$("#part3_id").toggle();
-			var birth = $("#findId_birth").val();
-			var phone = $("#findId_phone").val();
 			$.ajax({
 				url : "findId.login",
 				type : "post",

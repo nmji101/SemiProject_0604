@@ -108,6 +108,7 @@ public class LoginServlet extends HttpServlet
 					{
 						request.getSession().setAttribute("loginId", id);
 						request.getSession().setAttribute("loginType", "kakao");
+						request.getSession().setAttribute("snsLogin", "true");
 						request.getRequestDispatcher("start.jsp").forward(request, response);
 					}else
 					{
