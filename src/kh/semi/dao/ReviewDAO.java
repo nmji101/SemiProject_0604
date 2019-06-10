@@ -265,8 +265,13 @@ public class ReviewDAO
 			  int star = Integer.parseInt(starList.get(i).getStar());
 			  sum =sum + star; 
 		  }
-		int aveStar =  sum / starList.size();
-		return aveStar;
+		  if(sum==0) {
+			  return 0;
+		  }else {
+				int aveStar =  sum / starList.size();
+				return aveStar;
+		  }
+
 	}
 
 	

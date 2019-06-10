@@ -526,6 +526,9 @@ public class MypageServlets extends HttpServlet
 				request.setAttribute("date", request.getParameter("date"));
 				request.setAttribute("title", request.getParameter("title"));
 				
+				
+				System.out.println();
+				
 				request.getRequestDispatcher("/WEB-INF/MypageWriteReview.jsp").forward(request, response);
 			}
 			else if(url.equals("writeReview.mypage"))
