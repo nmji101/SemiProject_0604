@@ -41,11 +41,9 @@ public class TutorDAO {
 				dto.setInfo_addr2(rs.getString("info_addr2"));
 				dto.setInfo_addr3(rs.getString("info_addr3"));
 				dto.setInfo_addr4(rs.getString("info_addr4"));
+				
 				dto.setInfo_maxperson(rs.getInt("info_maxperson"));
 				dto.setInfo_price(rs.getInt("info_price"));
-				dto.setInfo_img1(rs.getString("info_img1"));
-				dto.setInfo_img2(rs.getString("info_img2"));
-				dto.setInfo_img3(rs.getString("info_img3"));
 				dto.setInfo_start(rs.getString("info_start"));
 				dto.setInfo_end(rs.getString("info_end"));
 				dto.setInfo_date(rs.getString("info_date"));
