@@ -752,14 +752,32 @@ h2 {
 			var check = confirm('확인?');
 			if(check)
 			{
-				var form = $('<form></form>');
-				form.attr('action', 'kakaoleave.mypage');
-				form.attr('method', 'POST');
-				form.appendTo('body');
-		                				
-				var id = $('<input type="hidden" value='+"${ dto.m_id }"+' name="id">');
-				form.append(id);
-				form.submit();
+				var popOption = "width=300, height=300, resizable=no, scrollbars=no, status=no top=100, left=100;";
+		        window.open("exit.html","",popOption)
+		            		            		
+		        Kakao.init('13fe5c08665b4e8a48dc83219f00ee79');
+		        
+		        Kakao.Auth.logout
+		        (
+		        	function(data)
+		        	{
+			            if(data)
+			            {				
+			            	var form = $('<form></form>');
+							form.attr('action', 'kakaoleave.mypage');
+							form.attr('method', 'POST');
+							form.appendTo('body');
+							
+							var id = $('<input type="hidden" value='+"${ dto.m_id }"+' name="id">');
+							form.append(id);
+							form.submit();
+			            }
+			            else
+			            {
+			            	location.href="error.html";
+			            }
+		            }
+		    	);
 			}
 			else
 			{
