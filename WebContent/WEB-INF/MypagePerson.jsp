@@ -303,18 +303,6 @@ h2 {
 		    location.href = "person.mypage";
 	    });
 	    
-		$("#leave_site_btn").on("click", function()
-		{
-			var pw = prompt('비밀번호를 입력하세요');
-			if((pw != null) && (pw.length >= 6))
-			{
-				location.href = "leave.mypage?id=${dto.m_id}&pw="+pw;
-			}
-			else
-			{
-				alert("취소");
-			}
-		});    
 	    
 	    $("#submit_btn").on("click", function()
 	    {
@@ -755,4 +743,60 @@ h2 {
 	</c:when>
 	
 </c:choose>
+<c:if test="${ snsLogin == 'true' }">
+
+	<script>
+	
+		$("#leave_site_btn").on("click", function()
+		{
+			var check = confirm('확인?');
+			if(check)
+			{
+				var form = $('<form></form>');
+				form.attr('action', 'kakaoleave.mypage');
+				form.attr('method', 'POST');
+				form.appendTo('body');
+		                				
+				var id = $('<input type="hidden" value='+"${ dto.m_id }"+' name="id">');
+				form.append(id);
+				form.submit();
+			}
+			else
+			{
+				alert("취소");
+			}
+		});
+	
+	</script>
+
+</c:if>
+<c:if test="${ snsLogin != 'true' }">
+
+	<script>
+	
+		$("#leave_site_btn").on("click", function()
+		{
+			var pw = prompt('비밀번호를 입력하세요');
+			if((pw != null) && (pw.length >= 6))
+			{
+				var form = $('<form></form>');
+				form.attr('action', 'leave.mypage');
+				form.attr('method', 'POST');
+				form.appendTo('body');
+		                				
+				var id = $('<input type="hidden" value=${ dto.m_id } name="id">');
+				var pw = $('<input type="hidden" value='+pw+' name="pw">');
+		        
+				form.append(id).append(pw);
+				form.submit();
+			}
+			else
+			{
+				alert("취소");
+			}
+		});
+	
+	</script>
+
+</c:if>
 </html>
