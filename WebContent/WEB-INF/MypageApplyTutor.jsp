@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Mypage</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR&display=swap"
 	rel="stylesheet">
@@ -77,7 +77,6 @@ div {
 
 .headBtn {
 	color: white !important;
-	font-weight: bolder !important;
 }
 
 .headBtn:hover {

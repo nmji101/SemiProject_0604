@@ -143,7 +143,7 @@ select {
                    });
 
       $("#datepicker").datepicker();
-      //$('#datepicker').datepicker('setDate', new Date());
+      $('#datepicker').datepicker('setDate', '2000-01-01');
 
       });
 </script>

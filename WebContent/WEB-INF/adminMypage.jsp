@@ -326,7 +326,6 @@ h2 {
                     $(".checkedId").each(function(i,item){
                         if($(item).prop("checked")==true){
                             var val = $(item).val();
-                            alert(val);
                             var input = $('<input type="hidden" value="'+val+'" name="checkedId">');
                             $(applyTutorForm).append(input);
                         }
@@ -343,6 +342,13 @@ h2 {
                         page = ${endPage}+1;
                     }
                     location.href = "clickPage.admin?currentPage="+page;
+                });
+                $(".navi_page_btn").each(function(i,item){
+                	var currentBtn = $(item).text();
+                	var currentPage = "${currentPage}";
+                	if(currentBtn==currentPage){
+                		$(item).css("color","#ffba00");
+                	}
                 });
                 
                 $("#tutor_search_Btn").on("click",function(){//검색버튼 눌렀을때

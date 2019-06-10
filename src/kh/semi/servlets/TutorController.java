@@ -74,7 +74,11 @@ public class TutorController extends HttpServlet {
 					dto.setInfo_addr4(multi.getParameter("addr4"));
 					dto.setInfo_maxperson(Integer.parseInt(multi.getParameter("max")));
 					dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
+					
 					dto.setInfo_img1(filePathtoImg+"/"+multi.getFilesystemName("img"));
+					if(multi.getFilesystemName("img1")==null) {
+						dto.setInfo_img1("Content/Images/class_default.png");
+					}
 					dto.setInfo_img2(filePathtoImg+"/"+multi.getFilesystemName("img2"));
 					if(multi.getFilesystemName("img2")==null) {
 						dto.setInfo_img2(multi.getFilesystemName("img2"));
@@ -89,7 +93,7 @@ public class TutorController extends HttpServlet {
 					int result = dao.test(dto);   
 					if(result>0) {
 						System.out.println("DB저장완료");
-						request.getRequestDispatcher("ForTutorAfter.jsp").forward(request, response);
+						request.getRequestDispatcher("/WEB-INF/ForTutorAfter.jsp").forward(request, response);
 					}  
 				}catch(Exception e) {
 					e.printStackTrace();
@@ -102,7 +106,7 @@ public class TutorController extends HttpServlet {
 
 					dto=dao.content(info_classid);
 					request.setAttribute("dto",dto);
-					request.getRequestDispatcher("ForTutorEdit.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/ForTutorEdit.jsp").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

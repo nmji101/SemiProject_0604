@@ -153,6 +153,7 @@ public class CategoryController extends HttpServlet {
 					int size = navi.size();
 					request.setAttribute("navi", navi);
 					request.setAttribute("size", size);
+					request.setAttribute("currentPage", currentPage);
 					request.getRequestDispatcher("category.jsp").forward(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -160,20 +161,38 @@ public class CategoryController extends HttpServlet {
 			}else if(cmd.equals("/search.category")) {//헤더의 검색기능
 				try {
 					String searchInput = request.getParameter("search"); //검색어
+					String nowPage = request.getParameter("nowPage");
+
 					System.out.println(searchInput);
+					int endNavi = CategoryDAO.searchEndNavi;
+					int startNavi = CategoryDAO.searchStartNavi;
+
+					int currentPage = 0;
+					if(nowPage==null) {				
+						currentPage = 1;
+					}else if (nowPage.contentEquals("다음 ▶")){
+						currentPage= endNavi+1;	 
+					}else if (nowPage.contentEquals("◀ 이전")){
+						currentPage = startNavi-3;
+					}else {
+						currentPage = Integer.parseInt(nowPage);
+					}
+					int end = currentPage * CategoryDAO.recordCountPerPage;
+					int start = (currentPage * CategoryDAO.recordCountPerPage) - (CategoryDAO.recordCountPerPage - 1);
 					List<CategoryDTO> list = null;
 					//페이지에 띄워줄 list
 					//list 전체갯수 -> navi얻어낼
-					searchInput = searchInput.replaceAll("<", "\\"+"<").replaceAll(">", "\\>");
+					searchInput = searchInput.replaceAll("<script>", "'script'").replaceAll("</script>", "'/script'");
 					System.out.println(searchInput);
-					list = dao.searchCategoryByWord(1,10,searchInput);
+					list = dao.searchCategoryByWord(start,end,searchInput);
 					int recordTotalCount = dao.getTotalBySearch(searchInput);
-					List<String> navi = dao.getNavi(1, recordTotalCount);
+					List<String> navi = dao.getNavi(currentPage, recordTotalCount);
 					int size = navi.size();
-
+					
 					request.setAttribute("list", list);	
 					request.setAttribute("navi", navi);
 					request.setAttribute("size", size);
+					request.setAttribute("currentPage", currentPage);
 					request.setAttribute("searchResult", searchInput);
 
 					request.getRequestDispatcher("category.jsp").forward(request, response);

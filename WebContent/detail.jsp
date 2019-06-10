@@ -689,6 +689,12 @@ div {
                 $("#simpleAddr").text(addr);
                 
                 $(".class_tuImg").children("img").prop("id","tutorImg");
+                $(".price").each(function(i,item){
+                	var price = $(item).text();
+                    //alert(price);
+                    var result = price.replace(/(.?.?.?)([0-9][0-9][0-9])$/,"$1,$2 원");
+                    $(item).text(result);
+                })
             });
         </script>
 </head>
@@ -844,9 +850,7 @@ div {
 										<div>
 											<img src="Content/Images/south-korean-won.png">
 										</div> 
-										<div>
-										${classInfo.info_price }원
-										</div>
+										<div class="price">${classInfo.info_price }</div>
 									</li>
 									<li>
 										<div>
@@ -917,7 +921,7 @@ div {
 									src="Content/Images/close.png">
 							</div>
 							<div>참가비 (1인)</div>
-							<div id="selectPrice">${classInfo.info_price }원</div>
+							<div id="selectPrice" class="price">${classInfo.info_price }</div>
 						</div>
 					</div>
 					<div id="purchase">

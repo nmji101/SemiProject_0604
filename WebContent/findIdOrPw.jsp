@@ -87,8 +87,12 @@ body {
 		$("#findId_btn").on("click", function() {
 			var birth = $("#findId_birth").val();
 			var phone = $("#findId_phone").val();
+			var birthRegex = /([0][1-9]|[1][1-2])([0][1-9]|[1-2][0-9]|[3][0-1])/;
 			if (birth == "" || phone == "") {
 				alert("값을 입력해주세요.");
+				return;
+			}else if(birthRegex.exec(birth)==null){
+				alert("생일을 정확히 입력해주세요.");
 				return;
 			}
 			$("#part2_id").toggle();
