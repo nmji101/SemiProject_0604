@@ -293,7 +293,7 @@ select {
                 $("#nicknametext").on("focusout", function() {// 닉네임 형식이 맞는지 구별 regex
                 	$("#nicknamecheckvar").val("");
                     var nicknametext = $("#nicknametext").val();
-                    var regex = /^.{6}$/g
+                    var regex = /^.{1,6}$/g
                     if (regex.exec(nicknametext) != null) {
                         $("#nicknamecheckin").text("올바른 양식 입니다.");
                         $("#nicknamecheckin").css("color", "blue");

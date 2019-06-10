@@ -265,7 +265,7 @@ public class LoginServlet extends HttpServlet
 					System.out.println(resultphone);
 				}
 				
-				Pattern nicknamePattern = Pattern.compile("(^.{6}$)"); // 닉네임 regex
+				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
 				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
 				if(nicknameMatcher.find()){
 					resultnickname = nicknameMatcher.group(); 
