@@ -50,31 +50,36 @@ public class ReviewDAO
 			return result;
 		}
 	}
-	public List<ReviewDTO> selectAll(int start, int end) throws Exception{
-		String sql = "select * from (select row_number() over(order by re_seq desc) as rown, review.* from review) where rown between ? and ?";
-		Connection con = this.getConnection();
-		PreparedStatement pstat = con.prepareStatement(sql); 
-		pstat.setInt(1, start);
-		pstat.setInt(2, end);
-		ResultSet rs = pstat.executeQuery();
+	public List<ReviewDTO> selectAll(int start, int end, int classId) throws Exception{
+		String sql = "select * from (select row_number() over(order by re_seq desc) as rown, review.* from review where re_classid = ?) where rown between ? and ?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
 
-		List<ReviewDTO> list = new ArrayList<>();
+			pstat.setInt(1, classId);
+			pstat.setInt(2, start);
+			pstat.setInt(3, end);
+			ResultSet rs = pstat.executeQuery();
 
-		while(rs.next()) {
-			int re_seq = rs.getInt("RE_SEQ");
-			int re_classId = rs.getInt("RE_CLASSID");
-			String re_userId = rs.getString("RE_USERID");
-			String re_review = rs.getString("RE_REVIEW");
-			String star = rs.getString("RE_STAR");
-			String re_star = this.viewStar(star);
-			Date re_date = rs.getDate("RE_DATE");
-			Date re_writeDate = rs.getDate("RE_WRITEDATE");
-			int re_like = rs.getInt("RE_LIKE");
+			List<ReviewDTO> list = new ArrayList<>();
 
-			ReviewDTO dto = new ReviewDTO(re_seq, re_classId, re_userId, re_review, re_star, re_date, re_writeDate, re_like);
-			list.add(dto);
+			while(rs.next()) {
+				int re_seq = rs.getInt("RE_SEQ");
+				int re_classId = rs.getInt("RE_CLASSID");
+				String re_userId = rs.getString("RE_USERID");
+				String re_review = rs.getString("RE_REVIEW");
+				String star = rs.getString("RE_STAR");
+				String re_star = this.viewStar(star);
+				Date re_date = rs.getDate("RE_DATE");
+				Date re_writeDate = rs.getDate("RE_WRITEDATE");
+				int re_like = rs.getInt("RE_LIKE");
+
+				ReviewDTO dto = new ReviewDTO(re_seq, re_classId, re_userId, re_review, re_star, re_date, re_writeDate, re_like);
+				list.add(dto);
+			}
+			return list;
 		}
-		return list;
 	}
 
 	// 별점 보여주기
@@ -98,21 +103,22 @@ public class ReviewDAO
 	}
 
 
-	public int boardCount()throws Exception {
-		String sql="select count(*) from review";
+	public int boardCount(int classId)throws Exception {
+		String sql="select count(*) from review where re_classId = ?";
 		int result = 0;
 		try(
 				Connection con = this.getConnection();
 				PreparedStatement pstat = con.prepareStatement(sql);
-				ResultSet rs = pstat.executeQuery();
 				){
+			pstat.setInt(1, classId);
+			ResultSet rs = pstat.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt("count(*)");
 			}
 			return result;
 		}
 	}
-	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage) {
+	public String getNavi(int currentPage, int recordTotalCount, int recordCountPerPage, int classId) {
 
 		int naviCountPerPage = 5;
 
@@ -153,20 +159,112 @@ public class ReviewDAO
 		}
 
 		StringBuilder sb = new StringBuilder();
-		String bootTag = "<li class=\"page-item\"><a class=\"page-link\" href='index.review?currentPage="; 
 		if(needPrev) {
 			int prev = startNavi -1;
-			sb.append(bootTag+ prev +"'>Previous</a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='index.review?classId="+ classId + "&currentPage=" + prev +"'>Previous</a></li>");
 		}
 
 		for(int i = startNavi; i <= endNavi; i++) {
-			sb.append(bootTag+i+"'>"+ i + " " +"</a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='index.review?classId="+ classId + "&currentPage=" + i +"'>"+ i + " " +"</a></li>");
 		}
 		if(needNext) {
 			int next = endNavi + 1;
-			sb.append(bootTag+ next +"'>Next</a></li>");
+			sb.append("<li class=\"page-item\"><a class=\"page-link\" href='index.review?classId="+ classId +"&currentPage=" + next +"'>Next</a></li>");
 		}
 		System.out.println(sb);
 		return sb.toString();
+	}
+
+	public int clickLike(int seq, String loginId)throws Exception{
+		String sql = "insert into likes values(?, ?)";
+		try
+		(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				)
+		{
+			pstat.setInt(1, seq);
+			pstat.setString(2, loginId);
+			int result = pstat.executeUpdate();
+			con.commit();
+			return result;
+		}
+	}
+
+	public int countLike(int re_seq)throws Exception {
+		String sql = "select * from review where RE_SEQ = ?";
+		int result = 0;
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+
+			pstat.setInt(1, re_seq);
+			ResultSet rs = pstat.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt("RE_LIKE");
+			}
+			return result;
+		}
+	}
+	
+	public void updateLike(int re_seq, int countLike)throws Exception {
+		String sql = "update review set RE_LIKE = ? where RE_SEQ = ?";
+		try( 
+				Connection con = this.getConnection(); 
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){ 
+			pstat.setInt(1, ++countLike); 
+			pstat.setInt(2, re_seq); 
+			pstat.executeUpdate();
+			con.commit(); 
+		}
+	}
+	
+	//클래스 평균 별점 업데이트
+	public int updateAveStar(int Star, int classId)throws Exception {
+		String sql= "UPDATE classinfo SET INFO_AVGSTAR = ? WHERE INFO_CLASSID = ?";
+		
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				)
+			{
+			pstat.setInt(1, Star);
+			pstat.setInt(2, classId);
+			con.commit();
+			int result = pstat.executeUpdate();
+			if(result>0) {
+				System.out.println("별점 업데이트 성공");
+			}else {
+				System.out.println("별점 업데이트 실패");
+			}
+			return result;
+		}
+	
+	}
+	
+	//평균 별점 구하기
+	public int aveStar(int classId)throws Exception{
+		// 선택한 클래스에 작성된 리뷰에서 뽑은 별점들
+		String sql = "select re_star from review where re_classId = ?";
+		Connection con = this.getConnection();
+		PreparedStatement pstat = con.prepareStatement(sql);
+		pstat.setInt(1, classId);
+		ResultSet rs = pstat.executeQuery();
+		
+		List<ReviewDTO> starList = new ArrayList<>();
+		int sum = 0;
+		while(rs.next()) {
+			String re_star = rs.getString("RE_STAR");
+			ReviewDTO dto = new ReviewDTO(re_star);
+			starList.add(dto);
+		}
+		  for(int i = 0; i < starList.size(); i++) { 
+			  int star = Integer.parseInt(starList.get(i).getStar());
+			  sum =sum + star; 
+		  }
+		int aveStar =  sum / starList.size();
+		return aveStar;
 	}
 }
