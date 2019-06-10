@@ -143,9 +143,9 @@ select {
 
 <!-- 		날자 달력 이벤트 (동현)				 -->
 <script>
-     $(function() {
-    	$("#emailAuth_btn").hide();
-       		$("#email_auth_badge").hide();
+      $(function() {
+    	  /* $("#emailAuth_btn").hide();
+       		 $("#email_auth_badge").hide();
        		
             $("#logo").on("click", function() {
                 location.href = "start.main";
@@ -293,7 +293,7 @@ select {
                 $("#nicknametext").on("focusout", function() {// 닉네임 형식이 맞는지 구별 regex
                 	$("#nicknamecheckvar").val("");
                     var nicknametext = $("#nicknametext").val();
-                    var regex = /^.{1,6}$/g
+                    var regex = /^.{6}$/g
                     if (regex.exec(nicknametext) != null) {
                         $("#nicknamecheckin").text("올바른 양식 입니다.");
                         $("#nicknamecheckin").css("color", "blue");
@@ -304,7 +304,7 @@ select {
                         $("#nicknametext").val("");
                         $("#nicknamecheckvar").val("");
                     }
-                }) 
+                })  */
                 /* $("#ok").on("click",function() {
         if(($("#idcheckvar").val() == "사용 가능한 아이디 입니다." && $("#pwcheckvar").val() == "사용가능 합니다.") && ($("#nicknamecheckvar").val() == "올바른 양식 입니다." && $("#phonecheckvar").val() == "올바른 양식 입니다.")){
         if(!$("input[name=gender]")){
@@ -333,7 +333,7 @@ select {
 
         }else if()
         }) */
-       			 $(document).keyup(function(e) {
+       			/*  $(document).keyup(function(e) {
             	    if ( e.keyCode == 13) {
             	    	$("#ok").click();
             	    }
@@ -365,7 +365,8 @@ select {
                         location.href = "start.main";
                     }
                 });
-            }); 
+            });  */
+
 </script>
 </head>
 <body>
@@ -504,7 +505,7 @@ select {
 			<div class="row pt-1 mt-2" id="main">
 				<div class="col-1"></div>
 				<div class="col-10 input_text">
-					<button type="button" class="btn btn-warning px-3 py-2" id="ok"
+					<button type="submit" class="btn btn-warning px-3 py-2" id="ok"
 						name="ok">가입하기</button>
 					<button type="button" class="btn btn-warning ml-4 px-3 py-2"
 						id="back_btn">메인으로</button>
