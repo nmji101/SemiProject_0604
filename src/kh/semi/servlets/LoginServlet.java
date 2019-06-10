@@ -109,7 +109,7 @@ public class LoginServlet extends HttpServlet
 						request.getSession().setAttribute("loginId", id);
 						request.getSession().setAttribute("loginType", "kakao");
 						request.getSession().setAttribute("snsLogin", "true");
-						request.getRequestDispatcher("start.jsp").forward(request, response);
+						request.getRequestDispatcher("start.main").forward(request, response);
 					}else
 					{
 						System.out.println("DB INSERT ERROR");
@@ -265,7 +265,7 @@ public class LoginServlet extends HttpServlet
 					System.out.println(resultphone);
 				}
 				
-				Pattern nicknamePattern = Pattern.compile("(^.{6}$)"); // 닉네임 regex
+				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
 				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
 				if(nicknameMatcher.find()){
 					resultnickname = nicknameMatcher.group(); 

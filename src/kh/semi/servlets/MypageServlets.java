@@ -708,23 +708,28 @@ public class MypageServlets extends HttpServlet
 					String id = request.getParameter("id");
 					String type = (String)request.getSession().getAttribute("loginType");
 					
-					System.out.println(id);
-					System.out.println(type);
-					
 					if(id.equals(m_id))
 					{
-						PersonDAO dao = new PersonDAO();
-						int result = dao.deleteKakao(id);
-							
-						if(result > 0)
+						if(type.equals("kakao"))
 						{
-							System.out.println("회원 탈퇴 완료");
-							request.getSession().invalidate();
-							response.sendRedirect("start.main");
+							PersonDAO dao = new PersonDAO();
+							int result = dao.deleteKakao(id);
+								
+							if(result > 0)
+							{
+								System.out.println("회원 탈퇴 완료");
+								request.getSession().invalidate();
+								response.sendRedirect("start.main");
+							}
+							else
+							{
+								System.out.println("DB 삭제 중 오류");
+								response.sendRedirect("error.html");
+							}
 						}
 						else
 						{
-							System.out.println("DB 삭제 중 오류");
+							System.out.println("회원 타입이 카카오가 아니다.");
 							response.sendRedirect("error.html");
 						}
 					}
