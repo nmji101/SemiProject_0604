@@ -547,7 +547,7 @@ $(function(){
 								</div>
 								<div class="col-12 col-md-4 col-lg-2  locationMenu">
 									<ul class="multi-column-dropdown">
-										<li>경상도</li>
+										<li>경북/경남</li>
 										<div class="col d-none d-md-block">
 											<div class="dropdown-divider"></div>
 											<li>대구</li>
