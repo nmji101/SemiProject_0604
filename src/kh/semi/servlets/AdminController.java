@@ -23,7 +23,7 @@ public class AdminController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String cmd = uri.substring(ctx.length());
-		System.out.println(cmd);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 
 
 		try {

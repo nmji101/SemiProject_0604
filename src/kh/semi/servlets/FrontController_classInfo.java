@@ -28,7 +28,7 @@ public class FrontController_classInfo extends HttpServlet {
 		String reqURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = reqURI.substring(ctxPath.length());
-		System.out.println(cmd);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 		try {
 			ClassInfoDAO i_dao = new ClassInfoDAO();
 			MemberDAO m_dao = new MemberDAO();

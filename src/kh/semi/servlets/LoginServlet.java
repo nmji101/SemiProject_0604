@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter writer = response.getWriter();
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
-		System.out.println(url);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+url);
 		System.out.println(request.getRealPath("/"));
 		//		try {
 		//	         new MemberDAO().insertAdmin();
@@ -99,7 +99,6 @@ public class LoginServlet extends HttpServlet
 					}catch(NullPointerException e)
 					{
 					}
-
 					int result = dao.kakaoSignUp(
 							new MemberDTO(id, dao.toSha256("password"), nickname, gender, ageRange, birthday)
 							);

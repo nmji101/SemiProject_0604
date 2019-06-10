@@ -21,7 +21,7 @@ public class CategoryController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = requestURI.substring(ctxPath.length());
-		System.out.println(cmd);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+cmd);
 		try {
 			CategoryDAO dao = new CategoryDAO();
 			if(cmd.contentEquals("/info.category")) {
@@ -129,18 +129,6 @@ public class CategoryController extends HttpServlet {
 						request.getSession().setAttribute("ssSelect", select);
 						request.getSession().setAttribute("ssAddr1", addr1);
 						System.out.println("addr1:"+addr1);		
-
-
-<<<<<<< HEAD
-						if(addr2 == null) {
-							list = dao.getInfoByLocation1(select, addr1, start, end);
-							recordTotalCount = dao.getTotalByMenu("info_addr2", addr1);
-						}else {
-							list = dao.getInfoByLocation2(select, addr1, addr2, start, end);
-							recordTotalCount = dao.getTotalByMenu2("info_addr2", addr1, "info_addr2", addr2);
-						}		
-					}
-=======
 					if(addr2 == null) {
 						if(addr1.equals("경상도")) {
 							addr1 ="^경북|^경남|^대구|^부산";
@@ -158,10 +146,7 @@ public class CategoryController extends HttpServlet {
 						recordTotalCount = dao.getTotalByMenu2("info_addr2", addr1, "info_addr2", addr2);
 					}		
 				}
->>>>>>> 006015949d02d54688b1d65cdfee440c47fbb15e
-
 					request.setAttribute("list", list);	
-
 					//페이지 네비 마무리
 					List<String> navi = dao.getNavi(currentPage, recordTotalCount);
 					int size = navi.size();

@@ -41,6 +41,7 @@ public class MypageServlets extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String url = request.getRequestURI().substring(request.getContextPath().length() + 1);
+		System.out.println(request.getRemoteAddr()+"님 접속:"+url);
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
