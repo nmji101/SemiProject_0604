@@ -687,7 +687,7 @@ $(function(){
          <br>
 
          <div class=row>
-            <div id=myclass class="col-lg-12 col-md-12 col-sm-12 m-0 p-0">
+            <div id=myclass class="col-lg-12 col-md-12 col-sm-12 ">
             <button type="button" class="btn btn-warning openlist">MY CLASS 모아보기</button>
                <div class="list col-lg-12 col-md-12 col-sm-12 border-warning p-0">
                <div class="array col-12 m-0 p-0 listtop">
