@@ -132,7 +132,7 @@ public class CategoryController extends HttpServlet {
 
 
 					if(addr2 == null) {
-						if(addr1.equals("경북")) {
+						if(addr1.equals("경상도")) {
 							addr1 ="^경북|^경남|^대구|^부산";
 						}else if(addr1.equals("충청도")) {
 							addr1="^충청|^대전";
