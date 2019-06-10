@@ -58,7 +58,7 @@
 		        
 		        <div class="col-8 my-auto">
 		            
-		            <h3>리뷰 작성</h3>
+		            <h3>후기 작성</h3>
 		            
 		        </div>
 		        <div id="star_div" class="col-4 my-auto">
