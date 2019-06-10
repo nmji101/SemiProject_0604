@@ -28,14 +28,13 @@ public class FrontController_review extends HttpServlet {
 
 		if(cmd.contentEquals("/index.review")) {
 			System.out.println("/index.review");
+			
 			int currentPage = 0;
 			try {
 				
 				ReviewDAO dao = new ReviewDAO();
 
 				String id = (String)request.getSession().getAttribute("loginId");
-				
-
 				int classId =Integer.parseInt(request.getParameter("classId"));
 				System.out.println("classId :" + classId);
 				
@@ -81,7 +80,14 @@ public class FrontController_review extends HttpServlet {
 				String resultNavi = dao.getNavi(currentPage, recordTotalCount, recordCountPerPage, classId);
 				request.setAttribute("recordTotalCount", recordTotalCount);
 				request.setAttribute("resultNavi", resultNavi);
-				request.getRequestDispatcher("review.jsp").forward(request, response);
+				boolean check = dao.checkReview(classId); // 후기 유무 체크 없으면 메시지 보여주기 / 있으면 후기 리스트
+				
+				if(!check) {
+					request.getRequestDispatcher("NoneReview.jsp").forward(request, response);
+				}else {
+					request.getRequestDispatcher("review.jsp").forward(request, response);
+				}
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -317,4 +317,16 @@ public class ReviewDAO
 			}
 		}
 	}
+	
+	public boolean checkReview(int classId) throws Exception{
+		String sql = "select * from review where re_classId = ?";
+		try(
+				Connection con = this.getConnection();
+				PreparedStatement pstat = con.prepareStatement(sql);
+				){
+			pstat.setInt(1, classId);
+			ResultSet rs = pstat.executeQuery();
+			return rs.next();
+		}
+	}
 }
