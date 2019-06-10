@@ -108,6 +108,13 @@ public class NoticeServlet extends HttpServlet
 					String title = request.getParameter("title");
 					String contents = request.getParameter("contents");
 					
+					writer = writer.replaceAll("<script>", "");
+					title = title.replaceAll("<script>", "");
+					contents = contents.replaceAll("<script>", "");
+					writer = writer.replaceAll("<Script>", "");
+					title = title.replaceAll("<Script>", "");
+					contents = contents.replaceAll("<Script>", "");
+					
 					if(title == null)
 					{
 						title = "제목 없음";
@@ -310,6 +317,12 @@ public class NoticeServlet extends HttpServlet
 				int seq = Integer.parseInt(request.getParameter("seq"));
 				String title = request.getParameter("title");
 				String contents = request.getParameter("contents");
+				
+				
+				title = title.replaceAll("<script>", "");
+				contents = contents.replaceAll("<script>", "");
+				title = title.replaceAll("<Script>", "");
+				contents = contents.replaceAll("<Script>", "");
 				
 				if(title == null)
 				{

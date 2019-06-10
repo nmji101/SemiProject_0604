@@ -620,7 +620,7 @@ public class MypageServlets extends HttpServlet
 					
 				String visitorid = (String) request.getSession().getAttribute("loginId");
 				if(mdao.selectTypeById(visitorid).equals("tutor")){
-					request.getRequestDispatcher("ForTutor.jsp").forward(request, response);
+					request.getRequestDispatcher("/WEB-INF/ForTutor.jsp").forward(request, response);
 				}else{
 					request.getRequestDispatcher("/WEB-INF/MypageApplyTutor.jsp").forward(request, response);
 				}
