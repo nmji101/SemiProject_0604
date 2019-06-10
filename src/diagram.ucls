@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="kh.semi.servlets.CategoryController" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/servlets/CategoryController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="281" width="732" x="5164" y="2489"/>    
+    <position height="281" width="732" x="4940" y="2513"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </class>  
   <class id="7" language="java" name="kh.semi.servlets.AdminController" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/servlets/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="281" width="732" x="3696" y="1641"/>    
+    <position height="281" width="732" x="3976" y="1501"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -86,7 +86,7 @@
   <class id="10" language="java" name="kh.semi.servlets.FrontController_review" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/servlets/FrontController_review.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="281" width="732" x="3660" y="1173"/>    
+    <position height="281" width="732" x="3980" y="1949"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -104,7 +104,7 @@
   </class>  
   <class id="12" language="java" name="kh.semi.dao.PersonDAO" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/PersonDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="399" width="481" x="2960" y="1466"/>    
+    <position height="399" width="481" x="3152" y="1750"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -122,7 +122,7 @@
   </class>  
   <class id="14" language="java" name="kh.semi.dao.MailAuth" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/MailAuth.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="281" width="734" x="4267" y="782"/>    
+    <position height="281" width="734" x="4867" y="718"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -131,7 +131,7 @@
   </class>  
   <class id="15" language="java" name="kh.semi.dao.CategoryDAO" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/CategoryDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="569" width="786" x="4090" y="2378"/>    
+    <position height="569" width="786" x="3978" y="2434"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -158,7 +158,7 @@
   </class>  
   <class id="18" language="java" name="kh.semi.dao.ReviewDAO" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/ReviewDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="515" width="702" x="4582" y="1254"/>    
+    <position height="515" width="702" x="4910" y="1354"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -167,7 +167,7 @@
   </class>  
   <class id="19" language="java" name="kh.semi.dao.DoClassDAO" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/DoClassDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="291" width="480" x="2956" y="1122"/>    
+    <position height="291" width="480" x="3156" y="1322"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -194,7 +194,7 @@
   </class>  
   <class id="22" language="java" name="kh.semi.dao.Mailsend" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/Mailsend.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="281" width="606" x="3508" y="778"/>    
+    <position height="281" width="606" x="3904" y="718"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -212,7 +212,7 @@
   </class>  
   <class id="24" language="java" name="kh.semi.dao.UpgradeDAO" project="SemiProject_0604-master" 
     file="/SemiProject_0604-master/src/kh/semi/dao/UpgradeDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="381" width="473" x="2958" y="678"/>    
+    <position height="381" width="473" x="3158" y="858"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
