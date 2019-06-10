@@ -207,6 +207,10 @@ public class LoginServlet extends HttpServlet
 				String pwcheck = request.getParameter("pwcheckvar");
 				String nicknamecheck = request.getParameter("nicknamecheckvar");
 				String phonecheck = request.getParameter("phonecheckvar");
+				System.out.println(idcheck);
+				System.out.println(pwcheck);
+				System.out.println(nicknamecheck);
+				System.out.println(phonecheck);
 
 				String id = request.getParameter("id");// 아이디
 				String pw = request.getParameter("pw");// 패스워드
@@ -215,48 +219,48 @@ public class LoginServlet extends HttpServlet
 				String gender = request.getParameter("gender");// 성별
 				String phone = request.getParameter("phone");//핸드폰
 				String birth = request.getParameter("birth");// 날짜 1900-05-07
-				
+
 				String resultid = "";
 				String resultpw = "";
 				String resultpw2 = "";
 				String resultphone = "";
 				String resultnickname = "";
 				Pattern idPattern = Pattern.compile("(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\\.[a-zA-Z]{2,3}$)"); //아이디 regex
-				Matcher idMatcher = idPattern.matcher(pw2);
+				Matcher idMatcher = idPattern.matcher(id);
 				if(idMatcher.find()){ // find가 group보다 선행되어야 합니다.
 					resultid = idMatcher.group(); 
 					System.out.println(resultid);
 				}
-				
-				
+
+
 				Pattern pwPattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 regex
 				Matcher pwMatcher = pwPattern.matcher(pw);
 				if(pwMatcher.find()){ // find가 group보다 선행되어야 합니다.
 					resultpw = pwMatcher.group(); 
 					System.out.println(resultpw);
 				}
-				
+
 				Pattern pw2Pattern = Pattern.compile("(^[A-Za-z0-9]{6,12}$)"); // 비밀번호 확인 regex
 				Matcher pw2Matcher = pw2Pattern.matcher(pw2);
 				if(pw2Matcher.find()){ // find가 group보다 선행되어야 합니다.
 					resultpw2 = pw2Matcher.group(); 
 					System.out.println(resultpw2);
 				}
-				
+
 				Pattern phonePattern = Pattern.compile("(^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$)"); // 핸드폰 regex
 				Matcher phoneMacher = phonePattern.matcher(phone);
 				if(phoneMacher.find()){
 					resultphone = phoneMacher.group();
 					System.out.println(resultphone);
 				}
-				
+
 				Pattern nicknamePattern = Pattern.compile("(^.{1,6}$)"); // 닉네임 regex
 				Matcher nicknameMatcher = nicknamePattern.matcher(nickname);
 				if(nicknameMatcher.find()){
 					resultnickname = nicknameMatcher.group(); 
 					System.out.println(resultnickname);
 				}
-				
+
 				String year = dao.getMyLoginYear(birth);// 날짜에서 년도 ex)1900 가져오기
 				int resultyear = Integer.parseInt(year);
 
@@ -267,10 +271,10 @@ public class LoginServlet extends HttpServlet
 				String day = dao.getMyLoginYearDay(month_day);// 일 ex)07
 				String monthday = month + day; // 월일 ex)0507
 
-				
+
 				String resultage = "";
 				String result = "";
-				
+
 				if(resultyear < 2000)
 				{ // 1900 년대생이면
 					if(10 <= intagerange && intagerange < 20)
@@ -316,29 +320,29 @@ public class LoginServlet extends HttpServlet
 				{
 					if
 					(
-	            			
-	   						(idcheck == "사용 가능한 아이디 입니다.") && (pwcheck == "사용가능 합니다.") 
-	            			&&
-	            			(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
-	            			&& 
-	            			(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
-	            			&& 
-	            			(resultid != null) && (resultpw != null) 
-	            			&& (resultpw2 != null) && (resultnickname != null) 
-	            			&& (resultphone != null)
-	            	 )
+
+							(pwcheck == "사용가능 합니다.") 
+							&&
+							(nicknamecheck == "올바른 양식 입니다.") && (gender != null)
+							&& 
+							(phonecheck == "올바른 양식 입니다.")  && (pw == pw2) 
+							&& 
+							(resultid != null) && (resultpw != null) 
+							&& (resultpw2 != null) && (resultnickname != null) 
+							&& (resultphone != null)
+							)
 					{
-					if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
-					{
-						System.out.println("성공");
-						result = "성공";
-					}else
-					{
-						System.out.println("실패");
-						result = "실패";
-					}
+						if(dao.getInsert(new MemberDTO(id, pw, nickname, gender, resultage, monthday, phone)) > 0)
+						{
+							System.out.println("입력성공");
+							result = "성공";
+						}else
+						{
+							System.out.println("입력실패");
+							result = "실패";
+						}
 					}else {
-						System.out.println("실패");
+						System.out.println("check실패");
 						result = "실패";
 					}
 				}catch(Exception e)
@@ -417,7 +421,7 @@ public class LoginServlet extends HttpServlet
 				System.out.println("refresh_token : " + refresh_token);
 			} catch (Exception e) {
 				e.printStackTrace();
-				response.sendRedirect("../board/error.board");
+				response.sendRedirect("error.html");
 			}
 			if(access_token != "") { // access_token을 잘 받아왔다면
 				try {

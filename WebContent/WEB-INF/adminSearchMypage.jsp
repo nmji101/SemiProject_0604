@@ -204,10 +204,6 @@ h2 {
 .lineContent:hover {
 	background-color: rgba(157, 255, 0, 0.15);
 }
-
-#contents_div>.row:not(.content){
-	height: 40px;
-}
 #contents_div{
 	margin-bottom: 30px;
 }
@@ -269,6 +265,9 @@ h2 {
                     //alert("검색어 : " + input)
                     $("#searchForm").submit();
                 });
+                $("#tutorList_btn").on("click",function(){
+                	location.href ="mypage.admin";
+                });
                 if(${loginId == null }){
                     $("#toLogin").on("click",function(){
                         location.href = "Login.jsp";
@@ -278,12 +277,7 @@ h2 {
                     });
                 }else{
                     $("#mypage_btn").on("click", function()
-                                        {
-                        if(${type=="admin"}){
                             location.href = "mypage.admin";
-                        }else{
-                            location.href = "doing.mypage?"+encodeURI("page=1");
-                        }
                     });
                     $("#logout_btn").on("click", function()
                                         {

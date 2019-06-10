@@ -203,10 +203,6 @@ h2 {
 .lineContent:hover {
 	background-color: rgba(157, 255, 0, 0.15);
 }
-
-#contents_div>.row:not (.content){
-	height: 40px;
-}
 #contents_div{
 	margin-bottom: 30px;
 }
@@ -263,13 +259,11 @@ h2 {
             		}
             		$("#searchForm").submit();
             	});
+            	$("#tutorList_btn").on("click",function(){
+                	location.href ="mypage.admin";
+                });
                     $("#mypage_btn").on("click", function()
-                                        {
-                        if(${type=="admin"}){
                             location.href = "mypage.admin";
-                        }else{
-                            location.href = "doing.mypage?"+encodeURI("page=1");
-                        }
                     });
                     $("#logout_btn").on("click", function()
                                         {

@@ -7,7 +7,13 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link
+	href="https://fonts.googleapis.com/css?family=Do+Hyeon|Noto+Sans+KR|Acme|Nanum+Pen+Script&display=swap"
+	rel="stylesheet">
 <style>
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 #div {
 	margin-top: 13%;
 	overflow: hidden;
@@ -20,7 +26,6 @@ form>div{
 	 border-radius:5px;
 }
 body {
-
   background: url('main1.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
