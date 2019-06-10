@@ -21,12 +21,9 @@
 .ui-datepicker-trigger {
 	cursor: pointer;
 }
-
-
 .hasDatepicker {
 	cursor: pointer;
 }
-
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -41,15 +38,12 @@
 	-webkit-transition: background-color 0.2s;
 	transition: background-color 0.2s;
 }
-
 .filebox label:hover {
 	background-color: #6ed36e;
 }
-
 .filebox label:active {
 	background-color: #367c36;
 }
-
 .filebox input[type="file"] {
 	width: 1px;
 	height: 1px;
@@ -63,7 +57,6 @@
 body {
 	margin: 10px;
 }
-
 .where {
 	display: block;
 	margin: 25px 15px;
@@ -73,7 +66,6 @@ body {
 	font-family: verdana;
 	font-style: italic;
 }
-
 .filebox input[type="file"] {
 	position: absolute;
 	width: 1px;
@@ -84,7 +76,6 @@ body {
 	preview-image clip: rect(0, 0, 0, 0);
 	border: 0;
 }
-
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -98,7 +89,6 @@ body {
 	border-bottom-color: #e2e2e2;
 	border-radius: .25em;
 }
-
 /* named upload */
 .filebox .upload-name {
 	display: inline-block;
@@ -115,12 +105,10 @@ body {
 	-moz-appearance: none;
 	appearance: none;
 }
-
 /* imaged preview */
 .filebox .upload-display {
 	margin-bottom: 5px;
 }
-
 @media ( min-width : 768px) {
 	.filebox .upload-display {
 		display: inline-block;
@@ -128,7 +116,6 @@ body {
 		margin-bottom: 0;
 	}
 }
-
 .filebox .upload-thumb-wrap {
 	display: inline-block;
 	width: 54px;
@@ -138,36 +125,30 @@ body {
 	border-radius: 5px;
 	background-color: #fff;
 }
-
 .filebox .upload-display img {
 	display: block;
 	max-width: 100%;
 	width: 100% \9;
 	height: auto;
 }
-
 .filebox.bs3-primary label {
 	color: #fff;
 	background-color: #337ab7;
 	border-color: #2e6da4;
 }
-
 </style>
 <style>
 body {
 	padding: 20px;
 	margin: auto;
 }
-
 .head, .send, .class {
 	float: left;
 }
-
 .array {
 	box-sizing: border-box;
 	overflow: hidden;
 }
-
 .img {
 	
 	width: 150px;
@@ -178,22 +159,18 @@ body {
 >>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 	float: left;
 }
-
 .img2 {
 	width: 200px;
 	height: 200px;
 	background-size: contain;
 	float: left;
 }
-
 .head {
 	margin-right: 10px;
 }
-
 .input-group {
 	width: 150px;
 }
-
 .list, .list2 {
 	width: 680px;
 	height: 200px;
@@ -205,62 +182,50 @@ body {
 =======
 >>>>>>> fe997f9d8a62429d45d7b2bafd0fdcc458fa7b9d
 }
-
 #inputimg {
 	clear: both;
 	width: 500px;
 }
-
 .card-body {
 	width: 680px;
 	padding: 10px;
 	box-sizing: border-box;
 	overflow: hidden;
 }
-
 .clear {
 	clear: both;
 }
-
 #datepicker, #datepicker2 {
 	width: 130px;
 	text-align: center;
 }
-
 .btm {
 	margin-top: 10px;
 }
-
 .color {
 	background-color: aqua;
 }
-
 .intro {
 	height: 95px;
 	overflow-y: auto;
 	border: 1px ridge red;
 	outline: none;
 }
-
 #id {
 	height: 30px;
 	border: 1px ridge red;
 	outline: none;
 }
-
 .intro:empty:not (:focus ):before {
 	content: attr(data-placeholder)
 }
-
 .cash:empty:not (:focus ):before {
 	content: attr(data-placeholder)
 }
-
 .welcome {
 	width: 200px;
 	text-align: center;
 }
-
 .main {
 	height: 200px;
 	overflow-y: auto;
@@ -273,19 +238,15 @@ body {
 	border: 1px ridge red;
 	outline: none;
 }
-
-
 .cash {
 	height: 34px;
 	outline: none;
 }
-
 .inputcash {
 	width: 100%;
 	height: 100%;
 	border: 1px solid #ffba00;
 }
-
 div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 	{
 	border-color: rgba(229, 103, 23, 0.8);
@@ -294,11 +255,9 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 	outline: 0 none;
 	background: none;
 }
-
 .addr {
 	width: 100%;
 }
-
 .searchaddr {
 	width: 326px;
 }
@@ -307,7 +266,6 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         background-image: url(로고.png);
         background-size: cover;
         height: 70px;
-
       
     }
     #home{
@@ -328,15 +286,12 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
         height: 30px;
         text-align: center;
     }
-
     .listtop{
     background-color: antiquewhite;
     }
     .target { 
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
     }
-
-
 	#tutorImg>img{
 		width:150px;
 		height:150px;
@@ -346,20 +301,15 @@ div:focus, cash:focus, input:focus, input[type]:focus, .inputcash:focus
 <script>
 	
 $(function(){
-
-
 	$('#mytype li > a').on('click', function() {
 	// 버튼에 선택된 항목 텍스트 넣기 
 	$('#mystatus2').text($(this).text());
 	});
-
-
     
 	$("#register").on("click", function() { //클래스완료 버튼 클릭시
 		
 		var max = /^[0-9]{1,2}$/;
 	    var price = /^[0-9]{1,6}$/;
-
 	  	var String =$("input[name=startdate]").val();
 		var Strings = $("input[name=enddate]").val();
 		var regex = /..-..$/;
@@ -377,9 +327,6 @@ $(function(){
 		var last2 = lastreg.exec(String2s);
 // 		document.write(last1[0]);
 // 		document.write(last2[0]);
-
-
-
 		$("input[name=tutorid]").val($("#tutor").text());
 		$("input[name=intro]").val($("#imtutor").text());
 		$("input[name=down]").val($('#mystatus2').text());
@@ -393,9 +340,6 @@ $(function(){
 		$("input[name=enddate]").val();
 		$("input[name=explain]").val($('#cont').text());
 		$("input[name=inputtitle]").val($('#title').text());
-
-
-
 		//alert($("input[name=intro]").val());
 		  if($("input[name=intro]").val()==""){
 	            alert('튜터소개가 없습니다');
@@ -418,7 +362,6 @@ $(function(){
 		         alert("가격을 확인해주세요 \n\r 100만원 이상의 금액은 관리자에게 문의주세요");
 		      return false;
 	      }  
-
 	      if($("#sample4_postcode").val()==""){
 	            alert('주소를 입력해주세요');
 	           return false;
@@ -427,7 +370,6 @@ $(function(){
 	            alert('제목이 없습니다');
 	            return false;
 	      }
-
 	      if($('#title').text().length>25){
 	    	  alert('제목은 25자까지 가능합니다');
 	    	  return false;
@@ -439,7 +381,6 @@ $(function(){
 	    	  alert(" '일'을 다시 입력해주세요");
 	    	  return false;
 	      }
-
 	      if($("input[name=explain]").val()==""){
 	            alert('class 소개가 없습니다');
 	            return false;
@@ -461,11 +402,8 @@ $(function(){
  		location.href="mainHomePage.jsp";
  	})
 	
-
 	
 });
-
-
 			
 </script>
     
@@ -553,12 +491,10 @@ $(function(){
 														oncomplete : function(
 																data) {
 															// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 															// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
 															// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 															var roadAddr = data.roadAddress; // 도로명 주소 변수
 															var extraRoadAddr = ''; // 참고 항목 변수
-
 															// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 															// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
 															if (data.bname !== ''
@@ -579,7 +515,6 @@ $(function(){
 																		+ extraRoadAddr
 																		+ ')';
 															}
-
 															// 우편번호와 주소 정보를 해당 필드에 넣는다.
 															document
 																	.getElementById('sample4_postcode').value = data.zonecode;
@@ -587,7 +522,6 @@ $(function(){
 																	.getElementById("sample4_roadAddress").value = roadAddr;
 															document
 																	.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-
 														}
 													}).open();
 										}
@@ -649,12 +583,10 @@ $(function(){
 													minDate : "-0M",
 													maxDate : "+8M"
 												});
-
 										$("#datepicker").datepicker();
 										$("#datepicker2").datepicker();
 										$('#datepicker').datepicker('setDate',	'today');
 										$('#datepicker2').datepicker('setDate',		'+1D');
-
 									});
 								</script>
 							</div>
