@@ -20,7 +20,6 @@
 #contents_div>.row:not (.bottomNavi ){
 	border-bottom: 1px solid rgba(0, 0, 0, 0.26);
 }
-
 div {
 	width: 100%;
 	text-align: center;

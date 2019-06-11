@@ -355,6 +355,8 @@ public class MypageServlets extends HttpServlet
 					try
 					{
 						String m_nickname = request.getParameter("nickname").replaceAll("<script>", "asdasdasdasdasdasd");
+						m_nickname = m_nickname.replaceAll("<", "");
+						m_nickname = m_nickname.replaceAll(">", "");
 						m_nickname = m_nickname.replaceAll(" ", "");
 						
 						if((1 <= m_nickname.length()) && (m_nickname.length() <= 6))
@@ -559,7 +561,7 @@ public class MypageServlets extends HttpServlet
 							{
 								dao.insertReview(request.getParameter("c_id"),
 									request.getParameter("m_id"),
-									request.getParameter("text"), 
+									request.getParameter("text").replaceAll("<script>","").replaceAll("<Script>",""), 
 									request.getParameter("star"),
 									date
 									);

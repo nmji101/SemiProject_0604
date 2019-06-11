@@ -22,6 +22,8 @@ import kh.semi.dto.ClassInfoDTO;
 
 @WebServlet("*.tutor")
 public class TutorController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -87,6 +89,52 @@ public class TutorController extends HttpServlet {
 					if(multi.getFilesystemName("img3")==null) {
 						dto.setInfo_img3(multi.getFilesystemName("img3"));
 					}
+					
+					
+					if(((dto.getInfo_img1() == null) && (dto.getInfo_img2() == null)) && (dto.getInfo_img3() == null))
+					{
+						System.out.println("1번");
+						dto.setInfo_img1("Content/Images/class_default.png");
+					}
+					else if(((dto.getInfo_img1() != null) && (dto.getInfo_img2() == null)) && (dto.getInfo_img3() == null))
+					{
+						System.out.println("2번");
+					}
+					else if(((dto.getInfo_img1() == null) && (dto.getInfo_img2() != null)) && (dto.getInfo_img3() == null))
+					{
+						System.out.println("3번");
+						dto.setInfo_img1(dto.getInfo_img2());
+						dto.setInfo_img2(null);
+					}
+					else if(((dto.getInfo_img1() == null) && (dto.getInfo_img2() == null)) && (dto.getInfo_img3() != null))
+					{
+						System.out.println("4번");
+						dto.setInfo_img1(dto.getInfo_img3());
+						dto.setInfo_img3(null);
+					}
+					else if(((dto.getInfo_img1() != null) && (dto.getInfo_img2() != null)) && (dto.getInfo_img3() == null))
+					{
+						System.out.println("5번");
+					}
+					else if(((dto.getInfo_img1() == null) && (dto.getInfo_img2() != null)) && (dto.getInfo_img3() != null))
+					{
+						System.out.println("6번");
+						dto.setInfo_img1(dto.getInfo_img3());
+						dto.setInfo_img3(null);
+					}
+					else if(((dto.getInfo_img1() != null) && (dto.getInfo_img2() == null)) && (dto.getInfo_img3() != null))
+					{
+						System.out.println("7번");
+						dto.setInfo_img2(dto.getInfo_img3());
+						dto.setInfo_img3(null);
+					}
+					else if(((dto.getInfo_img1() != null) && (dto.getInfo_img2() != null)) && (dto.getInfo_img3() != null))
+					{
+						System.out.println("8번");
+					}
+				
+					
+					
 					dto.setInfo_start(multi.getParameter("startdate"));
 					dto.setInfo_end(multi.getParameter("enddate"));
 
@@ -120,8 +168,8 @@ public class TutorController extends HttpServlet {
 				int info_classid = Integer.parseInt(multi.getParameter("info_classid"));
 				try {
 					dto.setInfo_category(multi.getParameter("down"));
-					dto.setInfo_title(multi.getParameter("inputtitle"));
-					dto.setInfo_explain(multi.getParameter("explain"));
+					dto.setInfo_title(multi.getParameter("inputtitle").replaceAll("<script>",""));
+					dto.setInfo_explain(multi.getParameter("explain").replaceAll("<script>",""));
 					dto.setInfo_addr1(multi.getParameter("addr1"));
 					dto.setInfo_addr2(multi.getParameter("addr2"));
 					dto.setInfo_addr3(multi.getParameter("addr3"));

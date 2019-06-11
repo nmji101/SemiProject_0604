@@ -396,6 +396,10 @@ div {
 	display: block !important;
 	width:100%;
 }
+#delete_btn_div
+{
+	text-align: center;
+}
 /* /footer*/
 </style>
 <!--         다음지도 api cdn -->
@@ -891,6 +895,14 @@ div {
 							style="overflow-x: hidden; overflow: auto; width: 100%; min-height: 700px;"></iframe>
 					</div>
 				</div>
+				<c:if test="${memberType=='admin'}">
+					<div id="delete_btn_div">
+						<form action="delete.classInfo" method="post">
+						<input type="submit" value="클래스 삭제" class="btn btn-danger my-3">
+						<input type="hidden" value="${classInfo.info_classid }" name="classId">
+						</form>
+					</div>
+				</c:if>
 				<!--                    여기까지 mainContent   -->
 			</div>
 			<div id="sideContent">

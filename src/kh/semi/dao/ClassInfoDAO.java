@@ -133,12 +133,25 @@ public class ClassInfoDAO {
 		}
 	}
 
+	public int deleteById(int classId) throws Exception
+	{
+		
+		String sql = "DELETE FROM CLASSINFO WHERE INFO_CLASSID = ?";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setInt(1, classId);
 
+			int result = pstat.executeUpdate();
+			con.commit();
 
-
-
-
-
+			return result;
+		}
+		
+	}
 
 
 

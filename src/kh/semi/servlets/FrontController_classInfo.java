@@ -15,6 +15,7 @@ import kh.semi.dao.ClassDoingDAO;
 import kh.semi.dao.ClassInfoDAO;
 import kh.semi.dao.DoClassDAO;
 import kh.semi.dao.MemberDAO;
+import kh.semi.dao.PersonDAO;
 import kh.semi.dto.ClassDoingDTO;
 import kh.semi.dto.ClassInfoDTO;
 
@@ -53,10 +54,26 @@ public class FrontController_classInfo extends HttpServlet {
 				//4. 해당클래스의 정원꽉찬 날짜만 따로 보내주기.(for문때문에 size도 보내주기
 				List<String> closedDateList = i_dao.selectMaxPersonDate(classId);
 				request.setAttribute("closedDateList", closedDateList);
-
 				System.out.println("담기완료");
 				
-				request.getRequestDispatcher("detail.jsp").forward(request, response);
+				PersonDAO pdao = new PersonDAO();
+				String memberType = "";
+				try
+				{
+					if(request.getSession().getAttribute("loginId") != null)
+					{
+						memberType = pdao.selectById((String)request.getSession().getAttribute("loginId")).getM_type();
+					}
+					
+					request.setAttribute("memberType", memberType);
+					request.getRequestDispatcher("detail.jsp").forward(request, response);
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					response.sendRedirect("error.html");
+				}
+				
 			}else if(cmd.equals("/applicable.classInfo")) { 
 				//보내준 날짜에 신청한 인원이 총 몇명인지
 				int classId = Integer.parseInt(request.getParameter("classId"));
@@ -86,6 +103,41 @@ public class FrontController_classInfo extends HttpServlet {
 					request.setAttribute("result", -1);
 					request.setAttribute("classId", classId);
 					request.getRequestDispatcher("insertClassDoingView.jsp").forward(request, response);
+				}	
+			}
+			else if(cmd.equals("/delete.classInfo"))
+			{
+				try
+				{
+					String loginingId = (String)request.getSession().getAttribute("loginId");
+					PersonDAO pdao = new PersonDAO();
+					if(pdao.selectById(loginingId).getM_type().equals("admin"))
+					{
+						int classId = Integer.parseInt(request.getParameter("classId"));
+						
+						ClassInfoDAO cidao = new ClassInfoDAO();
+						int result = cidao.deleteById(classId);
+						
+						if(result > 0)
+						{
+							response.sendRedirect("info.category?category=main&addr1=all&select=info_avgstar desc");
+						}
+						else
+						{
+							System.out.println("삭제 안됨");
+							response.sendRedirect("error.html");
+						}
+					}
+					else
+					{
+						System.out.println("세션에 아이디가 이상하다.");
+						response.sendRedirect("error.html");
+					}
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+					response.sendRedirect("error.html");
 				}
 			}
 		}catch(Exception e) {
