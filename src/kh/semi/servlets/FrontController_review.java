@@ -102,13 +102,16 @@ public class FrontController_review extends HttpServlet {
 			String loginId = (String)request.getSession().getAttribute("loginId");
 			String r_seq = request.getParameter("re_seq");
 			if(loginId != null) {
-				System.out.println(loginId);
-				String seq = r_seq.substring(15, 16);
+				String seq = r_seq.substring(15, r_seq.length() - 14);
+				
 				int re_seq = Integer.parseInt(seq);
 
 				try 
 				{
 					ReviewDAO dao = new ReviewDAO();
+					System.out.println("시작");
+					System.out.println(re_seq);
+					System.out.println(loginId);
 					
 					if(dao.overlapCheck(re_seq, loginId))
 					{
