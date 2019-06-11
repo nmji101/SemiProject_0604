@@ -134,8 +134,9 @@ public class CategoryController extends HttpServlet {
 						if(addr1.equals("경상도")) {
 							addr1 ="^경북|^경남|^대구|^부산";
 						}else if(addr1.equals("충청도")) {
-							addr1="^충청|^대전";
-						}else if(addr1.equals("전라도")) {
+		                     addr1="^충북|^충남|^대전";
+		                }
+						else if(addr1.equals("전라도")) {
 							addr1="^전라|^광주";
 						}
 						System.out.println(addr1);
