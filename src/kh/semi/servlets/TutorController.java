@@ -76,9 +76,9 @@ public class TutorController extends HttpServlet {
 					dto.setInfo_price(Integer.parseInt(multi.getParameter("cash")));
 					
 					dto.setInfo_img1(filePathtoImg+"/"+multi.getFilesystemName("img"));
-					if(multi.getFilesystemName("img1")==null) {
-						dto.setInfo_img1("Content/Images/class_default.png");
-					}
+//					if(multi.getFilesystemName("img1")==null) {
+//						dto.setInfo_img1("Content/Images/class_default.png");
+//					}
 					dto.setInfo_img2(filePathtoImg+"/"+multi.getFilesystemName("img2"));
 					if(multi.getFilesystemName("img2")==null) {
 						dto.setInfo_img2(multi.getFilesystemName("img2"));

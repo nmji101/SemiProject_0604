@@ -2,6 +2,7 @@ package kh.semi.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.dao.PersonDAO;
 import kh.semi.dao.ReviewDAO;
+import kh.semi.dto.PersonDTO;
 import kh.semi.dto.ReviewDTO;
 
 @WebServlet("*.review")
@@ -33,7 +35,6 @@ public class FrontController_review extends HttpServlet {
 			try {
 				
 				ReviewDAO dao = new ReviewDAO();
-
 				String id = (String)request.getSession().getAttribute("loginId");
 				int classId =Integer.parseInt(request.getParameter("classId"));
 				System.out.println("classId :" + classId);
@@ -58,7 +59,9 @@ public class FrontController_review extends HttpServlet {
 				
 				for(int i = 1 ; i <= list.size() ; i++)
 				{
-					list.get(i-1).setRe_userId(pado.selectById(list.get(i-1).getRe_userId()).getM_nickname());
+					PersonDTO pdto = pado.selectById(list.get(i-1).getRe_userId());
+					list.get(i-1).setUserPhoto(pdto.getM_photo());
+					list.get(i-1).setRe_userId(pdto.getM_nickname());
 				}
 				
 //				for(int i = 1 ; i <= list.size() ; i++)
@@ -75,7 +78,6 @@ public class FrontController_review extends HttpServlet {
 				  dao.updateAveStar(aveStar, classId);// 평균 별점 업데이트
 				 			
 				request.setAttribute("list", list);
-
 				int recordTotalCount = dao.boardCount(classId);
 				String resultNavi = dao.getNavi(currentPage, recordTotalCount, recordCountPerPage, classId);
 				request.setAttribute("recordTotalCount", recordTotalCount);

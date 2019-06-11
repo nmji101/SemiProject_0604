@@ -11,6 +11,7 @@ public class ReviewDTO {
 	private Date re_date;
 	private Date re_writeDate;
 	private int re_like;
+	private String userPhoto;
 	
 	public ReviewDTO() {
 		super();
@@ -98,4 +99,15 @@ public class ReviewDTO {
 		this.re_like = re_like;
 	}
 
+	public String getUserPhoto()
+	{
+		return userPhoto;
+	}
+
+	public void setUserPhoto(String userPhoto)
+	{
+		this.userPhoto = userPhoto;
+	}
+	
+	
 }

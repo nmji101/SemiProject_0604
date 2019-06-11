@@ -51,6 +51,12 @@
                 .icon{
                     font-size: 22px;
                 }
+                .photo_div > img
+                {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                }
             </style>
             <script>
                 $(function(){
@@ -117,8 +123,9 @@
                                 <div class="row mx-0 center">
                                     <div class="col-10 col-sm-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 px-0 center">
                                         <div class="row mx-0">
-                                            <div class="col-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-0 center">
-                                                <img class ="imgSize m-1 ml-3" src="Content/Images/m_photo_1.jpg" class="rounded float-left" alt="...">
+                                            <div class="col-12 col-sm-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 px-0 center photo_div">
+<!--                                                 <img class ="imgSize m-1 ml-3" src="Content/Images/m_photo_1.jpg" class="rounded float-left" alt="..."> -->
+												${tmp.userPhoto }
                                             </div>
                                         </div>
                                         <div class="row mx-0 center">
