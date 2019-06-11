@@ -38,7 +38,7 @@ public class DoClassDAO
 								"from CLASSINFO i,CLASSDOING d " + 
 								"WHERE (i.INFO_CLASSID = d.DO_CLASSID) " + 
 								"AND (d.DO_USERID = ?) " + 
-								"AND ( TRUNC(SYSDATE) <= d.DO_DATE)) " + 
+								"AND ( TRUNC(SYSDATE) < d.DO_DATE)) " + 
 						"WHERE ROWN BETWEEN ? and ?";
 		
 		List<DoClassDTO> list = new ArrayList<DoClassDTO>();
@@ -75,7 +75,7 @@ public class DoClassDAO
 								"from CLASSINFO i,CLASSDOING d " + 
 								"WHERE (i.INFO_CLASSID = d.DO_CLASSID) " + 
 								"AND (d.DO_USERID = ?) " + 
-								"AND ( TRUNC(SYSDATE) > d.DO_DATE)) " + 
+								"AND ( TRUNC(SYSDATE) >= d.DO_DATE)) " + 
 						"WHERE ROWN BETWEEN ? and ?";
 		
 		List<DoClassDTO> list = new ArrayList<DoClassDTO>();
