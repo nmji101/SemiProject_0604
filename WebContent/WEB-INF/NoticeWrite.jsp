@@ -108,7 +108,7 @@ img {
 	    	form.attr('method', 'POST');
 	    	form.appendTo('body');
 	               		
-	    	var text = $(".note-editable").children("p").html();
+	    	var text = $(".note-editable").html();
 	    	
 		    if((text != "<br>") && ($("#title_text").val() != ""))
 		    {
@@ -117,7 +117,7 @@ img {
 		    	var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
 		    	
 		   		form.append(writer).append(title).append(contents);
-		    	$("#contents_hidden").val(text);
+		   		contents.val(text);
 		    	title.val($("#title_text").val());
 		               			    
 		    	form.submit();

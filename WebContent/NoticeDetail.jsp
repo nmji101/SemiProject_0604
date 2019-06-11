@@ -290,11 +290,11 @@ div {
 		
 		<div class="row my-5 py-5 justify-content-center">
 		
-			<div class="col-10">
+			<div id="html" class="col-10">
 				
 				<c:set var="contents" value="${ dto.no_contents }"/>
 <%-- 				<p id="html" class="my-5">${fn:substring(contents,1,fn:length(contents)-1)}</p> --%>
-				<p id="html" class="my-5">${contents}</p>
+				${contents}
 			</div>
 		
 		</div>
@@ -341,7 +341,7 @@ div {
 		var contents = $('<input type="hidden" id="contents_hidden" name="contents">');
 		
 	    form.append(title).append(contents).append(seq);
-	    $("#contents_hidden").val(text);
+	    contents.val(text);
 	    
 	    form.submit();
 	});

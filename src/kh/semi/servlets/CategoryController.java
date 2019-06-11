@@ -165,8 +165,8 @@ public class CategoryController extends HttpServlet {
 					String nowPage = request.getParameter("nowPage");
 
 					System.out.println(searchInput);
-					int endNavi = CategoryDAO.searchEndNavi;
-					int startNavi = CategoryDAO.searchStartNavi;
+					int endNavi = CategoryDAO.endNavi;
+					int startNavi = CategoryDAO.startNavi;
 
 					int currentPage = 0;
 					if(nowPage==null) {				
