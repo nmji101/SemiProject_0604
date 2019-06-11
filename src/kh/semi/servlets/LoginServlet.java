@@ -368,7 +368,7 @@ public class LoginServlet extends HttpServlet
 			}
 		}else if(url.equals("naverLogin.login")) { //네이버로그인
 			String clientId = "8kD62F_deR9smlz8qRkR";//애플리케이션 클라이언트 아이디값";
-			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");///callback 주소
+			String redirectURI = URLEncoder.encode("http://192.168.60.30:8080/naverLoginResult.login", "UTF-8");///callback 주소
 			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
 			// 상태 토큰으로 사용할 랜덤 문자열 생성
 			SecureRandom random = new SecureRandom();
@@ -385,7 +385,7 @@ public class LoginServlet extends HttpServlet
 			String clientSecret = "aCVcnGAU_D";//애플리케이션 클라이언트 시크릿값";
 			String code = request.getParameter("code");
 			String state = request.getParameter("state");
-			String redirectURI = URLEncoder.encode("http://localhost:8080/naverLoginResult.login", "UTF-8");
+			String redirectURI = URLEncoder.encode("http://192.168.60.30:8080/naverLoginResult.login", "UTF-8");
 			String apiURL;
 			apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
 			apiURL += "client_id=" + clientId;

@@ -38,7 +38,7 @@ public class DoClassDAO
 								"from CLASSINFO i,CLASSDOING d " + 
 								"WHERE (i.INFO_CLASSID = d.DO_CLASSID) " + 
 								"AND (d.DO_USERID = ?) " + 
-								"AND ( TRUNC(SYSDATE) < d.DO_DATE)) " + 
+								"AND ( TRUNC(SYSDATE) <= d.DO_DATE)) " + 
 						"WHERE ROWN BETWEEN ? and ?";
 		
 		List<DoClassDTO> list = new ArrayList<DoClassDTO>();
@@ -75,7 +75,7 @@ public class DoClassDAO
 								"from CLASSINFO i,CLASSDOING d " + 
 								"WHERE (i.INFO_CLASSID = d.DO_CLASSID) " + 
 								"AND (d.DO_USERID = ?) " + 
-								"AND ( TRUNC(SYSDATE) >= d.DO_DATE)) " + 
+								"AND ( TRUNC(SYSDATE) > d.DO_DATE)) " + 
 						"WHERE ROWN BETWEEN ? and ?";
 		
 		List<DoClassDTO> list = new ArrayList<DoClassDTO>();
@@ -192,4 +192,31 @@ public class DoClassDAO
 			}
 		}
 	}
+	
+	public boolean existCheckWithDate(String m_id, int c_id, String date) throws Exception
+	{
+		String sql = "select * from CLASSINFO i,CLASSDOING d \r\n" + 
+						"where (i.info_classid = d.do_classid)\r\n" + 
+						"and (d.do_userid = ?) \r\n" + 
+						"AND (d.DO_CLASSID = ?)\r\n" +
+						"AND (d.DO_DATE = ?)\r\n";
+		try
+		(
+			Connection con = this.getConnection();
+			PreparedStatement pstat = con.prepareStatement(sql);
+		)
+		{
+			pstat.setString(1, m_id);
+			pstat.setInt(2, c_id);
+			pstat.setString(3, date);
+			try
+			(
+				ResultSet rs = pstat.executeQuery();
+			)
+			{
+				return rs.next();
+			}
+		}
+	}
+	
 }

@@ -11,9 +11,15 @@
 	<script>
 		if(${result==1}){
 			alert("구매완료");
-		}else{
+		}
+		else if(${result==-1})
+		{
+			alert("해당 날짜에 이미 구매 내역이 존재합니다.");
+		}
+		else{
 			alert("구매실패");
 		}
+		
 		location.href = "clickClass.classInfo?classId="+${classId};
 	</script>
 </body>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kh.semi.dao.ClassDoingDAO;
 import kh.semi.dao.ClassInfoDAO;
+import kh.semi.dao.DoClassDAO;
 import kh.semi.dao.MemberDAO;
 import kh.semi.dto.ClassDoingDTO;
 import kh.semi.dto.ClassInfoDTO;
@@ -62,17 +63,30 @@ public class FrontController_classInfo extends HttpServlet {
 				String checkDate = request.getParameter("check");
 				String signupNum = i_dao.selectCountCheckDate(classId, checkDate);
 				pw.append(signupNum);
-			}else if(cmd.equals("/purchaseClass.classInfo")) {
+			}
+			else if(cmd.equals("/purchaseClass.classInfo")) 
+			{
 				int classId = Integer.parseInt(request.getParameter("classId"));
 				String userId = request.getParameter("userId");
 				String selectedDate = request.getParameter("selectedDate");
-				ClassDoingDTO d_dto = new ClassDoingDTO(1,classId,userId,"","",selectedDate);
-				int result = d_dao.insertClassDoing(d_dto);
-				System.out.println("userId"+userId);
+			
+				DoClassDAO dcdao = new DoClassDAO();
+				if(!(dcdao.existCheckWithDate(userId, classId, selectedDate)))
+				{
+					ClassDoingDTO d_dto = new ClassDoingDTO(1,classId,userId,"","",selectedDate);
+					int result = d_dao.insertClassDoing(d_dto);
+					System.out.println("userId"+userId);
 
-				request.setAttribute("result", result);
-				request.setAttribute("classId", classId);
-				request.getRequestDispatcher("insertClassDoingView.jsp").forward(request, response);
+					request.setAttribute("result", result);
+					request.setAttribute("classId", classId);
+					request.getRequestDispatcher("insertClassDoingView.jsp").forward(request, response);
+				}
+				else
+				{
+					request.setAttribute("result", -1);
+					request.setAttribute("classId", classId);
+					request.getRequestDispatcher("insertClassDoingView.jsp").forward(request, response);
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

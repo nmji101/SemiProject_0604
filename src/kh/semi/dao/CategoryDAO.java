@@ -314,16 +314,16 @@ public class CategoryDAO {
    public List<CategoryDTO> searchCategoryByWord(int start , int end , String searchParam ) throws Exception{
       String sql = "select row_number() over(order by info_avgstar desc) as rown, info_classid, info_title, "
             + "info_addr2, info_avgstar, info_price, info_img1, info_img2, info_img3 "
-            + "from (select row_number() over(order by info_avgstar desc) as rown, classinfo.* from classinfo) where rown between ? and ? and info_title like ? or info_explain like ? ";
+            + "from (select row_number() over(order by info_avgstar desc) as rown, classinfo.* from classinfo where (info_title like ?) or (info_explain like ?)) where (rown between ? and ?) ";
       ResultSet rs = null;
       try(
             Connection con = this.getConnection();
             PreparedStatement pstat = con.prepareStatement(sql);
             ){
-         pstat.setInt(1, start);
-         pstat.setInt(2, end);
-         pstat.setString(3, "%"+searchParam+"%");
-         pstat.setString(4, "%"+searchParam+"%");
+         pstat.setInt(3, start);
+         pstat.setInt(4, end);
+         pstat.setString(1, "%"+searchParam+"%");
+         pstat.setString(2, "%"+searchParam+"%");
 
          rs = pstat.executeQuery();
          List<CategoryDTO> list = new ArrayList<>();
@@ -380,7 +380,53 @@ public class CategoryDAO {
       }
    }
 
+   public List<String> getNavi(int currentPage, int recordTotalCount,int param) throws Exception {
+	      System.out.println("레코드토탈카운트:"+recordTotalCount);
+	      int naviCountPerPage = 3;   
+	      int pageTotalCount = 0; 
+	      if(recordTotalCount % recordCountPerPage == 0) {
+	         pageTotalCount = recordTotalCount / recordCountPerPage;
+	      }else{
+	         pageTotalCount = recordTotalCount / recordCountPerPage + 1 ;
+	      }
 
+	      if(currentPage < 1) {
+	         currentPage = 1;
+	      }else if(currentPage > pageTotalCount) {
+	         currentPage = pageTotalCount;
+	      }
+	      searchStartNavi = (currentPage-1)/naviCountPerPage*naviCountPerPage+1; 
+	      searchEndNavi = searchStartNavi + (naviCountPerPage-1);
+
+	      if(searchEndNavi>pageTotalCount) {
+	    	  searchEndNavi = pageTotalCount;
+	      }
+	      //      System.out.println("현재 페이지 : " + currentPage);
+	      //      System.out.println("시작 : " + startNavi);
+	      //      System.out.println("끝 : " + endNavi);
+
+	      boolean needPrev = true;
+	      boolean needNext = true;
+
+	      if(searchStartNavi == 1) {
+	         needPrev = false;
+	      }
+
+	      if(searchEndNavi == pageTotalCount) {
+	         needNext = false;
+	      }
+	      List<String> list = new ArrayList<String>();
+	      if(needPrev) {
+	         list.add("◀ 이전");
+	      }
+	      for(int i = searchStartNavi ; i <= searchEndNavi ; i++) {
+	         list.add(i+"");
+	      }
+	      if(needNext) {
+	         list.add("다음 ▶");
+	      }
+	      return list;
+	   }
    
 
 

@@ -165,10 +165,10 @@ public class CategoryController extends HttpServlet {
 					String nowPage = request.getParameter("nowPage");
 
 					System.out.println(searchInput);
-					int endNavi = CategoryDAO.endNavi;
-					int startNavi = CategoryDAO.startNavi;
+					int endNavi = CategoryDAO.searchEndNavi;
+					int startNavi = CategoryDAO.searchStartNavi;
 
-					int currentPage = 0;
+					int currentPage = 1;
 					if(nowPage==null) {				
 						currentPage = 1;
 					}else if (nowPage.contentEquals("다음 ▶")){
@@ -187,7 +187,7 @@ public class CategoryController extends HttpServlet {
 					System.out.println(searchInput);
 					list = dao.searchCategoryByWord(start,end,searchInput);
 					int recordTotalCount = dao.getTotalBySearch(searchInput);
-					List<String> navi = dao.getNavi(currentPage, recordTotalCount);
+					List<String> navi = dao.getNavi(currentPage, recordTotalCount, 1);
 					int size = navi.size();
 					
 					request.setAttribute("list", list);	
@@ -196,6 +196,10 @@ public class CategoryController extends HttpServlet {
 					request.setAttribute("currentPage", currentPage);
 					request.setAttribute("searchResult", searchInput);
 
+					System.out.println(start);
+					System.out.println(end);
+					System.out.println(list.size());
+					
 					request.getRequestDispatcher("category.jsp").forward(request, response);
 				}catch(Exception e) {
 					e.printStackTrace();
